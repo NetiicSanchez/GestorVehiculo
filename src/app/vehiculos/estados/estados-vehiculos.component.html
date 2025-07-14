@@ -1,0 +1,54 @@
+<div class="estados-vehiculos-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>traffic</mat-icon>
+        Estados de Vehículos
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- Formulario para agregar nuevo estado -->
+      <div class="form-section">
+        <h3>Agregar Nuevo Estado</h3>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre del Estado</mat-label>
+          <input matInput [(ngModel)]="nuevoEstado.nombre" placeholder="Ej: En Mantenimiento">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput [(ngModel)]="nuevoEstado.descripcion" placeholder="Descripción del estado"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Color</mat-label>
+          <input matInput [(ngModel)]="nuevoEstado.color" placeholder="Ej: orange, red, green">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="agregarEstado()">
+          <mat-icon>add</mat-icon>
+          Agregar Estado
+        </button>
+      </div>
+
+      <!-- Lista de estados -->
+      <div class="lista-section">
+        <h3>Estados Actuales</h3>
+        <mat-list>
+          <mat-list-item *ngFor="let estado of estados">
+            <div matListItemTitle>{{estado.nombre}}</div>
+            <div matListItemLine>{{estado.descripcion}}</div>
+            <div matListItemLine>
+              <span class="color-indicator" [style.background-color]="estado.color"></span>
+              Color: {{estado.color}}
+            </div>
+            <button mat-icon-button color="warn" (click)="eliminarEstado(estado.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

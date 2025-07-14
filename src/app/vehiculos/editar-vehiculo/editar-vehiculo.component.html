@@ -1,0 +1,49 @@
+<div class="editar-vehiculo-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>edit</mat-icon>
+        Editar Vehículo
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="vehiculoForm" (ngSubmit)="onSubmit()">
+        <div class="form-section">
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Placa</mat-label>
+              <input matInput formControlName="placa">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Marca</mat-label>
+              <input matInput formControlName="marca">
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Modelo</mat-label>
+              <input matInput formControlName="modelo">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Año</mat-label>
+              <input matInput type="number" formControlName="anio">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button mat-button type="button" (click)="onCancel()">
+            Cancelar
+          </button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="cargando">
+            {{ cargando ? 'Actualizando...' : 'Actualizar' }}
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,181 @@
+.detalle-vehiculo-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.loading-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.loading-container p {
+  margin-top: 16px;
+  color: #666;
+}
+
+.error-container {
+  text-align: center;
+  padding: 40px;
+  color: #f44336;
+}
+
+.error-container mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+
+.vehiculo-detalle {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.info-section {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  border-left: 4px solid #1976d2;
+}
+
+.info-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px 0;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-item label {
+  font-weight: 500;
+  color: #666;
+  font-size: 14px;
+}
+
+.info-item span {
+  font-size: 16px;
+  color: #333;
+}
+
+.placa {
+  font-weight: 700;
+  font-size: 18px;
+  color: #1976d2;
+}
+
+.precio {
+  font-weight: 600;
+  color: #4caf50;
+}
+
+/* Estados */
+.estado-activo {
+  background-color: #4caf50;
+  color: white;
+}
+
+.estado-inactivo {
+  background-color: #f44336;
+  color: white;
+}
+
+.estado-mantenimiento {
+  background-color: #ff9800;
+  color: white;
+}
+
+.estado-reparacion {
+  background-color: #9c27b0;
+  color: white;
+}
+
+/* Chips */
+mat-chip {
+  font-weight: 500;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .detalle-vehiculo-container {
+    padding: 10px;
+  }
+  
+  .info-section {
+    padding: 16px;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .info-item {
+    padding: 8px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+}
+
+@media (max-width: 480px) {
+  .detalle-vehiculo-container {
+    padding: 8px;
+  }
+  
+  .info-section {
+    padding: 12px;
+  }
+  
+  .info-section h3 {
+    font-size: 16px;
+  }
+  
+  .info-item span {
+    font-size: 14px;
+  }
+  
+  .placa {
+    font-size: 16px;
+  }
+}
+
+/* Estilos para fotos del vehículo */
+.fotos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.foto-item {
+  text-align: center;
+}
+
+.foto-vehiculo {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  transition: transform 0.2s ease;
+}
+
+.foto-vehiculo:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}

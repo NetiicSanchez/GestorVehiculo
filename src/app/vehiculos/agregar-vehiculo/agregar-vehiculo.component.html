@@ -1,0 +1,167 @@
+<div class="agregar-vehiculo-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>add_circle</mat-icon>
+        Agregar Nuevo Vehículo
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="vehiculoForm" (ngSubmit)="onSubmit()">
+        
+        <!-- Información Básica -->
+        <div class="form-section">
+          <h3>Información Básica</h3>
+          
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Placa *</mat-label>
+              <input matInput 
+                     formControlName="placa" 
+                     placeholder="Ej: ABC-123"
+                     (blur)="validarPlacaUnica()">
+              <mat-error *ngIf="vehiculoForm.get('placa')?.hasError('required')">
+                La placa es obligatoria
+              </mat-error>
+              <mat-error *ngIf="vehiculoForm.get('placa')?.hasError('placaExistente')">
+                Esta placa ya existe
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Marca *</mat-label>
+              <mat-select formControlName="marca">
+                <mat-option *ngFor="let marca of marcasComunes" [value]="marca">
+                  {{ marca }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="vehiculoForm.get('marca')?.hasError('required')">
+                La marca es obligatoria
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Modelo *</mat-label>
+              <input matInput formControlName="modelo" placeholder="Ej: Corolla">
+              <mat-error *ngIf="vehiculoForm.get('modelo')?.hasError('required')">
+                El modelo es obligatorio
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Año *</mat-label>
+              <input matInput 
+                     type="number" 
+                     formControlName="anio" 
+                     [min]="1950" 
+                     [max]="anioActual + 1">
+              <mat-error *ngIf="vehiculoForm.get('anio')?.hasError('required')">
+                El año es obligatorio
+              </mat-error>
+              <mat-error *ngIf="vehiculoForm.get('anio')?.hasError('min') || vehiculoForm.get('anio')?.hasError('max')">
+                Año debe estar entre 1950 y {{ anioActual + 1 }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Color</mat-label>
+              <input matInput formControlName="color" placeholder="Ej: Azul">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Clasificación -->
+        <div class="form-section">
+          <h3>Clasificación</h3>
+          
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Tipo de Vehículo *</mat-label>
+              <mat-select formControlName="idTipoVehiculo">
+                <mat-option *ngFor="let tipo of tiposVehiculos" [value]="tipo.id">
+                  {{ tipo.nombre }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Grupo *</mat-label>
+              <mat-select formControlName="idGrupoVehiculo">
+                <mat-option *ngFor="let grupo of gruposVehiculos" [value]="grupo.id">
+                  {{ grupo.nombre }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Estado *</mat-label>
+              <mat-select formControlName="idEstadoVehiculo">
+                <mat-option *ngFor="let estado of estadosVehiculos" [value]="estado.id">
+                  {{ estado.nombre }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Combustible *</mat-label>
+              <mat-select formControlName="idTipoCombustible">
+                <mat-option *ngFor="let combustible of tiposCombustible" [value]="combustible.id">
+                  {{ combustible.nombre }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Información Técnica -->
+        <div class="form-section">
+          <h3>Información Técnica</h3>
+          
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Número de Serie</mat-label>
+              <input matInput formControlName="numeroSerie">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Kilometraje Inicial</mat-label>
+              <input matInput type="number" formControlName="kilometrajeInicial">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="form-actions">
+          <button mat-raised-button 
+                  type="button" 
+                  (click)="onCancel()"
+                  class="cancel-button">
+            <mat-icon>cancel</mat-icon>
+            Cancelar
+          </button>
+          
+          <button mat-raised-button 
+                  color="primary" 
+                  type="submit"
+                  [disabled]="!vehiculoForm.valid || cargando"
+                  class="submit-button">
+            <mat-icon>save</mat-icon>
+            <span *ngIf="!cargando">Guardar Vehículo</span>
+            <span *ngIf="cargando">Guardando...</span>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div *ngIf="cargando" class="loading-overlay">
+  <mat-spinner></mat-spinner>
+</div>

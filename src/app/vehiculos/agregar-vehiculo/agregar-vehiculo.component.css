@@ -1,0 +1,118 @@
+.agregar-vehiculo-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-section {
+  margin-bottom: 24px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-field {
+  flex: 1;
+}
+
+.form-field-full {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.step-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  justify-content: flex-end;
+}
+
+.form-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.form-actions button {
+  min-width: 120px;
+}
+
+/* Stepper personalizado */
+::ng-deep .mat-step-header .mat-step-label {
+  font-weight: 500;
+}
+
+::ng-deep .mat-step-header .mat-step-icon {
+  background-color: #1976d2;
+  color: white;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected {
+  background-color: #4caf50;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .agregar-vehiculo-container {
+    padding: 10px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .form-field {
+    width: 100%;
+  }
+  
+  .step-actions {
+    justify-content: space-between;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .form-actions button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .agregar-vehiculo-container {
+    padding: 8px;
+  }
+  
+  /* Stepper vertical en móviles */
+  ::ng-deep .mat-stepper-vertical {
+    padding: 0;
+  }
+  
+  ::ng-deep .mat-vertical-content {
+    padding: 16px 0;
+  }
+}
+
+/* Validaciones */
+.mat-form-field.ng-invalid.ng-touched .mat-form-field-outline-thick {
+  color: #f44336;
+}
+
+/* Hints y errores */
+.mat-hint {
+  font-size: 12px;
+  color: #666;
+}
+
+.mat-error {
+  font-size: 12px;
+  color: #f44336;
+}

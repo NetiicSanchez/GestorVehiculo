@@ -1,0 +1,159 @@
+<div class="detalle-vehiculo-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>directions_car</mat-icon>
+        Detalle del Vehículo
+      </mat-card-title>
+      <mat-card-subtitle *ngIf="vehiculo">
+        {{ vehiculo.placa }} - {{ vehiculo.marca }} {{ vehiculo.modelo }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- Loading -->
+      <div *ngIf="cargando" class="loading-container">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        <p>Cargando información del vehículo...</p>
+      </div>
+
+      <!-- Error -->
+      <div *ngIf="error" class="error-container">
+        <mat-icon color="warn">error</mat-icon>
+        <p>{{ error }}</p>
+      </div>
+
+      <!-- Detalle del vehículo -->
+      <div *ngIf="vehiculo && !cargando" class="vehiculo-detalle">
+        
+        <!-- Información Básica -->
+        <div class="info-section">
+          <h3>
+            <mat-icon>info</mat-icon>
+            Información Básica
+          </h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <label>Placa:</label>
+              <span class="placa">{{ vehiculo.placa }}</span>
+            </div>
+            <div class="info-item">
+              <label>Marca:</label>
+              <span>{{ vehiculo.marca }}</span>
+            </div>
+            <div class="info-item">
+              <label>Modelo:</label>
+              <span>{{ vehiculo.modelo }}</span>
+            </div>
+            <div class="info-item">
+              <label>Año:</label>
+              <span>{{ vehiculo.anio }}</span>
+            </div>
+            <div class="info-item" *ngIf="vehiculo.color">
+              <label>Color:</label>
+              <span>{{ vehiculo.color }}</span>
+            </div>
+            <div class="info-item" *ngIf="vehiculo.numeroSerie">
+              <label>Número de Serie:</label>
+              <span>{{ vehiculo.numeroSerie }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Clasificación -->
+        <div class="info-section">
+          <h3>
+            <mat-icon>category</mat-icon>
+            Clasificación
+          </h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <label>ID Tipo:</label>
+              <mat-chip>{{ vehiculo.idTipoVehiculo }}</mat-chip>
+            </div>
+            <div class="info-item">
+              <label>ID Grupo:</label>
+              <mat-chip>{{ vehiculo.idGrupoVehiculo }}</mat-chip>
+            </div>
+            <div class="info-item">
+              <label>ID Estado:</label>
+              <mat-chip>{{ vehiculo.idEstadoVehiculo }}</mat-chip>
+            </div>
+            <div class="info-item">
+              <label>ID Combustible:</label>
+              <mat-chip>{{ vehiculo.idTipoCombustible }}</mat-chip>
+            </div>
+          </div>
+        </div>
+
+        <!-- Información Técnica -->
+        <div class="info-section" *ngIf="vehiculo.kilometrajeInicial">
+          <h3>
+            <mat-icon>build</mat-icon>
+            Información Técnica
+          </h3>
+          <div class="info-grid">
+            <div class="info-item" *ngIf="vehiculo.kilometrajeInicial">
+              <label>Kilometraje Inicial:</label>
+              <span>{{ vehiculo.kilometrajeInicial | number }} km</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fotos del Vehículo -->
+        <div class="info-section" *ngIf="vehiculo.fotoVehiculo && vehiculo.fotoVehiculo.length > 0">
+          <h3>
+            <mat-icon>photo_library</mat-icon>
+            Fotos del Vehículo
+          </h3>
+          <div class="fotos-grid">
+            <div *ngFor="let foto of vehiculo.fotoVehiculo" class="foto-item">
+              <img [src]="foto" [alt]="'Foto del vehículo ' + vehiculo.placa" class="foto-vehiculo">
+            </div>
+          </div>
+        </div>
+
+        <!-- Información del Sistema -->
+        <div class="info-section">
+          <h3>
+            <mat-icon>timeline</mat-icon>
+            Información del Sistema
+          </h3>
+          <div class="info-grid">
+            <div class="info-item" *ngIf="vehiculo.fechaCreacion">
+              <label>Fecha de Registro:</label>
+              <span>{{ vehiculo.fechaCreacion | date:'dd/MM/yyyy HH:mm' }}</span>
+            </div>
+            <div class="info-item" *ngIf="vehiculo.fechaActualizacion">
+              <label>Última Actualización:</label>
+              <span>{{ vehiculo.fechaActualizacion | date:'dd/MM/yyyy HH:mm' }}</span>
+            </div>
+            <div class="info-item" *ngIf="vehiculo.fechaActualizacion">
+              <label>Fecha de Actualización:</label>
+              <span>{{ vehiculo.fechaActualizacion | date:'dd/MM/yyyy HH:mm' }}</span>
+            </div>
+            <div class="info-item">
+              <label>Estado del Registro:</label>
+              <mat-chip [color]="vehiculo.activo ? 'primary' : 'warn'">
+                {{ vehiculo.activo ? 'Activo' : 'Inactivo' }}
+              </mat-chip>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-button (click)="volver()">
+        <mat-icon>arrow_back</mat-icon>
+        Volver
+      </button>
+      
+      <button mat-raised-button color="primary" (click)="editarVehiculo()" *ngIf="vehiculo">
+        <mat-icon>edit</mat-icon>
+        Editar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

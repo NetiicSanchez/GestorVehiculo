@@ -205,7 +205,7 @@ CREATE INDEX idx_gastos_fecha ON gastos_vehiculo(fecha_gasto);
 -- 8. DATOS INICIALES
 -- ====================================================================
 
--- Roles de Usuario
+-- Roles de Usuario (SE CREARON MANULAMENTE)
 INSERT INTO roles_usuario (nombre, descripcion, permisos) VALUES
 ('Administrador', 'Acceso completo al sistema', ARRAY['FULL_ACCESS', 'VER_REPORTES', 'GESTIONAR_USUARIOS']),
 ('Operador', 'Conductor de vehículos', ARRAY['CONDUCIR', 'CARGAR_COMBUSTIBLE', 'VER_ASIGNACIONES']),
@@ -233,11 +233,11 @@ INSERT INTO estados_vehiculo (nombre, descripcion, color) VALUES
 ('Fuera de Servicio', 'Vehículo dado de baja', 'red');
 
 -- Tipos de Combustible
-INSERT INTO tipos_combustible (nombre, descripcion, precio_referencial) VALUES
-('Gasolina Regular', 'Combustible gasolina regular', 3.25),
-('Gasolina Premium', 'Combustible gasolina premium', 3.45),
-('Diésel', 'Combustible diésel', 2.95),
-('Gas Natural', 'Vehículo a gas natural', 1.50);
+INSERT INTO tipo_combustible (nombre, descripcion, ) VALUES
+('Gasolina Regular', 'Combustible gasolina regular'),
+('Gasolina Premium', 'Combustible gasolina premium'),
+('Diésel', 'Combustible diésel');
+
 
 -- ====================================================================
 -- 9. VISTAS PARA DASHBOARD
@@ -353,7 +353,7 @@ BEGIN
     ORDER BY fecha_carga DESC 
     LIMIT 1;
     
-    -- Calcular kilómetros recorridos y rendimiento
+    -- Calcular kilómetros recorridos y rendimiento NO SE CREARA PORQUE LO ELIMINE EN LA BASE DE DATOS 
     IF ultima_carga IS NOT NULL THEN
         NEW.kilometros_recorridos = NEW.kilometraje_actual - ultima_carga.kilometraje_actual;
         IF NEW.galones_cargados > 0 THEN

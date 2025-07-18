@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Prueba Angular</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .field { margin: 10px 0; }
+        label { display: inline-block; width: 150px; }
+        input, select { width: 200px; padding: 5px; }
+        button { padding: 10px 20px; margin: 10px; }
+        .result { margin: 20px 0; padding: 10px; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <h1>Formulario de Prueba - Angular Frontend</h1>
+    
+    <div id="catalogos">
+        <h2>Catálogos disponibles:</h2>
+        <div id="catalogos-info">Cargando...</div>
+    </div>
+    
+    <form id="testForm">
+        <div class="field">
+            <label>Placa:</label>
+            <input type="text" id="placa" value="ANGULAR123" required>
+        </div>
+        
+        <div class="field">
+            <label>Marca:</label>
+            <input type="text" id="marca" value="Toyota" required>
+        </div>
+        
+        <div class="field">
+            <label>Modelo:</label>
+            <input type="text" id="modelo" value="Corolla" required>
+        </div>
+        
+        <div class="field">
+            <label>Año:</label>
+            <input type="number" id="anio" value="2023" required>
+        </div>
+        
+        <div class="field">
+            <label>Color:</label>
+            <input type="text" id="color" value="Azul">
+        </div>
+        
+        <div class="field">
+            <label>Número de Serie:</label>
+            <input type="text" id="numeroSerie" value="ABC987654">
+        </div>
+        
+        <div class="field">
+            <label>Tipo de Vehículo:</label>
+            <select id="idTipoVehiculo" required>
+                <option value="">Seleccione...</option>
+            </select>
+        </div>
+        
+        <div class="field">
+            <label>Grupo de Vehículo:</label>
+            <select id="idGrupoVehiculo" required>
+                <option value="">Seleccione...</option>
+            </select>
+        </div>
+        
+        <div class="field">
+            <label>Estado de Vehículo:</label>
+            <select id="idEstadoVehiculo" required>
+                <option value="">Seleccione...</option>
+            </select>
+        </div>
+        
+        <div class="field">
+            <label>Tipo de Combustible:</label>
+            <select id="idTipoCombustible" required>
+                <option value="">Seleccione...</option>
+            </select>
+        </div>
+        
+        <div class="field">
+            <label>Kilometraje Inicial:</label>
+            <input type="number" id="kilometrajeInicial" value="0">
+        </div>
+        
+        <div class="field">
+            <button type="button" onclick="cargarCatalogos()">Cargar Catálogos</button>
+            <button type="submit">Crear Vehículo</button>
+        </div>
+    </form>
+    
+    <div id="resultado" class="result"></div>
+
+    <script>
+        async function cargarCatalogos() {
+            try {
+                const catalogos = await Promise.all([
+                    fetch('http://localhost:3000/api/catalogos/tipos-vehiculo'),
+                    fetch('http://localhost:3000/api/catalogos/grupos-vehiculo'),
+                    fetch('http://localhost:3000/api/catalogos/estados-vehiculo'),
+                    fetch('http://localhost:3000/api/catalogos/tipos-combustible')
+                ]);
+                
+                const [tipos, grupos, estados, combustibles] = await Promise.all(
+                    catalogos.map(r => r.json())
+                );
+                
+                console.log('Catálogos cargados:', {tipos, grupos, estados, combustibles});
+                
+                // Llenar selects
+                llenarSelect('idTipoVehiculo', tipos);
+                llenarSelect('idGrupoVehiculo', grupos);
+                llenarSelect('idEstadoVehiculo', estados);
+                llenarSelect('idTipoCombustible', combustibles);
+                
+                document.getElementById('catalogos-info').innerHTML = `
+                    <p>Tipos de vehículos: ${tipos.length}</p>
+                    <p>Grupos de vehículos: ${grupos.length}</p>
+                    <p>Estados de vehículos: ${estados.length}</p>
+                    <p>Tipos de combustible: ${combustibles.length}</p>
+                `;
+                
+            } catch (error) {
+                console.error('Error cargando catálogos:', error);
+                document.getElementById('catalogos-info').innerHTML = `Error: ${error.message}`;
+            }
+        }
+        
+        function llenarSelect(selectId, opciones) {
+            const select = document.getElementById(selectId);
+            select.innerHTML = '<option value="">Seleccione...</option>';
+            
+            opciones.forEach(opcion => {
+                const option = document.createElement('option');
+                option.value = opcion.id;
+                option.textContent = opcion.nombre;
+                select.appendChild(option);
+            });
+            
+            // Seleccionar el primer elemento automáticamente
+            if (opciones.length > 0) {
+                select.value = opciones[0].id;
+            }
+        }
+        
+        document.getElementById('testForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const vehiculo = {
+                placa: document.getElementById('placa').value,
+                marca: document.getElementById('marca').value,
+                modelo: document.getElementById('modelo').value,
+                anio: parseInt(document.getElementById('anio').value),
+                color: document.getElementById('color').value,
+                numeroSerie: document.getElementById('numeroSerie').value,
+                idTipoVehiculo: parseInt(document.getElementById('idTipoVehiculo').value),
+                idGrupoVehiculo: parseInt(document.getElementById('idGrupoVehiculo').value),
+                idEstadoVehiculo: parseInt(document.getElementById('idEstadoVehiculo').value),
+                idTipoCombustible: parseInt(document.getElementById('idTipoCombustible').value),
+                kilometrajeInicial: parseInt(document.getElementById('kilometrajeInicial').value) || 0
+            };
+            
+            console.log('Enviando vehículo:', vehiculo);
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/vehiculos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(vehiculo)
+                });
+                
+                const result = await response.json();
+                console.log('Respuesta:', result);
+                
+                if (response.ok) {
+                    document.getElementById('resultado').innerHTML = `
+                        <h3>✅ Vehículo creado exitosamente</h3>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                } else {
+                    document.getElementById('resultado').innerHTML = `
+                        <h3>❌ Error al crear vehículo</h3>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('resultado').innerHTML = `
+                    <h3>❌ Error de red</h3>
+                    <pre>${error.message}</pre>
+                `;
+            }
+        });
+        
+        // Cargar catálogos al iniciar
+        cargarCatalogos();
+    </script>
+</body>
+</html>

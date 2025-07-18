@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
-import { VehiculosService } from '../../services/vehiculos.service';
+import { CatalogosService } from '../../services/catalogos.service';
 import { GrupoVehiculo } from '../../models/vehiculo.model';
 
 @Component({
@@ -35,14 +35,14 @@ export class GruposVehiculosComponent implements OnInit {
     fechaCreacion: new Date()
   };
 
-  constructor(private vehiculosService: VehiculosService) { }
+  constructor(private catalogosService: CatalogosService) { }
 
   ngOnInit(): void {
     this.cargarGrupos();
   }
 
   cargarGrupos(): void {
-    this.vehiculosService.getGruposVehiculo().subscribe({
+    this.catalogosService.obtenerGruposVehiculo().subscribe({
       next: (grupos: GrupoVehiculo[]) => this.grupos = grupos,
       error: (error: any) => console.error('Error cargando grupos:', error)
     });
@@ -50,9 +50,10 @@ export class GruposVehiculosComponent implements OnInit {
 
   agregarGrupo(): void {
     if (this.nuevoGrupo.nombre.trim()) {
-      this.vehiculosService.agregarGrupoVehiculo(this.nuevoGrupo).subscribe({
-        next: (grupos: GrupoVehiculo[]) => {
-          this.grupos = grupos;
+      this.catalogosService.agregarGrupoVehiculo(this.nuevoGrupo).subscribe({
+        next: (response: any) => {
+          // Recargar la lista después de agregar
+          this.cargarGrupos();
           this.nuevoGrupo = {
             nombre: '',
             descripcion: '',
@@ -66,8 +67,11 @@ export class GruposVehiculosComponent implements OnInit {
   }
 
   eliminarGrupo(id: number): void {
-    this.vehiculosService.eliminarGrupoVehiculo(id).subscribe({
-      next: (grupos: GrupoVehiculo[]) => this.grupos = grupos,
+    this.catalogosService.eliminarGrupoVehiculo(id).subscribe({
+      next: (response: any) => {
+        // Recargar la lista después de eliminar
+        this.cargarGrupos();
+      },
       error: (error: any) => console.error('Error eliminando grupo:', error)
     });
   }

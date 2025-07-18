@@ -46,7 +46,7 @@ export class DetalleVehiculoComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.cargando = true;
-      this.vehiculosService.getVehiculoPorId(+id).subscribe({
+      this.vehiculosService.obtenerVehiculoPorId(+id).subscribe({
         next: (vehiculo: Vehiculo) => {
           this.vehiculo = vehiculo;
           this.cargando = false;

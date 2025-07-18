@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test CORS</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .result { margin: 10px 0; padding: 10px; background: #f0f0f0; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>Test CORS - Backend API</h1>
+    
+    <div id="results"></div>
+    
+    <script>
+        async function testCORS() {
+            const results = document.getElementById('results');
+            
+            try {
+                // Test health endpoint
+                const healthResponse = await fetch('http://localhost:3000/api/health');
+                const healthData = await healthResponse.json();
+                
+                results.innerHTML += `
+                    <div class="result success">
+                        <h3>✅ Health Check</h3>
+                        <pre>${JSON.stringify(healthData, null, 2)}</pre>
+                    </div>
+                `;
+                
+                // Test catalog endpoints
+                const catalogTests = [
+                    { name: 'Tipos de Vehículo', url: 'http://localhost:3000/api/catalogos/tipos-vehiculo' },
+                    { name: 'Grupos de Vehículo', url: 'http://localhost:3000/api/catalogos/grupos-vehiculo' },
+                    { name: 'Estados de Vehículo', url: 'http://localhost:3000/api/catalogos/estados-vehiculo' },
+                    { name: 'Tipos de Combustible', url: 'http://localhost:3000/api/catalogos/tipos-combustible' }
+                ];
+                
+                for (const test of catalogTests) {
+                    try {
+                        const response = await fetch(test.url);
+                        const data = await response.json();
+                        
+                        results.innerHTML += `
+                            <div class="result success">
+                                <h3>✅ ${test.name}</h3>
+                                <p>Status: ${response.status}</p>
+                                <p>Datos: ${data.length} elementos</p>
+                                <details>
+                                    <summary>Ver datos</summary>
+                                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                                </details>
+                            </div>
+                        `;
+                    } catch (error) {
+                        results.innerHTML += `
+                            <div class="result error">
+                                <h3>❌ ${test.name}</h3>
+                                <p>Error: ${error.message}</p>
+                            </div>
+                        `;
+                    }
+                }
+                
+                // Test vehicle endpoint
+                try {
+                    const vehiculosResponse = await fetch('http://localhost:3000/api/vehiculos');
+                    const vehiculosData = await vehiculosResponse.json();
+                    
+                    results.innerHTML += `
+                        <div class="result success">
+                            <h3>✅ Vehículos</h3>
+                            <p>Status: ${vehiculosResponse.status}</p>
+                            <p>Vehículos: ${vehiculosData.length} elementos</p>
+                            <details>
+                                <summary>Ver vehículos</summary>
+                                <pre>${JSON.stringify(vehiculosData, null, 2)}</pre>
+                            </details>
+                        </div>
+                    `;
+                } catch (error) {
+                    results.innerHTML += `
+                        <div class="result error">
+                            <h3>❌ Vehículos</h3>
+                            <p>Error: ${error.message}</p>
+                        </div>
+                    `;
+                }
+                
+            } catch (error) {
+                results.innerHTML += `
+                    <div class="result error">
+                        <h3>❌ Error General</h3>
+                        <p>Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Ejecutar test automáticamente
+        testCORS();
+    </script>
+</body>
+</html>

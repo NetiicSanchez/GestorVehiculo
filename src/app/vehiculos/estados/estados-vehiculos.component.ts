@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
-import { VehiculosService } from '../../services/vehiculos.service';
+import { CatalogosService } from '../../services/catalogos.service';
 import { EstadoVehiculo } from '../../models/vehiculo.model';
 
 @Component({
@@ -36,14 +36,14 @@ export class EstadosVehiculosComponent implements OnInit {
     fechaCreacion: new Date()
   };
 
-  constructor(private vehiculosService: VehiculosService) { }
+  constructor(private catalogosService: CatalogosService) { }
 
   ngOnInit(): void {
     this.cargarEstados();
   }
 
   cargarEstados(): void {
-    this.vehiculosService.getEstadosVehiculo().subscribe({
+    this.catalogosService.obtenerEstadosVehiculo().subscribe({
       next: (estados: EstadoVehiculo[]) => this.estados = estados,
       error: (error: any) => console.error('Error cargando estados:', error)
     });
@@ -51,9 +51,10 @@ export class EstadosVehiculosComponent implements OnInit {
 
   agregarEstado(): void {
     if (this.nuevoEstado.nombre.trim()) {
-      this.vehiculosService.agregarEstadoVehiculo(this.nuevoEstado).subscribe({
-        next: (estados: EstadoVehiculo[]) => {
-          this.estados = estados;
+      this.catalogosService.agregarEstadoVehiculo(this.nuevoEstado).subscribe({
+        next: (response: any) => {
+          // Recargar la lista después de agregar
+          this.cargarEstados();
           this.nuevoEstado = {
             nombre: '',
             descripcion: '',
@@ -68,8 +69,11 @@ export class EstadosVehiculosComponent implements OnInit {
   }
 
   eliminarEstado(id: number): void {
-    this.vehiculosService.eliminarEstadoVehiculo(id).subscribe({
-      next: (estados: EstadoVehiculo[]) => this.estados = estados,
+    this.catalogosService.eliminarEstadoVehiculo(id).subscribe({
+      next: (response: any) => {
+        // Recargar la lista después de eliminar
+        this.cargarEstados();
+      },
       error: (error: any) => console.error('Error eliminando estado:', error)
     });
   }

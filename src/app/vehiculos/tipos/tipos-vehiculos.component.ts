@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
-import { VehiculosService } from '../../services/vehiculos.service';
+import { CatalogosService } from '../../services/catalogos.service';
 import { TipoVehiculo } from '../../models/vehiculo.model';
 
 @Component({
@@ -35,14 +35,14 @@ export class TiposVehiculosComponent implements OnInit {
     fechaCreacion: new Date()
   };
 
-  constructor(private vehiculosService: VehiculosService) { }
+  constructor(private catalogosService: CatalogosService) { }
 
   ngOnInit(): void {
     this.cargarTipos();
   }
 
   cargarTipos(): void {
-    this.vehiculosService.getTiposVehiculo().subscribe({
+    this.catalogosService.obtenerTiposVehiculo().subscribe({
       next: (tipos: TipoVehiculo[]) => this.tipos = tipos,
       error: (error: any) => console.error('Error cargando tipos:', error)
     });
@@ -50,9 +50,10 @@ export class TiposVehiculosComponent implements OnInit {
 
   agregarTipo(): void {
     if (this.nuevoTipo.nombre.trim()) {
-      this.vehiculosService.agregarTipoVehiculo(this.nuevoTipo).subscribe({
-        next: (tipos: TipoVehiculo[]) => {
-          this.tipos = tipos;
+      this.catalogosService.agregarTipoVehiculo(this.nuevoTipo).subscribe({
+        next: (response: any) => {
+          // Recargar la lista después de agregar
+          this.cargarTipos();
           this.nuevoTipo = {
             nombre: '',
             descripcion: '',
@@ -66,8 +67,11 @@ export class TiposVehiculosComponent implements OnInit {
   }
 
   eliminarTipo(id: number): void {
-    this.vehiculosService.eliminarTipoVehiculo(id).subscribe({
-      next: (tipos: TipoVehiculo[]) => this.tipos = tipos,
+    this.catalogosService.eliminarTipoVehiculo(id).subscribe({
+      next: (response: any) => {
+        // Recargar la lista después de eliminar
+        this.cargarTipos();
+      },
       error: (error: any) => console.error('Error eliminando tipo:', error)
     });
   }

@@ -60,7 +60,7 @@ export class EditarVehiculoComponent implements OnInit {
   }
 
   cargarVehiculo(): void {
-    this.vehiculosService.getVehiculoPorId(this.vehiculoId).subscribe({
+    this.vehiculosService.obtenerVehiculoPorId(this.vehiculoId).subscribe({
       next: (vehiculo: Vehiculo) => {
         this.vehiculoForm.patchValue(vehiculo);
       },

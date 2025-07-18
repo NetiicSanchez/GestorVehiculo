@@ -17,6 +17,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { VehiculosService } from '../../services/vehiculos.service';
+import { CatalogosService } from '../../services/catalogos.service';
 import { Vehiculo, TipoVehiculo, GrupoVehiculo, EstadoVehiculo, TipoCombustible } from '../../models/vehiculo.model';
 
 @Component({
@@ -61,6 +62,7 @@ export class InventarioComponent implements OnInit {
 
   constructor(
     private vehiculosService: VehiculosService,
+    private catalogosService: CatalogosService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private router: Router
@@ -78,9 +80,9 @@ export class InventarioComponent implements OnInit {
 
   cargarVehiculos(): void {
     this.cargando = true;
-    this.vehiculosService.getVehiculos().subscribe({
-      next: (vehiculos: Vehiculo[]) => {
-        this.dataSource.data = vehiculos;
+    this.vehiculosService.obtenerVehiculos().subscribe({
+      next: (response: any) => {
+        this.dataSource.data = response.data || response;
         this.cargando = false;
       },
       error: (error: any) => {
@@ -129,25 +131,25 @@ export class InventarioComponent implements OnInit {
 
   cargarCatalogos(): void {
     // Cargar tipos de vehículos
-    this.vehiculosService.getTiposVehiculo().subscribe({
+    this.catalogosService.obtenerTiposVehiculo().subscribe({
       next: (tipos: TipoVehiculo[]) => this.tiposVehiculos = tipos,
       error: (error: any) => console.error('Error cargando tipos:', error)
     });
 
     // Cargar grupos
-    this.vehiculosService.getGruposVehiculo().subscribe({
+    this.catalogosService.obtenerGruposVehiculo().subscribe({
       next: (grupos: GrupoVehiculo[]) => this.gruposVehiculos = grupos,
       error: (error: any) => console.error('Error cargando grupos:', error)
     });
 
     // Cargar estados
-    this.vehiculosService.getEstadosVehiculo().subscribe({
+    this.catalogosService.obtenerEstadosVehiculo().subscribe({
       next: (estados: EstadoVehiculo[]) => this.estadosVehiculos = estados,
       error: (error: any) => console.error('Error cargando estados:', error)
     });
 
     // Cargar tipos de combustible
-    this.vehiculosService.getTiposCombustible().subscribe({
+    this.catalogosService.obtenerTiposCombustible().subscribe({
       next: (tipos: TipoCombustible[]) => this.tiposCombustible = tipos,
       error: (error: any) => console.error('Error cargando combustibles:', error)
     });

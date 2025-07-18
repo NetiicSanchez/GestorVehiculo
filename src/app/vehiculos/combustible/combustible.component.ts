@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
-import { VehiculosService } from '../../services/vehiculos.service';
+import { CatalogosService } from '../../services/catalogos.service';
 import { TipoCombustible } from '../../models/vehiculo.model';
 
 @Component({
@@ -35,14 +35,14 @@ export class CombustibleComponent implements OnInit {
     fechaCreacion: new Date()
   };
 
-  constructor(private vehiculosService: VehiculosService) { }
+  constructor(private catalogosService: CatalogosService) { }
 
   ngOnInit(): void {
     this.cargarTipos();
   }
 
   cargarTipos(): void {
-    this.vehiculosService.getTiposCombustible().subscribe({
+    this.catalogosService.obtenerTiposCombustible().subscribe({
       next: (tipos: TipoCombustible[]) => this.tiposCombustible = tipos,
       error: (error: any) => console.error('Error cargando tipos:', error)
     });
@@ -50,9 +50,10 @@ export class CombustibleComponent implements OnInit {
 
   agregarTipo(): void {
     if (this.nuevoTipo.nombre.trim()) {
-      this.vehiculosService.agregarTipoCombustible(this.nuevoTipo).subscribe({
-        next: (tipos: TipoCombustible[]) => {
-          this.tiposCombustible = tipos;
+      this.catalogosService.agregarTipoCombustible(this.nuevoTipo).subscribe({
+        next: (response: any) => {
+          // Recargar la lista después de agregar
+          this.cargarTipos();
           this.nuevoTipo = {
             nombre: '',
             descripcion: '',
@@ -66,8 +67,11 @@ export class CombustibleComponent implements OnInit {
   }
 
   eliminarTipo(id: number): void {
-    this.vehiculosService.eliminarTipoCombustible(id).subscribe({
-      next: (tipos: TipoCombustible[]) => this.tiposCombustible = tipos,
+    this.catalogosService.eliminarTipoCombustible(id).subscribe({
+      next: (response: any) => {
+        // Recargar la lista después de eliminar
+        this.cargarTipos();
+      },
       error: (error: any) => console.error('Error eliminando tipo:', error)
     });
   }

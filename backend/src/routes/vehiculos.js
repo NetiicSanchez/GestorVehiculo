@@ -23,8 +23,8 @@ router.post('/', async (req, res) => {
       INSERT INTO vehiculo (
         placa, marca, modelo, anio, color, numero_serie,
         id_tipo_vehiculo, id_grupo_vehiculo, id_estado_vehiculo,
-        id_tipo_combustible, kilometraje_inicial, kilometraje_actual
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $11)
+        id_tipo_combustible, kilometraje_inicial, kilometraje_actual, activo
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $11, true)
       RETURNING *
     `;
 

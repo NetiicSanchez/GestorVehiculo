@@ -23,9 +23,11 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//routes
-app.use('/api/vehiculos', require('./routes/vehiculos'));
-app.use('/api/catalogos', require('./routes/catalogos'));
+// Middleware para debug CORS
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url} - Origin: ${req.headers.origin}`);
+  next();
+});
 
 //check 
 app.get('/api/health', (req, res) => {
@@ -36,10 +38,18 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Middleware para debug CORS
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url} - Origin: ${req.headers.origin}`);
-  next();
+//routes
+app.use('/api/vehiculos', require('./routes/vehiculos'));
+app.use('/api/catalogos', require('./routes/catalogos'));
+
+// Error handling middleware
+app.use((error, req, res, next) => {
+  console.error('❌ Server Error:', error);
+  res.status(500).json({ 
+    error: 'Error interno del servidor',
+    message: error.message,
+    timestamp: new Date().toISOString()
+  });
 });
 
 app.listen(port, () => {

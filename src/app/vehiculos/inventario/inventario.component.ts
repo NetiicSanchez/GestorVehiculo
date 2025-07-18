@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
@@ -15,10 +15,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { VehiculosService } from '../../services/vehiculos.service';
 import { CatalogosService } from '../../services/catalogos.service';
 import { Vehiculo, TipoVehiculo, GrupoVehiculo, EstadoVehiculo, TipoCombustible } from '../../models/vehiculo.model';
+import { Subscription, filter } from 'rxjs';
 
 @Component({
   selector: 'app-inventario',
@@ -44,7 +44,7 @@ import { Vehiculo, TipoVehiculo, GrupoVehiculo, EstadoVehiculo, TipoCombustible 
   templateUrl: './inventario.component.html',
   styleUrls: ['./inventario.component.css']
 })
-export class InventarioComponent implements OnInit {
+export class InventarioComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['placa', 'marca', 'modelo', 'anio', 'tipoVehiculo', 'estado', 'acciones'];
   dataSource = new MatTableDataSource<Vehiculo>();
   
@@ -53,6 +53,7 @@ export class InventarioComponent implements OnInit {
 
   filtroTexto: string = '';
   cargando: boolean = false;
+  private routerSubscription: Subscription = new Subscription();
 
   // Catálogos para mostrar nombres en lugar de IDs
   tiposVehiculos: TipoVehiculo[] = [];
@@ -66,11 +67,29 @@ export class InventarioComponent implements OnInit {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private router: Router
-  ) { }
+  ) {
+    // Escuchar cambios de navegación para recargar datos cuando regrese de agregar vehículo
+    this.routerSubscription = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      console.log('🔄 Navegación detectada a:', event.url);
+      if (event.url === '/vehiculos/inventario') {
+        console.log('📋 Recargando inventario por navegación...');
+        // Pequeño delay para asegurar que el componente esté listo
+        setTimeout(() => {
+          this.cargarVehiculos();
+        }, 100);
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.cargarCatalogos();
     this.cargarVehiculos();
+  }
+
+  ngOnDestroy(): void {
+    this.routerSubscription.unsubscribe();
   }
 
   ngAfterViewInit() {
@@ -80,17 +99,40 @@ export class InventarioComponent implements OnInit {
 
   cargarVehiculos(): void {
     this.cargando = true;
+    console.log('🔄 Cargando vehículos...');
+    
     this.vehiculosService.obtenerVehiculos().subscribe({
       next: (response: any) => {
-        this.dataSource.data = response.data || response;
+        console.log('📋 Respuesta del servidor:', response);
+        
+        // Manejar diferentes formatos de respuesta
+        let vehiculos = [];
+        if (response.success && response.data) {
+          vehiculos = response.data;
+        } else if (Array.isArray(response)) {
+          vehiculos = response;
+        } else {
+          console.warn('⚠️ Formato de respuesta inesperado:', response);
+          vehiculos = [];
+        }
+        
+        this.dataSource.data = vehiculos;
+        console.log(`✅ ${vehiculos.length} vehículos cargados`);
         this.cargando = false;
       },
       error: (error: any) => {
-        console.error('Error al cargar vehículos:', error);
+        console.error('❌ Error al cargar vehículos:', error);
         this.mostrarMensaje('Error al cargar los vehículos');
+        this.dataSource.data = [];
         this.cargando = false;
       }
     });
+  }
+
+  // Método para forzar recarga manual
+  actualizarInventario(): void {
+    console.log('🔄 Actualización manual del inventario solicitada');
+    this.cargarVehiculos();
   }
 
   aplicarFiltro(): void {

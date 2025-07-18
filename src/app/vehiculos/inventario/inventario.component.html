@@ -37,6 +37,14 @@
           </button>
           
           <button mat-stroked-button 
+                  (click)="actualizarInventario()"
+                  matTooltip="Refrescar datos"
+                  [disabled]="cargando">
+            <mat-icon>refresh</mat-icon>
+            Refrescar
+          </button>
+          
+          <button mat-stroked-button 
                   (click)="exportarDatos()"
                   matTooltip="Exportar datos">
             <mat-icon>file_download</mat-icon>

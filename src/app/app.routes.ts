@@ -1,27 +1,14 @@
 import { Routes } from '@angular/router';
-import { AgregarVehiculoComponent } from './vehiculos/agregar-vehiculo/agregar-vehiculo.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/test-routing', pathMatch: 'full' },
-  { 
-    path: 'test-routing', 
-    loadComponent: () => import('./test-routing.component').then(m => m.TestRoutingComponent)
-  },
-  { 
-    path: 'test', 
-    loadComponent: () => import('./test.component').then(m => m.TestComponent)
-  },
-  { 
-    path: 'vehiculos/agregar-simple', 
-    loadComponent: () => import('./vehiculos/agregar-vehiculo/agregar-vehiculo-simple.component').then(m => m.AgregarVehiculoSimpleComponent)
-  },
+  { path: '', redirectTo: '/vehiculos/inventario', pathMatch: 'full' },
   { 
     path: 'vehiculos/inventario', 
     loadComponent: () => import('./vehiculos/inventario/inventario.component').then(m => m.InventarioComponent)
   },
   { 
     path: 'vehiculos/agregar', 
-    component: AgregarVehiculoComponent
+    loadComponent: () => import('./vehiculos/agregar-vehiculo/agregar-vehiculo.component').then(m => m.AgregarVehiculoComponent)
   },
   { 
     path: 'vehiculos/editar/:id', 

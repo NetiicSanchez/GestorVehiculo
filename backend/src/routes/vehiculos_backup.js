@@ -239,8 +239,7 @@ router.put('/:id', async (req, res) => {
         console.log('⚙️ Procesando fecha:', fechaAsignacion);
         const fecha = new Date(fechaAsignacion);
         if (!isNaN(fecha.getTime())) {
-          // Mantener fecha y hora completa en formato ISO
-          fechaAsignacionProcesada = fecha.toISOString();
+          fechaAsignacionProcesada = fecha.toISOString().split('T')[0];
           console.log('✅ Fecha procesada exitosamente:', fechaAsignacionProcesada);
         } else {
           console.log('❌ Fecha inválida después del new Date()');

@@ -8,12 +8,21 @@
     </mat-card-header>
 
     <mat-card-content>
-      <div *ngIf="cargando" class="loading">
+      <div *ngIf="cargando || cargandoCatalogos || cargandoUsuarios" class="loading">
         <mat-spinner></mat-spinner>
         <p>Cargando vehículo...</p>
       </div>
 
-      <form [formGroup]="vehiculoForm" (ngSubmit)="onSubmit()" *ngIf="!cargando">
+      <div *ngIf="errorCarga && !cargando" class="error-container">
+        <mat-icon color="warn">error</mat-icon>
+        <p>{{ errorCarga }}</p>
+        <button mat-raised-button color="primary" (click)="reintentarCarga()">
+          <mat-icon>refresh</mat-icon>
+          Reintentar
+        </button>
+      </div>
+
+      <form [formGroup]="vehiculoForm" (ngSubmit)="onSubmit()" *ngIf="!cargando && !cargandoCatalogos && !cargandoUsuarios && !errorCarga">
         <!-- Información Básica -->
         <div class="form-section">
           <h3>Información Básica</h3>
@@ -141,10 +150,37 @@
           </div>
 
           <div class="form-row">
-            <mat-form-field appearance="outline" class="form-field">
-              <mat-label>Fecha de Asignación</mat-label>
-              <input matInput type="datetime-local" formControlName="fecha_asignacion">
+            <!-- Angular Material Datepicker (más robusto y visual) -->
+            <mat-form-field appearance="outline" class="form-field datepicker-field">
+              <mat-label>📅 Fecha de Asignación</mat-label>
+              <input matInput 
+                     [matDatepicker]="picker" 
+                     formControlName="fecha_asignacion"
+                     placeholder="Selecciona una fecha"
+                     readonly>
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>event</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker 
+                             startView="month" 
+                             [touchUi]="false">
+              </mat-datepicker>
+              <mat-hint>✨ Clickea el calendario para seleccionar visualmente</mat-hint>
             </mat-form-field>
+            
+            <!-- Alternativa input nativo (menos robusto pero funcional en la mayoría de navegadores)
+            <div class="form-field">
+              <label for="fecha_asignacion" class="date-label">Fecha de Asignación</label>
+              <input 
+                type="date" 
+                id="fecha_asignacion"
+                formControlName="fecha_asignacion"
+                class="date-input"
+                [attr.max]="fechaMaxima"
+                [attr.min]="fechaMinima">
+              <small class="date-hint">Seleccione la fecha de asignación del vehículo</small>
+            </div>
+            -->
           </div>
         </div>
 

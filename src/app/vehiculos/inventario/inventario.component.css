@@ -33,6 +33,32 @@
   min-width: 160px;
 }
 
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  background-color: #ffeaea;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.error-container mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+
+.error-container p {
+  margin: 0 0 16px 0;
+  color: #721c24;
+  font-weight: 500;
+}
+
 .table-container {
   width: 100%;
   overflow-x: auto;

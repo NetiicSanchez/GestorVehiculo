@@ -16,8 +16,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
 import { VehiculosService } from '../../services/vehiculos.service';
-import { CatalogosService } from '../../services/catalogos.service';
-import { Vehiculo, TipoVehiculo, GrupoVehiculo, EstadoVehiculo, TipoCombustible } from '../../models/vehiculo.model';
+import { Vehiculo } from '../../models/vehiculo.model';
 import { Subscription, filter } from 'rxjs';
 
 @Component({
@@ -53,17 +52,13 @@ export class InventarioComponent implements OnInit, OnDestroy {
 
   filtroTexto: string = '';
   cargando: boolean = false;
+  errorCarga: string = '';
+  maxReintentos: number = 3;
+  reintentoActual: number = 0;
   private routerSubscription: Subscription = new Subscription();
-
-  // Catálogos para mostrar nombres en lugar de IDs
-  tiposVehiculos: TipoVehiculo[] = [];
-  gruposVehiculos: GrupoVehiculo[] = [];
-  estadosVehiculos: EstadoVehiculo[] = [];
-  tiposCombustible: TipoCombustible[] = [];
 
   constructor(
     private vehiculosService: VehiculosService,
-    private catalogosService: CatalogosService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private router: Router
@@ -84,7 +79,6 @@ export class InventarioComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.cargarCatalogos();
     this.cargarVehiculos();
   }
 
@@ -99,10 +93,18 @@ export class InventarioComponent implements OnInit, OnDestroy {
 
   cargarVehiculos(): void {
     this.cargando = true;
+    this.errorCarga = '';
     console.log('🔄 Cargando vehículos...');
+    
+    // Timeout manual adicional
+    const timeoutId = setTimeout(() => {
+      this.cargando = false;
+      this.errorCarga = 'La carga está tardando demasiado. Verifique su conexión.';
+    }, 15000); // 15 segundos
     
     this.vehiculosService.obtenerVehiculos().subscribe({
       next: (response: any) => {
+        clearTimeout(timeoutId);
         console.log('📋 Respuesta del servidor:', response);
         
         // Manejar diferentes formatos de respuesta
@@ -119,14 +121,40 @@ export class InventarioComponent implements OnInit, OnDestroy {
         this.dataSource.data = vehiculos;
         console.log(`✅ ${vehiculos.length} vehículos cargados`);
         this.cargando = false;
+        this.reintentoActual = 0;
       },
       error: (error: any) => {
+        clearTimeout(timeoutId);
         console.error('❌ Error al cargar vehículos:', error);
-        this.mostrarMensaje('Error al cargar los vehículos');
-        this.dataSource.data = [];
-        this.cargando = false;
+        this.manejarErrorCarga(error);
       }
     });
+  }
+
+  private manejarErrorCarga(error: any): void {
+    this.cargando = false;
+    this.reintentoActual++;
+    
+    const mensaje = error.message || 'Error al cargar los vehículos';
+    this.errorCarga = mensaje;
+    
+    if (this.reintentoActual < this.maxReintentos) {
+      console.log(`🔄 Reintentando carga (${this.reintentoActual}/${this.maxReintentos})...`);
+      this.mostrarMensaje(`${mensaje}. Reintentando... (${this.reintentoActual}/${this.maxReintentos})`);
+      
+      // Esperar un poco antes de reintentar
+      setTimeout(() => {
+        this.cargarVehiculos();
+      }, 2000);
+    } else {
+      this.dataSource.data = [];
+      this.mostrarMensaje(`${mensaje}. Use el botón Reintentar para volver a cargar.`);
+    }
+  }
+
+  reintentarCarga(): void {
+    this.reintentoActual = 0;
+    this.cargarVehiculos();
   }
 
   // Método para forzar recarga manual
@@ -175,59 +203,6 @@ export class InventarioComponent implements OnInit, OnDestroy {
         }
       });
     }
-  }
-
-  cargarCatalogos(): void {
-    // Cargar tipos de vehículos
-    this.catalogosService.obtenerTiposVehiculo().subscribe({
-      next: (tipos: TipoVehiculo[]) => this.tiposVehiculos = tipos,
-      error: (error: any) => console.error('Error cargando tipos:', error)
-    });
-
-    // Cargar grupos
-    this.catalogosService.obtenerGruposVehiculo().subscribe({
-      next: (grupos: GrupoVehiculo[]) => this.gruposVehiculos = grupos,
-      error: (error: any) => console.error('Error cargando grupos:', error)
-    });
-
-    // Cargar estados
-    this.catalogosService.obtenerEstadosVehiculo().subscribe({
-      next: (estados: EstadoVehiculo[]) => this.estadosVehiculos = estados,
-      error: (error: any) => console.error('Error cargando estados:', error)
-    });
-
-    // Cargar tipos de combustible
-    this.catalogosService.obtenerTiposCombustible().subscribe({
-      next: (tipos: TipoCombustible[]) => this.tiposCombustible = tipos,
-      error: (error: any) => console.error('Error cargando combustibles:', error)
-    });
-  }
-
-  // Métodos helper para convertir IDs a nombres
-  obtenerNombreTipo(id: number): string {
-    console.log('🔍 obtenerNombreTipo called with id:', id, 'tiposVehiculos:', this.tiposVehiculos);
-    if (!id) return 'ID: undefined';
-    const tipo = this.tiposVehiculos.find(t => t.id === id);
-    return tipo ? tipo.nombre : `ID: ${id}`;
-  }
-
-  obtenerNombreGrupo(id: number): string {
-    console.log('🔍 obtenerNombreGrupo called with id:', id, 'gruposVehiculos:', this.gruposVehiculos);
-    if (!id) return 'ID: undefined';
-    const grupo = this.gruposVehiculos.find(g => g.id === id);
-    return grupo ? grupo.nombre : `ID: ${id}`;
-  }
-
-  obtenerNombreEstado(id: number): string {
-    console.log('🔍 obtenerNombreEstado called with id:', id, 'estadosVehiculos:', this.estadosVehiculos);
-    if (!id) return 'ID: undefined';
-    const estado = this.estadosVehiculos.find(e => e.id === id);
-    return estado ? estado.nombre : `ID: ${id}`;
-  }
-
-  obtenerNombreCombustible(id: number): string {
-    const combustible = this.tiposCombustible.find(c => c.id === id);
-    return combustible ? combustible.nombre : `ID: ${id}`;
   }
 
   exportarDatos(): void {

@@ -50,6 +50,132 @@ body {
   box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 }
 
+/* === Estilos personalizados para Angular Material Datepicker === */
+
+/* Panel del calendario */
+.mat-datepicker-popup {
+  animation: datepicker-enter 0.3s ease;
+  transform-origin: top center;
+}
+
+@keyframes datepicker-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.mat-calendar {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+}
+
+/* Header del calendario */
+.mat-calendar-header {
+  background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%) !important;
+  color: white !important;
+  padding: 16px !important;
+}
+
+.mat-calendar-arrow {
+  fill: white !important;
+}
+
+.mat-calendar-previous-button,
+.mat-calendar-next-button {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+}
+
+.mat-calendar-previous-button:hover,
+.mat-calendar-next-button:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  transform: scale(1.1) !important;
+}
+
+.mat-calendar-period-button {
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+}
+
+.mat-calendar-period-button:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Tabla del calendario */
+.mat-calendar-table {
+  background: white !important;
+}
+
+.mat-calendar-table-header th {
+  color: #9c27b0 !important;
+  font-weight: 600 !important;
+  padding: 8px !important;
+  font-size: 12px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Celdas de días */
+.mat-calendar-body-cell {
+  transition: all 0.2s ease !important;
+  border-radius: 50% !important;
+  margin: 2px !important;
+}
+
+.mat-calendar-body-cell:hover {
+  background: rgba(156, 39, 176, 0.1) !important;
+  transform: scale(1.1) !important;
+}
+
+.mat-calendar-body-cell-content {
+  border-radius: 50% !important;
+  transition: all 0.2s ease !important;
+  font-weight: 500 !important;
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 32px !important;
+}
+
+/* Día seleccionado */
+.mat-calendar-body-selected {
+  background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 8px rgba(156, 39, 176, 0.4) !important;
+}
+
+.mat-calendar-body-selected:hover {
+  background: linear-gradient(135deg, #7b1fa2 0%, #6a1b9a 100%) !important;
+}
+
+/* Día de hoy */
+.mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  border: 2px solid #9c27b0 !important;
+  color: #9c27b0 !important;
+  font-weight: 600 !important;
+}
+
+/* Días deshabilitados */
+.mat-calendar-body-disabled {
+  color: #bdbdbd !important;
+}
+
+.mat-calendar-body-disabled:hover {
+  background: transparent !important;
+  transform: none !important;
+}
+
 /* Responsive breakpoints */
 @media (max-width: 599px) {
   .hide-mobile { display: none !important; }

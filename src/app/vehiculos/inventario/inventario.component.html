@@ -56,8 +56,18 @@
       <!-- Barra de progreso -->
       <mat-progress-bar mode="indeterminate" *ngIf="cargando"></mat-progress-bar>
 
+      <!-- Error de carga -->
+      <div *ngIf="errorCarga && !cargando" class="error-container">
+        <mat-icon color="warn">error</mat-icon>
+        <p>{{ errorCarga }}</p>
+        <button mat-raised-button color="primary" (click)="reintentarCarga()">
+          <mat-icon>refresh</mat-icon>
+          Reintentar Carga
+        </button>
+      </div>
+
       <!-- Tabla de vehículos -->
-      <div class="table-container">
+      <div class="table-container" *ngIf="!errorCarga">
         <table mat-table [dataSource]="dataSource" matSort class="vehiculos-table">
           <!-- Columna Placa -->
           <ng-container matColumnDef="placa">
@@ -89,7 +99,7 @@
           <ng-container matColumnDef="tipoVehiculo">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</th>
             <td mat-cell *matCellDef="let vehiculo">
-              <mat-chip>{{ obtenerNombreTipo(vehiculo.id_tipo_vehiculo) }}</mat-chip>
+              <mat-chip>{{ vehiculo.tipo_vehiculo || 'Sin tipo' }}</mat-chip>
             </td>
           </ng-container>
 
@@ -97,8 +107,8 @@
           <ng-container matColumnDef="estado">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
             <td mat-cell *matCellDef="let vehiculo">
-              <mat-chip [ngClass]="'estado-' + obtenerNombreEstado(vehiculo.id_estado_vehiculo).toLowerCase()">
-                {{ obtenerNombreEstado(vehiculo.id_estado_vehiculo) }}
+              <mat-chip [ngClass]="'estado-' + (vehiculo.estado_vehiculo || 'sin-estado').toLowerCase()">
+                {{ vehiculo.estado_vehiculo || 'Sin estado' }}
               </mat-chip>
             </td>
           </ng-container>

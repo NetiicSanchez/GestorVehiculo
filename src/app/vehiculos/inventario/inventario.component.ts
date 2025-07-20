@@ -149,10 +149,16 @@ export class InventarioComponent implements OnInit, OnDestroy {
   }
 
   verDetalle(vehiculo: Vehiculo): void {
+    console.log('🔍 Ver detalle del vehículo:', vehiculo);
+    console.log('🔍 ID del vehículo:', vehiculo.id);
+    console.log('🔍 Navegando a:', `/vehiculos/detalle/${vehiculo.id}`);
     this.router.navigate(['/vehiculos/detalle', vehiculo.id]);
   }
 
   editarVehiculo(vehiculo: Vehiculo): void {
+    console.log('✏️ Editar vehículo:', vehiculo);
+    console.log('✏️ ID del vehículo:', vehiculo.id);
+    console.log('✏️ Navegando a:', `/vehiculos/editar/${vehiculo.id}`);
     this.router.navigate(['/vehiculos/editar', vehiculo.id]);
   }
 
@@ -199,16 +205,22 @@ export class InventarioComponent implements OnInit, OnDestroy {
 
   // Métodos helper para convertir IDs a nombres
   obtenerNombreTipo(id: number): string {
+    console.log('🔍 obtenerNombreTipo called with id:', id, 'tiposVehiculos:', this.tiposVehiculos);
+    if (!id) return 'ID: undefined';
     const tipo = this.tiposVehiculos.find(t => t.id === id);
     return tipo ? tipo.nombre : `ID: ${id}`;
   }
 
   obtenerNombreGrupo(id: number): string {
+    console.log('🔍 obtenerNombreGrupo called with id:', id, 'gruposVehiculos:', this.gruposVehiculos);
+    if (!id) return 'ID: undefined';
     const grupo = this.gruposVehiculos.find(g => g.id === id);
     return grupo ? grupo.nombre : `ID: ${id}`;
   }
 
   obtenerNombreEstado(id: number): string {
+    console.log('🔍 obtenerNombreEstado called with id:', id, 'estadosVehiculos:', this.estadosVehiculos);
+    if (!id) return 'ID: undefined';
     const estado = this.estadosVehiculos.find(e => e.id === id);
     return estado ? estado.nombre : `ID: ${id}`;
   }

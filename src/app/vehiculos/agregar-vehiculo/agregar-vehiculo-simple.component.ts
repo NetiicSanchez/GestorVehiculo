@@ -13,7 +13,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
       <div style="margin: 20px 0; padding: 10px; background: yellow;">
         <h3>Estado del formulario:</h3>
         <p>Formulario existe: {{ !!miForm }}</p>
-        <p>Formulario válido: {{ miForm?.valid }}</p>
+        <p>Formulario válido: {{ miForm.valid }}</p>
       </div>
       
       <div style="border: 1px solid blue; padding: 20px; margin: 20px 0;">

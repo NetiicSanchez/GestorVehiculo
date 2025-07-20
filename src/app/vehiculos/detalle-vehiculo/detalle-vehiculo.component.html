@@ -49,14 +49,6 @@
               <label>Año:</label>
               <span>{{ vehiculo.anio }}</span>
             </div>
-            <div class="info-item" *ngIf="vehiculo.color">
-              <label>Color:</label>
-              <span>{{ vehiculo.color }}</span>
-            </div>
-            <div class="info-item" *ngIf="vehiculo.numeroSerie">
-              <label>Número de Serie:</label>
-              <span>{{ vehiculo.numeroSerie }}</span>
-            </div>
           </div>
         </div>
 
@@ -68,47 +60,86 @@
           </h3>
           <div class="info-grid">
             <div class="info-item">
-              <label>ID Tipo:</label>
-              <mat-chip>{{ vehiculo.idTipoVehiculo }}</mat-chip>
+              <label>Tipo de Vehículo:</label>
+              <mat-chip color="primary" selected>{{ tipoVehiculo }}</mat-chip>
             </div>
             <div class="info-item">
-              <label>ID Grupo:</label>
-              <mat-chip>{{ vehiculo.idGrupoVehiculo }}</mat-chip>
+              <label>Grupo:</label>
+              <mat-chip color="accent" selected>{{ grupoVehiculo }}</mat-chip>
             </div>
             <div class="info-item">
-              <label>ID Estado:</label>
-              <mat-chip>{{ vehiculo.idEstadoVehiculo }}</mat-chip>
+              <label>Estado:</label>
+              <mat-chip [color]="getEstadoColor(estadoVehiculo)" selected>
+                {{ estadoVehiculo }}
+              </mat-chip>
             </div>
             <div class="info-item">
-              <label>ID Combustible:</label>
-              <mat-chip>{{ vehiculo.idTipoCombustible }}</mat-chip>
+              <label>Tipo de Combustible:</label>
+              <mat-chip color="warn" selected>{{ tipoCombustible }}</mat-chip>
             </div>
           </div>
         </div>
 
         <!-- Información Técnica -->
-        <div class="info-section" *ngIf="vehiculo.kilometrajeInicial">
+        <div class="info-section">
           <h3>
             <mat-icon>build</mat-icon>
             Información Técnica
           </h3>
           <div class="info-grid">
-            <div class="info-item" *ngIf="vehiculo.kilometrajeInicial">
+            <div class="info-item" *ngIf="vehiculo.numero_serie">
+              <label>Número de Serie:</label>
+              <span>{{ vehiculo.numero_serie }}</span>
+            </div>
+            <div class="info-item" *ngIf="vehiculo.color">
+              <label>Color:</label>
+              <span>{{ vehiculo.color }}</span>
+            </div>
+            <div class="info-item" *ngIf="vehiculo.kilometraje_inicial">
               <label>Kilometraje Inicial:</label>
-              <span>{{ vehiculo.kilometrajeInicial | number }} km</span>
+              <span>{{ vehiculo.kilometraje_inicial | number }} km</span>
+            </div>
+            <div class="info-item" *ngIf="vehiculo.kilometraje_actual">
+              <label>Kilometraje Actual:</label>
+              <span>{{ vehiculo.kilometraje_actual | number }} km</span>
             </div>
           </div>
         </div>
 
-        <!-- Fotos del Vehículo -->
-        <div class="info-section" *ngIf="vehiculo.fotoVehiculo && vehiculo.fotoVehiculo.length > 0">
+        <!-- Información Adicional -->
+        <div class="info-section">
           <h3>
-            <mat-icon>photo_library</mat-icon>
-            Fotos del Vehículo
+            <mat-icon>add_circle</mat-icon>
+            Información Adicional
           </h3>
-          <div class="fotos-grid">
-            <div *ngFor="let foto of vehiculo.fotoVehiculo" class="foto-item">
-              <img [src]="foto" [alt]="'Foto del vehículo ' + vehiculo.placa" class="foto-vehiculo">
+          <div class="info-grid">
+            <div class="info-item full-width" *ngIf="vehiculo.observaciones">
+              <label>Observaciones:</label>
+              <p class="observaciones">{{ vehiculo.observaciones }}</p>
+            </div>
+            <div class="info-item" *ngIf="vehiculo.fecha_asignacion || vehiculo.fecha_asignacion_local">
+              <label>Fecha de Asignación:</label>
+              <span>{{ formatearFecha(vehiculo.fecha_asignacion_local || vehiculo.fecha_asignacion) }}</span>
+            </div>
+            <div class="info-item" *ngIf="usuarioAsignado !== 'Sin asignar'">
+              <label>Usuario Asignado:</label>
+              <span class="usuario-asignado">
+                <mat-icon>person</mat-icon>
+                {{ usuarioAsignado }}
+              </span>
+            </div>
+            <div class="info-item" *ngIf="vehiculo.foto_vehiculo">
+              <label>Foto del Vehículo:</label>
+              <div class="foto-container">
+                <img [src]="vehiculo.foto_vehiculo" [alt]="'Foto de ' + vehiculo.placa" 
+                     class="vehiculo-foto" 
+                     (error)="onImageError($event)"
+                     style="max-width: 300px; max-height: 200px; border-radius: 8px;">
+                <div class="foto-error" style="display: none;">
+                  <mat-icon>broken_image</mat-icon>
+                  <span>Error al cargar imagen</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -120,21 +151,17 @@
             Información del Sistema
           </h3>
           <div class="info-grid">
-            <div class="info-item" *ngIf="vehiculo.fechaCreacion">
+            <div class="info-item" *ngIf="vehiculo.fecha_creacion || vehiculo.fecha_creacion_local">
               <label>Fecha de Registro:</label>
-              <span>{{ vehiculo.fechaCreacion | date:'dd/MM/yyyy HH:mm' }}</span>
+              <span>{{ formatearFecha(vehiculo.fecha_creacion_local || vehiculo.fecha_creacion) }}</span>
             </div>
-            <div class="info-item" *ngIf="vehiculo.fechaActualizacion">
+            <div class="info-item" *ngIf="vehiculo.fecha_actualizacion || vehiculo.fecha_actualizacion_local">
               <label>Última Actualización:</label>
-              <span>{{ vehiculo.fechaActualizacion | date:'dd/MM/yyyy HH:mm' }}</span>
-            </div>
-            <div class="info-item" *ngIf="vehiculo.fechaActualizacion">
-              <label>Fecha de Actualización:</label>
-              <span>{{ vehiculo.fechaActualizacion | date:'dd/MM/yyyy HH:mm' }}</span>
+              <span>{{ formatearFecha(vehiculo.fecha_actualizacion_local || vehiculo.fecha_actualizacion) }}</span>
             </div>
             <div class="info-item">
               <label>Estado del Registro:</label>
-              <mat-chip [color]="vehiculo.activo ? 'primary' : 'warn'">
+              <mat-chip [color]="vehiculo.activo ? 'primary' : 'warn'" selected>
                 {{ vehiculo.activo ? 'Activo' : 'Inactivo' }}
               </mat-chip>
             </div>

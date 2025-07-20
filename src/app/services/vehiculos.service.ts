@@ -16,11 +16,14 @@ export class VehiculosService {
   constructor(private http: HttpClient) { }
   //crea un vehiculo
   crearVehiculo(vehiculo: any): Observable<any> {
+    console.log('Creando vehículo:', vehiculo);
+    
     return this.http.post(this.apiUrl, vehiculo, this.httpOptions)
     .pipe(
       catchError(this.handleError)
     );
   }
+
   // Verifica si la placa existente
    verificarPlaca(placa: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/verificar-placa/${placa}`)
@@ -35,6 +38,31 @@ export class VehiculosService {
       .pipe(
         catchError(this.handleError)
       );
+    
+    // Datos de prueba temporales (comentados para usar backend real)
+    // console.log('Obteniendo vehículos (modo temporal)');
+    // const vehiculosTemporales = [
+    //   {
+    //     id: 1,
+    //     numero_placa: 'ABC-123',
+    //     marca: 'Toyota',
+    //     modelo: 'Corolla',
+    //     anio: 2020,
+    //     color: 'Blanco',
+    //     kilometraje: 25000,
+    //     propietario: 'Juan Pérez',
+    //     estado: 'Activo',
+    //     tipo: 'Automóvil',
+    //     grupo: 'Liviano'
+    //   }
+    // ];
+    // 
+    // return new Observable(observer => {
+    //   setTimeout(() => {
+    //     observer.next(vehiculosTemporales);
+    //     observer.complete();
+    //   }, 1000);
+    // });
   }
 
   // Eliminar vehículo (soft delete)

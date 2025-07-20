@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +18,21 @@ export class CatalogosService {
       .pipe(
         catchError(this.handleError)
       );
+    
+    // Datos de prueba temporales (comentados para usar backend real)
+    // const datosTemporales = [
+    //   { id: 1, nombre: 'Automóvil' },
+    //   { id: 2, nombre: 'Motocicleta' },
+    //   { id: 3, nombre: 'Camión' },
+    //   { id: 4, nombre: 'Autobús' }
+    // ];
+    // 
+    // return new Observable(observer => {
+    //   setTimeout(() => {
+    //     observer.next(datosTemporales);
+    //     observer.complete();
+    //   }, 500);
+    // });
   }
 
   // Agregar tipo de vehículo
@@ -75,6 +89,21 @@ export class CatalogosService {
       .pipe(
         catchError(this.handleError)
       );
+    
+    // Datos de prueba temporales (comentados para usar backend real)
+    // const datosTemporales = [
+    //   { id: 1, nombre: 'Liviano' },
+    //   { id: 2, nombre: 'Pesado' },
+    //   { id: 3, nombre: 'Comercial' },
+    //   { id: 4, nombre: 'Particular' }
+    // ];
+    // 
+    // return new Observable(observer => {
+    //   setTimeout(() => {
+    //     observer.next(datosTemporales);
+    //     observer.complete();
+    //   }, 500);
+    // });
   }
 
   // Obtener estados de vehículos
@@ -83,6 +112,21 @@ export class CatalogosService {
       .pipe(
         catchError(this.handleError)
       );
+    
+    // Datos de prueba temporales (comentados para usar backend real)
+    // const datosTemporales = [
+    //   { id: 1, nombre: 'Activo' },
+    //   { id: 2, nombre: 'Inactivo' },
+    //   { id: 3, nombre: 'En Mantenimiento' },
+    //   { id: 4, nombre: 'Vendido' }
+    // ];
+    // 
+    // return new Observable(observer => {
+    //   setTimeout(() => {
+    //     observer.next(datosTemporales);
+    //     observer.complete();
+    //   }, 500);
+    // });
   }
 
   // Obtener tipos de combustible
@@ -91,6 +135,22 @@ export class CatalogosService {
       .pipe(
         catchError(this.handleError)
       );
+    
+    // Datos de prueba temporales (comentados para usar backend real)
+    // const datosTemporales = [
+    //   { id: 1, nombre: 'Gasolina' },
+    //   { id: 2, nombre: 'Diésel' },
+    //   { id: 3, nombre: 'Eléctrico' },
+    //   { id: 4, nombre: 'Híbrido' },
+    //   { id: 5, nombre: 'Gas Natural' }
+    // ];
+    // 
+    // return new Observable(observer => {
+    //   setTimeout(() => {
+    //     observer.next(datosTemporales);
+    //     observer.complete();
+    //   }, 500);
+    // });
   }
 
   // Agregar tipo de combustible

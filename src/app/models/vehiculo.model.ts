@@ -49,3 +49,27 @@ export interface TipoCombustible {
   activo: boolean;
   fechaCreacion?: Date;
 }
+
+export interface CargaCombustible {
+  id?: number;
+  idVehiculo: number;
+  idUsuario?: number;
+  idTipoCombustible?: number;
+  fechaCarga: Date;
+  kilometrajeActual: number;
+  galonesCargados: number;
+  precioGalon: number;
+  totalPagado: number;
+  proveedorCombustible?: string;
+  numeroFactura?: string;
+  observaciones?: string;
+  fotoFactura?: string;
+  activo?: boolean;
+  fechaCreacion?: Date;
+  
+  // Campos para mostrar información relacionada
+  placa?: string;
+  marca?: string;
+  modelo?: string;
+  tipoCombustible?: string;
+}

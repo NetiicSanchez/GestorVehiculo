@@ -176,6 +176,16 @@ export class InventarioComponent implements OnInit, OnDestroy {
     this.router.navigate(['/vehiculos/agregar']);
   }
 
+  irAGestionCombustible(): void {
+    console.log('⛽ Navegando a gestión de combustible');
+    this.router.navigate(['/vehiculos/combustible']);
+  }
+
+  irADashboard(): void {
+    console.log('📊 Navegando al dashboard');
+    this.router.navigate(['/dashboard']);
+  }
+
   verDetalle(vehiculo: Vehiculo): void {
     console.log('🔍 Ver detalle del vehículo:', vehiculo);
     console.log('🔍 ID del vehículo:', vehiculo.id);

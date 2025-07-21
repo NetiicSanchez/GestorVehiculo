@@ -33,6 +33,24 @@
   min-width: 160px;
 }
 
+.fuel-button {
+  min-width: 180px;
+  background-color: #FF6B35 !important;
+}
+
+.fuel-button:hover {
+  background-color: #E55A2B !important;
+}
+
+.dashboard-button {
+  min-width: 120px;
+  background-color: #9C27B0 !important;
+}
+
+.dashboard-button:hover {
+  background-color: #7B1FA2 !important;
+}
+
 .error-container {
   display: flex;
   flex-direction: column;

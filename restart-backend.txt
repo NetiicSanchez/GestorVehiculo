@@ -1,8 +1,0 @@
-echo "Reiniciando backend..."
-echo "Para reiniciar el backend:"
-echo "1. Ve a la terminal donde está corriendo el backend"
-echo "2. Presiona Ctrl+C para detenerlo"
-echo "3. Ejecuta: npm start"
-echo ""
-echo "O ejecuta desde la raíz del proyecto:"
-echo "cd backend && npm start"

@@ -34,5 +34,9 @@ export const routes: Routes = [
     path: 'vehiculos/combustible', 
     loadComponent: () => import('./vehiculos/combustible/combustible.component').then(m => m.CombustibleComponent)
   },
+  { 
+    path: 'dashboard', 
+    loadComponent: () => import('./dashboard/dashboard.component').then(m => m.DashboardComponent)
+  },
   { path: '**', redirectTo: '/vehiculos/inventario' }
 ];

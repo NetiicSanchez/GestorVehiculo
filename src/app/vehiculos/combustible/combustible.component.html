@@ -8,7 +8,203 @@
     </mat-card-header>
 
     <mat-card-content>
-      <p>Módulo de combustible en desarrollo...</p>
+      <!-- Botón para nueva carga -->
+      <div class="header-actions">
+        <button mat-raised-button color="primary" (click)="abrirDialogoCarga()">
+          <mat-icon>add</mat-icon>
+          Registrar Carga de Combustible
+        </button>
+      </div>
+
+      <!-- Filtros -->
+      <div class="filtros-section">
+        <mat-form-field appearance="outline" class="filtro-vehiculo">
+          <mat-label>Filtrar por Vehículo</mat-label>
+          <mat-select [(value)]="vehiculoSeleccionado" (selectionChange)="filtrarPorVehiculo()">
+            <mat-option value="">Todos los vehículos</mat-option>
+            <mat-option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.id">
+              {{ vehiculo.placa }} - {{ vehiculo.marca }} {{ vehiculo.modelo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="filtro-fecha">
+          <mat-label>Desde fecha</mat-label>
+          <input matInput [matDatepicker]="fechaDesde" [(ngModel)]="fechaDesdeSeleccionada" 
+                 (dateChange)="aplicarFiltros()">
+          <mat-datepicker-toggle matSuffix [for]="fechaDesde"></mat-datepicker-toggle>
+          <mat-datepicker #fechaDesde></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="filtro-fecha">
+          <mat-label>Hasta fecha</mat-label>
+          <input matInput [matDatepicker]="fechaHasta" [(ngModel)]="fechaHastaSeleccionada" 
+                 (dateChange)="aplicarFiltros()">
+          <mat-datepicker-toggle matSuffix [for]="fechaHasta"></mat-datepicker-toggle>
+          <mat-datepicker #fechaHasta></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <!-- Estadísticas -->
+      <div class="estadisticas-grid" *ngIf="estadisticas">
+        <mat-card class="stat-card">
+          <mat-card-content>
+            <div class="stat-icon">
+              <mat-icon>local_gas_station</mat-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{ estadisticas.totalGalones || 0 | number:'1.2-2' }} Gal</h3>
+              <p>Total Combustible</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card">
+          <mat-card-content>
+            <div class="stat-icon">
+              <mat-icon>attach_money</mat-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{ estadisticas.totalGasto || 0 | currency:'GTQ':'symbol':'1.2-2' }}</h3>
+              <p>Gasto Total</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card">
+          <mat-card-content>
+            <div class="stat-icon">
+              <mat-icon>trending_up</mat-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{ estadisticas.promedioGalones || 0 | number:'1.2-2' }} Gal</h3>
+              <p>Promedio por Carga</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card">
+          <mat-card-content>
+            <div class="stat-icon">
+              <mat-icon>speed</mat-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{ estadisticas.rendimientoPromedio || 0 | number:'1.2-2' }} km/L</h3>
+              <p>Rendimiento Promedio</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Loading -->
+      <div *ngIf="cargando" class="loading-container">
+        <mat-spinner></mat-spinner>
+        <p>Cargando datos...</p>
+      </div>
+
+      <!-- Error -->
+      <div *ngIf="errorCarga && !cargando" class="error-container">
+        <mat-icon color="warn">error</mat-icon>
+        <p>{{ errorCarga }}</p>
+        <button mat-raised-button color="primary" (click)="cargarDatos()">
+          <mat-icon>refresh</mat-icon>
+          Reintentar
+        </button>
+      </div>
+
+      <!-- Tabla de cargas -->
+      <div class="tabla-container" *ngIf="!cargando && !errorCarga">
+        <mat-table [dataSource]="cargasFiltradas" class="cargas-table">
+          <!-- Columna Fecha -->
+          <ng-container matColumnDef="fecha">
+            <mat-header-cell *matHeaderCellDef>Fecha</mat-header-cell>
+            <mat-cell *matCellDef="let carga">
+              {{ carga.fechaCarga | date:'dd/MM/yyyy' }}
+            </mat-cell>
+          </ng-container>
+
+          <!-- Columna Vehículo -->
+          <ng-container matColumnDef="vehiculo">
+            <mat-header-cell *matHeaderCellDef>Vehículo</mat-header-cell>
+            <mat-cell *matCellDef="let carga">
+              <div class="vehiculo-info">
+                <strong>{{ carga.placa }}</strong>
+                <br>
+                <small>{{ carga.marca }} {{ carga.modelo }}</small>
+              </div>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Columna Combustible -->
+          <ng-container matColumnDef="combustible">
+            <mat-header-cell *matHeaderCellDef>Tipo</mat-header-cell>
+            <mat-cell *matCellDef="let carga">{{ carga.tipoCombustible }}</mat-cell>
+          </ng-container>
+
+          <!-- Columna Galones -->
+          <ng-container matColumnDef="galones">
+            <mat-header-cell *matHeaderCellDef>Galones</mat-header-cell>
+            <mat-cell *matCellDef="let carga">
+              <span class="cantidad">{{ carga.galonesCargados | number:'1.2-2' }} Gal</span>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Columna Precio -->
+          <ng-container matColumnDef="precio">
+            <mat-header-cell *matHeaderCellDef>Precio/Gal</mat-header-cell>
+            <mat-cell *matCellDef="let carga">
+              {{ carga.precioGalon | currency:'GTQ':'symbol':'1.2-2' }}
+            </mat-cell>
+          </ng-container>
+
+          <!-- Columna Total -->
+          <ng-container matColumnDef="total">
+            <mat-header-cell *matHeaderCellDef>Total</mat-header-cell>
+            <mat-cell *matCellDef="let carga">
+              <span class="total-amount">{{ carga.totalPagado | currency:'GTQ':'symbol':'1.2-2' }}</span>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Columna Kilometraje -->
+          <ng-container matColumnDef="kilometraje">
+            <mat-header-cell *matHeaderCellDef>Kilometraje</mat-header-cell>
+            <mat-cell *matCellDef="let carga">
+              {{ carga.kilometrajeActual | number }} km
+            </mat-cell>
+          </ng-container>
+
+          <!-- Columna Estación -->
+          <ng-container matColumnDef="proveedor">
+            <mat-header-cell *matHeaderCellDef>Proveedor</mat-header-cell>
+            <mat-cell *matCellDef="let carga">{{ carga.proveedorCombustible || 'N/A' }}</mat-cell>
+          </ng-container>
+
+          <!-- Columna Acciones -->
+          <ng-container matColumnDef="acciones">
+            <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+            <mat-cell *matCellDef="let carga">
+              <button mat-icon-button color="primary" (click)="editarCarga(carga)" 
+                      matTooltip="Editar carga">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="eliminarCarga(carga)" 
+                      matTooltip="Eliminar carga">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="columnasDisplayed"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: columnasDisplayed;"></mat-row>
+        </mat-table>
+
+        <!-- Mensaje cuando no hay datos -->
+        <div *ngIf="cargasFiltradas.length === 0" class="no-data">
+          <mat-icon>local_gas_station</mat-icon>
+          <h3>No hay cargas de combustible registradas</h3>
+          <p>Comienza registrando la primera carga de combustible</p>
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

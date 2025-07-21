@@ -42,6 +42,29 @@ app.get('/api/health', (req, res) => {
 app.use('/api/vehiculos', require('./routes/vehiculos'));
 app.use('/api/catalogos', require('./routes/catalogos'));
 app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/combustible', require('./routes/combustible'));
+app.use('/api/dashboard', require('./routes/dashboard'));
+
+// Ruta temporal para consultar vistas
+app.post('/api/test-vista', async (req, res) => {
+  try {
+    const db = require('./config/database');
+    const { query } = req.body;
+    console.log('🔍 Ejecutando query:', query);
+    const result = await db.query(query);
+    res.json({
+      success: true,
+      data: result.rows,
+      rowCount: result.rowCount
+    });
+  } catch (error) {
+    console.error('❌ Error en query:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
 
 // Error handling middleware
 app.use((error, req, res, next) => {

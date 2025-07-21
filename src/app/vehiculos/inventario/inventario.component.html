@@ -36,6 +36,22 @@
             Agregar Vehículo
           </button>
           
+          <button mat-raised-button 
+                  color="accent" 
+                  (click)="irAGestionCombustible()"
+                  class="fuel-button">
+            <mat-icon>local_gas_station</mat-icon>
+            Gestión de Combustible
+          </button>
+          
+          <button mat-raised-button 
+                  color="warn" 
+                  (click)="irADashboard()"
+                  class="dashboard-button">
+            <mat-icon>dashboard</mat-icon>
+            Dashboard
+          </button>
+          
           <button mat-stroked-button 
                   (click)="actualizarInventario()"
                   matTooltip="Refrescar datos"

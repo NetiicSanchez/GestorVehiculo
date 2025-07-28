@@ -20,6 +20,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
+const authRoutes = require('./routes/auth');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -44,6 +45,7 @@ app.use('/api/catalogos', require('./routes/catalogos'));
 app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/combustible', require('./routes/combustible'));
 app.use('/api/dashboard', require('./routes/dashboard'));
+app.use('/api/auth', authRoutes);
 
 // Ruta temporal para consultar vistas
 app.post('/api/test-vista', async (req, res) => {

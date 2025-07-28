@@ -1,7 +1,13 @@
 import { Routes } from '@angular/router';
+import { LoginComponent } from './auth/login.component';
+import { RegisterComponent } from './auth/register.component';
+import { PerfilComponent } from './auth/perfil.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/vehiculos/inventario', pathMatch: 'full' },
+  { path: '', redirectTo: '/inventario', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'perfil', component: PerfilComponent },
   { 
     path: 'vehiculos/inventario', 
     loadComponent: () => import('./vehiculos/inventario/inventario.component').then(m => m.InventarioComponent)

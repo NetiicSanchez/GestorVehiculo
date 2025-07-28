@@ -2,10 +2,13 @@
   <header class="app-header">
     <h1>{{ title() }}</h1>
     <p>Sistema de gestión de vehículos</p>
+    <nav *ngIf="usuarioAutenticado()">
+      <a href="/perfil" class="perfil-link">Mi perfil</a>
+    </nav>
   </header>
   
   <main class="app-main">
-    <router-outlet />
+    <router-outlet></router-outlet>
   </main>
   
   <footer class="app-footer">

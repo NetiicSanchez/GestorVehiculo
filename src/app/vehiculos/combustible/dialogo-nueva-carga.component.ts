@@ -265,13 +265,15 @@ export class DialogoNuevaCargaComponent implements OnInit {
     console.log('🔥 Cargando tipos de combustible...');
     this.catalogosService.obtenerTiposCombustible().subscribe({
       next: (response: any) => {
-        console.log('🔥 Respuesta tipos combustible:', response);
-        if (response.success) {
+        // Permitir tanto array directo como objeto con data
+        if (Array.isArray(response)) {
+          this.tiposCombustible = response;
+        } else if (response && Array.isArray(response.data)) {
           this.tiposCombustible = response.data;
-          console.log('🔥 Tipos de combustible cargados:', this.tiposCombustible);
         } else {
-          console.error('Error en respuesta de tipos combustible:', response);
+          this.tiposCombustible = [];
         }
+        console.log('🔥 Tipos de combustible cargados:', this.tiposCombustible);
       },
       error: (error: any) => {
         console.error('Error al cargar tipos de combustible:', error);

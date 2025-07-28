@@ -1,0 +1,36 @@
+<div class="perfil-container">
+  <h2>Mi Perfil</h2>
+  <form [formGroup]="perfilForm" (ngSubmit)="guardar()">
+    <div>
+      <label>Nombre</label>
+      <input type="text" formControlName="nombre" />
+    </div>
+    <div>
+      <label>Apellido</label>
+      <input type="text" formControlName="apellido" />
+    </div>
+    <div>
+      <label>Email</label>
+      <input type="email" formControlName="email" [disabled]="true" />
+    </div>
+    <div>
+      <label>Teléfono</label>
+      <input type="text" formControlName="telefono" />
+    </div>
+    <div>
+      <label>DPI</label>
+      <input type="text" formControlName="dpi" />
+    </div>
+    <div>
+      <label>Licencia de Conducir</label>
+      <input type="text" formControlName="licencia_conducir" />
+    </div>
+    <div>
+      <label>Fecha Vencimiento Licencia</label>
+      <input type="date" formControlName="fecha_vencimiento_licencia" />
+    </div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <div *ngIf="success" class="success">{{ success }}</div>
+    <button type="submit" [disabled]="loading">Guardar</button>
+  </form>
+</div>

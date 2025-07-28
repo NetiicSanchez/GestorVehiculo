@@ -1,0 +1,48 @@
+.register-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 32px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.register-container label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.register-container input, .register-container select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.register-container .error {
+  color: #c00;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.register-container .success {
+  color: #2e7d32;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.register-container button {
+  width: 100%;
+  padding: 10px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.register-container button:disabled {
+  background: #90caf9;
+  cursor: not-allowed;
+}

@@ -14,4 +14,8 @@ export class UsuariosService {
     console.log('🌐 UsuariosService: Llamando a', this.baseUrl);
     return this.http.get<any>(this.baseUrl);
   }
+
+  actualizarUsuario(usuario: any) {
+    return this.http.put(`http://localhost:3000/api/usuarios/${usuario.id}`, usuario);
+  }
 }

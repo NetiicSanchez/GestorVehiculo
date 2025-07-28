@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, map } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -12,10 +12,11 @@ export class CatalogosService {
   constructor(private http: HttpClient) {}
 
   // Obtener tipos de vehículos
-  obtenerTiposVehiculo(): Observable<any> {
+  obtenerTiposVehiculo(): Observable<any[]> {
     console.log('Llamando a:', `${this.apiUrl}/tipos-vehiculo`);
-    return this.http.get(`${this.apiUrl}/tipos-vehiculo`)
+    return this.http.get<any[]>(`${this.apiUrl}/tipos-vehiculo`)
       .pipe(
+        map((response: any) => Array.isArray(response) ? response : response.data || []),
         catchError(this.handleError)
       );
     
@@ -84,9 +85,10 @@ export class CatalogosService {
   }
 
   // Obtener grupos de vehículos
-  obtenerGruposVehiculo(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/grupos-vehiculo`)
+  obtenerGruposVehiculo(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/grupos-vehiculo`)
       .pipe(
+        map((response: any) => Array.isArray(response) ? response : response.data || []),
         catchError(this.handleError)
       );
     
@@ -107,9 +109,10 @@ export class CatalogosService {
   }
 
   // Obtener estados de vehículos
-  obtenerEstadosVehiculo(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/estados-vehiculo`)
+  obtenerEstadosVehiculo(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/estados-vehiculo`)
       .pipe(
+        map((response: any) => Array.isArray(response) ? response : response.data || []),
         catchError(this.handleError)
       );
     
@@ -130,11 +133,15 @@ export class CatalogosService {
   }
 
   // Obtener tipos de combustible
-  obtenerTiposCombustible(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/tipos-combustible`)
-      .pipe(
-        catchError(this.handleError)
-      );
+  obtenerTiposCombustible(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/tipos-combustible`).pipe(
+      map((response: any) => {
+        if (Array.isArray(response)) return response;
+        if (response && Array.isArray(response.data)) return response.data;
+        return [];
+      }),
+      catchError(this.handleError)
+    );
     
     // Datos de prueba temporales (comentados para usar backend real)
     // const datosTemporales = [

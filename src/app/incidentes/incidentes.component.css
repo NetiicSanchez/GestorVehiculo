@@ -1,0 +1,133 @@
+/* Mejorar diseño del textarea de mensaje personalizado */
+.mensaje-solucion-field {
+  width: 100%;
+  margin-bottom: 12px;
+}
+.mensaje-solucion-field textarea {
+  border-radius: 10px !important;
+  background: #f8fafc;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  font-size: 1rem;
+  padding: 10px 12px;
+  min-height: 48px;
+  resize: vertical;
+}
+.mensaje-solucion-field textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 2px #3b82f633;
+}
+
+/* Mejorar diseño de la tarjeta de incidente */
+.inc-card {
+  border-radius: 18px;
+  box-shadow: 0 10px 32px rgba(0,0,0,.10);
+  padding: 1.25rem 1.1rem;
+  background: linear-gradient(135deg, #f8fafc 80%, #e0e7ef 100%);
+  border: 1px solid #e0e7ef;
+}
+.inc-card:hover {
+  box-shadow: 0 16px 48px rgba(0,0,0,.14);
+  background: linear-gradient(135deg, #f1f5f9 80%, #dbeafe 100%);
+}
+/* Contenedor principal */
+.incidentes-container {
+  padding: 1rem;
+}
+
+/* Título */
+.title { margin-bottom: .75rem; }
+
+/* Lista de incidentes en grid responsivo */
+.incidentes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+/* Tarjeta de incidente */
+.inc-card {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid #e5eaf1;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.08);
+  padding: 1rem;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.inc-card:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(0,0,0,.12); }
+
+/* Encabezado con estado */
+.inc-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: .5rem; }
+.inc-head strong { font-size: 1.05rem; letter-spacing: .2px; }
+
+/* Chip de estado */
+.chip {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #f59e0b; /* pendiente */
+  color: #fff;
+  font-weight: 600;
+  font-size: .85rem;
+}
+.chip.solved { background: #22c55e; }
+
+/* Cuerpo */
+.inc-body { color: #1f2937; }
+.inc-body b { color: #111827; }
+.inc-body > div { margin: .25rem 0; }
+
+/* Variantes dark opcionales (activa si tu layout es oscuro) */
+:host-context(.theme-dark) .inc-card {
+  background: #151a26;
+  border-color: #252c3a;
+  color: #e5e7eb;
+}
+:host-context(.theme-dark) .inc-body b { color: #f3f4f6; }
+
+/* Texto secundario */
+.muted { color: #6b7280; font-size: .95rem; }
+/* Contenedor centrado */
+.incidentes-container {
+  max-width: 720px;
+  margin: 24px auto;
+  padding: 16px 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.incidentes-container .title {
+  margin: 0 0 16px 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Campos a 100% del contenedor */
+mat-form-field {
+  width: 100%;
+}
+
+/* Vista previa */
+.mt-2 {
+  margin-top: 8px;
+}
+
+.submit-btn {
+  align-self: flex-start;
+}
+
+@media (max-width: 600px) {
+  .incidentes-container {
+    margin: 12px;
+    padding: 12px 14px;
+  }
+  .incidentes-container .title {
+    font-size: 22px;
+  }
+}

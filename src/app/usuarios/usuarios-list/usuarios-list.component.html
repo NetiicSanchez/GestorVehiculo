@@ -1,0 +1,70 @@
+<div class="usuarios-list-container">
+  <h2>Usuarios</h2>
+  <button *ngIf="permisosUsuario && permisosUsuario.includes('usuarios.crear')">Agregar Usuario</button>
+  <div *ngIf="rolUsuario === 'Administrador' || rolUsuario === 'Supervisor'; else noPermiso">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Email</th>
+          <th>Rol</th>
+          <th>Vence Licencia</th>
+          <th *ngIf="rolUsuario === 'Administrador' || rolUsuario === 'Supervisor'">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.apellido }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.rol || usuario.id_rol }}</td>
+          <td>
+            <ng-container *ngIf="usuario.fecha_vencimiento_licencia">
+              <span [ngClass]="{
+                'licencia-vencida': isLicenciaVencida(usuario.fecha_vencimiento_licencia),
+                'licencia-por-vencer': isLicenciaPorVencer(usuario.fecha_vencimiento_licencia)
+              }">
+                {{ usuario.fecha_vencimiento_licencia | date:'dd/MM/yyyy' }}
+                <span *ngIf="isLicenciaVencida(usuario.fecha_vencimiento_licencia)" style="color:#e74c3c;font-weight:bold;">(Vencida)</span>
+                <span *ngIf="!isLicenciaVencida(usuario.fecha_vencimiento_licencia) && isLicenciaPorVencer(usuario.fecha_vencimiento_licencia)" style="color:#f39c12;font-weight:bold;">(Por vencer)</span>
+              </span>
+            </ng-container>
+            <ng-container *ngIf="!usuario.fecha_vencimiento_licencia">N/A</ng-container>
+          </td>
+          <td *ngIf="rolUsuario === 'Administrador' || rolUsuario === 'Supervisor'">
+            <button (click)="editarUsuario(usuario)">Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Modal de edición -->
+    <div *ngIf="usuarioEditando" class="modal-editar">
+      <div class="modal-content">
+        <h3>Editar Usuario</h3>
+        <form (ngSubmit)="guardarEdicion()">
+          <label>Nombre: <input [(ngModel)]="usuarioEditando.nombre" name="nombre" required [disabled]="rolUsuario !== 'Administrador'" /></label><br>
+          <label>Apellido: <input [(ngModel)]="usuarioEditando.apellido" name="apellido" required [disabled]="rolUsuario !== 'Administrador'" /></label><br>
+          <label>Email: <input [(ngModel)]="usuarioEditando.email" name="email" required disabled /></label><br>
+          <label>Rol:
+            <select [(ngModel)]="usuarioEditando.rol" name="rol" *ngIf="rolUsuario === 'Administrador'">
+              <option value="Administrador">Administrador</option>
+              <option value="Supervisor">Supervisor</option>
+              <option value="Conductor">Conductor</option>
+            </select>
+            <span *ngIf="rolUsuario !== 'Administrador'">{{ usuarioEditando.rol }}</span>
+          </label><br>
+          <label>Teléfono: <input [(ngModel)]="usuarioEditando.telefono" name="telefono" [disabled]="esConductor()" /></label><br>
+          <label>DPI: <input [(ngModel)]="usuarioEditando.dpi" name="dpi" [disabled]="esConductor()" /></label><br>
+          <label>Licencia de Conducir: <input [(ngModel)]="usuarioEditando.licencia_conducir" name="licencia_conducir" [disabled]="rolUsuario !== 'Administrador'" /></label><br>
+          <label>Vence Licencia: <input type="date" [(ngModel)]="usuarioEditando.fecha_vencimiento_licencia" name="fecha_vencimiento_licencia" [disabled]="rolUsuario !== 'Administrador'" /></label><br>
+          <button type="submit">Guardar</button>
+          <button type="button" (click)="cancelarEdicion()">Cancelar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <ng-template #noPermiso>
+    <p>No tienes permiso para ver esta sección.</p>
+  </ng-template>
+</div>

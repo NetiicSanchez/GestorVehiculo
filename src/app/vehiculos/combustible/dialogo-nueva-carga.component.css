@@ -1,0 +1,118 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 400px;
+  max-width: 600px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 48%;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* Estilos para el dropdown de vehículos */
+.vehiculo-option {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  background-color: white !important;
+  padding: 8px 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.vehiculo-option:hover {
+  background-color: #f5f5f5 !important;
+}
+
+.vehiculo-option strong {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.vehiculo-details {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Estilos para el dropdown de combustible */
+.combustible-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: white !important;
+  padding: 8px 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.combustible-option:hover {
+  background-color: #f5f5f5 !important;
+}
+
+.combustible-option mat-icon {
+  font-size: 16px;
+  color: #2196F3;
+}
+
+.combustible-option span {
+  font-size: 14px;
+}
+
+.foto-factura-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.preview-container {
+  position: relative;
+  display: inline-block;
+  max-width: 300px;
+}
+
+.image-preview {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.preview-container button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(255,255,255,0.9);
+}
+
+mat-dialog-content {
+  padding: 20px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+mat-dialog-actions {
+  padding: 16px 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+mat-form-field {
+  margin-bottom: 8px;
+}
+
+.mat-mdc-dialog-title {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-bottom: 0;
+}

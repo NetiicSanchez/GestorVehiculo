@@ -1,6 +1,9 @@
 <div class="perfil-container">
   <h2>Mi Perfil</h2>
   <form [formGroup]="perfilForm" (ngSubmit)="guardar()">
+    <div *ngIf="rolDesactualizado" class="error" style="margin-bottom:1rem;">
+      Tu rol ha cambiado. Por favor, cierra sesión y vuelve a entrar para actualizar tus permisos.
+    </div>
     <div>
       <label>Nombre</label>
       <input type="text" formControlName="nombre" />
@@ -27,10 +30,13 @@
     </div>
     <div>
       <label>Fecha Vencimiento Licencia</label>
-      <input type="date" formControlName="fecha_vencimiento_licencia" />
+      <input type="text" [value]="perfilForm.get('fecha_vencimiento_licencia')?.value | date:'dd/MM/yyyy'" readonly />
     </div>
     <div *ngIf="error" class="error">{{ error }}</div>
     <div *ngIf="success" class="success">{{ success }}</div>
-    <button type="submit" [disabled]="loading">Guardar</button>
+    <button type="submit" [disabled]="loading || rolUsuario === 'Conductor'">Guardar</button>
   </form>
+  <div style="text-align:center; margin-top: 1.5rem;">
+    <button type="button" (click)="logout()" style="background:#e74c3c;color:#fff;padding:0.5rem 1.5rem;border:none;border-radius:4px;cursor:pointer;">Cerrar sesión</button>
+  </div>
 </div>

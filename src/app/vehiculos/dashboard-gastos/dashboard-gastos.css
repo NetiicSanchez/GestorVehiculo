@@ -1,0 +1,28 @@
+/* Contenedor de cada vehículo con estilo dark card */
+.vehiculo-chart-container {
+	background: #1e2235;
+	border-radius: 14px;
+	box-shadow: 0 10px 24px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04);
+	padding: 16px 18px 20px;
+	margin: 16px;
+	color: #cbd5e1;
+}
+
+.vehiculo-chart-container h3 {
+	margin: 0 0 12px 4px;
+	font-size: 1rem;
+	font-weight: 700;
+	letter-spacing: .3px;
+	color: #e2e8f0;
+}
+
+.vehiculo-chart-container canvas {
+	display: block;
+	width: 100% !important;
+	height: 260px !important; /* altura fija para mantener proporción */
+}
+
+/* Layout opcional si se muestran dos charts por vehículo */
+.vehiculo-chart-container canvas + canvas {
+	margin-top: 16px;
+}

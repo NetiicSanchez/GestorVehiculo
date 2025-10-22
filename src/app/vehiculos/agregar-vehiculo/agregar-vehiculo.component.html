@@ -54,20 +54,19 @@
           <h3>Información Básica</h3>
         </div>
         <div class="form-grid">
-          <!-- Placa -->
+          <!-- Nombre -->
           <div class="form-group">
-            <label for="placa" class="form-label">
+            <label for="nombre" class="form-label">
               <i class="fas fa-id-card"></i>
-              Placa <span class="required">*</span>
+              Nombre <span class="required">*</span>
             </label>
             <input
               type="text"
-              id="placa"
+              id="nombre"
               formControlName="placa"
               class="form-input"
               [class.error]="isFieldInvalid('placa')"
-              placeholder="Ej: ABC123"
-              style="text-transform: uppercase"
+              placeholder="Ej: Camión de Carga Principal"
             >
             <div *ngIf="isFieldInvalid('placa')" class="error-text">
               {{ getFieldError('placa') }}
@@ -152,18 +151,19 @@
             </div>
           </div>
 
-          <!-- Número de Serie -->
+          <!-- Placa -->
           <div class="form-group">
-            <label for="numeroSerie" class="form-label">
+            <label for="placa" class="form-label">
               <i class="fas fa-barcode"></i>
-              Número de Serie
+              Placa
             </label>
             <input
               type="text"
-              id="numeroSerie"
+              id="placa"
               formControlName="numeroSerie"
               class="form-input"
-              placeholder="Ej: VIN123456789"
+              placeholder="Ej: ABC123"
+              style="text-transform: uppercase"
             >
           </div>
         </div>

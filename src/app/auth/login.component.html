@@ -4,12 +4,35 @@
     <div>
       <label>Email</label>
       <input type="email" formControlName="email" />
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+        <small *ngIf="loginForm.get('email')?.errors?.['required']">El email es requerido</small>
+        <small *ngIf="loginForm.get('email')?.errors?.['email']">El email no es válido</small>
+      </div>
     </div>
     <div>
       <label>Contraseña</label>
-      <input type="password" formControlName="password" />
+      <div style="position:relative;display:flex;align-items:center;">
+        <input [type]="mostrarContrasena ? 'text' : 'password'" formControlName="password" style="flex:1;" />
+        <span
+          (click)="mostrarContrasena = !mostrarContrasena"
+          style="cursor:pointer;margin-left:8px;display:flex;align-items:center;"
+          title="{{ mostrarContrasena ? 'Ocultar contraseña' : 'Mostrar contraseña' }}"
+        >
+          <svg height="22" width="22" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="12" rx="8" ry="5" />
+            <circle cx="12" cy="12" r="2.5" />
+            <line *ngIf="!mostrarContrasena" x1="4" y1="20" x2="20" y2="4" stroke="red" stroke-width="2" />
+          </svg>
+        </span>
+      </div>
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+        <small *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es requerida</small>
+      </div>
     </div>
     <div *ngIf="error" class="error">{{ error }}</div>
-    <button type="submit" [disabled]="loading">Entrar</button>
+    <button type="submit" [disabled]="loading">{{ loading ? 'Cargando...' : 'Entrar' }}</button>
   </form>
+  <div class="register-link-container">
+    <a routerLink="/register" class="register-link">Crear una cuenta</a>
+  </div>
 </div>

@@ -1,0 +1,1018 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>gestor-vehiculos documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">gestor-vehiculos documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  PerfilComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/auth/perfil.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-perfil</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>ReactiveFormsModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./perfil.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./perfil.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#error" >error</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                <a href="#perfilForm" >perfilForm</a>
+                            </li>
+                            <li>
+                                <a href="#rolDesactualizado" >rolDesactualizado</a>
+                            </li>
+                            <li>
+                                <a href="#success" >success</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#guardar" >guardar</a>
+                            </li>
+                            <li>
+                                <a href="#logout" >logout</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#rolUsuario" >rolUsuario</a>
+                                </li>
+                                <li>
+                                    <a href="#permisosUsuario" >permisosUsuario</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: FormBuilder, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, usuariosService: <a href="../injectables/UsuariosService.html" target="_self">UsuariosService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/auth/perfil.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>usuariosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UsuariosService.html" target="_self" >UsuariosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guardar"></a>
+                    <span class="name">
+                        <span ><b>guardar</b></span>
+                        <a href="#guardar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>guardar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/app/auth/perfil.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logout"></a>
+                    <span class="name">
+                        <span ><b>logout</b></span>
+                        <a href="#logout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logout()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="16"
+                                    class="link-to-prism">src/app/auth/perfil.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/app/auth/perfil.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="error"></a>
+                    <span class="name">
+                        <span ><b>error</b></span>
+                        <a href="#error"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/auth/perfil.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/auth/perfil.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="perfilForm"></a>
+                    <span class="name">
+                        <span ><b>perfilForm</b></span>
+                        <a href="#perfilForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/auth/perfil.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rolDesactualizado"></a>
+                    <span class="name">
+                        <span ><b>rolDesactualizado</b></span>
+                        <a href="#rolDesactualizado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/auth/perfil.component.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="success"></a>
+                    <span class="name">
+                        <span ><b>success</b></span>
+                        <a href="#success"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/auth/perfil.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rolUsuario"></a>
+                        <span class="name"><b>rolUsuario</b><a href="#rolUsuario"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>rolUsuario()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/auth/perfil.component.ts:21</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="permisosUsuario"></a>
+                        <span class="name"><b>permisosUsuario</b><a href="#permisosUsuario"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>permisosUsuario()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/auth/perfil.component.ts:27</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import { AuthService } from &#x27;./auth.service&#x27;;
+import { UsuariosService } from &#x27;../services/usuarios.service&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+
+@Component({
+  selector: &#x27;app-perfil&#x27;,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: &#x27;./perfil.component.html&#x27;,
+  styleUrls: [&#x27;./perfil.component.css&#x27;]
+})
+export class PerfilComponent implements OnInit {
+  rolDesactualizado &#x3D; false;
+  logout() {
+    this.authService.logout();
+    setTimeout(() &#x3D;&gt; { window.location.href &#x3D; &#x27;/login&#x27;; }, 100);
+  }
+  // Getter para el rol del usuario
+  get rolUsuario(): string {
+    if (typeof window &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; || !window.localStorage) return &#x27;&#x27;;
+    return this.authService.getUsuario()?.rol || this.authService.getUsuario()?.id_rol || &#x27;&#x27;;
+  }
+
+  // Getter para los permisos del usuario (si los guardas en el objeto usuario)
+  get permisosUsuario(): string[] {
+    if (typeof window &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; || !window.localStorage) return [];
+    return this.authService.getUsuario()?.permisos || [];
+  }
+  perfilForm: FormGroup;
+  loading &#x3D; false;
+  success &#x3D; &#x27;&#x27;;
+  error &#x3D; &#x27;&#x27;;
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private usuariosService: UsuariosService
+  ) {
+    this.perfilForm &#x3D; this.fb.group({
+      nombre: [{ value: &#x27;&#x27;, disabled: false }, Validators.required],
+      apellido: [{ value: &#x27;&#x27;, disabled: false }, Validators.required],
+      email: [{ value: &#x27;&#x27;, disabled: true }],
+      telefono: [{ value: &#x27;&#x27;, disabled: false }],
+      dpi: [{ value: &#x27;&#x27;, disabled: false }],
+      licencia_conducir: [{ value: &#x27;&#x27;, disabled: false }],
+      fecha_vencimiento_licencia: [{ value: &#x27;&#x27;, disabled: false }],
+    });
+  }
+
+  ngOnInit() {
+    const usuarioLocal &#x3D; this.authService.getUsuario();
+    if (usuarioLocal) {
+      this.usuariosService.obtenerUsuarioPorId(usuarioLocal.id).subscribe({
+        next: (usuario) &#x3D;&gt; {
+          this.perfilForm.patchValue(usuario);
+          // Lógica de permisos por rol
+          if (this.rolUsuario &#x3D;&#x3D;&#x3D; &#x27;Supervisor&#x27;) {
+            this.perfilForm.get(&#x27;nombre&#x27;)?.disable();
+            this.perfilForm.get(&#x27;apellido&#x27;)?.disable();
+            this.perfilForm.get(&#x27;email&#x27;)?.disable();
+            // Permitir editar teléfono y dpi
+            this.perfilForm.get(&#x27;telefono&#x27;)?.enable();
+            this.perfilForm.get(&#x27;dpi&#x27;)?.enable();
+          }
+          if (this.rolUsuario &#x3D;&#x3D;&#x3D; &#x27;Conductor&#x27;) {
+            this.perfilForm.get(&#x27;nombre&#x27;)?.disable();
+            this.perfilForm.get(&#x27;apellido&#x27;)?.disable();
+            this.perfilForm.get(&#x27;email&#x27;)?.disable();
+            this.perfilForm.get(&#x27;telefono&#x27;)?.disable();
+            this.perfilForm.get(&#x27;dpi&#x27;)?.disable();
+            this.perfilForm.get(&#x27;licencia_conducir&#x27;)?.disable();
+            this.perfilForm.get(&#x27;fecha_vencimiento_licencia&#x27;)?.disable();
+          }
+          // Verificar si el rol en la base de datos es diferente al del localStorage
+          if (usuario.rol &amp;&amp; usuario.rol !&#x3D;&#x3D; usuarioLocal.rol) {
+            this.rolDesactualizado &#x3D; true;
+          }
+        }
+      });
+    }
+  }
+
+  guardar() {
+    this.error &#x3D; &#x27;&#x27;;
+    this.success &#x3D; &#x27;&#x27;;
+    if (this.perfilForm.invalid) return;
+    // Solo permitir guardar si no es conductor
+    if (this.rolUsuario &#x3D;&#x3D;&#x3D; &#x27;Conductor&#x27;) return;
+    this.loading &#x3D; true;
+    let datos &#x3D; { ...this.perfilForm.getRawValue(), id: this.authService.getUsuario()?.id };
+    // Adaptar fecha a formato YYYY-MM-DD si existe
+    if (datos.fecha_vencimiento_licencia) {
+      const fecha &#x3D; new Date(datos.fecha_vencimiento_licencia);
+      if (!isNaN(fecha.getTime())) {
+        const yyyy &#x3D; fecha.getFullYear();
+        const mm &#x3D; String(fecha.getMonth() + 1).padStart(2, &#x27;0&#x27;);
+        const dd &#x3D; String(fecha.getDate()).padStart(2, &#x27;0&#x27;);
+        datos.fecha_vencimiento_licencia &#x3D; &#x60;${yyyy}-${mm}-${dd}&#x60;;
+      }
+    }
+    this.usuariosService.actualizarUsuario(datos).subscribe({
+      next: () &#x3D;&gt; {
+        this.authService.saveUser({ ...this.authService.getUsuario(), ...datos });
+        this.loading &#x3D; false;
+        this.success &#x3D; &#x27;Perfil actualizado correctamente&#x27;;
+      },
+      error: (err: any) &#x3D;&gt; {
+        this.loading &#x3D; false;
+        this.error &#x3D; err.error?.message || &#x27;Error al actualizar perfil&#x27;;
+      }
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;perfil-container&quot;&gt;
+  &lt;h2&gt;Mi Perfil&lt;/h2&gt;
+  &lt;form [formGroup]&#x3D;&quot;perfilForm&quot; (ngSubmit)&#x3D;&quot;guardar()&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;rolDesactualizado&quot; class&#x3D;&quot;error&quot; style&#x3D;&quot;margin-bottom:1rem;&quot;&gt;
+      Tu rol ha cambiado. Por favor, cierra sesión y vuelve a entrar para actualizar tus permisos.
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label&gt;Nombre&lt;/label&gt;
+      &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;nombre&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label&gt;Apellido&lt;/label&gt;
+      &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;apellido&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label&gt;Email&lt;/label&gt;
+      &lt;input type&#x3D;&quot;email&quot; formControlName&#x3D;&quot;email&quot; [disabled]&#x3D;&quot;true&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label&gt;Teléfono&lt;/label&gt;
+      &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;telefono&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label&gt;DPI&lt;/label&gt;
+      &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;dpi&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label&gt;Licencia de Conducir&lt;/label&gt;
+      &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;licencia_conducir&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label&gt;Fecha Vencimiento Licencia&lt;/label&gt;
+      &lt;input type&#x3D;&quot;date&quot; formControlName&#x3D;&quot;fecha_vencimiento_licencia&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div *ngIf&#x3D;&quot;error&quot; class&#x3D;&quot;error&quot;&gt;{{ error }}&lt;/div&gt;
+    &lt;div *ngIf&#x3D;&quot;success&quot; class&#x3D;&quot;success&quot;&gt;{{ success }}&lt;/div&gt;
+    &lt;button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;loading || rolUsuario &#x3D;&#x3D;&#x3D; &#x27;Conductor&#x27;&quot;&gt;Guardar&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;div style&#x3D;&quot;text-align:center; margin-top: 1.5rem;&quot;&gt;
+    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;logout()&quot; style&#x3D;&quot;background:#e74c3c;color:#fff;padding:0.5rem 1.5rem;border:none;border-radius:4px;cursor:pointer;&quot;&gt;Cerrar sesión&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./perfil.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.perfil-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 32px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.perfil-container h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.perfil-container label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.perfil-container input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.perfil-container .error {
+  color: #c00;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.perfil-container .success {
+  color: #2e7d32;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.perfil-container button {
+  width: 100%;
+  padding: 10px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.perfil-container button:disabled {
+  background: #90caf9;
+  cursor: not-allowed;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="perfil-container">  <h2>Mi Perfil</h2>  <form [formGroup]="perfilForm" (ngSubmit)="guardar()">    <div *ngIf="rolDesactualizado" class="error" style="margin-bottom:1rem;">      Tu rol ha cambiado. Por favor, cierra sesión y vuelve a entrar para actualizar tus permisos.    </div>    <div>      <label>Nombre</label>      <input type="text" formControlName="nombre" />    </div>    <div>      <label>Apellido</label>      <input type="text" formControlName="apellido" />    </div>    <div>      <label>Email</label>      <input type="email" formControlName="email" [disabled]="true" />    </div>    <div>      <label>Teléfono</label>      <input type="text" formControlName="telefono" />    </div>    <div>      <label>DPI</label>      <input type="text" formControlName="dpi" />    </div>    <div>      <label>Licencia de Conducir</label>      <input type="text" formControlName="licencia_conducir" />    </div>    <div>      <label>Fecha Vencimiento Licencia</label>      <input type="date" formControlName="fecha_vencimiento_licencia" />    </div>    <div *ngIf="error" class="error">{{ error }}</div>    <div *ngIf="success" class="success">{{ success }}</div>    <button type="submit" [disabled]="loading || rolUsuario === \'Conductor\'">Guardar</button>  </form>  <div style="text-align:center; margin-top: 1.5rem;">    <button type="button" (click)="logout()" style="background:#e74c3c;color:#fff;padding:0.5rem 1.5rem;border:none;border-radius:4px;cursor:pointer;">Cerrar sesión</button>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AgregarVehiculoComponent', 'selector': 'app-agregar-vehiculo'},{'name': 'AgregarVehiculoSimpleComponent', 'selector': 'app-agregar-vehiculo-simple'},{'name': 'App', 'selector': 'app-root'},{'name': 'BitacoraComponent', 'selector': 'app-bitacora'},{'name': 'CombustibleComponent', 'selector': 'app-combustible'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardGastos', 'selector': 'app-dashboard-gastos'},{'name': 'DashboardGastosComponent', 'selector': 'app-dashboard-gastos'},{'name': 'DetalleVehiculoComponent', 'selector': 'app-detalle-vehiculo'},{'name': 'DialogoNuevaCargaComponent', 'selector': 'app-dialogo-nueva-carga'},{'name': 'EditarVehiculoComponent', 'selector': 'app-editar-vehiculo'},{'name': 'EstadosVehiculosComponent', 'selector': 'app-estados-vehiculos'},{'name': 'GastosAdicionalComponent', 'selector': 'app-gastos-adicional'},{'name': 'GraficasCombustibleComponent', 'selector': 'app-graficas-combustible'},{'name': 'GraficasGastos', 'selector': 'app-graficas-gastos'},{'name': 'GruposVehiculosComponent', 'selector': 'app-grupos-vehiculos'},{'name': 'InventarioComponent', 'selector': 'app-inventario'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'TiposVehiculosComponent', 'selector': 'app-tipos-vehiculos'},{'name': 'UsuariosListComponent', 'selector': 'app-usuarios-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'PerfilComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'PerfilComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

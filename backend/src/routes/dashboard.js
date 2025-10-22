@@ -14,6 +14,9 @@ router.get('/vehiculos', dashboardController.obtenerDashboardVehiculos);
 // GET /api/dashboard/resumen - Obtener resumen consolidado
 router.get('/resumen', dashboardController.obtenerResumenDashboard);
 
+// GET /api/dashboard/gastos-mensuales - Obtener gastos mensuales por vehículo
+router.get('/gastos-mensuales', dashboardController.obtenerGastosMensuales);
+
 console.log('✅ Rutas de dashboard configuradas exitosamente');
 
 module.exports = router;

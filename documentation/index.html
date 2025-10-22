@@ -1,0 +1,320 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>gestor-vehiculos documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">gestor-vehiculos documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content readme">
+                   <div class="content-data">
+
+
+<h1>Gestor de Vehículos - Sistema de Gestión de Flota</h1>
+<h2>🚗 Descripción</h2>
+<p>Sistema completo de gestión de vehículos desarrollado en Angular 20 con Material Design. Permite el registro, seguimiento y administración de vehículos de manera profesional y responsiva.</p>
+<h2>📋 Funcionalidades Principales</h2>
+<h3>✅ <strong>Módulo de Vehículos</strong></h3>
+<ul>
+<li><strong>Inventario Completo</strong>: Lista paginada con búsqueda y filtros</li>
+<li><strong>Registro de Vehículos</strong>: Formulario por pasos (wizard) con validaciones</li>
+<li><strong>Detalle de Vehículos</strong>: Vista completa de la información</li>
+<li><strong>Edición de Vehículos</strong>: Actualización de datos</li>
+<li><strong>Eliminación</strong>: Borrado seguro con confirmación</li>
+</ul>
+<h3>🔧 <strong>Características Técnicas</strong></h3>
+<ul>
+<li><strong>Responsive Design</strong>: Adaptado para móviles, tablets y escritorio</li>
+<li><strong>Material Design</strong>: Interfaz moderna y profesional</li>
+<li><strong>Validaciones Avanzadas</strong>: Formularios con validación en tiempo real</li>
+<li><strong>Lazy Loading</strong>: Módulos cargados bajo demanda</li>
+<li><strong>TypeScript</strong>: Tipado fuerte para mejor mantenibilidad</li>
+</ul>
+<h2>🛠️ Instalación y Configuración</h2>
+<h3>Pre-requisitos</h3>
+<ul>
+<li>Node.js (versión 18 o superior)</li>
+<li>npm o yarn</li>
+<li>Angular CLI</li>
+</ul>
+<h3>Pasos de Instalación</h3>
+<ol>
+<li><p><strong>Instalar dependencias</strong></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm install</code></pre></div></li>
+<li><p><strong>Ejecutar la aplicación</strong></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm start</code></pre></div></li>
+<li><p><strong>Acceder a la aplicación</strong></p>
+<ul>
+<li>Abre tu navegador en <code>http://localhost:4200</code></li>
+</ul>
+</li>
+</ol>
+<h2>🏗️ Estructura del Proyecto</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">src/app/
+├── models/                    # Modelos de datos TypeScript
+│   └── vehiculo.model.ts
+├── services/                  # Servicios para API
+│   └── vehiculos.service.ts
+├── vehiculos/                 # Módulo principal de vehículos
+│   ├── inventario/           # Lista de vehículos
+│   ├── agregar-vehiculo/     # Formulario de registro
+│   ├── editar-vehiculo/      # Formulario de edición
+│   ├── detalle-vehiculo/     # Vista detallada
+│   ├── combustible/          # Gestión de combustible
+│   ├── tipos/               # Tipos de vehículos
+│   ├── grupos/              # Grupos de vehículos
+│   └── estados/             # Estados de vehículos</code></pre></div><h2>📱 Diseño Responsive</h2>
+<h3>Breakpoints</h3>
+<ul>
+<li><strong>Mobile</strong>: 320px - 768px</li>
+<li><strong>Tablet</strong>: 768px - 1024px  </li>
+<li><strong>Desktop</strong>: 1024px+</li>
+</ul>
+<h3>Características Móviles</h3>
+<ul>
+<li>Navegación colapsable</li>
+<li>Formularios apilados</li>
+<li>Tablas con scroll horizontal</li>
+<li>Botones optimizados para touch</li>
+</ul>
+<h2>🔧 Configuración del Backend</h2>
+<h3>Endpoints Requeridos</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">GET    /api/vehiculos              # Obtener todos los vehículos
+GET    /api/vehiculos/:id          # Obtener vehículo por ID
+POST   /api/vehiculos              # Crear nuevo vehículo
+PUT    /api/vehiculos/:id          # Actualizar vehículo
+DELETE /api/vehiculos/:id          # Eliminar vehículo
+
+GET    /api/tipos-vehiculos        # Obtener tipos de vehículos
+GET    /api/grupos-vehiculos       # Obtener grupos
+GET    /api/estados-vehiculos      # Obtener estados
+GET    /api/tipos-combustible      # Obtener tipos de combustible</code></pre></div><h3>Configuración de URL</h3>
+<p>En <code>src/app/services/vehiculos.service.ts</code>, actualiza la URL de tu API:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">private apiUrl = &#39;http://localhost:3000/api&#39;; // Cambia por tu URL</code></pre></div><h2>🚀 Próximos Pasos</h2>
+<ol>
+<li><strong>Conectar con tu API</strong>: Configura los endpoints en el servicio</li>
+<li><strong>Implementar Autenticación</strong>: Integra con tu sistema de login</li>
+<li><strong>Agregar Módulos</strong>: Desarrolla combustible, reportes, etc.</li>
+<li><strong>Subir Imágenes</strong>: Implementa carga de fotos de vehículos</li>
+<li><strong>Exportar Datos</strong>: Agregar funcionalidad de exportación</li>
+</ol>
+<h2>📊 Comandos Útiles</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># Desarrollo
+npm start                # Servidor de desarrollo
+npm run build           # Compilar para producción
+npm test               # Ejecutar pruebas
+
+# Angular CLI
+ng generate component nombre    # Crear componente
+ng generate service nombre      # Crear servicio
+ng generate module nombre       # Crear módulo</code></pre></div><h2>🎨 Personalización</h2>
+<h3>Colores del Tema</h3>
+<p>En <code>src/styles.css</code> puedes personalizar:</p>
+<ul>
+<li>Colores primarios</li>
+<li>Colores de estados</li>
+<li>Gradientes del header</li>
+</ul>
+<h3>Responsive Breakpoints</h3>
+<p>En cada componente CSS puedes ajustar:</p>
+<ul>
+<li>Tamaños de pantalla</li>
+<li>Disposición de elementos</li>
+<li>Espaciado y padding</li>
+</ul>
+<h2>🐛 Solución de Problemas</h2>
+<h3>Error: Cannot find module</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm install</code></pre></div><h3>Error: No se pueden cargar los módulos</h3>
+<p>Verifica que las rutas en <code>app.routes.ts</code> sean correctas.</p>
+<h3>Error: Material Design no funciona</h3>
+<p>Asegúrate de que <code>provideAnimations()</code> esté en <code>app.config.ts</code>.</p>
+<h2>📝 Contribución</h2>
+<ol>
+<li>Fork el proyecto</li>
+<li>Crea una rama para tu feature</li>
+<li>Haz commit de tus cambios</li>
+<li>Push a la rama</li>
+<li>Abre un Pull Request</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'readme';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

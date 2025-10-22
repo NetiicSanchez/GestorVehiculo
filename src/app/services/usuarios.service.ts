@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsuariosService {
-  private baseUrl = 'http://localhost:3000/api/usuarios';
+  private baseUrl = '/api/usuarios';
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +15,11 @@ export class UsuariosService {
     return this.http.get<any>(this.baseUrl);
   }
 
+  obtenerUsuarioPorId(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${id}`);
+  }
+
   actualizarUsuario(usuario: any) {
-    return this.http.put(`http://localhost:3000/api/usuarios/${usuario.id}`, usuario);
+    return this.http.put(`/api/usuarios/${usuario.id}`, usuario);
   }
 }

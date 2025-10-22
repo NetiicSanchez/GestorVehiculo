@@ -125,7 +125,7 @@
 .tabla-container {
   background: white;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: auto; /* permite scroll horizontal si es necesario */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -214,6 +214,23 @@
   opacity: 0.7;
 }
 
+/* Estilos para el mensaje de éxito */
+.success-message {
+  background-color: #d4edda; /* Verde claro */
+  color: #155724; /* Verde oscuro */
+  border: 1px solid #c3e6cb;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.success-message mat-icon {
+  margin-right: 0.5rem;
+}
+
 /* === Responsive === */
 @media (max-width: 768px) {
   .combustible-container {
@@ -240,6 +257,20 @@
   .cargas-table .mat-cell {
     padding: 8px 4px;
   }
+
+  /* Lista móvil */
+  .mobile-list { display: flex; flex-direction: column; gap: 12px; }
+  .mobile-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 12px; }
+  .mc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .mc-date { font-weight: 600; color: #333; }
+  .mc-actions button { margin-left: 4px; }
+  .mc-row { display: flex; justify-content: space-between; gap: 8px; padding: 6px 0; border-top: 1px dashed #eee; }
+  .mc-row:first-of-type { border-top: 0; }
+  .mc-label { color: #666; font-size: 12px; }
+  .mc-value { color: #333; font-size: 14px; text-align: right; }
+  .chip { padding: 2px 6px; border-radius: 6px; font-weight: 600; font-size: 12px; }
+  .chip.blue { background: #e3f2fd; color: #1976d2; }
+  .chip.green { background: #e8f5e8; color: #2e7d2e; }
 }
 
 /* === Animaciones === */

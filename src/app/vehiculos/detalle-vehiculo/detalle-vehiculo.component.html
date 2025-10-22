@@ -34,7 +34,7 @@
           </h3>
           <div class="info-grid">
             <div class="info-item">
-              <label>Placa:</label>
+              <label>Nombre:</label>
               <span class="placa">{{ vehiculo.placa }}</span>
             </div>
             <div class="info-item">
@@ -88,7 +88,7 @@
           </h3>
           <div class="info-grid">
             <div class="info-item" *ngIf="vehiculo.numero_serie">
-              <label>Número de Serie:</label>
+              <label>Placa:</label>
               <span>{{ vehiculo.numero_serie }}</span>
             </div>
             <div class="info-item" *ngIf="vehiculo.color">
@@ -177,10 +177,6 @@
         Volver
       </button>
       
-      <button mat-raised-button color="primary" (click)="editarVehiculo()" *ngIf="vehiculo">
-        <mat-icon>edit</mat-icon>
-        Editar
-      </button>
     </mat-card-actions>
   </mat-card>
 </div>

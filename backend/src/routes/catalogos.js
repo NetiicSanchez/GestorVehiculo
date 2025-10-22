@@ -38,15 +38,15 @@ router.get('/estados-vehiculo', async (req, res) => {
 // Obtener tipos de combustible
 router.get('/tipos-combustible', async (req, res) => {
   try {
-    console.log('🔥 Obteniendo tipos de combustible...');
+    console.log('Obteniendo tipos de combustible...');
     const result = await pool.query('SELECT * FROM tipo_combustible WHERE activo = true ORDER BY nombre');
-    console.log(`✅ ${result.rows.length} tipos de combustible encontrados`);
+    console.log(` ${result.rows.length} tipos de combustible encontrados`);
     res.json({
       success: true,
       data: result.rows
     });
   } catch (error) {
-    console.error('❌ Error al obtener tipos de combustible:', error);
+    console.error('Error al obtener tipos de combustible:', error);
     res.status(500).json({ 
       success: false,
       error: 'Error al obtener tipos de combustible' 
@@ -269,5 +269,6 @@ router.delete('/tipos-combustible/:id', async (req, res) => {
     });
   }
 });
+
 
 module.exports = router;

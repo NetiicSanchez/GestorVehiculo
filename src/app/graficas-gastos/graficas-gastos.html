@@ -1,0 +1,64 @@
+<div class="container">
+  <h2>Gráfica de Gastos de Combustible por Vehículo</h2>
+
+  <div class="form-group">
+    <label for="vehiculoSelector">Selecciona un vehículo:</label>
+    <select id="vehiculoSelector" [(ngModel)]="selectedVehiculoId" (change)="onVehiculoChange()" class="form-control">
+      <option [ngValue]="null" disabled>-- Selecciona un vehículo --</option>
+      <option *ngFor="let vehiculo of vehiculos || []; trackBy: trackByVehiculoId" [ngValue]="vehiculo.id">
+        {{ vehiculo.marca }} {{ vehiculo.modelo }} - {{ vehiculo.placa }}
+      </option>
+    </select>
+  </div>
+
+  <div class="chart-container">
+    <div *ngIf="errorGastos" class="error-message">{{ errorGastos }}</div>
+  <div style="position: relative;">
+    <div style="position: relative;">
+      <ngx-charts-line-chart
+          *ngIf="!errorGastos"
+          [view]="view"
+          [scheme]="gastosColorScheme"
+          [customColors]="gastosCustomColors"
+          [results]="gastosData"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabelGastos"
+          [yAxisLabel]="yAxisLabelGastos"
+          [curve]="curve"
+          [timeline]="timeline"
+          [autoScale]="true"
+          [referenceLines]="referenciaCombustible">
+      </ngx-charts-line-chart>
+      <!-- Línea horizontal SVG roja en el límite 300 -->
+    </div>
+  </div>
+  </div>
+
+  <div class="chart-container">
+    <h3>Rendimiento del Vehículo (Km/Galón)</h3>
+    <div *ngIf="errorRendimiento" class="error-message">{{ errorRendimiento }}</div>
+  <ngx-charts-line-chart
+      *ngIf="!errorRendimiento"
+  [view]="view"
+    [scheme]="rendimientoColorScheme"
+    [results]="rendimientoData"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabelRendimiento"
+    [yAxisLabel]="yAxisLabelRendimiento"
+    [curve]="curve"
+    [timeline]="timeline"
+    [autoScale]="true"
+  >
+    </ngx-charts-line-chart>
+  </div>
+</div>

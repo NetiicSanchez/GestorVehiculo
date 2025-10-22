@@ -1,0 +1,1724 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>gestor-vehiculos documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">gestor-vehiculos documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  GraficasCombustibleComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/graficas-combustible/graficas-combustible.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+            <tr>
+                <td class="col-md-3">encapsulation</td>
+                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-graficas-combustible</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>FormsModule</code>
+                            <code>NgxChartsModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./graficas-combustible.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./graficas-combustible.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#curve" >curve</a>
+                            </li>
+                            <li>
+                                <a href="#gastosColorScheme" >gastosColorScheme</a>
+                            </li>
+                            <li>
+                                <a href="#gastosData" >gastosData</a>
+                            </li>
+                            <li>
+                                <a href="#gradient" >gradient</a>
+                            </li>
+                            <li>
+                                <a href="#rendimientoColorScheme" >rendimientoColorScheme</a>
+                            </li>
+                            <li>
+                                <a href="#rendimientoData" >rendimientoData</a>
+                            </li>
+                            <li>
+                                <a href="#selectedVehiculoId" >selectedVehiculoId</a>
+                            </li>
+                            <li>
+                                <a href="#showLegend" >showLegend</a>
+                            </li>
+                            <li>
+                                <a href="#showXAxis" >showXAxis</a>
+                            </li>
+                            <li>
+                                <a href="#showXAxisLabel" >showXAxisLabel</a>
+                            </li>
+                            <li>
+                                <a href="#showYAxis" >showYAxis</a>
+                            </li>
+                            <li>
+                                <a href="#showYAxisLabel" >showYAxisLabel</a>
+                            </li>
+                            <li>
+                                <a href="#timeline" >timeline</a>
+                            </li>
+                            <li>
+                                <a href="#vehiculos" >vehiculos</a>
+                            </li>
+                            <li>
+                                <a href="#view" >view</a>
+                            </li>
+                            <li>
+                                <a href="#xAxisLabelGastos" >xAxisLabelGastos</a>
+                            </li>
+                            <li>
+                                <a href="#xAxisLabelRendimiento" >xAxisLabelRendimiento</a>
+                            </li>
+                            <li>
+                                <a href="#yAxisLabelGastos" >yAxisLabelGastos</a>
+                            </li>
+                            <li>
+                                <a href="#yAxisLabelRendimiento" >yAxisLabelRendimiento</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#irAGraficaRendimiento" >irAGraficaRendimiento</a>
+                            </li>
+                            <li>
+                                <a href="#loadGraficasData" >loadGraficasData</a>
+                            </li>
+                            <li>
+                                <a href="#loadVehiculos" >loadVehiculos</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onVehiculoChange" >onVehiculoChange</a>
+                            </li>
+                            <li>
+                                <a href="#registrarGastoAdicional" >registrarGastoAdicional</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(vehiculosService: <a href="../injectables/VehiculosService.html" target="_self">VehiculosService</a>, combustibleService: <a href="../injectables/CombustibleService.html" target="_self">CombustibleService</a>, router: Router)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:57</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>vehiculosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/VehiculosService.html" target="_self" >VehiculosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>combustibleService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CombustibleService.html" target="_self" >CombustibleService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="irAGraficaRendimiento"></a>
+                    <span class="name">
+                        <span ><b>irAGraficaRendimiento</b></span>
+                        <a href="#irAGraficaRendimiento"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>irAGraficaRendimiento()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadGraficasData"></a>
+                    <span class="name">
+                        <span ><b>loadGraficasData</b></span>
+                        <a href="#loadGraficasData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadGraficasData(vehiculoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>vehiculoId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadVehiculos"></a>
+                    <span class="name">
+                        <span ><b>loadVehiculos</b></span>
+                        <a href="#loadVehiculos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadVehiculos()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onVehiculoChange"></a>
+                    <span class="name">
+                        <span ><b>onVehiculoChange</b></span>
+                        <a href="#onVehiculoChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onVehiculoChange(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registrarGastoAdicional"></a>
+                    <span class="name">
+                        <span ><b>registrarGastoAdicional</b></span>
+                        <a href="#registrarGastoAdicional"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registrarGastoAdicional()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="curve"></a>
+                    <span class="name">
+                        <span ><b>curve</b></span>
+                        <a href="#curve"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>curveBasis</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gastosColorScheme"></a>
+                    <span class="name">
+                        <span ><b>gastosColorScheme</b></span>
+                        <a href="#gastosColorScheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Color</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    name: &#x27;gastosScheme&#x27;,
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: [&#x27;#00bfff&#x27;] // azul vibrante
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gastosData"></a>
+                    <span class="name">
+                        <span ><b>gastosData</b></span>
+                        <a href="#gastosData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gradient"></a>
+                    <span class="name">
+                        <span ><b>gradient</b></span>
+                        <a href="#gradient"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rendimientoColorScheme"></a>
+                    <span class="name">
+                        <span ><b>rendimientoColorScheme</b></span>
+                        <a href="#rendimientoColorScheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Color</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    name: &#x27;rendimientoScheme&#x27;,
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: [&#x27;#00bfff&#x27;] // azul vibrante
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rendimientoData"></a>
+                    <span class="name">
+                        <span ><b>rendimientoData</b></span>
+                        <a href="#rendimientoData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedVehiculoId"></a>
+                    <span class="name">
+                        <span ><b>selectedVehiculoId</b></span>
+                        <a href="#selectedVehiculoId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showLegend"></a>
+                    <span class="name">
+                        <span ><b>showLegend</b></span>
+                        <a href="#showLegend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showXAxis"></a>
+                    <span class="name">
+                        <span ><b>showXAxis</b></span>
+                        <a href="#showXAxis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showXAxisLabel"></a>
+                    <span class="name">
+                        <span ><b>showXAxisLabel</b></span>
+                        <a href="#showXAxisLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showYAxis"></a>
+                    <span class="name">
+                        <span ><b>showYAxis</b></span>
+                        <a href="#showYAxis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showYAxisLabel"></a>
+                    <span class="name">
+                        <span ><b>showYAxisLabel</b></span>
+                        <a href="#showYAxisLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="timeline"></a>
+                    <span class="name">
+                        <span ><b>timeline</b></span>
+                        <a href="#timeline"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="vehiculos"></a>
+                    <span class="name">
+                        <span ><b>vehiculos</b></span>
+                        <a href="#vehiculos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Vehiculo.html" target="_self" >Vehiculo[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="view"></a>
+                    <span class="name">
+                        <span ><b>view</b></span>
+                        <a href="#view"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[number, number]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[700, 400]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="xAxisLabelGastos"></a>
+                    <span class="name">
+                        <span ><b>xAxisLabelGastos</b></span>
+                        <a href="#xAxisLabelGastos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Fecha de Carga&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="xAxisLabelRendimiento"></a>
+                    <span class="name">
+                        <span ><b>xAxisLabelRendimiento</b></span>
+                        <a href="#xAxisLabelRendimiento"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Fecha de Carga&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="yAxisLabelGastos"></a>
+                    <span class="name">
+                        <span ><b>yAxisLabelGastos</b></span>
+                        <a href="#yAxisLabelGastos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Costo de Carga&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="yAxisLabelRendimiento"></a>
+                    <span class="name">
+                        <span ><b>yAxisLabelRendimiento</b></span>
+                        <a href="#yAxisLabelRendimiento"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Rendimiento (Km/Galón)&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/graficas-combustible/graficas-combustible.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { curveBasis } from &#x27;d3-shape&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { NgxChartsModule, Color, ScaleType } from &#x27;@swimlane/ngx-charts&#x27;;
+import { VehiculosService } from &#x27;../services/vehiculos.service&#x27;;
+import { CombustibleService } from &#x27;../services/combustible.service&#x27;;
+import { Vehiculo } from &#x27;../models/vehiculo.model&#x27;;
+
+import { ViewEncapsulation } from &#x27;@angular/core&#x27;;
+
+@Component({
+  selector: &#x27;app-graficas-combustible&#x27;,
+  standalone: true,
+  imports: [CommonModule, FormsModule, NgxChartsModule],
+  templateUrl: &#x27;./graficas-combustible.component.html&#x27;,
+  styleUrls: [&#x27;./graficas-combustible.component.css&#x27;],
+  encapsulation: ViewEncapsulation.None
+})
+export class GraficasCombustibleComponent implements OnInit {
+
+  vehiculos: Vehiculo[] &#x3D; [];
+  selectedVehiculoId: number | null &#x3D; null;
+
+  // Gráfico de Gastos
+  gastosData: any[] &#x3D; [];
+  gastosColorScheme: Color &#x3D; {
+    name: &#x27;gastosScheme&#x27;,
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: [&#x27;#00bfff&#x27;] // azul vibrante
+  };
+
+  // Gráfico de Rendimiento
+  rendimientoData: any[] &#x3D; [];
+  rendimientoColorScheme: Color &#x3D; {
+    name: &#x27;rendimientoScheme&#x27;,
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: [&#x27;#00bfff&#x27;] // azul vibrante
+  };
+
+  // Opciones de los gráficos
+  view: [number, number] &#x3D; [700, 400];
+  showXAxis &#x3D; true;
+  showYAxis &#x3D; true;
+  gradient &#x3D; false; // sin relleno
+  curve &#x3D; curveBasis; // curva suave para ngx-charts
+  timeline &#x3D; true; // eje X tipo tiempo
+  showLegend &#x3D; true;
+  showXAxisLabel &#x3D; true;
+  xAxisLabelGastos &#x3D; &#x27;Fecha de Carga&#x27;;
+  xAxisLabelRendimiento &#x3D; &#x27;Fecha de Carga&#x27;;
+  showYAxisLabel &#x3D; true;
+  yAxisLabelGastos &#x3D; &#x27;Costo de Carga&#x27;;
+  yAxisLabelRendimiento &#x3D; &#x27;Rendimiento (Km/Galón)&#x27;;
+
+  constructor(
+    private vehiculosService: VehiculosService,
+    private combustibleService: CombustibleService,
+    private router: Router
+  ) { }
+  registrarGastoAdicional() {
+    // Aquí puedes poner la lógica para registrar gasto adicional
+    // Por ahora solo muestra un alert
+    alert(&#x27;Funcionalidad de registrar gasto adicional&#x27;);
+  }
+
+  irAGraficaRendimiento() {
+    // Cambia la ruta a la gráfica de rendimiento por galón
+    this.router.navigate([&#x27;/graficas-rendimiento&#x27;]);
+  }
+
+  ngOnInit(): void {
+    this.loadVehiculos();
+  }
+
+  loadVehiculos(): void {
+    console.log(&#x27;Obteniendo vehículos...&#x27;);
+    this.vehiculosService.getVehiculos().subscribe(response &#x3D;&gt; {
+      if (response.success) {
+        this.vehiculos &#x3D; response.data;
+        console.log(&#x27;Vehículos recibidos:&#x27;, response);
+      } else {
+        console.error(&#x27;Error al obtener vehículos:&#x27;, response.message);
+      }
+    });
+  }
+
+  onVehiculoChange(event: Event): void {
+    const target &#x3D; event.target as HTMLSelectElement;
+    const vehiculoId &#x3D; target.value ? parseInt(target.value, 10) : null;
+    this.selectedVehiculoId &#x3D; vehiculoId;
+    if (vehiculoId) {
+      this.loadGraficasData(vehiculoId);
+    } else {
+      this.gastosData &#x3D; [];
+      this.rendimientoData &#x3D; [];
+    }
+  }
+
+  loadGraficasData(vehiculoId: number): void {
+    // Cargar datos de gastos
+    this.combustibleService.getGastosCombustiblePorVehiculo(vehiculoId).subscribe(response &#x3D;&gt; {
+      console.log(&#x27;Gastos recibidos:&#x27;, response);
+      if (response.success) {
+        const data &#x3D; response.data.map((item: any) &#x3D;&gt; ({
+          name: new Date(item.fecha_carga),
+          value: item.costo_total
+        }));
+        this.gastosData &#x3D; [{ name: &#x27;Costo de Carga&#x27;, series: data }];
+      } else {
+        this.gastosData &#x3D; [];
+      }
+    });
+
+    // Cargar datos de rendimiento
+    this.combustibleService.getRendimientoVehiculo(vehiculoId).subscribe(response &#x3D;&gt; {
+      console.log(&#x27;Rendimiento recibido:&#x27;, response);
+      if (response.success) {
+        const data &#x3D; response.data.map((item: any) &#x3D;&gt; ({
+          name: new Date(item.fecha),
+          value: item.rendimiento
+        }));
+        this.rendimientoData &#x3D; [{ name: &#x27;Rendimiento (Km/Galón)&#x27;, series: data }];
+      } else {
+        this.rendimientoData &#x3D; [];
+      }
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">
+&lt;div class&#x3D;&quot;container mt-4&quot;&gt;
+  &lt;h2&gt;Gráficas de Combustible&lt;/h2&gt;
+
+  &lt;div class&#x3D;&quot;mb-3&quot; style&#x3D;&quot;display: flex; gap: 12px; align-items: center;&quot;&gt;
+    &lt;button class&#x3D;&quot;btn btn-primary&quot; (click)&#x3D;&quot;registrarGastoAdicional()&quot;&gt;Registrar Gasto Adicional&lt;/button&gt;
+    &lt;button class&#x3D;&quot;btn btn-info&quot; (click)&#x3D;&quot;irAGraficaRendimiento()&quot;&gt;Ver Gráfica de Rendimiento&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;form-group mb-4&quot;&gt;
+    &lt;label for&#x3D;&quot;vehiculoSelect&quot;&gt;Selecciona un vehículo:&lt;/label&gt;
+    &lt;select id&#x3D;&quot;vehiculoSelect&quot; class&#x3D;&quot;form-control&quot; (change)&#x3D;&quot;onVehiculoChange($event)&quot; [(ngModel)]&#x3D;&quot;selectedVehiculoId&quot;&gt;
+      &lt;option [ngValue]&#x3D;&quot;null&quot;&gt;-- Todos --&lt;/option&gt;
+      &lt;option *ngFor&#x3D;&quot;let vehiculo of vehiculos&quot; [value]&#x3D;&quot;vehiculo.id&quot;&gt;
+        {{ vehiculo.marca }} {{ vehiculo.modelo }} - {{ vehiculo.placa }}
+      &lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+
+  &lt;div *ngIf&#x3D;&quot;selectedVehiculoId&quot;&gt;
+    &lt;!-- Gráfica de Gastos de Combustible --&gt;
+    &lt;div class&#x3D;&quot;card mb-4&quot;&gt;
+      &lt;div class&#x3D;&quot;card-header&quot;&gt;
+        Gráfica de Gastos de Combustible por Vehículo
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;card-body&quot;&gt;
+  &lt;ngx-charts-line-chart
+          [view]&#x3D;&quot;view&quot;
+          [scheme]&#x3D;&quot;gastosColorScheme&quot;
+          [results]&#x3D;&quot;gastosData&quot;
+          [gradient]&#x3D;&quot;gradient&quot;
+          [xAxis]&#x3D;&quot;showXAxis&quot;
+          [yAxis]&#x3D;&quot;showYAxis&quot;
+          [legend]&#x3D;&quot;showLegend&quot;
+          [showXAxisLabel]&#x3D;&quot;showXAxisLabel&quot;
+          [showYAxisLabel]&#x3D;&quot;showYAxisLabel&quot;
+          [xAxisLabel]&#x3D;&quot;xAxisLabelGastos&quot;
+          [yAxisLabel]&#x3D;&quot;yAxisLabelGastos&quot;
+          [curve]&#x3D;&quot;curve&quot;
+          [timeline]&#x3D;&quot;timeline&quot;
+          [autoScale]&#x3D;&quot;true&quot;&gt;
+        &lt;/ngx-charts-line-chart&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Gráfica de Rendimiento del Vehículo --&gt;
+    &lt;div class&#x3D;&quot;card&quot;&gt;
+      &lt;div class&#x3D;&quot;card-header&quot;&gt;
+        Rendimiento del Vehículo (Km/Galón)
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;card-body&quot;&gt;
+  &lt;ngx-charts-line-chart
+          [view]&#x3D;&quot;view&quot;
+          [scheme]&#x3D;&quot;rendimientoColorScheme&quot;
+          [results]&#x3D;&quot;rendimientoData&quot;
+          [gradient]&#x3D;&quot;gradient&quot;
+          [xAxis]&#x3D;&quot;showXAxis&quot;
+          [yAxis]&#x3D;&quot;showYAxis&quot;
+          [legend]&#x3D;&quot;showLegend&quot;
+          [showXAxisLabel]&#x3D;&quot;showXAxisLabel&quot;
+          [showYAxisLabel]&#x3D;&quot;showYAxisLabel&quot;
+          [xAxisLabel]&#x3D;&quot;xAxisLabelRendimiento&quot;
+          [yAxisLabel]&#x3D;&quot;yAxisLabelRendimiento&quot;
+          [curve]&#x3D;&quot;curve&quot;
+          [timeline]&#x3D;&quot;timeline&quot;
+          [autoScale]&#x3D;&quot;true&quot;&gt;
+        &lt;/ngx-charts-line-chart&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div *ngIf&#x3D;&quot;!selectedVehiculoId&quot; class&#x3D;&quot;alert alert-info mt-4&quot;&gt;
+    Por favor, selecciona un vehículo para ver las gráficas.
+  &lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./graficas-combustible.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* Fondo y tarjetas */
+.container {
+  max-width: 900px;
+}
+
+.card {
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  background: #fafdff;
+  margin-bottom: 32px;
+}
+
+.card-header {
+  background: linear-gradient(90deg, #00bfff 0%, #6e4cff 100%);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 16px 16px 0 0;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+/* Gráfica ngx-charts */
+::ng-deep .ngx-charts {
+  background: #fafdff !important;
+  border-radius: 16px !important;
+  padding: 16px 0;
+}
+
+::ng-deep .ngx-charts .line-series .line {
+  stroke: url(#line-gradient) !important;
+  stroke-width: 5px !important;
+  filter: drop-shadow(0 0 6px #00bfff88);
+}
+
+::ng-deep .ngx-charts .line-series .circle {
+  stroke: #00bfff !important;
+  fill: #fff !important;
+  stroke-width: 4px !important;
+  r: 8 !important;
+  filter: drop-shadow(0 2px 6px #00bfff44);
+}
+
+::ng-deep .ngx-charts .axis-label, 
+::ng-deep .ngx-charts .tick text {
+  font-size: 1.1rem !important;
+  font-family: &#x27;Segoe UI&#x27;, Arial, sans-serif !important;
+  fill: #222 !important;
+}
+
+::ng-deep .ngx-charts .legend-label-text {
+  font-size: 1.1rem !important;
+  font-family: &#x27;Segoe UI&#x27;, Arial, sans-serif !important;
+  fill: #222 !important;
+}
+
+/* Eliminar área gris de fondo */
+::ng-deep .area,
+::ng-deep .area-series,
+::ng-deep .area-series-path,
+::ng-deep .line-chart .area,
+::ng-deep .line-chart .area-series,
+::ng-deep .line-chart .area-series-path,
+::ng-deep .line-series .area,
+::ng-deep .line-series .area-series,
+::ng-deep .line-series .area-series-path {
+  display: none !important;
+  fill: transparent !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+::ng-deep .ngx-charts .area,
+::ng-deep .ngx-charts .area-series,
+::ng-deep .ngx-charts .area-series-path,
+::ng-deep .ngx-charts .line-chart .area,
+::ng-deep .ngx-charts .line-chart .area-series,
+::ng-deep .ngx-charts .line-chart .area-series-path,
+::ng-deep .ngx-charts .line-series .area,
+::ng-deep .ngx-charts .line-series .area-series,
+::ng-deep .ngx-charts .line-series .area-series-path {
+  display: none !important;
+  fill: transparent !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+::ng-deep .ngx-charts .area,
+::ng-deep .ngx-charts .area-series,
+::ng-deep .ngx-charts .area-series-path,
+::ng-deep .ngx-charts .line-chart .area,
+::ng-deep .ngx-charts .line-chart .area-series,
+::ng-deep .ngx-charts .line-chart .area-series-path {
+  display: none !important;
+  fill: none !important;
+  opacity: 0 !important;
+}
+::ng-deep .ngx-charts .area,
+::ng-deep .ngx-charts .area-series-path {
+  display: none !important;
+}
+
+::ng-deep .ngx-charts .line-series .line {
+  stroke: #00bfff !important;
+  stroke-width: 5px !important;
+  fill: none !important;
+}
+
+::ng-deep .ngx-charts .line-series .circle {
+  stroke: #00bfff !important;
+  fill: #fff !important;
+  stroke-width: 4px !important;
+  r: 7 !important;
+}
+
+::ng-deep .ngx-charts .area-series-path {
+  display: none !important;
+}
+
+.container {
+  max-width: 900px;
+}
+
+.card {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container mt-4">  <h2>Gráficas de Combustible</h2>  <div class="mb-3" style="display: flex; gap: 12px; align-items: center;">    <button class="btn btn-primary" (click)="registrarGastoAdicional()">Registrar Gasto Adicional</button>    <button class="btn btn-info" (click)="irAGraficaRendimiento()">Ver Gráfica de Rendimiento</button>  </div>  <div class="form-group mb-4">    <label for="vehiculoSelect">Selecciona un vehículo:</label>    <select id="vehiculoSelect" class="form-control" (change)="onVehiculoChange($event)" [(ngModel)]="selectedVehiculoId">      <option [ngValue]="null">-- Todos --</option>      <option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.id">        {{ vehiculo.marca }} {{ vehiculo.modelo }} - {{ vehiculo.placa }}      </option>    </select>  </div>  <div *ngIf="selectedVehiculoId">    <!-- Gráfica de Gastos de Combustible -->    <div class="card mb-4">      <div class="card-header">        Gráfica de Gastos de Combustible por Vehículo      </div>      <div class="card-body">  <ngx-charts-line-chart          [view]="view"          [scheme]="gastosColorScheme"          [results]="gastosData"          [gradient]="gradient"          [xAxis]="showXAxis"          [yAxis]="showYAxis"          [legend]="showLegend"          [showXAxisLabel]="showXAxisLabel"          [showYAxisLabel]="showYAxisLabel"          [xAxisLabel]="xAxisLabelGastos"          [yAxisLabel]="yAxisLabelGastos"          [curve]="curve"          [timeline]="timeline"          [autoScale]="true">        </ngx-charts-line-chart>      </div>    </div>    <!-- Gráfica de Rendimiento del Vehículo -->    <div class="card">      <div class="card-header">        Rendimiento del Vehículo (Km/Galón)      </div>      <div class="card-body">  <ngx-charts-line-chart          [view]="view"          [scheme]="rendimientoColorScheme"          [results]="rendimientoData"          [gradient]="gradient"          [xAxis]="showXAxis"          [yAxis]="showYAxis"          [legend]="showLegend"          [showXAxisLabel]="showXAxisLabel"          [showYAxisLabel]="showYAxisLabel"          [xAxisLabel]="xAxisLabelRendimiento"          [yAxisLabel]="yAxisLabelRendimiento"          [curve]="curve"          [timeline]="timeline"          [autoScale]="true">        </ngx-charts-line-chart>      </div>    </div>  </div>  <div *ngIf="!selectedVehiculoId" class="alert alert-info mt-4">    Por favor, selecciona un vehículo para ver las gráficas.  </div></div></div>'
+    var COMPONENTS = [{'name': 'AgregarVehiculoComponent', 'selector': 'app-agregar-vehiculo'},{'name': 'AgregarVehiculoSimpleComponent', 'selector': 'app-agregar-vehiculo-simple'},{'name': 'App', 'selector': 'app-root'},{'name': 'BitacoraComponent', 'selector': 'app-bitacora'},{'name': 'CombustibleComponent', 'selector': 'app-combustible'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardGastos', 'selector': 'app-dashboard-gastos'},{'name': 'DashboardGastosComponent', 'selector': 'app-dashboard-gastos'},{'name': 'DetalleVehiculoComponent', 'selector': 'app-detalle-vehiculo'},{'name': 'DialogoNuevaCargaComponent', 'selector': 'app-dialogo-nueva-carga'},{'name': 'EditarVehiculoComponent', 'selector': 'app-editar-vehiculo'},{'name': 'EstadosVehiculosComponent', 'selector': 'app-estados-vehiculos'},{'name': 'GastosAdicionalComponent', 'selector': 'app-gastos-adicional'},{'name': 'GraficasCombustibleComponent', 'selector': 'app-graficas-combustible'},{'name': 'GraficasGastos', 'selector': 'app-graficas-gastos'},{'name': 'GruposVehiculosComponent', 'selector': 'app-grupos-vehiculos'},{'name': 'InventarioComponent', 'selector': 'app-inventario'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'TiposVehiculosComponent', 'selector': 'app-tipos-vehiculos'},{'name': 'UsuariosListComponent', 'selector': 'app-usuarios-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'GraficasCombustibleComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GraficasCombustibleComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,76 @@
+
+<div class="container mt-4">
+  <h2>Gráficas de Combustible</h2>
+
+  <div class="mb-3" style="display: flex; gap: 12px; align-items: center;">
+    <button class="btn btn-primary" (click)="registrarGastoAdicional()">Registrar Gasto Adicional</button>
+    <button class="btn btn-info" (click)="irAGraficaRendimiento()">Ver Gráfica de Rendimiento</button>
+  </div>
+
+  <div class="form-group mb-4">
+    <label for="vehiculoSelect">Selecciona un vehículo:</label>
+    <select id="vehiculoSelect" class="form-control" (change)="onVehiculoChange($event)" [(ngModel)]="selectedVehiculoId">
+      <option [ngValue]="null">-- Todos --</option>
+      <option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.id">
+        {{ vehiculo.marca }} {{ vehiculo.modelo }} - {{ vehiculo.placa }}
+      </option>
+    </select>
+  </div>
+
+  <div *ngIf="selectedVehiculoId">
+    <!-- Gráfica de Gastos de Combustible -->
+    <div class="card mb-4">
+      <div class="card-header">
+        Gráfica de Gastos de Combustible por Vehículo
+      </div>
+      <div class="card-body">
+  <ngx-charts-line-chart
+          [view]="view"
+          [scheme]="gastosColorScheme"
+          [results]="gastosData"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabelGastos"
+          [yAxisLabel]="yAxisLabelGastos"
+          [curve]="curve"
+          [timeline]="timeline"
+          [autoScale]="true">
+        </ngx-charts-line-chart>
+      </div>
+    </div>
+
+    <!-- Gráfica de Rendimiento del Vehículo -->
+    <div class="card">
+      <div class="card-header">
+        Rendimiento del Vehículo (Km/Galón)
+      </div>
+      <div class="card-body">
+  <ngx-charts-line-chart
+          [view]="view"
+          [scheme]="rendimientoColorScheme"
+          [results]="rendimientoData"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabelRendimiento"
+          [yAxisLabel]="yAxisLabelRendimiento"
+          [curve]="curve"
+          [timeline]="timeline"
+          [autoScale]="true">
+        </ngx-charts-line-chart>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!selectedVehiculoId" class="alert alert-info mt-4">
+    Por favor, selecciona un vehículo para ver las gráficas.
+  </div>
+
+</div>

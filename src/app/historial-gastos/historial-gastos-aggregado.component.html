@@ -1,0 +1,22 @@
+<h2>Historial de Gastos Agregado</h2>
+<table class="table table-striped mt-3">
+  <thead>
+    <tr>
+      <th>Mes</th>
+      <th>Combustible</th>
+      <th>Repuestos</th>
+      <th>Mano de Obra</th>
+      <th>Galones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of historial">
+      <td>{{ item.mes }}</td>
+      <td>Q{{ item.combustible | number:'1.2-2' }}</td>
+      <td>Q{{ item.repuestos | number:'1.2-2' }}</td>
+      <td>Q{{ item.manoObra | number:'1.2-2' }}</td>
+      <td>{{ item.galones | number:'1.2-2' }}</td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn-secondary" (click)="volverDashboard()">Volver al dashboard</button>

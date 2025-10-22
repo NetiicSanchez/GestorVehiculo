@@ -1,0 +1,1177 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>gestor-vehiculos documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">gestor-vehiculos documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  BitacoraComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/bitacora/bitacora.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-bitacora</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>MatCardModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatInputModule</code>
+                            <code>MatButtonModule</code>
+                            <code>MatSelectModule</code>
+                            <code>MatRadioModule</code>
+                            <code>MatDatepickerModule</code>
+                            <code>MatNativeDateModule</code>
+                            <code>MatSnackBarModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./bitacora.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./bitacora.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#bitacoraForm" >bitacoraForm</a>
+                            </li>
+                            <li>
+                                <a href="#preguntas" >preguntas</a>
+                            </li>
+                            <li>
+                                <a href="#usuarios" >usuarios</a>
+                            </li>
+                            <li>
+                                <a href="#vehiculos" >vehiculos</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cargarDatosIniciales" >cargarDatosIniciales</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: FormBuilder, bitacoraService: <a href="../injectables/BitacoraService.html" target="_self">BitacoraService</a>, vehiculosService: <a href="../injectables/VehiculosService.html" target="_self">VehiculosService</a>, usuariosService: <a href="../injectables/UsuariosService.html" target="_self">UsuariosService</a>, snackBar: MatSnackBar)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/bitacora/bitacora.component.ts:69</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>bitacoraService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BitacoraService.html" target="_self" >BitacoraService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>vehiculosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/VehiculosService.html" target="_self" >VehiculosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>usuariosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UsuariosService.html" target="_self" >UsuariosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarDatosIniciales"></a>
+                    <span class="name">
+                        <span ><b>cargarDatosIniciales</b></span>
+                        <a href="#cargarDatosIniciales"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cargarDatosIniciales()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/app/bitacora/bitacora.component.ts:119</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="109"
+                                    class="link-to-prism">src/app/bitacora/bitacora.component.ts:109</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/bitacora/bitacora.component.ts:128</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bitacoraForm"></a>
+                    <span class="name">
+                        <span ><b>bitacoraForm</b></span>
+                        <a href="#bitacoraForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/bitacora/bitacora.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="preguntas"></a>
+                    <span class="name">
+                        <span ><b>preguntas</b></span>
+                        <a href="#preguntas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    documentacion: [
+      { formControlName: &#x27;vencimiento_licencia&#x27;, label: &#x27;Licencia Vigente&#x27;, tipo: &#x27;text&#x27; },
+      { formControlName: &#x27;tricket&#x27;, label: &#x27;Tricket&#x27;, tipo: &#x27;radio&#x27; },
+    ],
+    herramientas: [
+      { formControlName: &#x27;llanta_repuesto&#x27;, label: &#x27;Llanta de Repuesto&#x27;, tipo: &#x27;radio&#x27; },
+      { formControlName: &#x27;llave_cruz&#x27;, label: &#x27;Llave de Cruz&#x27;, tipo: &#x27;radio&#x27; },
+    ],
+    fluidos: [
+        { formControlName: &#x27;combustible&#x27;, label: &#x27;Nivel de Combustible&#x27;, tipo: &#x27;radio&#x27; },
+        { formControlName: &#x27;nivel_aceite&#x27;, label: &#x27;Nivel de Aceite&#x27;, tipo: &#x27;radio&#x27; },
+        { formControlName: &#x27;agua&#x27;, label: &#x27;Nivel de Agua/Refrigerante&#x27;, tipo: &#x27;radio&#x27; },
+        { formControlName: &#x27;liquido_freno&#x27;, label: &#x27;Líquido de Frenos&#x27;, tipo: &#x27;radio&#x27; },
+    ],
+    luces: [
+        { formControlName: &#x27;luces_intermitentes&#x27;, label: &#x27;Luces Intermitentes&#x27;, tipo: &#x27;text&#x27; },
+        { formControlName: &#x27;luz_stop&#x27;, label: &#x27;Luz de Stop&#x27;, tipo: &#x27;text&#x27; },
+        { formControlName: &#x27;faros&#x27;, label: &#x27;Faros Delanteros&#x27;, tipo: &#x27;text&#x27; },
+    ],
+    moto: [
+        { formControlName: &#x27;etiqueta_m&#x27;, label: &#x27;Etiqueta &quot;M&quot;&#x27;, tipo: &#x27;radio&#x27; },
+        { formControlName: &#x27;lubricante_cadena&#x27;, label: &#x27;Lubricante de Cadena&#x27;, tipo: &#x27;radio&#x27; },
+        { formControlName: &#x27;tiempo_casco&#x27;, label: &#x27;Casco (Tiempo &gt; 5 años)&#x27;, tipo: &#x27;text&#x27; },
+        { formControlName: &#x27;traje_imp&#x27;, label: &#x27;Traje Impermeable&#x27;, tipo: &#x27;text&#x27; },
+    ]
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/bitacora/bitacora.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="usuarios"></a>
+                    <span class="name">
+                        <span ><b>usuarios</b></span>
+                        <a href="#usuarios"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/bitacora/bitacora.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="vehiculos"></a>
+                    <span class="name">
+                        <span ><b>vehiculos</b></span>
+                        <a href="#vehiculos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Vehiculo.html" target="_self" >Vehiculo[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/bitacora/bitacora.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
+import { MatCardModule } from &#x27;@angular/material/card&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatInputModule } from &#x27;@angular/material/input&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { MatRadioModule } from &#x27;@angular/material/radio&#x27;;
+import { MatDatepickerModule } from &#x27;@angular/material/datepicker&#x27;;
+import { MatNativeDateModule } from &#x27;@angular/material/core&#x27;;
+import { MatSnackBar, MatSnackBarModule } from &#x27;@angular/material/snack-bar&#x27;;
+import { BitacoraService } from &#x27;../services/bitacora.service&#x27;;
+import { VehiculosService } from &#x27;../services/vehiculos.service&#x27;;
+import { UsuariosService } from &#x27;../services/usuarios.service&#x27;;
+import { Vehiculo } from &#x27;../models/vehiculo.model&#x27;;
+
+@Component({
+  selector: &#x27;app-bitacora&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSnackBarModule
+  ],
+  templateUrl: &#x27;./bitacora.component.html&#x27;,
+  styleUrls: [&#x27;./bitacora.component.css&#x27;]
+})
+export class BitacoraComponent implements OnInit {
+  bitacoraForm: FormGroup;
+  vehiculos: Vehiculo[] &#x3D; [];
+  usuarios: any[] &#x3D; []; // Asumiendo que el servicio de usuarios devuelve un array de usuarios
+
+  preguntas &#x3D; {
+    documentacion: [
+      { formControlName: &#x27;vencimiento_licencia&#x27;, label: &#x27;Licencia Vigente&#x27;, tipo: &#x27;text&#x27; },
+      { formControlName: &#x27;tricket&#x27;, label: &#x27;Tricket&#x27;, tipo: &#x27;radio&#x27; },
+    ],
+    herramientas: [
+      { formControlName: &#x27;llanta_repuesto&#x27;, label: &#x27;Llanta de Repuesto&#x27;, tipo: &#x27;radio&#x27; },
+      { formControlName: &#x27;llave_cruz&#x27;, label: &#x27;Llave de Cruz&#x27;, tipo: &#x27;radio&#x27; },
+    ],
+    fluidos: [
+        { formControlName: &#x27;combustible&#x27;, label: &#x27;Nivel de Combustible&#x27;, tipo: &#x27;radio&#x27; },
+        { formControlName: &#x27;nivel_aceite&#x27;, label: &#x27;Nivel de Aceite&#x27;, tipo: &#x27;radio&#x27; },
+        { formControlName: &#x27;agua&#x27;, label: &#x27;Nivel de Agua/Refrigerante&#x27;, tipo: &#x27;radio&#x27; },
+        { formControlName: &#x27;liquido_freno&#x27;, label: &#x27;Líquido de Frenos&#x27;, tipo: &#x27;radio&#x27; },
+    ],
+    luces: [
+        { formControlName: &#x27;luces_intermitentes&#x27;, label: &#x27;Luces Intermitentes&#x27;, tipo: &#x27;text&#x27; },
+        { formControlName: &#x27;luz_stop&#x27;, label: &#x27;Luz de Stop&#x27;, tipo: &#x27;text&#x27; },
+        { formControlName: &#x27;faros&#x27;, label: &#x27;Faros Delanteros&#x27;, tipo: &#x27;text&#x27; },
+    ],
+    moto: [
+        { formControlName: &#x27;etiqueta_m&#x27;, label: &#x27;Etiqueta &quot;M&quot;&#x27;, tipo: &#x27;radio&#x27; },
+        { formControlName: &#x27;lubricante_cadena&#x27;, label: &#x27;Lubricante de Cadena&#x27;, tipo: &#x27;radio&#x27; },
+        { formControlName: &#x27;tiempo_casco&#x27;, label: &#x27;Casco (Tiempo &gt; 5 años)&#x27;, tipo: &#x27;text&#x27; },
+        { formControlName: &#x27;traje_imp&#x27;, label: &#x27;Traje Impermeable&#x27;, tipo: &#x27;text&#x27; },
+    ]
+  };
+
+  constructor(
+    private fb: FormBuilder,
+    private bitacoraService: BitacoraService,
+    private vehiculosService: VehiculosService,
+    private usuariosService: UsuariosService,
+    private snackBar: MatSnackBar
+  ) {
+    this.bitacoraForm &#x3D; this.fb.group({
+      id_vehiculo: [&#x27;&#x27;, Validators.required],
+      id_piloto: [&#x27;&#x27;, Validators.required],
+      id_copiloto: [&#x27;&#x27;],
+      fecha: [new Date(), Validators.required],
+      hora: [new Date().toLocaleTimeString(), Validators.required],
+      placa: [{value: &#x27;&#x27;, disabled: true}],
+      kilometraje: [&#x27;&#x27;, Validators.required],
+      proximo_servicio: [&#x27;&#x27;],
+      ren_por_galon: [&#x27;&#x27;],
+      observacion: [&#x27;&#x27;],
+      // Preguntas
+      vencimiento_licencia: [&#x27;&#x27;],
+      tricket: [0, Validators.required],
+      llanta_repuesto: [0, Validators.required],
+      llave_cruz: [0, Validators.required],
+      combustible: [0, Validators.required],
+      limpieza: [0, Validators.required],
+      nivel_aceite: [0, Validators.required],
+      agua: [0, Validators.required],
+      liquido_freno: [0, Validators.required],
+      etiqueta_m: [0],
+      lubricante_cadena: [0],
+      luces_intermitentes: [&#x27;&#x27;],
+      luz_stop: [&#x27;&#x27;],
+      faros: [&#x27;&#x27;],
+      tiempo_casco: [&#x27;&#x27;],
+      traje_imp: [&#x27;&#x27;],
+    });
+  }
+
+  ngOnInit(): void {
+    this.cargarDatosIniciales();
+    this.bitacoraForm.get(&#x27;id_vehiculo&#x27;)?.valueChanges.subscribe(id &#x3D;&gt; {
+        const vehiculoSeleccionado &#x3D; this.vehiculos.find(v &#x3D;&gt; v.id &#x3D;&#x3D;&#x3D; id);
+        if(vehiculoSeleccionado) {
+            this.bitacoraForm.get(&#x27;placa&#x27;)?.setValue((vehiculoSeleccionado as any).numero_serie);
+        }
+    });
+  }
+
+  cargarDatosIniciales(): void {
+    this.vehiculosService.obtenerVehiculos().subscribe(res &#x3D;&gt; {
+      if (res.success) this.vehiculos &#x3D; res.data;
+    });
+    this.usuariosService.obtenerUsuarios().subscribe(res &#x3D;&gt; {
+      if (res.success) this.usuarios &#x3D; res.data;
+    });
+  }
+
+  onSubmit(): void {
+    if (this.bitacoraForm.invalid) {
+      this.snackBar.open(&#x27;Por favor, completa todos los campos requeridos.&#x27;, &#x27;Cerrar&#x27;, { duration: 3000 });
+      return;
+    }
+
+    const formData &#x3D; this.bitacoraForm.getRawValue();
+    formData.placa &#x3D; this.bitacoraForm.get(&#x27;placa&#x27;)?.value; // Asegurarse de que la placa se incluya
+    this.bitacoraService.crearBitacora(formData).subscribe({
+      next: (res) &#x3D;&gt; {
+        if (res.success) {
+          this.snackBar.open(&#x27;Bitácora guardada exitosamente.&#x27;, &#x27;Cerrar&#x27;, { duration: 3000 });
+          this.bitacoraForm.reset({
+            fecha: new Date(),
+            hora: new Date().toLocaleTimeString()
+          });
+        } else {
+          this.snackBar.open(&#x27;Error al guardar la bitácora.&#x27;, &#x27;Cerrar&#x27;, { duration: 3000 });
+        }
+      },
+      error: (err) &#x3D;&gt; {
+        console.error(&#x27;Error en submit:&#x27;, err);
+        this.snackBar.open(&#x27;Error de conexión al guardar la bitácora.&#x27;, &#x27;Cerrar&#x27;, { duration: 3000 });
+      }
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;mat-card&gt;
+  &lt;mat-card-title&gt;Bitácora de Mantenimiento Diario&lt;/mat-card-title&gt;
+  &lt;mat-card-content&gt;
+    &lt;form [formGroup]&#x3D;&quot;bitacoraForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot; class&#x3D;&quot;bitacora-form&quot;&gt;
+
+      &lt;!-- Sección de Información General --&gt;
+      &lt;div class&#x3D;&quot;form-section&quot;&gt;
+        &lt;h3&gt;Información General&lt;/h3&gt;
+        &lt;div class&#x3D;&quot;form-grid&quot;&gt;
+          &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-label&gt;Vehículo&lt;/mat-label&gt;
+            &lt;mat-select formControlName&#x3D;&quot;id_vehiculo&quot;&gt;
+              &lt;mat-option *ngFor&#x3D;&quot;let vehiculo of vehiculos&quot; [value]&#x3D;&quot;vehiculo.id&quot;&gt;
+                {{ vehiculo.marca }} {{ vehiculo.modelo }} - {{ vehiculo.placa }}
+              &lt;/mat-option&gt;
+            &lt;/mat-select&gt;
+          &lt;/mat-form-field&gt;
+
+          &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-label&gt;Placa&lt;/mat-label&gt;
+            &lt;input matInput formControlName&#x3D;&quot;placa&quot;&gt;
+          &lt;/mat-form-field&gt;
+
+          &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-label&gt;Piloto&lt;/mat-label&gt;
+            &lt;mat-select formControlName&#x3D;&quot;id_piloto&quot;&gt;
+              &lt;mat-option *ngFor&#x3D;&quot;let usuario of usuarios&quot; [value]&#x3D;&quot;usuario.id&quot;&gt;
+                {{ usuario.nombre }} {{ usuario.apellido }}
+              &lt;/mat-option&gt;
+            &lt;/mat-select&gt;
+          &lt;/mat-form-field&gt;
+
+          &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-label&gt;Copiloto (Opcional)&lt;/mat-label&gt;
+            &lt;mat-select formControlName&#x3D;&quot;id_copiloto&quot;&gt;
+               &lt;mat-option *ngFor&#x3D;&quot;let usuario of usuarios&quot; [value]&#x3D;&quot;usuario.id&quot;&gt;
+                {{ usuario.nombre }} {{ usuario.apellido }}
+              &lt;/mat-option&gt;
+            &lt;/mat-select&gt;
+          &lt;/mat-form-field&gt;
+
+          &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-label&gt;Fecha&lt;/mat-label&gt;
+            &lt;input matInput [matDatepicker]&#x3D;&quot;picker&quot; formControlName&#x3D;&quot;fecha&quot;&gt;
+            &lt;mat-datepicker-toggle matSuffix [for]&#x3D;&quot;picker&quot;&gt;&lt;/mat-datepicker-toggle&gt;
+            &lt;mat-datepicker #picker&gt;&lt;/mat-datepicker&gt;
+          &lt;/mat-form-field&gt;
+
+          &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-label&gt;Hora&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;time&quot; formControlName&#x3D;&quot;hora&quot;&gt;
+          &lt;/mat-form-field&gt;
+
+          &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-label&gt;Kilometraje Actual&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;kilometraje&quot;&gt;
+          &lt;/mat-form-field&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Secciones de Preguntas --&gt;
+      &lt;div class&#x3D;&quot;preguntas-grid&quot;&gt;
+        
+        &lt;div class&#x3D;&quot;pregunta-columna&quot;&gt;
+          &lt;h4&gt;Documentación y Herramientas&lt;/h4&gt;
+          &lt;ng-container *ngFor&#x3D;&quot;let pregunta of preguntas.documentacion&quot;&gt;
+            &lt;div class&#x3D;&quot;pregunta-item&quot;&gt;
+              &lt;label&gt;{{ pregunta.label }}&lt;/label&gt;
+              &lt;mat-radio-group *ngIf&#x3D;&quot;pregunta.tipo &#x3D;&#x3D;&#x3D; &#x27;radio&#x27;&quot; [formControlName]&#x3D;&quot;pregunta.formControlName&quot; class&#x3D;&quot;radio-group&quot;&gt;
+                &lt;mat-radio-button [value]&#x3D;&quot;1&quot;&gt;Sí&lt;/mat-radio-button&gt;
+                &lt;mat-radio-button [value]&#x3D;&quot;0&quot;&gt;No&lt;/mat-radio-button&gt;
+              &lt;/mat-radio-group&gt;
+              &lt;mat-form-field *ngIf&#x3D;&quot;pregunta.tipo &#x3D;&#x3D;&#x3D; &#x27;text&#x27;&quot; appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;text-input&quot;&gt;
+                 &lt;input matInput [formControlName]&#x3D;&quot;pregunta.formControlName&quot;&gt;
+              &lt;/mat-form-field&gt;
+            &lt;/div&gt;
+          &lt;/ng-container&gt;
+           &lt;ng-container *ngFor&#x3D;&quot;let pregunta of preguntas.herramientas&quot;&gt;
+            &lt;div class&#x3D;&quot;pregunta-item&quot;&gt;
+              &lt;label&gt;{{ pregunta.label }}&lt;/label&gt;
+              &lt;mat-radio-group [formControlName]&#x3D;&quot;pregunta.formControlName&quot; class&#x3D;&quot;radio-group&quot;&gt;
+                &lt;mat-radio-button [value]&#x3D;&quot;1&quot;&gt;Sí&lt;/mat-radio-button&gt;
+                &lt;mat-radio-button [value]&#x3D;&quot;0&quot;&gt;No&lt;/mat-radio-button&gt;
+              &lt;/mat-radio-group&gt;
+            &lt;/div&gt;
+          &lt;/ng-container&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;pregunta-columna&quot;&gt;
+          &lt;h4&gt;Fluidos y Limpieza&lt;/h4&gt;
+           &lt;ng-container *ngFor&#x3D;&quot;let pregunta of preguntas.fluidos&quot;&gt;
+            &lt;div class&#x3D;&quot;pregunta-item&quot;&gt;
+              &lt;label&gt;{{ pregunta.label }}&lt;/label&gt;
+              &lt;mat-radio-group [formControlName]&#x3D;&quot;pregunta.formControlName&quot; class&#x3D;&quot;radio-group&quot;&gt;
+                &lt;mat-radio-button [value]&#x3D;&quot;1&quot;&gt;Sí&lt;/mat-radio-button&gt;
+                &lt;mat-radio-button [value]&#x3D;&quot;0&quot;&gt;No&lt;/mat-radio-button&gt;
+              &lt;/mat-radio-group&gt;
+            &lt;/div&gt;
+          &lt;/ng-container&gt;
+           &lt;div class&#x3D;&quot;pregunta-item&quot;&gt;
+              &lt;label&gt;Limpieza del Vehículo&lt;/label&gt;
+              &lt;mat-radio-group formControlName&#x3D;&quot;limpieza&quot; class&#x3D;&quot;radio-group&quot;&gt;
+                &lt;mat-radio-button [value]&#x3D;&quot;1&quot;&gt;Sí&lt;/mat-radio-button&gt;
+                &lt;mat-radio-button [value]&#x3D;&quot;0&quot;&gt;No&lt;/mat-radio-button&gt;
+              &lt;/mat-radio-group&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;pregunta-columna&quot;&gt;
+          &lt;h4&gt;Luces&lt;/h4&gt;
+           &lt;ng-container *ngFor&#x3D;&quot;let pregunta of preguntas.luces&quot;&gt;
+            &lt;div class&#x3D;&quot;pregunta-item&quot;&gt;
+              &lt;label&gt;{{ pregunta.label }}&lt;/label&gt;
+               &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;text-input&quot;&gt;
+                 &lt;input matInput [formControlName]&#x3D;&quot;pregunta.formControlName&quot; placeholder&#x3D;&quot;Estado (Bueno/Malo)&quot;&gt;
+              &lt;/mat-form-field&gt;
+            &lt;/div&gt;
+          &lt;/ng-container&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;pregunta-columna&quot;&gt;
+          &lt;h4&gt;Específico para Motocicletas&lt;/h4&gt;
+           &lt;ng-container *ngFor&#x3D;&quot;let pregunta of preguntas.moto&quot;&gt;
+            &lt;div class&#x3D;&quot;pregunta-item&quot;&gt;
+              &lt;label&gt;{{ pregunta.label }}&lt;/label&gt;
+              &lt;mat-radio-group *ngIf&#x3D;&quot;pregunta.tipo &#x3D;&#x3D;&#x3D; &#x27;radio&#x27;&quot; [formControlName]&#x3D;&quot;pregunta.formControlName&quot; class&#x3D;&quot;radio-group&quot;&gt;
+                &lt;mat-radio-button [value]&#x3D;&quot;1&quot;&gt;Sí&lt;/mat-radio-button&gt;
+                &lt;mat-radio-button [value]&#x3D;&quot;0&quot;&gt;No&lt;/mat-radio-button&gt;
+              &lt;/mat-radio-group&gt;
+              &lt;mat-form-field *ngIf&#x3D;&quot;pregunta.tipo &#x3D;&#x3D;&#x3D; &#x27;text&#x27;&quot; appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;text-input&quot;&gt;
+                 &lt;input matInput [formControlName]&#x3D;&quot;pregunta.formControlName&quot;&gt;
+              &lt;/mat-form-field&gt;
+            &lt;/div&gt;
+          &lt;/ng-container&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+
+       &lt;!-- Sección de Observaciones --&gt;
+      &lt;div class&#x3D;&quot;form-section&quot;&gt;
+        &lt;h3&gt;Información Adicional&lt;/h3&gt;
+        &lt;div class&#x3D;&quot;form-grid-single&quot;&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+                &lt;mat-label&gt;Próximo Servicio&lt;/mat-label&gt;
+                &lt;input matInput formControlName&#x3D;&quot;proximo_servicio&quot; placeholder&#x3D;&quot;Ej: 150,000 km o 6 meses&quot;&gt;
+            &lt;/mat-form-field&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+                &lt;mat-label&gt;Rendimiento por Galón (km/gal)&lt;/mat-label&gt;
+                &lt;input matInput formControlName&#x3D;&quot;ren_por_galon&quot;&gt;
+            &lt;/mat-form-field&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+                &lt;mat-label&gt;Observaciones&lt;/mat-label&gt;
+                &lt;textarea matInput formControlName&#x3D;&quot;observacion&quot; rows&#x3D;&quot;3&quot;&gt;&lt;/textarea&gt;
+            &lt;/mat-form-field&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+
+      &lt;mat-card-actions&gt;
+        &lt;button mat-raised-button color&#x3D;&quot;primary&quot; type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;bitacoraForm.invalid&quot;&gt;Guardar Bitácora&lt;/button&gt;
+      &lt;/mat-card-actions&gt;
+    &lt;/form&gt;
+  &lt;/mat-card-content&gt;
+&lt;/mat-card&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./bitacora.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.bitacora-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-section {
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.form-grid-single {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.preguntas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.pregunta-columna {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 1rem;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+}
+
+.pregunta-columna h4 {
+    margin-top: 0;
+    border-bottom: 2px solid #3f51b5;
+    padding-bottom: 8px;
+    color: #3f51b5;
+}
+
+.pregunta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pregunta-item label {
+    font-weight: 500;
+    flex-basis: 50%;
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+}
+
+.text-input {
+    width: 100%;
+    max-width: 150px;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><mat-card>  <mat-card-title>Bitácora de Mantenimiento Diario</mat-card-title>  <mat-card-content>    <form [formGroup]="bitacoraForm" (ngSubmit)="onSubmit()" class="bitacora-form">      <!-- Sección de Información General -->      <div class="form-section">        <h3>Información General</h3>        <div class="form-grid">          <mat-form-field appearance="fill">            <mat-label>Vehículo</mat-label>            <mat-select formControlName="id_vehiculo">              <mat-option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.id">                {{ vehiculo.marca }} {{ vehiculo.modelo }} - {{ vehiculo.placa }}              </mat-option>            </mat-select>          </mat-form-field>          <mat-form-field appearance="fill">            <mat-label>Placa</mat-label>            <input matInput formControlName="placa">          </mat-form-field>          <mat-form-field appearance="fill">            <mat-label>Piloto</mat-label>            <mat-select formControlName="id_piloto">              <mat-option *ngFor="let usuario of usuarios" [value]="usuario.id">                {{ usuario.nombre }} {{ usuario.apellido }}              </mat-option>            </mat-select>          </mat-form-field>          <mat-form-field appearance="fill">            <mat-label>Copiloto (Opcional)</mat-label>            <mat-select formControlName="id_copiloto">               <mat-option *ngFor="let usuario of usuarios" [value]="usuario.id">                {{ usuario.nombre }} {{ usuario.apellido }}              </mat-option>            </mat-select>          </mat-form-field>          <mat-form-field appearance="fill">            <mat-label>Fecha</mat-label>            <input matInput [matDatepicker]="picker" formControlName="fecha">            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>            <mat-datepicker #picker></mat-datepicker>          </mat-form-field>          <mat-form-field appearance="fill">            <mat-label>Hora</mat-label>            <input matInput type="time" formControlName="hora">          </mat-form-field>          <mat-form-field appearance="fill">            <mat-label>Kilometraje Actual</mat-label>            <input matInput type="number" formControlName="kilometraje">          </mat-form-field>        </div>      </div>      <!-- Secciones de Preguntas -->      <div class="preguntas-grid">                <div class="pregunta-columna">          <h4>Documentación y Herramientas</h4>          <ng-container *ngFor="let pregunta of preguntas.documentacion">            <div class="pregunta-item">              <label>{{ pregunta.label }}</label>              <mat-radio-group *ngIf="pregunta.tipo === \'radio\'" [formControlName]="pregunta.formControlName" class="radio-group">                <mat-radio-button [value]="1">Sí</mat-radio-button>                <mat-radio-button [value]="0">No</mat-radio-button>              </mat-radio-group>              <mat-form-field *ngIf="pregunta.tipo === \'text\'" appearance="outline" class="text-input">                 <input matInput [formControlName]="pregunta.formControlName">              </mat-form-field>            </div>          </ng-container>           <ng-container *ngFor="let pregunta of preguntas.herramientas">            <div class="pregunta-item">              <label>{{ pregunta.label }}</label>              <mat-radio-group [formControlName]="pregunta.formControlName" class="radio-group">                <mat-radio-button [value]="1">Sí</mat-radio-button>                <mat-radio-button [value]="0">No</mat-radio-button>              </mat-radio-group>            </div>          </ng-container>        </div>        <div class="pregunta-columna">          <h4>Fluidos y Limpieza</h4>           <ng-container *ngFor="let pregunta of preguntas.fluidos">            <div class="pregunta-item">              <label>{{ pregunta.label }}</label>              <mat-radio-group [formControlName]="pregunta.formControlName" class="radio-group">                <mat-radio-button [value]="1">Sí</mat-radio-button>                <mat-radio-button [value]="0">No</mat-radio-button>              </mat-radio-group>            </div>          </ng-container>           <div class="pregunta-item">              <label>Limpieza del Vehículo</label>              <mat-radio-group formControlName="limpieza" class="radio-group">                <mat-radio-button [value]="1">Sí</mat-radio-button>                <mat-radio-button [value]="0">No</mat-radio-button>              </mat-radio-group>            </div>        </div>        <div class="pregunta-columna">          <h4>Luces</h4>           <ng-container *ngFor="let pregunta of preguntas.luces">            <div class="pregunta-item">              <label>{{ pregunta.label }}</label>               <mat-form-field appearance="outline" class="text-input">                 <input matInput [formControlName]="pregunta.formControlName" placeholder="Estado (Bueno/Malo)">              </mat-form-field>            </div>          </ng-container>        </div>        <div class="pregunta-columna">          <h4>Específico para Motocicletas</h4>           <ng-container *ngFor="let pregunta of preguntas.moto">            <div class="pregunta-item">              <label>{{ pregunta.label }}</label>              <mat-radio-group *ngIf="pregunta.tipo === \'radio\'" [formControlName]="pregunta.formControlName" class="radio-group">                <mat-radio-button [value]="1">Sí</mat-radio-button>                <mat-radio-button [value]="0">No</mat-radio-button>              </mat-radio-group>              <mat-form-field *ngIf="pregunta.tipo === \'text\'" appearance="outline" class="text-input">                 <input matInput [formControlName]="pregunta.formControlName">              </mat-form-field>            </div>          </ng-container>        </div>      </div>       <!-- Sección de Observaciones -->      <div class="form-section">        <h3>Información Adicional</h3>        <div class="form-grid-single">            <mat-form-field appearance="fill">                <mat-label>Próximo Servicio</mat-label>                <input matInput formControlName="proximo_servicio" placeholder="Ej: 150,000 km o 6 meses">            </mat-form-field>            <mat-form-field appearance="fill">                <mat-label>Rendimiento por Galón (km/gal)</mat-label>                <input matInput formControlName="ren_por_galon">            </mat-form-field>            <mat-form-field appearance="fill">                <mat-label>Observaciones</mat-label>                <textarea matInput formControlName="observacion" rows="3"></textarea>            </mat-form-field>        </div>      </div>      <mat-card-actions>        <button mat-raised-button color="primary" type="submit" [disabled]="bitacoraForm.invalid">Guardar Bitácora</button>      </mat-card-actions>    </form>  </mat-card-content></mat-card></div>'
+    var COMPONENTS = [{'name': 'AgregarVehiculoComponent', 'selector': 'app-agregar-vehiculo'},{'name': 'AgregarVehiculoSimpleComponent', 'selector': 'app-agregar-vehiculo-simple'},{'name': 'App', 'selector': 'app-root'},{'name': 'BitacoraComponent', 'selector': 'app-bitacora'},{'name': 'CombustibleComponent', 'selector': 'app-combustible'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardGastos', 'selector': 'app-dashboard-gastos'},{'name': 'DashboardGastosComponent', 'selector': 'app-dashboard-gastos'},{'name': 'DetalleVehiculoComponent', 'selector': 'app-detalle-vehiculo'},{'name': 'DialogoNuevaCargaComponent', 'selector': 'app-dialogo-nueva-carga'},{'name': 'EditarVehiculoComponent', 'selector': 'app-editar-vehiculo'},{'name': 'EstadosVehiculosComponent', 'selector': 'app-estados-vehiculos'},{'name': 'GastosAdicionalComponent', 'selector': 'app-gastos-adicional'},{'name': 'GraficasCombustibleComponent', 'selector': 'app-graficas-combustible'},{'name': 'GraficasGastos', 'selector': 'app-graficas-gastos'},{'name': 'GruposVehiculosComponent', 'selector': 'app-grupos-vehiculos'},{'name': 'InventarioComponent', 'selector': 'app-inventario'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'TiposVehiculosComponent', 'selector': 'app-tipos-vehiculos'},{'name': 'UsuariosListComponent', 'selector': 'app-usuarios-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'BitacoraComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'BitacoraComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

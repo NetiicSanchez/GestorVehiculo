@@ -1,0 +1,1693 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>gestor-vehiculos documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">gestor-vehiculos documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  GraficasGastos</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/graficas-gastos/graficas-gastos.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-graficas-gastos</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>FormsModule</code>
+                            <code>NgxChartsModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./graficas-gastos.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./graficas-gastos.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#curve" >curve</a>
+                            </li>
+                            <li>
+                                <a href="#errorGastos" >errorGastos</a>
+                            </li>
+                            <li>
+                                <a href="#errorRendimiento" >errorRendimiento</a>
+                            </li>
+                            <li>
+                                <a href="#gastosColorScheme" >gastosColorScheme</a>
+                            </li>
+                            <li>
+                                <a href="#gastosData" >gastosData</a>
+                            </li>
+                            <li>
+                                <a href="#gradient" >gradient</a>
+                            </li>
+                            <li>
+                                <a href="#rendimientoColorScheme" >rendimientoColorScheme</a>
+                            </li>
+                            <li>
+                                <a href="#rendimientoData" >rendimientoData</a>
+                            </li>
+                            <li>
+                                <a href="#selectedVehiculoId" >selectedVehiculoId</a>
+                            </li>
+                            <li>
+                                <a href="#showLegend" >showLegend</a>
+                            </li>
+                            <li>
+                                <a href="#showXAxis" >showXAxis</a>
+                            </li>
+                            <li>
+                                <a href="#showXAxisLabel" >showXAxisLabel</a>
+                            </li>
+                            <li>
+                                <a href="#showYAxis" >showYAxis</a>
+                            </li>
+                            <li>
+                                <a href="#showYAxisLabel" >showYAxisLabel</a>
+                            </li>
+                            <li>
+                                <a href="#timeline" >timeline</a>
+                            </li>
+                            <li>
+                                <a href="#vehiculos" >vehiculos</a>
+                            </li>
+                            <li>
+                                <a href="#view" >view</a>
+                            </li>
+                            <li>
+                                <a href="#xAxisLabelGastos" >xAxisLabelGastos</a>
+                            </li>
+                            <li>
+                                <a href="#xAxisLabelRendimiento" >xAxisLabelRendimiento</a>
+                            </li>
+                            <li>
+                                <a href="#yAxisLabelGastos" >yAxisLabelGastos</a>
+                            </li>
+                            <li>
+                                <a href="#yAxisLabelRendimiento" >yAxisLabelRendimiento</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onResize" >onResize</a>
+                            </li>
+                            <li>
+                                <a href="#onVehiculoChange" >onVehiculoChange</a>
+                            </li>
+                            <li>
+                                <a href="#trackByVehiculoId" >trackByVehiculoId</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(vehiculosService: <a href="../injectables/VehiculosService.html" target="_self">VehiculosService</a>, combustibleService: <a href="../injectables/CombustibleService.html" target="_self">CombustibleService</a>, cdr: ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:69</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>vehiculosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/VehiculosService.html" target="_self" >VehiculosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>combustibleService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CombustibleService.html" target="_self" >CombustibleService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cdr</td>
+                                                  
+                                                        <td>
+                                                                    <code>ChangeDetectorRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onResize"></a>
+                    <span class="name">
+                        <span ><b>onResize</b></span>
+                        <a href="#onResize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onResize(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onVehiculoChange"></a>
+                    <span class="name">
+                        <span ><b>onVehiculoChange</b></span>
+                        <a href="#onVehiculoChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onVehiculoChange()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackByVehiculoId"></a>
+                    <span class="name">
+                        <span ><b>trackByVehiculoId</b></span>
+                        <a href="#trackByVehiculoId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>trackByVehiculoId(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, vehiculo: <a href="../interfaces/Vehiculo.html" target="_self">Vehiculo</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>vehiculo</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Vehiculo.html" target="_self" >Vehiculo</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="curve"></a>
+                    <span class="name">
+                        <span ><b>curve</b></span>
+                        <a href="#curve"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>curveLinear</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorGastos"></a>
+                    <span class="name">
+                        <span ><b>errorGastos</b></span>
+                        <a href="#errorGastos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorRendimiento"></a>
+                    <span class="name">
+                        <span ><b>errorRendimiento</b></span>
+                        <a href="#errorRendimiento"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gastosColorScheme"></a>
+                    <span class="name">
+                        <span ><b>gastosColorScheme</b></span>
+                        <a href="#gastosColorScheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Color</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    name: &#x27;gastosScheme&#x27;,
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: [&#x27;#00bfff&#x27;] // azul vibrante
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gastosData"></a>
+                    <span class="name">
+                        <span ><b>gastosData</b></span>
+                        <a href="#gastosData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gradient"></a>
+                    <span class="name">
+                        <span ><b>gradient</b></span>
+                        <a href="#gradient"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rendimientoColorScheme"></a>
+                    <span class="name">
+                        <span ><b>rendimientoColorScheme</b></span>
+                        <a href="#rendimientoColorScheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Color</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    name: &#x27;rendimientoScheme&#x27;,
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: [&#x27;#00bfff&#x27;] // azul vibrante
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rendimientoData"></a>
+                    <span class="name">
+                        <span ><b>rendimientoData</b></span>
+                        <a href="#rendimientoData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedVehiculoId"></a>
+                    <span class="name">
+                        <span ><b>selectedVehiculoId</b></span>
+                        <a href="#selectedVehiculoId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showLegend"></a>
+                    <span class="name">
+                        <span ><b>showLegend</b></span>
+                        <a href="#showLegend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>window.innerWidth &gt; 700</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showXAxis"></a>
+                    <span class="name">
+                        <span ><b>showXAxis</b></span>
+                        <a href="#showXAxis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showXAxisLabel"></a>
+                    <span class="name">
+                        <span ><b>showXAxisLabel</b></span>
+                        <a href="#showXAxisLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showYAxis"></a>
+                    <span class="name">
+                        <span ><b>showYAxis</b></span>
+                        <a href="#showYAxis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showYAxisLabel"></a>
+                    <span class="name">
+                        <span ><b>showYAxisLabel</b></span>
+                        <a href="#showYAxisLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="timeline"></a>
+                    <span class="name">
+                        <span ><b>timeline</b></span>
+                        <a href="#timeline"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="vehiculos"></a>
+                    <span class="name">
+                        <span ><b>vehiculos</b></span>
+                        <a href="#vehiculos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Vehiculo.html" target="_self" >Vehiculo[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="view"></a>
+                    <span class="name">
+                        <span ><b>view</b></span>
+                        <a href="#view"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[number, number]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[window.innerWidth &gt; 1200 ? 1100 : window.innerWidth - 80, 450]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="xAxisLabelGastos"></a>
+                    <span class="name">
+                        <span ><b>xAxisLabelGastos</b></span>
+                        <a href="#xAxisLabelGastos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Fecha de Carga&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:66</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="xAxisLabelRendimiento"></a>
+                    <span class="name">
+                        <span ><b>xAxisLabelRendimiento</b></span>
+                        <a href="#xAxisLabelRendimiento"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Fecha de Carga&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="yAxisLabelGastos"></a>
+                    <span class="name">
+                        <span ><b>yAxisLabelGastos</b></span>
+                        <a href="#yAxisLabelGastos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Costo de Carga&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="yAxisLabelRendimiento"></a>
+                    <span class="name">
+                        <span ><b>yAxisLabelRendimiento</b></span>
+                        <a href="#yAxisLabelRendimiento"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Rendimiento (Km/Galón)&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/graficas-gastos/graficas-gastos.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ChangeDetectorRef } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { VehiculosService } from &#x27;../services/vehiculos.service&#x27;;
+import { CombustibleService } from &#x27;../services/combustible.service&#x27;;
+import { Vehiculo } from &#x27;../models/vehiculo.model&#x27;;
+import { NgxChartsModule, Color, ScaleType } from &#x27;@swimlane/ngx-charts&#x27;;
+import { curveLinear } from &#x27;d3-shape&#x27;;
+
+@Component({
+  selector: &#x27;app-graficas-gastos&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    NgxChartsModule
+  ],
+  templateUrl: &#x27;./graficas-gastos.html&#x27;,
+  styleUrls: [&#x27;./graficas-gastos.css&#x27;]
+})
+export class GraficasGastos implements OnInit {
+  errorGastos: string | null &#x3D; null;
+  errorRendimiento: string | null &#x3D; null;
+  // ...existing code...
+
+  trackByVehiculoId(index: number, vehiculo: Vehiculo): number {
+  return vehiculo.id ?? index;
+  }
+  vehiculos: Vehiculo[] &#x3D; [];
+  selectedVehiculoId: number | null &#x3D; null;
+
+  // Gráfica de Gastos (NGX-CHARTS)
+  gastosData: any[] &#x3D; [];
+  gastosColorScheme: Color &#x3D; {
+    name: &#x27;gastosScheme&#x27;,
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: [&#x27;#00bfff&#x27;] // azul vibrante
+  };
+
+  // Gráfica de Rendimiento (NGX-CHARTS)
+  // Gráfica de Rendimiento (NGX-CHARTS)
+  rendimientoData: any[] &#x3D; [];
+  rendimientoColorScheme: Color &#x3D; {
+    name: &#x27;rendimientoScheme&#x27;,
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: [&#x27;#00bfff&#x27;] // azul vibrante
+  };
+  view: [number, number] &#x3D; [window.innerWidth &gt; 1200 ? 1100 : window.innerWidth - 80, 450];
+  showLegend &#x3D; window.innerWidth &gt; 700;
+
+  onResize(event: any) {
+    const width &#x3D; event.target.innerWidth &gt; 1200 ? 1100 : event.target.innerWidth - 80;
+  this.view &#x3D; [width, 450];
+  this.showLegend &#x3D; event.target.innerWidth &gt; 700;
+  }
+  showXAxis &#x3D; true;
+  showYAxis &#x3D; true;
+  gradient &#x3D; false;
+  curve &#x3D; curveLinear;
+  timeline &#x3D; true;
+  showXAxisLabel &#x3D; true;
+  showYAxisLabel &#x3D; true;
+  xAxisLabelGastos &#x3D; &#x27;Fecha de Carga&#x27;;
+  yAxisLabelGastos &#x3D; &#x27;Costo de Carga&#x27;;
+  xAxisLabelRendimiento &#x3D; &#x27;Fecha de Carga&#x27;;
+  yAxisLabelRendimiento &#x3D; &#x27;Rendimiento (Km/Galón)&#x27;;
+
+
+  constructor(
+    private vehiculosService: VehiculosService,
+    private combustibleService: CombustibleService,
+    private cdr: ChangeDetectorRef
+  ) {}
+  ngOnInit(): void {
+  window.addEventListener(&#x27;resize&#x27;, this.onResize.bind(this));
+    this.vehiculosService.obtenerVehiculos().subscribe((response: any) &#x3D;&gt; {
+      this.vehiculos &#x3D; response &amp;&amp; response.data ? response.data : [];
+    });
+  }
+
+  onVehiculoChange(): void {
+    this.errorGastos &#x3D; null;
+    this.errorRendimiento &#x3D; null;
+    if (this.selectedVehiculoId) {
+      this.combustibleService.getGastosCombustiblePorVehiculo(this.selectedVehiculoId).subscribe({
+        next: (response: any) &#x3D;&gt; {
+            console.clear();
+            console.log(&#x27;[GASTOS] Datos crudos recibidos:&#x27;, response);
+            let gastos &#x3D; response &amp;&amp; response.data ? response.data : [];
+            let data &#x3D; Array.isArray(gastos)
+              ? gastos
+                  .map(item &#x3D;&gt; {
+                    const fechaValida &#x3D; item.fecha_carga &amp;&amp; String(item.fecha_carga).trim() !&#x3D;&#x3D; &#x27;&#x27;;
+                    // Permitir total_pagado o costo_total (string o número)
+                    let valor &#x3D; null;
+                    if (item.total_pagado !&#x3D;&#x3D; undefined) {
+                      valor &#x3D; Number(item.total_pagado);
+                    } else if (item.costo_total !&#x3D;&#x3D; undefined) {
+                      valor &#x3D; Number(item.costo_total);
+                    }
+                    if (!fechaValida) {
+                      console.warn(&#x27;[GASTOS] Registro descartado por fecha_carga inválida:&#x27;, item);
+                    }
+                    if (!Number.isFinite(valor)) {
+                      console.warn(&#x27;[GASTOS] Registro descartado por total_pagado/costo_total NaN:&#x27;, item);
+                    }
+                    let fechaStr &#x3D; &#x27;&#x27;;
+                    if (fechaValida) {
+                      // Si ya es string tipo ISO, úsalo; si es Date, conviértelo; si es string con hora, recorta solo la fecha
+                      if (typeof item.fecha_carga &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+                        // Forzar formato YYYY-MM-DD para máxima compatibilidad
+                        const match &#x3D; item.fecha_carga.match(/^\d{4}-\d{2}-\d{2}/);
+                        fechaStr &#x3D; match ? match[0] : item.fecha_carga;
+                      } else if (item.fecha_carga instanceof Date) {
+                        fechaStr &#x3D; item.fecha_carga.toISOString().slice(0, 10);
+                      } else {
+                        // Intentar parsear cualquier otro formato
+                        const d &#x3D; new Date(item.fecha_carga);
+                        fechaStr &#x3D; isNaN(d.getTime()) ? String(item.fecha_carga) : d.toISOString().slice(0, 10);
+                      }
+                    }
+                    return fechaValida &amp;&amp; Number.isFinite(valor)
+                      ? {
+                          name: fechaStr,
+                          value: valor
+                        }
+                      : null;
+                  })
+                  .filter(point &#x3D;&gt; point !&#x3D;&#x3D; null)
+              : [];
+            if (data.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; Array.isArray(gastos) &amp;&amp; gastos.length &gt; 0) {
+              console.error(&#x27;[GASTOS] Todos los registros fueron descartados. Ejemplo de datos crudos:&#x27;, gastos.slice(0,3));
+            }
+            if (!data.length) {
+              this.errorGastos &#x3D; &#x27;No hay datos de gastos con fecha válida para este vehículo.&#x27;;
+              this.gastosData &#x3D; [];
+            } else {
+              this.gastosData &#x3D; [{ name: &#x27;Costo de Carga&#x27;, series: data }];
+            }
+            console.log(&#x27;[GASTOS] Datos procesados para ngx-charts:&#x27;, data);
+            this.cdr.detectChanges();
+        },
+        error: (err) &#x3D;&gt; {
+          this.errorGastos &#x3D; &#x27;Error al obtener los datos de gastos.&#x27;;
+          this.gastosData &#x3D; [];
+        }
+      });
+      this.combustibleService.getRendimientoVehiculo(this.selectedVehiculoId).subscribe({
+        next: (response: any) &#x3D;&gt; {
+          console.log(&#x27;[RENDIMIENTO] Datos crudos recibidos:&#x27;, response);
+          const rendimiento &#x3D; response &amp;&amp; response.data ? response.data : [];
+          const data &#x3D; Array.isArray(rendimiento)
+            ? rendimiento.map(item &#x3D;&gt; ({
+                name: item.fecha ? (typeof item.fecha &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? item.fecha : (new Date(item.fecha).toLocaleDateString?.() || String(item.fecha))) : &#x27;Sin fecha&#x27;,
+                value: item.rendimiento !&#x3D;&#x3D; undefined &amp;&amp; item.rendimiento !&#x3D;&#x3D; null ? Number(item.rendimiento) : 0
+              }))
+            : [];
+          if (!data.length) {
+            this.errorRendimiento &#x3D; &#x27;No hay datos de rendimiento para este vehículo.&#x27;;
+          }
+          console.log(&#x27;[RENDIMIENTO] Datos procesados para ngx-charts:&#x27;, data);
+          this.rendimientoData &#x3D; [{ name: &#x27;Rendimiento (Km/Galón)&#x27;, series: data }];
+          this.cdr.detectChanges();
+        },
+        error: (err) &#x3D;&gt; {
+          this.errorRendimiento &#x3D; &#x27;Error al obtener los datos de rendimiento.&#x27;;
+          this.rendimientoData &#x3D; [];
+        }
+      });
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot;&gt;
+  &lt;h2&gt;Gráfica de Gastos de Combustible por Vehículo&lt;/h2&gt;
+
+  &lt;div class&#x3D;&quot;form-group&quot;&gt;
+    &lt;label for&#x3D;&quot;vehiculoSelector&quot;&gt;Selecciona un vehículo:&lt;/label&gt;
+    &lt;select id&#x3D;&quot;vehiculoSelector&quot; [(ngModel)]&#x3D;&quot;selectedVehiculoId&quot; (change)&#x3D;&quot;onVehiculoChange()&quot; class&#x3D;&quot;form-control&quot;&gt;
+      &lt;option [ngValue]&#x3D;&quot;null&quot; disabled&gt;-- Selecciona un vehículo --&lt;/option&gt;
+  &lt;option *ngFor&#x3D;&quot;let vehiculo of vehiculos || []; trackBy: trackByVehiculoId&quot; [value]&#x3D;&quot;vehiculo.id&quot;&gt;
+        {{ vehiculo.marca }} {{ vehiculo.modelo }} - {{ vehiculo.placa }}
+      &lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;chart-container&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;errorGastos&quot; class&#x3D;&quot;error-message&quot;&gt;{{ errorGastos }}&lt;/div&gt;
+  &lt;ngx-charts-line-chart
+      *ngIf&#x3D;&quot;!errorGastos&quot;
+  [view]&#x3D;&quot;view&quot;
+      [scheme]&#x3D;&quot;gastosColorScheme&quot;
+      [results]&#x3D;&quot;gastosData&quot;
+      [gradient]&#x3D;&quot;gradient&quot;
+      [xAxis]&#x3D;&quot;showXAxis&quot;
+      [yAxis]&#x3D;&quot;showYAxis&quot;
+      [legend]&#x3D;&quot;showLegend&quot;
+      [showXAxisLabel]&#x3D;&quot;showXAxisLabel&quot;
+      [showYAxisLabel]&#x3D;&quot;showYAxisLabel&quot;
+      [xAxisLabel]&#x3D;&quot;xAxisLabelGastos&quot;
+      [yAxisLabel]&#x3D;&quot;yAxisLabelGastos&quot;
+      [curve]&#x3D;&quot;curve&quot;
+      [timeline]&#x3D;&quot;timeline&quot;
+      [autoScale]&#x3D;&quot;true&quot;&gt;
+    &lt;/ngx-charts-line-chart&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;chart-container&quot;&gt;
+    &lt;h3&gt;Rendimiento del Vehículo (Km/Galón)&lt;/h3&gt;
+    &lt;div *ngIf&#x3D;&quot;errorRendimiento&quot; class&#x3D;&quot;error-message&quot;&gt;{{ errorRendimiento }}&lt;/div&gt;
+  &lt;ngx-charts-line-chart
+      *ngIf&#x3D;&quot;!errorRendimiento&quot;
+  [view]&#x3D;&quot;view&quot;
+      [scheme]&#x3D;&quot;rendimientoColorScheme&quot;
+      [results]&#x3D;&quot;rendimientoData&quot;
+      [gradient]&#x3D;&quot;gradient&quot;
+      [xAxis]&#x3D;&quot;showXAxis&quot;
+      [yAxis]&#x3D;&quot;showYAxis&quot;
+      [legend]&#x3D;&quot;showLegend&quot;
+      [showXAxisLabel]&#x3D;&quot;showXAxisLabel&quot;
+      [showYAxisLabel]&#x3D;&quot;showYAxisLabel&quot;
+      [xAxisLabel]&#x3D;&quot;xAxisLabelRendimiento&quot;
+      [yAxisLabel]&#x3D;&quot;yAxisLabelRendimiento&quot;
+      [curve]&#x3D;&quot;curve&quot;
+      [timeline]&#x3D;&quot;timeline&quot;
+      [autoScale]&#x3D;&quot;true&quot;&gt;
+    &lt;/ngx-charts-line-chart&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./graficas-gastos.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* Fondo y tarjetas */
+
+.container {
+	max-width: 1200px;
+	width: 95vw;
+	margin: 0 auto;
+}
+
+.chart-container {
+	width: 100%;
+	min-height: 450px;
+	box-sizing: border-box;
+	overflow-x: auto;
+}
+
+@media (max-width: 900px) {
+	.container {
+		max-width: 100vw;
+		width: 100vw;
+		padding: 0 2vw;
+	}
+	.chart-container {
+		min-height: 320px;
+	}
+}
+
+.card {
+	border-radius: 16px;
+	box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+	background: #fafdff;
+	margin-bottom: 32px;
+}
+
+.card-header {
+	background: linear-gradient(90deg, #00bfff 0%, #6e4cff 100%);
+	color: #fff;
+	font-weight: bold;
+	border-radius: 16px 16px 0 0;
+	font-size: 1.2rem;
+	letter-spacing: 1px;
+}
+
+/* Gráfica ng2-charts */
+.chart-container {
+	background: #fafdff;
+	border-radius: 16px;
+	padding: 16px 0;
+	margin-bottom: 32px;
+	box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+canvas {
+	background: #fafdff;
+	border-radius: 16px;
+	box-shadow: 0 2px 8px #00bfff22;
+}
+
+/* Ejes y leyendas */
+.chartjs-render-monitor {
+	font-family: &#x27;Segoe UI&#x27;, Arial, sans-serif !important;
+}
+
+.chart-legend {
+	font-size: 1.1rem;
+	font-family: &#x27;Segoe UI&#x27;, Arial, sans-serif;
+	color: #222;
+}
+
+/* Personalización de líneas y puntos */
+.chartjs-render-monitor line {
+	stroke: #00bfff !important;
+	stroke-width: 3px !important;
+}
+.chartjs-render-monitor circle {
+	stroke: #00bfff !important;
+	fill: #fff !important;
+	stroke-width: 4px !important;
+	r: 7 !important;
+	filter: drop-shadow(0 2px 6px #00bfff44);
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container">  <h2>Gráfica de Gastos de Combustible por Vehículo</h2>  <div class="form-group">    <label for="vehiculoSelector">Selecciona un vehículo:</label>    <select id="vehiculoSelector" [(ngModel)]="selectedVehiculoId" (change)="onVehiculoChange()" class="form-control">      <option [ngValue]="null" disabled>-- Selecciona un vehículo --</option>  <option *ngFor="let vehiculo of vehiculos || []; trackBy: trackByVehiculoId" [value]="vehiculo.id">        {{ vehiculo.marca }} {{ vehiculo.modelo }} - {{ vehiculo.placa }}      </option>    </select>  </div>  <div class="chart-container">    <div *ngIf="errorGastos" class="error-message">{{ errorGastos }}</div>  <ngx-charts-line-chart      *ngIf="!errorGastos"  [view]="view"      [scheme]="gastosColorScheme"      [results]="gastosData"      [gradient]="gradient"      [xAxis]="showXAxis"      [yAxis]="showYAxis"      [legend]="showLegend"      [showXAxisLabel]="showXAxisLabel"      [showYAxisLabel]="showYAxisLabel"      [xAxisLabel]="xAxisLabelGastos"      [yAxisLabel]="yAxisLabelGastos"      [curve]="curve"      [timeline]="timeline"      [autoScale]="true">    </ngx-charts-line-chart>  </div>  <div class="chart-container">    <h3>Rendimiento del Vehículo (Km/Galón)</h3>    <div *ngIf="errorRendimiento" class="error-message">{{ errorRendimiento }}</div>  <ngx-charts-line-chart      *ngIf="!errorRendimiento"  [view]="view"      [scheme]="rendimientoColorScheme"      [results]="rendimientoData"      [gradient]="gradient"      [xAxis]="showXAxis"      [yAxis]="showYAxis"      [legend]="showLegend"      [showXAxisLabel]="showXAxisLabel"      [showYAxisLabel]="showYAxisLabel"      [xAxisLabel]="xAxisLabelRendimiento"      [yAxisLabel]="yAxisLabelRendimiento"      [curve]="curve"      [timeline]="timeline"      [autoScale]="true">    </ngx-charts-line-chart>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AgregarVehiculoComponent', 'selector': 'app-agregar-vehiculo'},{'name': 'AgregarVehiculoSimpleComponent', 'selector': 'app-agregar-vehiculo-simple'},{'name': 'App', 'selector': 'app-root'},{'name': 'BitacoraComponent', 'selector': 'app-bitacora'},{'name': 'CombustibleComponent', 'selector': 'app-combustible'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardGastos', 'selector': 'app-dashboard-gastos'},{'name': 'DashboardGastosComponent', 'selector': 'app-dashboard-gastos'},{'name': 'DetalleVehiculoComponent', 'selector': 'app-detalle-vehiculo'},{'name': 'DialogoNuevaCargaComponent', 'selector': 'app-dialogo-nueva-carga'},{'name': 'EditarVehiculoComponent', 'selector': 'app-editar-vehiculo'},{'name': 'EstadosVehiculosComponent', 'selector': 'app-estados-vehiculos'},{'name': 'GastosAdicionalComponent', 'selector': 'app-gastos-adicional'},{'name': 'GraficasCombustibleComponent', 'selector': 'app-graficas-combustible'},{'name': 'GraficasGastos', 'selector': 'app-graficas-gastos'},{'name': 'GruposVehiculosComponent', 'selector': 'app-grupos-vehiculos'},{'name': 'InventarioComponent', 'selector': 'app-inventario'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'TiposVehiculosComponent', 'selector': 'app-tipos-vehiculos'},{'name': 'UsuariosListComponent', 'selector': 'app-usuarios-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'GraficasGastos'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GraficasGastos.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

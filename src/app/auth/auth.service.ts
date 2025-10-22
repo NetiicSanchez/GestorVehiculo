@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api/auth';
+  private apiUrl = '/api/auth';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -28,16 +28,22 @@ export class AuthService {
     const loginTime = localStorage.getItem('login_time');
     if (!loginTime) return true;
     const now = Date.now();
-    const THIRTY_MIN = 30 * 60 * 1000;
-    return now - parseInt(loginTime, 10) > THIRTY_MIN;
+    // Sesión de 2 horas
+    const TWO_HOURS = 2 * 60 * 60 * 1000;
+    return now - parseInt(loginTime, 10) > TWO_HOURS;
   }
 
   checkSession() {
     if (this.isSessionExpired()) {
-      // Evita cerrar sesión si ya estás en /login
-      if (typeof window !== 'undefined' && window.location.pathname === '/login') {
-        return;
+      // Evita el bucle de redirección si ya estamos en una página pública
+      const publicPaths = ['/login', '/register'];
+      if (typeof window !== 'undefined') {
+        const currentPath = window.location?.pathname || '';
+        const isPublic = publicPaths.some(path => currentPath.endsWith(path));
+        if (isPublic) return; // ya estamos en login/register
       }
+
+      // Redirige siempre al login al expirar la sesión
       this.logout();
     }
   }
@@ -47,9 +53,8 @@ export class AuthService {
       localStorage.removeItem('token');
       localStorage.removeItem('usuario');
       localStorage.removeItem('login_time');
-      if (this.router.url !== '/login') {
-        this.router.navigate(['/login']);
-      }
+      // Siempre redirige a login al cerrar sesión.
+      this.router.navigate(['/login']);
     }
   }
 

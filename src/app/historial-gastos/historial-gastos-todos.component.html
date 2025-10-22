@@ -1,0 +1,34 @@
+<div class="container mt-4">
+  <h2>Historial de Gastos de Todos los Vehículos</h2>
+  <div *ngFor="let grupo of historialPorVehiculo" class="vehiculo-historial mb-5" style="overflow-x:unset;">
+    <h3>{{ grupo.vehiculo.marca }} {{ grupo.vehiculo.modelo }} ({{ grupo.vehiculo.placa }})</h3>
+    <table class="table table-striped mt-2">
+      <thead>
+        <tr>
+          <th>Mes</th>
+          <th>Combustible</th>
+          <th>Repuestos</th>
+          <th>Mano de Obra</th>
+          <th>Galones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of grupo.historial">
+          <td>{{ item.mes }}</td>
+          <td>Q{{ item.total_combustible | number:'1.2-2' }}</td>
+          <td>Q{{ item.total_repuestos | number:'1.2-2' }}</td>
+          <td>Q{{ item.total_mano_obra | number:'1.2-2' }}</td>
+          <td>{{ item.total_galones | number:'1.2-2' }}</td>
+        </tr>
+        <tr style="font-weight:bold;background:#e2e8f0;">
+          <td>Total</td>
+          <td>Q{{ getTotales(grupo.historial).combustible | number:'1.2-2' }}</td>
+          <td>Q{{ getTotales(grupo.historial).repuestos | number:'1.2-2' }}</td>
+          <td>Q{{ getTotales(grupo.historial).manoObra | number:'1.2-2' }}</td>
+          <td>{{ getTotales(grupo.historial).galones | number:'1.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <a routerLink="/dashboard-gastos" class="btn btn-secondary mt-3">Volver al dashboard</a>
+</div>

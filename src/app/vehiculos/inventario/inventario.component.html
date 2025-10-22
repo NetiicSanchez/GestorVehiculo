@@ -16,7 +16,7 @@
             <input matInput 
                    [(ngModel)]="filtroTexto" 
                    (input)="aplicarFiltro()"
-                   placeholder="Placa, marca, modelo...">
+                   placeholder="Nombre, marca, modelo...">
             <mat-icon matSuffix>search</mat-icon>
           </mat-form-field>
           
@@ -28,41 +28,28 @@
         </div>
         
         <div class="actions-container">
-          <button mat-raised-button 
-                  color="primary" 
-                  (click)="agregarVehiculo()"
-                  class="add-button">
+          <!-- Solo mostrar botones si NO es conductor -->
+          <button *ngIf="!esConductor && permisosUsuario.includes('vehiculos.crear')" mat-raised-button color="primary" (click)="agregarVehiculo()" class="add-button">
             <mat-icon>add</mat-icon>
             Agregar Vehículo
           </button>
-          
-          <button mat-raised-button 
-                  color="accent" 
-                  (click)="irAGestionCombustible()"
-                  class="fuel-button">
+
+          <button mat-raised-button color="accent" (click)="irAGestionCombustible()" class="fuel-button">
             <mat-icon>local_gas_station</mat-icon>
             Gestión de Combustible
           </button>
-          
-          <button mat-raised-button 
-                  color="warn" 
-                  (click)="irADashboard()"
-                  class="dashboard-button">
+
+          <button *ngIf="!esConductor && permisosUsuario.includes('dashboard.ver')" mat-raised-button color="warn" (click)="irADashboard()" class="dashboard-button">
             <mat-icon>dashboard</mat-icon>
             Dashboard
           </button>
-          
-          <button mat-stroked-button 
-                  (click)="actualizarInventario()"
-                  matTooltip="Refrescar datos"
-                  [disabled]="cargando">
+
+          <button *ngIf="!esConductor" mat-stroked-button (click)="actualizarInventario()" matTooltip="Refrescar datos" [disabled]="cargando">
             <mat-icon>refresh</mat-icon>
             Refrescar
           </button>
-          
-          <button mat-stroked-button 
-                  (click)="exportarDatos()"
-                  matTooltip="Exportar datos">
+
+          <button *ngIf="rolUsuario !== 'Conductor'" mat-stroked-button (click)="exportarDatos()" matTooltip="Exportar datos">
             <mat-icon>file_download</mat-icon>
             Exportar
           </button>
@@ -85,9 +72,9 @@
       <!-- Tabla de vehículos -->
       <div class="table-container" *ngIf="!errorCarga">
         <table mat-table [dataSource]="dataSource" matSort class="vehiculos-table">
-          <!-- Columna Placa -->
+          <!-- Columna Nombre -->
           <ng-container matColumnDef="placa">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Placa</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
             <td mat-cell *matCellDef="let vehiculo">
               <strong>{{ vehiculo.placa }}</strong>
             </td>
@@ -132,7 +119,7 @@
           <!-- Columna Acciones -->
           <ng-container matColumnDef="acciones">
             <th mat-header-cell *matHeaderCellDef>Acciones</th>
-            <td mat-cell *matCellDef="let vehiculo" class="acciones-cell">
+            <td mat-cell *matCellDef="let vehiculo" class="acciones-cell">              
               <div class="acciones-container">
                 <button mat-mini-fab 
                         (click)="verDetalle(vehiculo)" 
@@ -141,22 +128,23 @@
                         class="accion-btn">
                   <mat-icon>visibility</mat-icon>
                 </button>
-                
-                <button mat-mini-fab 
-                        (click)="editarVehiculo(vehiculo)" 
-                        matTooltip="Editar"
-                        color="accent"
-                        class="accion-btn">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                
-                <button mat-mini-fab 
-                        (click)="eliminarVehiculo(vehiculo)" 
-                        matTooltip="Eliminar"
-                        color="warn"
-                        class="accion-btn">
-                  <mat-icon>delete</mat-icon>
-                </button>
+                <!-- Solo mostrar editar/eliminar si NO es conductor -->
+                <ng-container *ngIf="!esConductor">
+                  <button mat-mini-fab 
+                          (click)="editarVehiculo(vehiculo)" 
+                          matTooltip="Editar"
+                          color="accent"
+                          class="accion-btn">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-mini-fab 
+                          (click)="eliminarVehiculo(vehiculo)" 
+                          matTooltip="Eliminar"
+                          color="warn"
+                          class="accion-btn">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </ng-container>
               </div>
             </td>
           </ng-container>

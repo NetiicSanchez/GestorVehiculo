@@ -1,3 +1,534 @@
+/* === Estilos globales para gráficas modernas === */
+:root {
+  --primary-green: #03A603;
+  --dark-green: #0F732B;
+  --accent-green: #B1D938;
+  --bg-dark: #0f1220;
+  --sidebar-dark: #111827;
+  --card-dark: #1e2235;
+  --text-light: #e2e8f0;
+  --text-muted: #94a3b8;
+  --neon-green: #03A603;
+}
+
+/* Fin variables; resto de estilos globales existentes */
+
+header {
+  background: var(--primary-green);
+  color: #fff;
+}
+
+footer {
+  background: var(--dark-green);
+  color: #fff;
+}
+
+.button-primary {
+  background: var(--primary-green);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.button-primary:hover {
+  background: var(--accent-green);
+  color: #222;
+}
+
+.card {
+  background: #fff;
+  color: var(--dark-green);
+  border-left: 8px solid var(--primary-green);
+  box-shadow: 0 2px 8px rgba(15,115,43,0.08);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.badge {
+  background: var(--accent-green);
+  color: var(--dark-green);
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 0.9em;
+  font-weight: bold;
+  display: inline-block;
+}
+.container {
+  max-width: 900px;
+}
+.card {
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  background: #fafdff;
+  margin-bottom: 32px;
+}
+.card-header {
+  background: linear-gradient(90deg, #00bfff 0%, #6e4cff 100%);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 16px 16px 0 0;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+.ngx-charts {
+  background: #fafdff !important;
+  border-radius: 16px !important;
+  padding: 16px 0;
+}
+.ngx-charts .line-series .line {
+  stroke: #00bfff !important;
+  stroke-width: 5px !important;
+  filter: drop-shadow(0 0 6px #00bfff88);
+  fill: none !important;
+}
+.ngx-charts .line-series .circle {
+  stroke: #00bfff !important;
+  fill: #fff !important;
+  stroke-width: 4px !important;
+  r: 8 !important;
+  filter: drop-shadow(0 2px 6px #00bfff44);
+}
+.ngx-charts .axis-label, 
+.ngx-charts .tick text {
+  font-size: 1.1rem !important;
+  font-family: 'Segoe UI', Arial, sans-serif !important;
+  fill: #222 !important;
+}
+.ngx-charts .legend-label-text {
+  font-size: 1.1rem !important;
+  font-family: 'Segoe UI', Arial, sans-serif !important;
+  fill: #222 !important;
+}
+.area,
+.area-series,
+.area-series-path,
+.line-chart .area,
+.line-chart .area-series,
+.line-chart .area-series-path,
+.line-series .area,
+.line-series .area-series,
+.line-series .area-series-path {
+  display: none !important;
+  fill: transparent !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.ngx-charts .area,
+.ngx-charts .area-series,
+.ngx-charts .area-series-path,
+.ngx-charts .line-chart .area,
+.ngx-charts .line-chart .area-series,
+.ngx-charts .line-chart .area-series-path,
+.ngx-charts .line-series .area,
+.ngx-charts .line-series .area-series,
+.ngx-charts .line-series .area-series-path {
+  display: none !important;
+  fill: transparent !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.ngx-charts .area,
+.ngx-charts .area-series,
+.ngx-charts .area-series-path,
+.ngx-charts .line-chart .area,
+.ngx-charts .line-chart .area-series,
+.ngx-charts .line-chart .area-series-path {
+  display: none !important;
+  fill: none !important;
+  opacity: 0 !important;
+}
+.ngx-charts .area,
+.ngx-charts .area-series-path {
+  display: none !important;
+}
+
+/* === Estilos de navegación principal === */
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px; /* filas x columnas */
+  align-items: center;
+  padding: 8px 0 12px 0;
+}
+
+.main-nav .nav-link {
+  text-decoration: none;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0d47a1;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background .25s, box-shadow .25s, transform .15s;
+}
+
+.main-nav .nav-link:hover {
+  background: #e3f2fd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.main-nav .nav-link:active {
+  transform: translateY(1px);
+}
+
+/* Ajuste para botones Angular Material dentro del nav */
+.main-nav button.nav-link.mat-mdc-raised-button:not(:disabled) {
+  background: linear-gradient(90deg,#1e88e5,#1976d2);
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.main-nav button.nav-link.mat-mdc-raised-button:not(:disabled):hover {
+  filter: brightness(1.05);
+}
+
+/* Agrupaciones del menú */
+.main-nav .nav-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  align-items: center;
+}
+
+.main-nav .nav-group + .nav-group { /* separación entre grupos */
+  margin-left: 32px;
+  position: relative;
+}
+
+.main-nav .nav-group + .nav-group:before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(to bottom,#cfd8dc,#90a4ae);
+}
+
+/* Estado activo */
+.main-nav .nav-link.active, .main-nav .nav-link.active:focus {
+  background: #B1D938;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+.main-nav .nav-link.active mat-icon { color: #fff; }
+
+/* Responsive ajustes */
+@media (max-width: 900px) {
+  .main-nav { justify-content: flex-start; }
+  .main-nav .nav-group + .nav-group { margin-left: 0; }
+  .main-nav .nav-group + .nav-group:before { display: none; }
+}
+
+@media (min-width: 901px) {
+  .main-nav { justify-content: center; }
+}
+.ngx-charts .area-series-path {
+  display: none !important;
+}
+/* === Estilos esenciales para gráficas y tarjetas === */
+.container {
+  max-width: 900px;
+}
+.card {
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  background: #fafdff;
+  margin-bottom: 32px;
+}
+.card-header {
+  background: linear-gradient(90deg, #00bfff 0%, #6e4cff 100%);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 16px 16px 0 0;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+.ngx-charts {
+  background: #fafdff !important;
+  border-radius: 16px !important;
+  padding: 16px 0;
+}
+.ngx-charts .line-series .line {
+  stroke: #00bfff !important;
+  stroke-width: 5px !important;
+  filter: drop-shadow(0 0 6px #00bfff88);
+  fill: none !important;
+}
+.ngx-charts .line-series .circle {
+  stroke: #00bfff !important;
+  fill: #fff !important;
+  stroke-width: 4px !important;
+  r: 8 !important;
+  filter: drop-shadow(0 2px 6px #00bfff44);
+}
+.ngx-charts .axis-label, 
+.ngx-charts .tick text {
+  font-size: 1.1rem !important;
+  font-family: 'Segoe UI', Arial, sans-serif !important;
+  fill: #222 !important;
+}
+.ngx-charts .legend-label-text {
+  font-size: 1.1rem !important;
+  font-family: 'Segoe UI', Arial, sans-serif !important;
+  fill: #222 !important;
+}
+.area,
+.area-series,
+.area-series-path,
+.line-chart .area,
+.line-chart .area-series,
+.line-chart .area-series-path,
+.line-series .area,
+.line-series .area-series,
+.line-series .area-series-path {
+  display: none !important;
+  fill: transparent !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.ngx-charts .area,
+.ngx-charts .area-series,
+.ngx-charts .area-series-path,
+.ngx-charts .line-chart .area,
+.ngx-charts .line-chart .area-series,
+.ngx-charts .line-chart .area-series-path,
+.ngx-charts .line-series .area,
+.ngx-charts .line-series .area-series,
+.ngx-charts .line-series .area-series-path {
+  display: none !important;
+  fill: transparent !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.ngx-charts .area,
+.ngx-charts .area-series,
+.ngx-charts .area-series-path,
+.ngx-charts .line-chart .area,
+.ngx-charts .line-chart .area-series,
+.ngx-charts .line-chart .area-series-path {
+  display: none !important;
+  fill: none !important;
+  opacity: 0 !important;
+}
+.ngx-charts .area,
+.ngx-charts .area-series-path {
+  display: none !important;
+}
+.ngx-charts .area-series-path {
+  display: none !important;
+}
+/* === Estilos globales para gráficas de combustible usando ::ng-deep === */
+::ng-deep .container {
+  max-width: 900px;
+}
+::ng-deep .card {
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  background: #fafdff;
+  margin-bottom: 32px;
+}
+::ng-deep .card-header {
+  background: linear-gradient(90deg, #00bfff 0%, #6e4cff 100%);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 16px 16px 0 0;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+::ng-deep .ngx-charts {
+  background: #fafdff !important;
+  border-radius: 16px !important;
+  padding: 16px 0;
+}
+::ng-deep .ngx-charts .line-series .line {
+  stroke: #00bfff !important;
+  stroke-width: 5px !important;
+  filter: drop-shadow(0 0 6px #00bfff88);
+  fill: none !important;
+}
+::ng-deep .ngx-charts .line-series .circle {
+  stroke: #00bfff !important;
+  fill: #fff !important;
+  stroke-width: 4px !important;
+  r: 8 !important;
+  filter: drop-shadow(0 2px 6px #00bfff44);
+}
+::ng-deep .ngx-charts .axis-label, 
+::ng-deep .ngx-charts .tick text {
+  font-size: 1.1rem !important;
+  font-family: 'Segoe UI', Arial, sans-serif !important;
+  fill: #222 !important;
+}
+::ng-deep .ngx-charts .legend-label-text {
+  font-size: 1.1rem !important;
+  font-family: 'Segoe UI', Arial, sans-serif !important;
+  fill: #222 !important;
+}
+::ng-deep .area,
+::ng-deep .area-series,
+::ng-deep .area-series-path,
+::ng-deep .line-chart .area,
+::ng-deep .line-chart .area-series,
+::ng-deep .line-chart .area-series-path,
+::ng-deep .line-series .area,
+::ng-deep .line-series .area-series,
+::ng-deep .line-series .area-series-path {
+  display: none !important;
+  fill: transparent !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+::ng-deep .ngx-charts .area,
+::ng-deep .ngx-charts .area-series,
+::ng-deep .ngx-charts .area-series-path,
+::ng-deep .ngx-charts .line-chart .area,
+::ng-deep .ngx-charts .line-chart .area-series,
+::ng-deep .ngx-charts .line-chart .area-series-path,
+::ng-deep .ngx-charts .line-series .area,
+::ng-deep .ngx-charts .line-series .area-series,
+::ng-deep .ngx-charts .line-series .area-series-path {
+  display: none !important;
+  fill: transparent !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+::ng-deep .ngx-charts .area,
+::ng-deep .ngx-charts .area-series,
+::ng-deep .ngx-charts .area-series-path,
+::ng-deep .ngx-charts .line-chart .area,
+::ng-deep .ngx-charts .line-chart .area-series,
+::ng-deep .ngx-charts .line-chart .area-series-path {
+  display: none !important;
+  fill: none !important;
+  opacity: 0 !important;
+}
+::ng-deep .ngx-charts .area,
+::ng-deep .ngx-charts .area-series-path {
+  display: none !important;
+}
+::ng-deep .ngx-charts .area-series-path {
+  display: none !important;
+}
+/* Forzar inclusión de estilos globales de gráficas en producción */
+
+body .container {
+  max-width: 900px;
+}
+
+
+
+ /*
+body .card {
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  background: #fafdff;
+  margin-bottom: 32px;
+}
+*/
+
+
+
+
+body .card-header {
+  background: linear-gradient(90deg, #00bfff 0%, #6e4cff 100%);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 16px 16px 0 0;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+body .ngx-charts {
+  background: #fafdff !important;
+  border-radius: 16px !important;
+  padding: 16px 0;
+}
+
+body .ngx-charts .line-series .line {
+  stroke: #00bfff !important;
+  stroke-width: 5px !important;
+  filter: drop-shadow(0 0 6px #00bfff88);
+  fill: none !important;
+}
+
+body .ngx-charts .line-series .circle {
+  stroke: #00bfff !important;
+  fill: #fff !important;
+  stroke-width: 4px !important;
+  r: 8 !important;
+  filter: drop-shadow(0 2px 6px #00bfff44);
+}
+
+body .ngx-charts .axis-label, 
+body .ngx-charts .tick text {
+  font-size: 1.1rem !important;
+  font-family: 'Segoe UI', Arial, sans-serif !important;
+  fill: #222 !important;
+}
+
+body .ngx-charts .legend-label-text {
+  font-size: 1.1rem !important;
+  font-family: 'Segoe UI', Arial, sans-serif !important;
+  fill: #222 !important;
+}
+
+body .area,
+body .area-series,
+body .area-series-path,
+body .line-chart .area,
+body .line-chart .area-series,
+body .line-chart .area-series-path,
+body .line-series .area,
+body .line-series .area-series,
+body .line-series .area-series-path {
+  display: none !important;
+  fill: transparent !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+body .ngx-charts .area,
+body .ngx-charts .area-series,
+body .ngx-charts .area-series-path,
+body .ngx-charts .line-chart .area,
+body .ngx-charts .line-chart .area-series,
+body .ngx-charts .line-chart .area-series-path,
+body .ngx-charts .line-series .area,
+body .ngx-charts .line-series .area-series,
+body .ngx-charts .line-series .area-series-path {
+  display: none !important;
+  fill: transparent !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+body .ngx-charts .area,
+body .ngx-charts .area-series,
+body .ngx-charts .area-series-path,
+body .ngx-charts .line-chart .area,
+body .ngx-charts .line-chart .area-series,
+body .ngx-charts .line-chart .area-series-path {
+  display: none !important;
+  fill: none !important;
+  opacity: 0 !important;
+}
+body .ngx-charts .area,
+body .ngx-charts .area-series-path {
+  display: none !important;
+}
+body .ngx-charts .area-series-path {
+  display: none !important;
+}
 /* Reset y estilos base */
 * {
   margin: 0;
@@ -201,4 +732,145 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
+}
+
+/* Estilos para dropdowns de Angular Material */
+.mat-mdc-select-panel {
+  background-color: white !important;
+  border: 1px solid #e0e0e0 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+}
+
+.mat-mdc-option {
+  background-color: white !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+  padding: 12px 16px !important;
+}
+
+.mat-mdc-option:hover {
+  background-color: #f5f5f5 !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected {
+  background-color: #e3f2fd !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected:hover {
+  background-color: #bbdefb !important;
+}
+
+/* Asegurar que las opciones personalizadas tengan fondo blanco */
+.vehiculo-option,
+.combustible-option {
+  background-color: white !important;
+  padding: 8px 12px !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+}
+
+.vehiculo-option:hover,
+.combustible-option:hover {
+  background-color: #f5f5f5 !important;
+}
+
+/* === Estilos globales para gráficas de combustible === */
+.container {
+  max-width: 900px;
+}
+
+.card {
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  background: #fafdff;
+  margin-bottom: 32px;
+}
+
+.card-header {
+  background: linear-gradient(90deg, #00bfff 0%, #6e4cff 100%);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 16px 16px 0 0;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+/* Gráfica ngx-charts */
+.ngx-charts {
+  background: #fafdff !important;
+  border-radius: 16px !important;
+  padding: 16px 0;
+}
+
+.ngx-charts .line-series .line {
+  stroke: #00bfff !important;
+  stroke-width: 5px !important;
+  filter: drop-shadow(0 0 6px #00bfff88);
+  fill: none !important;
+}
+
+.ngx-charts .line-series .circle {
+  stroke: #00bfff !important;
+  fill: #fff !important;
+  stroke-width: 4px !important;
+  r: 8 !important;
+  filter: drop-shadow(0 2px 6px #00bfff44);
+}
+
+.ngx-charts .axis-label, 
+.ngx-charts .tick text {
+  font-size: 1.1rem !important;
+  font-family: 'Segoe UI', Arial, sans-serif !important;
+  fill: #222 !important;
+}
+
+.ngx-charts .legend-label-text {
+  font-size: 1.1rem !important;
+  font-family: 'Segoe UI', Arial, sans-serif !important;
+  fill: #222 !important;
+}
+
+/* Eliminar área gris de fondo */
+.area,
+.area-series,
+.area-series-path,
+.line-chart .area,
+.line-chart .area-series,
+.line-chart .area-series-path,
+.line-series .area,
+.line-series .area-series,
+.line-series .area-series-path {
+  display: none !important;
+  fill: transparent !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.ngx-charts .area,
+.ngx-charts .area-series,
+.ngx-charts .area-series-path,
+.ngx-charts .line-chart .area,
+.ngx-charts .line-chart .area-series,
+.ngx-charts .line-chart .area-series-path,
+.ngx-charts .line-series .area,
+.ngx-charts .line-series .area-series,
+.ngx-charts .line-series .area-series-path {
+  display: none !important;
+  fill: transparent !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.ngx-charts .area,
+.ngx-charts .area-series,
+.ngx-charts .area-series-path,
+.ngx-charts .line-chart .area,
+.ngx-charts .line-chart .area-series,
+.ngx-charts .line-chart .area-series-path {
+  display: none !important;
+  fill: none !important;
+  opacity: 0 !important;
+}
+.ngx-charts .area,
+.ngx-charts .area-series-path {
+  display: none !important;
+}
+.ngx-charts .area-series-path {
+  display: none !important;
 }

@@ -1,0 +1,2315 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>gestor-vehiculos documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">gestor-vehiculos documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  GastosAdicionalComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/gastos-adicional/gastos-adicional.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-gastos-adicional</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>FormsModule</code>
+                            <code>MatIconModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatSelectModule</code>
+                            <code>MatOptionModule</code>
+                            <code>MatTableModule</code>
+                            <code>MatButtonModule</code>
+                            <code>MatPaginatorModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./gastos-adicional.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./gastos-adicional.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#anioFiltro" >anioFiltro</a>
+                            </li>
+                            <li>
+                                <a href="#archivoSeleccionado" >archivoSeleccionado</a>
+                            </li>
+                            <li>
+                                <a href="#displayedColumns" >displayedColumns</a>
+                            </li>
+                            <li>
+                                <a href="#errorMessage" >errorMessage</a>
+                            </li>
+                            <li>
+                                <a href="#gastoForm" >gastoForm</a>
+                            </li>
+                            <li>
+                                <a href="#gastosAdicionales" >gastosAdicionales</a>
+                            </li>
+                            <li>
+                                <a href="#mesFiltro" >mesFiltro</a>
+                            </li>
+                            <li>
+                                <a href="#mostrarVistaPrevia" >mostrarVistaPrevia</a>
+                            </li>
+                            <li>
+                                <a href="#nombreArchivoSeleccionado" >nombreArchivoSeleccionado</a>
+                            </li>
+                            <li>
+                                <a href="#pageIndex" >pageIndex</a>
+                            </li>
+                            <li>
+                                <a href="#pageSize" >pageSize</a>
+                            </li>
+                            <li>
+                                <a href="#submitting" >submitting</a>
+                            </li>
+                            <li>
+                                <a href="#successMessage" >successMessage</a>
+                            </li>
+                            <li>
+                                <a href="#vehiculos" >vehiculos</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cambiarPagina" >cambiarPagina</a>
+                            </li>
+                            <li>
+                                <a href="#cargarGastosAdicionales" >cargarGastosAdicionales</a>
+                            </li>
+                            <li>
+                                <a href="#crearRepuesto" >crearRepuesto</a>
+                            </li>
+                            <li>
+                                <a href="#editarGasto" >editarGasto</a>
+                            </li>
+                            <li>
+                                <a href="#eliminarGasto" >eliminarGasto</a>
+                            </li>
+                            <li>
+                                <a href="#filtrarPorMes" >filtrarPorMes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#guardarGasto" >guardarGasto</a>
+                            </li>
+                            <li>
+                                <a href="#inicializarRepuestos" >inicializarRepuestos</a>
+                            </li>
+                            <li>
+                                <a href="#limpiarArchivo" >limpiarArchivo</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#obtenerAnios" >obtenerAnios</a>
+                            </li>
+                            <li>
+                                <a href="#onFileSelected" >onFileSelected</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#subirArchivo" >subirArchivo</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#repuestos" >repuestos</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: FormBuilder, gastosService: <a href="../injectables/GastosAdicionalService.html" target="_self">GastosAdicionalService</a>, vehiculosService: <a href="../injectables/VehiculosService.html" target="_self">VehiculosService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:51</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>gastosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/GastosAdicionalService.html" target="_self" >GastosAdicionalService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>vehiculosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/VehiculosService.html" target="_self" >VehiculosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cambiarPagina"></a>
+                    <span class="name">
+                        <span ><b>cambiarPagina</b></span>
+                        <a href="#cambiarPagina"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cambiarPagina(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="226"
+                                    class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:226</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarGastosAdicionales"></a>
+                    <span class="name">
+                        <span ><b>cargarGastosAdicionales</b></span>
+                        <a href="#cargarGastosAdicionales"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cargarGastosAdicionales()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="213"
+                                    class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:213</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="crearRepuesto"></a>
+                    <span class="name">
+                        <span ><b>crearRepuesto</b></span>
+                        <a href="#crearRepuesto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>crearRepuesto()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>FormGroup</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editarGasto"></a>
+                    <span class="name">
+                        <span ><b>editarGasto</b></span>
+                        <a href="#editarGasto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editarGasto(gasto: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="246"
+                                    class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:246</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>gasto</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eliminarGasto"></a>
+                    <span class="name">
+                        <span ><b>eliminarGasto</b></span>
+                        <a href="#eliminarGasto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>eliminarGasto(gasto: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="251"
+                                    class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:251</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>gasto</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filtrarPorMes"></a>
+                    <span class="name">
+                        <span ><b>filtrarPorMes</b></span>
+                        <a href="#filtrarPorMes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filtrarPorMes()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="232"
+                                    class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:232</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guardarGasto"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>guardarGasto</b></span>
+                        <a href="#guardarGasto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>guardarGasto(fotoUrl: string | null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="191"
+                                    class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:191</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fotoUrl</td>
+                                            <td>
+                                                        <code>string | null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="inicializarRepuestos"></a>
+                    <span class="name">
+                        <span ><b>inicializarRepuestos</b></span>
+                        <a href="#inicializarRepuestos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>inicializarRepuestos()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="92"
+                                    class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="limpiarArchivo"></a>
+                    <span class="name">
+                        <span ><b>limpiarArchivo</b></span>
+                        <a href="#limpiarArchivo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>limpiarArchivo()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:123</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="obtenerAnios"></a>
+                    <span class="name">
+                        <span ><b>obtenerAnios</b></span>
+                        <a href="#obtenerAnios"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>obtenerAnios()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="237"
+                                    class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:237</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>number[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFileSelected"></a>
+                    <span class="name">
+                        <span ><b>onFileSelected</b></span>
+                        <a href="#onFileSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFileSelected(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:129</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subirArchivo"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>subirArchivo</b></span>
+                        <a href="#subirArchivo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>subirArchivo()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="154"
+                                    class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:154</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="anioFiltro"></a>
+                    <span class="name">
+                        <span ><b>anioFiltro</b></span>
+                        <a href="#anioFiltro"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="archivoSeleccionado"></a>
+                    <span class="name">
+                        <span ><b>archivoSeleccionado</b></span>
+                        <a href="#archivoSeleccionado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>File | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayedColumns"></a>
+                    <span class="name">
+                        <span ><b>displayedColumns</b></span>
+                        <a href="#displayedColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    &#x27;fecha_gasto&#x27;, &#x27;vehiculo&#x27;, &#x27;tipo_gasto&#x27;, &#x27;monto&#x27;, &#x27;kilometraje&#x27;, &#x27;proveedor&#x27;, &#x27;acciones&#x27;
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessage"></a>
+                    <span class="name">
+                        <span ><b>errorMessage</b></span>
+                        <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gastoForm"></a>
+                    <span class="name">
+                        <span ><b>gastoForm</b></span>
+                        <a href="#gastoForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gastosAdicionales"></a>
+                    <span class="name">
+                        <span ><b>gastosAdicionales</b></span>
+                        <a href="#gastosAdicionales"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mesFiltro"></a>
+                    <span class="name">
+                        <span ><b>mesFiltro</b></span>
+                        <a href="#mesFiltro"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mostrarVistaPrevia"></a>
+                    <span class="name">
+                        <span ><b>mostrarVistaPrevia</b></span>
+                        <a href="#mostrarVistaPrevia"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nombreArchivoSeleccionado"></a>
+                    <span class="name">
+                        <span ><b>nombreArchivoSeleccionado</b></span>
+                        <a href="#nombreArchivoSeleccionado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageIndex"></a>
+                    <span class="name">
+                        <span ><b>pageIndex</b></span>
+                        <a href="#pageIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageSize"></a>
+                    <span class="name">
+                        <span ><b>pageSize</b></span>
+                        <a href="#pageSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>20</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitting"></a>
+                    <span class="name">
+                        <span ><b>submitting</b></span>
+                        <a href="#submitting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="successMessage"></a>
+                    <span class="name">
+                        <span ><b>successMessage</b></span>
+                        <a href="#successMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="vehiculos"></a>
+                    <span class="name">
+                        <span ><b>vehiculos</b></span>
+                        <a href="#vehiculos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="repuestos"></a>
+                        <span class="name"><b>repuestos</b><a href="#repuestos"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>repuestos()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/gastos-adicional/gastos-adicional.component.ts:81</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from &#x27;@angular/forms&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { MatOptionModule } from &#x27;@angular/material/core&#x27;;
+import { MatTableModule } from &#x27;@angular/material/table&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { MatPaginatorModule } from &#x27;@angular/material/paginator&#x27;;
+import { GastosAdicionalService, GastoAdicional } from &#x27;../services/gastos-adicional.service&#x27;;
+import { VehiculosService } from &#x27;../services/vehiculos.service&#x27;;
+
+@Component({
+  selector: &#x27;app-gastos-adicional&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatTableModule,
+    MatButtonModule,
+    MatPaginatorModule
+  ],
+  templateUrl: &#x27;./gastos-adicional.component.html&#x27;,
+  styleUrls: [&#x27;./gastos-adicional.component.css&#x27;]
+})
+export class GastosAdicionalComponent implements OnInit {
+  displayedColumns: string[] &#x3D; [
+    &#x27;fecha_gasto&#x27;, &#x27;vehiculo&#x27;, &#x27;tipo_gasto&#x27;, &#x27;monto&#x27;, &#x27;kilometraje&#x27;, &#x27;proveedor&#x27;, &#x27;acciones&#x27;
+  ];
+  gastosAdicionales: any[] &#x3D; [];
+  gastoForm!: FormGroup;
+  vehiculos: any[] &#x3D; [];
+  submitting &#x3D; false;
+  successMessage &#x3D; &#x27;&#x27;;
+  errorMessage &#x3D; &#x27;&#x27;;
+  archivoSeleccionado: File | null &#x3D; null;
+  nombreArchivoSeleccionado &#x3D; &#x27;&#x27;;
+  mostrarVistaPrevia &#x3D; false;
+
+  // Paginación y filtro
+  pageSize &#x3D; 20;
+  pageIndex &#x3D; 0;
+  mesFiltro: number | null &#x3D; null;
+  anioFiltro: number | null &#x3D; null;
+
+  constructor(
+    private fb: FormBuilder,
+    private gastosService: GastosAdicionalService,
+    private vehiculosService: VehiculosService
+  ) {}
+
+  ngOnInit(): void {
+    this.cargarGastosAdicionales();
+    this.gastoForm &#x3D; this.fb.group({
+      id_vehiculo: [null, Validators.required],
+      tipo_gasto: [&#x27;&#x27;, Validators.required],
+      fecha_gasto: [&#x27;&#x27;, Validators.required],
+      descripcion: [&#x27;&#x27;],
+      monto: [null, [Validators.required, Validators.min(0)]],
+      proveedor: [&#x27;&#x27;],
+      observaciones: [&#x27;&#x27;],
+      foto_factura: [&#x27;&#x27;],
+      kilometraje: [null, [Validators.required, Validators.min(0)]],
+      precio_mano_obra: [null],
+      repuestos: this.fb.array([])
+    });
+    this.inicializarRepuestos();
+    this.vehiculosService.obtenerVehiculos().subscribe(
+      (res) &#x3D;&gt; this.vehiculos &#x3D; res.data || res,
+      (err) &#x3D;&gt; console.error(&#x27;Error al cargar vehículos:&#x27;, err)
+    );
+  }
+
+  get repuestos(): FormArray {
+    return this.gastoForm.get(&#x27;repuestos&#x27;) as FormArray;
+  }
+
+  crearRepuesto(): FormGroup {
+    return this.fb.group({
+      nombre: [&#x27;&#x27;],
+      precio: [null]
+    });
+  }
+
+  inicializarRepuestos(): void {
+    for (let i &#x3D; 0; i &lt; 5; i++) {
+      this.repuestos.push(this.crearRepuesto());
+    }
+  }
+
+  // Método para manejar la selección de archivos
+  onFileSelected(event: any): void {
+    const file &#x3D; event.target.files[0];
+    if (file) {
+      // Validar tipo de archivo
+      if (!file.type.startsWith(&#x27;image/&#x27;)) {
+        alert(&#x27;Por favor selecciona solo archivos de imagen&#x27;);
+        return;
+      }
+      
+      // Validar tamaño (5MB máximo)
+      if (file.size &gt; 5 * 1024 * 1024) {
+        alert(&#x27;El archivo es demasiado grande. Máximo 5MB&#x27;);
+        return;
+      }
+      
+      this.archivoSeleccionado &#x3D; file;
+      this.nombreArchivoSeleccionado &#x3D; file.name;
+      this.mostrarVistaPrevia &#x3D; true;
+      
+      console.log(&#x27;📁 Archivo seleccionado:&#x27;, file.name, file.size, &#x27;bytes&#x27;);
+    }
+  }
+
+  // Método para limpiar el archivo seleccionado
+  limpiarArchivo(): void {
+    this.archivoSeleccionado &#x3D; null;
+    this.nombreArchivoSeleccionado &#x3D; &#x27;&#x27;;
+    this.mostrarVistaPrevia &#x3D; false;
+  }
+
+  onSubmit(): void {
+    if (this.gastoForm.invalid) {
+      this.gastoForm.markAllAsTouched();
+      return;
+    }
+    
+    this.submitting &#x3D; true;
+    this.successMessage &#x3D; &#x27;&#x27;;
+    this.errorMessage &#x3D; &#x27;&#x27;;
+    
+    // Si hay archivo seleccionado, primero lo subimos
+    if (this.archivoSeleccionado) {
+      this.subirArchivo().then((urlArchivo) &#x3D;&gt; {
+        this.guardarGasto(urlArchivo);
+      }).catch((error) &#x3D;&gt; {
+        console.error(&#x27;❌ Error al subir archivo:&#x27;, error);
+        this.errorMessage &#x3D; &#x27;Error al subir el archivo&#x27;;
+        this.submitting &#x3D; false;
+      });
+    } else {
+      // Guardar sin foto
+      this.guardarGasto(null);
+    }
+  }
+
+  private async subirArchivo(): Promise&lt;string&gt; {
+    return new Promise((resolve, reject) &#x3D;&gt; {
+      if (!this.archivoSeleccionado) {
+        return reject(&#x27;No hay archivo seleccionado&#x27;);
+      }
+
+      const formData &#x3D; new FormData();
+      formData.append(&#x27;foto&#x27;, this.archivoSeleccionado);
+
+      // La URL debe coincidir con la ruta del backend: /api/upload/factura
+      const uploadUrl &#x3D; &#x27;/api/upload/factura&#x27;;
+
+      fetch(uploadUrl, {
+        method: &#x27;POST&#x27;,
+        body: formData
+      })
+      .then(response &#x3D;&gt; {
+        if (!response.ok) {
+          throw new Error(&#x27;Error al subir archivo&#x27;);
+        }
+        return response.json();
+      })
+      .then(data &#x3D;&gt; {
+        if (data.success &amp;&amp; data.url) {
+          console.log(&#x27;✅ Archivo subido, URL:&#x27;, data.url);
+          resolve(data.url);
+        } else {
+          reject(&#x27;La respuesta del servidor no fue exitosa o no contiene la URL&#x27;);
+        }
+      })
+      .catch(error &#x3D;&gt; {
+        console.error(&#x27;❌ Error en fetch:&#x27;, error);
+        reject(error);
+      });
+    });
+  }
+
+  private guardarGasto(fotoUrl: string | null): void {
+    const gasto: GastoAdicional &#x3D; {
+      ...this.gastoForm.value,
+      foto_factura: fotoUrl
+    };
+    this.gastosService.crearGasto(gasto).subscribe(
+      res &#x3D;&gt; {
+        this.successMessage &#x3D; &#x27;Gasto adicional guardado correctamente.&#x27;;
+        this.gastoForm.reset();
+        this.limpiarArchivo(); // Limpiar archivo seleccionado
+        this.submitting &#x3D; false;
+        this.cargarGastosAdicionales(); // Actualizar la tabla
+        setTimeout(() &#x3D;&gt; this.successMessage &#x3D; &#x27;&#x27;, 3000); // Ocultar mensaje de éxito
+      },
+      err &#x3D;&gt; {
+        this.errorMessage &#x3D; &#x27;Error al guardar el gasto adicional.&#x27;;
+        console.error(err);
+        this.submitting &#x3D; false;
+      }
+    );
+  }
+
+  cargarGastosAdicionales(): void {
+    const params: any &#x3D; {
+      limit: this.pageSize,
+      offset: this.pageIndex * this.pageSize
+    };
+    if (this.mesFiltro) params.mes &#x3D; this.mesFiltro;
+    if (this.anioFiltro) params.anio &#x3D; this.anioFiltro;
+    this.gastosService.obtenerGastos(params).subscribe(
+      (res: any) &#x3D;&gt; this.gastosAdicionales &#x3D; res.data || res,
+      (err: any) &#x3D;&gt; console.error(&#x27;Error al cargar gastos adicionales:&#x27;, err)
+    );
+  }
+
+  cambiarPagina(event: any): void {
+    this.pageIndex &#x3D; event.pageIndex;
+    this.pageSize &#x3D; event.pageSize;
+    this.cargarGastosAdicionales();
+  }
+
+  filtrarPorMes(): void {
+    this.pageIndex &#x3D; 0;
+    this.cargarGastosAdicionales();
+  }
+
+  obtenerAnios(): number[] {
+    const anioActual &#x3D; new Date().getFullYear();
+    const anios: number[] &#x3D; [];
+    for (let i &#x3D; anioActual; i &gt;&#x3D; anioActual - 10; i--) {
+      anios.push(i);
+    }
+    return anios;
+  }
+
+  editarGasto(gasto: any): void {
+    // Implementar lógica de edición si lo necesitas
+    alert(&#x27;Funcionalidad de edición pendiente&#x27;);
+  }
+
+  eliminarGasto(gasto: any): void {
+    // Implementar lógica de eliminación si lo necesitas
+    alert(&#x27;Funcionalidad de eliminación pendiente&#x27;);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;gastos-adicional-container&quot;&gt;
+  &lt;h2&gt;Registrar Bitácora de Mantenimiento&lt;/h2&gt;
+
+  &lt;form [formGroup]&#x3D;&quot;gastoForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot; novalidate&gt;
+    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+      &lt;label for&#x3D;&quot;idVehiculo&quot;&gt;Vehículo *&lt;/label&gt;
+  &lt;select id&#x3D;&quot;idVehiculo&quot; formControlName&#x3D;&quot;id_vehiculo&quot; style&#x3D;&quot;width:100%;max-width:100%;height:40px;padding:0 8px;font-size:1rem;&quot;&gt;
+        &lt;option value&#x3D;&quot;&quot; disabled&gt;Seleccione un vehículo&lt;/option&gt;
+        &lt;option *ngFor&#x3D;&quot;let v of vehiculos&quot; [value]&#x3D;&quot;v.id&quot;&gt;{{ v.marca }} {{ v.modelo }} ({{ v.numero_placa || v.placa }})&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;gastoForm.get(&#x27;id_vehiculo&#x27;)?.touched &amp;&amp; gastoForm.get(&#x27;id_vehiculo&#x27;)?.invalid&quot;&gt;
+        Debe seleccionar un vehículo.
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+      &lt;label for&#x3D;&quot;tipoGasto&quot;&gt;Tipo de Gasto *&lt;/label&gt;
+  &lt;select id&#x3D;&quot;tipoGasto&quot; formControlName&#x3D;&quot;tipo_gasto&quot; required style&#x3D;&quot;width:100%;max-width:100%;height:40px;padding:0 8px;font-size:1rem;&quot;&gt;
+        &lt;option value&#x3D;&quot;&quot; disabled selected&gt;Seleccione el tipo de gasto&lt;/option&gt;
+        &lt;option value&#x3D;&quot;PREVENTIVO&quot;&gt;PREVENTIVO&lt;/option&gt;
+        &lt;option value&#x3D;&quot;CORRECTIVO&quot;&gt;CORRECTIVO&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;gastoForm.get(&#x27;tipo_gasto&#x27;)?.touched &amp;&amp; gastoForm.get(&#x27;tipo_gasto&#x27;)?.invalid&quot;&gt;
+        El tipo de gasto es requerido.
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+      &lt;label for&#x3D;&quot;fechaGasto&quot;&gt;Fecha de Gasto *&lt;/label&gt;
+      &lt;input id&#x3D;&quot;fechaGasto&quot; type&#x3D;&quot;date&quot; formControlName&#x3D;&quot;fecha_gasto&quot; /&gt;
+      &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;gastoForm.get(&#x27;fecha_gasto&#x27;)?.touched &amp;&amp; gastoForm.get(&#x27;fecha_gasto&#x27;)?.invalid&quot;&gt;
+        La fecha es requerida.
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+      &lt;label for&#x3D;&quot;descripcion&quot;&gt;Descripción detallada&lt;/label&gt;
+      &lt;textarea id&#x3D;&quot;descripcion&quot; formControlName&#x3D;&quot;descripcion&quot;&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+      &lt;label for&#x3D;&quot;precio_mano_obra&quot;&gt;Precio de mano de obra&lt;/label&gt;
+      &lt;input id&#x3D;&quot;precio_mano_obra&quot; type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;precio_mano_obra&quot; step&#x3D;&quot;0.01&quot; /&gt;
+    &lt;/div&gt;
+
+    &lt;hr&gt;
+    &lt;h4&gt;Repuestos&lt;/h4&gt;
+    &lt;div formArrayName&#x3D;&quot;repuestos&quot;&gt;
+      &lt;div *ngFor&#x3D;&quot;let repuesto of repuestos.controls; let i&#x3D;index&quot; [formGroupName]&#x3D;&quot;i&quot; class&#x3D;&quot;repuesto-item&quot;&gt;
+        &lt;div class&#x3D;&quot;form-group repuesto-nombre&quot;&gt;
+          &lt;label for&#x3D;&quot;nombre_repuesto_{{i}}&quot;&gt;Repuesto {{i + 1}}&lt;/label&gt;
+          &lt;input id&#x3D;&quot;nombre_repuesto_{{i}}&quot; formControlName&#x3D;&quot;nombre&quot; placeholder&#x3D;&quot;Nombre del repuesto&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-group repuesto-precio&quot;&gt;
+          &lt;label for&#x3D;&quot;precio_repuesto_{{i}}&quot;&gt;Precio&lt;/label&gt;
+          &lt;input id&#x3D;&quot;precio_repuesto_{{i}}&quot; type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;precio&quot; placeholder&#x3D;&quot;Precio&quot;&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;hr&gt;
+
+    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+      &lt;label for&#x3D;&quot;monto&quot;&gt;Monto Total *&lt;/label&gt;
+      &lt;input id&#x3D;&quot;monto&quot; type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;monto&quot; step&#x3D;&quot;0.01&quot; /&gt;
+      &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;gastoForm.get(&#x27;monto&#x27;)?.touched &amp;&amp; gastoForm.get(&#x27;monto&#x27;)?.invalid&quot;&gt;
+        El monto es requerido y debe ser un valor positivo.
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+      &lt;label for&#x3D;&quot;proveedor&quot;&gt;Proveedor&lt;/label&gt;
+  &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot; style&#x3D;&quot;width:100%;max-width:100%;&quot;&gt;
+  &lt;mat-select id&#x3D;&quot;proveedor&quot; formControlName&#x3D;&quot;proveedor&quot; required&gt;
+          &lt;mat-option value&#x3D;&quot;TALLER MECANICO TONO&quot;&gt;TALLER MECANICO TONO&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;LLANSUR&quot;&gt;LLANSUR&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;RESORTES QUICHÉ&quot;&gt;RESORTES QUICHÉ&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;TALLER ELECTROMECÁNICO HOPÓLITO&quot;&gt;TALLER ELECTROMECÁNICO HOPÓLITO&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;MOTOCAR&quot;&gt;MOTOCAR&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;TALLER TECSER MOTOS&quot;&gt;TALLER TECSER MOTOS&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;AUTOPOLARIZADO EL TRIUNFO&quot;&gt;AUTOPOLARIZADO EL TRIUNFO&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;AUTOMAQ&quot;&gt;AUTOMAQ&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;REMOCAR&quot;&gt;REMOCAR&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;REFACCIONARIA EL TRIUNFO&quot;&gt;REFACCIONARIA EL TRIUNFO&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;CLUTCHES DEL SUR&quot;&gt;CLUTCHES DEL SUR&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;Otro&quot;&gt;Otro&lt;/mat-option&gt;
+        &lt;/mat-select&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+      &lt;label for&#x3D;&quot;observaciones&quot;&gt;Observaciones&lt;/label&gt;
+      &lt;textarea id&#x3D;&quot;observaciones&quot; formControlName&#x3D;&quot;observaciones&quot;&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+      &lt;label for&#x3D;&quot;fotoFactura&quot;&gt;Foto de Factura&lt;/label&gt;
+      
+      &lt;!-- Input file oculto --&gt;
+      &lt;input 
+        #fileInput
+        type&#x3D;&quot;file&quot; 
+        accept&#x3D;&quot;image/*&quot; 
+        style&#x3D;&quot;display: none;&quot;
+        (change)&#x3D;&quot;onFileSelected($event)&quot;&gt;
+      
+      &lt;!-- Botón para seleccionar archivo --&gt;
+      &lt;button 
+        type&#x3D;&quot;button&quot; 
+        class&#x3D;&quot;file-select-btn&quot;
+        (click)&#x3D;&quot;fileInput.click()&quot;&gt;
+        &lt;mat-icon&gt;cloud_upload&lt;/mat-icon&gt;
+        Seleccionar Foto
+      &lt;/button&gt;
+      
+      &lt;!-- Mostrar archivo seleccionado --&gt;
+      &lt;div class&#x3D;&quot;file-info&quot; *ngIf&#x3D;&quot;nombreArchivoSeleccionado&quot;&gt;
+        &lt;span class&#x3D;&quot;file-name&quot;&gt;📁 {{ nombreArchivoSeleccionado }}&lt;/span&gt;
+        &lt;button 
+          type&#x3D;&quot;button&quot; 
+          class&#x3D;&quot;clear-file-btn&quot;
+          (click)&#x3D;&quot;limpiarArchivo()&quot;&gt;
+          &lt;mat-icon&gt;close&lt;/mat-icon&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      
+      &lt;small class&#x3D;&quot;file-help&quot;&gt;Formatos permitidos: JPG, PNG, GIF. Máximo 5MB&lt;/small&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+      &lt;label for&#x3D;&quot;kilometraje&quot;&gt;Kilometraje *&lt;/label&gt;
+      &lt;input id&#x3D;&quot;kilometraje&quot; type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;kilometraje&quot; /&gt;
+      &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;gastoForm.get(&#x27;kilometraje&#x27;)?.touched &amp;&amp; gastoForm.get(&#x27;kilometraje&#x27;)?.invalid&quot;&gt;
+        El kilometraje es requerido y debe ser positivo.
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;submitting&quot;&gt;Guardar&lt;/button&gt;
+  &lt;/form&gt;
+
+  &lt;div class&#x3D;&quot;message success&quot; *ngIf&#x3D;&quot;successMessage&quot;&gt;{{ successMessage }}&lt;/div&gt;
+  &lt;div class&#x3D;&quot;message error&quot; *ngIf&#x3D;&quot;errorMessage&quot;&gt;{{ errorMessage }}&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Tabla de gastos adicionales registrados --&gt;
+&lt;h3 style&#x3D;&quot;margin-top:32px;&quot;&gt;Gastos Adicionales Registrados&lt;/h3&gt;
+
+&lt;!-- Filtro por mes/año --&gt;
+&lt;div style&#x3D;&quot;margin-bottom:16px;display:flex;gap:8px;align-items:center;&quot;&gt;
+  &lt;label&gt;Mes:&lt;/label&gt;
+  &lt;select [(ngModel)]&#x3D;&quot;mesFiltro&quot; (change)&#x3D;&quot;filtrarPorMes()&quot;&gt;
+    &lt;option [ngValue]&#x3D;&quot;null&quot;&gt;Todos&lt;/option&gt;
+    &lt;option *ngFor&#x3D;&quot;let m of [1,2,3,4,5,6,7,8,9,10,11,12]&quot; [ngValue]&#x3D;&quot;m&quot;&gt;{{ m }}&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;label&gt;Año:&lt;/label&gt;
+  &lt;select [(ngModel)]&#x3D;&quot;anioFiltro&quot; (change)&#x3D;&quot;filtrarPorMes()&quot;&gt;
+    &lt;option [ngValue]&#x3D;&quot;null&quot;&gt;Todos&lt;/option&gt;
+    &lt;option *ngFor&#x3D;&quot;let y of obtenerAnios()&quot; [ngValue]&#x3D;&quot;y&quot;&gt;{{ y }}&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;table mat-table [dataSource]&#x3D;&quot;gastosAdicionales&quot; class&#x3D;&quot;mat-elevation-z8&quot; style&#x3D;&quot;width:100%;margin-top:8px;&quot;&gt;
+  &lt;!-- Fecha --&gt;
+  &lt;ng-container matColumnDef&#x3D;&quot;fecha_gasto&quot;&gt;
+    &lt;th mat-header-cell *matHeaderCellDef&gt;Fecha&lt;/th&gt;
+    &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot;&gt;{{ gasto.fecha_gasto | date:&#x27;dd/MM/yyyy&#x27; }}&lt;/td&gt;
+  &lt;/ng-container&gt;
+
+  &lt;!-- Vehículo --&gt;
+  &lt;ng-container matColumnDef&#x3D;&quot;vehiculo&quot;&gt;
+    &lt;th mat-header-cell *matHeaderCellDef&gt;Vehículo&lt;/th&gt;
+  &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot;&gt;{{ gasto.vehiculo }}&lt;/td&gt;
+  &lt;/ng-container&gt;
+
+  &lt;!-- Tipo --&gt;
+  &lt;ng-container matColumnDef&#x3D;&quot;tipo_gasto&quot;&gt;
+    &lt;th mat-header-cell *matHeaderCellDef&gt;Tipo&lt;/th&gt;
+    &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot;&gt;{{ gasto.tipo_gasto }}&lt;/td&gt;
+  &lt;/ng-container&gt;
+
+  &lt;!-- Monto --&gt;
+  &lt;ng-container matColumnDef&#x3D;&quot;monto&quot;&gt;
+    &lt;th mat-header-cell *matHeaderCellDef&gt;Monto&lt;/th&gt;
+    &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot;&gt;{{ gasto.monto | currency:&#x27;GTQ&#x27;:&#x27;symbol&#x27;:&#x27;1.2-2&#x27; }}&lt;/td&gt;
+  &lt;/ng-container&gt;
+
+  &lt;!-- Kilometraje --&gt;
+  &lt;ng-container matColumnDef&#x3D;&quot;kilometraje&quot;&gt;
+    &lt;th mat-header-cell *matHeaderCellDef&gt;Kilometraje&lt;/th&gt;
+    &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot;&gt;{{ gasto.kilometraje | number }} km&lt;/td&gt;
+  &lt;/ng-container&gt;
+
+  &lt;!-- Proveedor --&gt;
+  &lt;ng-container matColumnDef&#x3D;&quot;proveedor&quot;&gt;
+    &lt;th mat-header-cell *matHeaderCellDef&gt;Proveedor&lt;/th&gt;
+    &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot;&gt;{{ gasto.proveedor }}&lt;/td&gt;
+  &lt;/ng-container&gt;
+
+  &lt;!-- Acciones --&gt;
+  &lt;ng-container matColumnDef&#x3D;&quot;acciones&quot;&gt;
+    &lt;th mat-header-cell *matHeaderCellDef&gt;Acciones&lt;/th&gt;
+    &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot;&gt;
+      &lt;button mat-icon-button (click)&#x3D;&quot;editarGasto(gasto)&quot;&gt;&lt;mat-icon&gt;edit&lt;/mat-icon&gt;&lt;/button&gt;
+      &lt;button mat-icon-button (click)&#x3D;&quot;eliminarGasto(gasto)&quot;&gt;&lt;mat-icon&gt;delete&lt;/mat-icon&gt;&lt;/button&gt;
+    &lt;/td&gt;
+  &lt;/ng-container&gt;
+
+
+  &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumns&quot;&gt;&lt;/tr&gt;
+  &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumns;&quot;&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;!-- Paginador --&gt;
+&lt;mat-paginator [length]&#x3D;&quot;1000&quot; [pageSize]&#x3D;&quot;pageSize&quot; [pageSizeOptions]&#x3D;&quot;[20, 40, 100]&quot; (page)&#x3D;&quot;cambiarPagina($event)&quot;&gt;&lt;/mat-paginator&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./gastos-adicional.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* Estilo mejorado para el select de tipo de gasto */
+.styled-select {
+  width: 100%;
+  padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+  border: 2px solid #007bff;
+  border-radius: 0.4rem;
+  background: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0,123,255,0.08);
+  transition: border-color 0.2s;
+}
+.styled-select:focus {
+  border-color: #0056b3;
+  outline: none;
+}
+.gastos-adicional-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.message {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+}
+
+.message.success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.message.error {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Estilos para el selector de archivos */
+.file-select-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  width: auto;
+  margin-bottom: 0.5rem;
+  transition: background 0.2s;
+}
+
+.file-select-btn:hover {
+  background: #5a6268;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.file-name {
+  font-size: 0.9rem;
+  color: #495057;
+  flex: 1;
+}
+
+.clear-file-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: auto;
+  min-width: 30px;
+  height: 30px;
+  justify-content: center;
+}
+
+.clear-file-btn:hover {
+  background: #c82333;
+}
+
+.file-help {
+  display: block;
+  margin-top: 0.25rem;
+  color: #6c757d;
+  font-size: 0.8rem;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="gastos-adicional-container">  <h2>Registrar Bitácora de Mantenimiento</h2>  <form [formGroup]="gastoForm" (ngSubmit)="onSubmit()" novalidate>    <div class="form-group">      <label for="idVehiculo">Vehículo *</label>  <select id="idVehiculo" formControlName="id_vehiculo" style="width:100%;max-width:100%;height:40px;padding:0 8px;font-size:1rem;">        <option value="" disabled>Seleccione un vehículo</option>        <option *ngFor="let v of vehiculos" [value]="v.id">{{ v.marca }} {{ v.modelo }} ({{ v.numero_placa || v.placa }})</option>      </select>      <div class="error" *ngIf="gastoForm.get(\'id_vehiculo\')?.touched && gastoForm.get(\'id_vehiculo\')?.invalid">        Debe seleccionar un vehículo.      </div>    </div>    <div class="form-group">      <label for="tipoGasto">Tipo de Gasto *</label>  <select id="tipoGasto" formControlName="tipo_gasto" required style="width:100%;max-width:100%;height:40px;padding:0 8px;font-size:1rem;">        <option value="" disabled selected>Seleccione el tipo de gasto</option>        <option value="PREVENTIVO">PREVENTIVO</option>        <option value="CORRECTIVO">CORRECTIVO</option>      </select>      <div class="error" *ngIf="gastoForm.get(\'tipo_gasto\')?.touched && gastoForm.get(\'tipo_gasto\')?.invalid">        El tipo de gasto es requerido.      </div>    </div>    <div class="form-group">      <label for="fechaGasto">Fecha de Gasto *</label>      <input id="fechaGasto" type="date" formControlName="fecha_gasto" />      <div class="error" *ngIf="gastoForm.get(\'fecha_gasto\')?.touched && gastoForm.get(\'fecha_gasto\')?.invalid">        La fecha es requerida.      </div>    </div>    <div class="form-group">      <label for="descripcion">Descripción detallada</label>      <textarea id="descripcion" formControlName="descripcion"></textarea>    </div>    <div class="form-group">      <label for="precio_mano_obra">Precio de mano de obra</label>      <input id="precio_mano_obra" type="number" formControlName="precio_mano_obra" step="0.01" />    </div>    <hr>    <h4>Repuestos</h4>    <div formArrayName="repuestos">      <div *ngFor="let repuesto of repuestos.controls; let i=index" [formGroupName]="i" class="repuesto-item">        <div class="form-group repuesto-nombre">          <label for="nombre_repuesto_{{i}}">Repuesto {{i + 1}}</label>          <input id="nombre_repuesto_{{i}}" formControlName="nombre" placeholder="Nombre del repuesto">        </div>        <div class="form-group repuesto-precio">          <label for="precio_repuesto_{{i}}">Precio</label>          <input id="precio_repuesto_{{i}}" type="number" formControlName="precio" placeholder="Precio">        </div>      </div>    </div>    <hr>    <div class="form-group">      <label for="monto">Monto Total *</label>      <input id="monto" type="number" formControlName="monto" step="0.01" />      <div class="error" *ngIf="gastoForm.get(\'monto\')?.touched && gastoForm.get(\'monto\')?.invalid">        El monto es requerido y debe ser un valor positivo.      </div>    </div>    <div class="form-group">      <label for="proveedor">Proveedor</label>  <mat-form-field appearance="outline" class="full-width" style="width:100%;max-width:100%;">  <mat-select id="proveedor" formControlName="proveedor" required>          <mat-option value="TALLER MECANICO TONO">TALLER MECANICO TONO</mat-option>          <mat-option value="LLANSUR">LLANSUR</mat-option>          <mat-option value="RESORTES QUICHÉ">RESORTES QUICHÉ</mat-option>          <mat-option value="TALLER ELECTROMECÁNICO HOPÓLITO">TALLER ELECTROMECÁNICO HOPÓLITO</mat-option>          <mat-option value="MOTOCAR">MOTOCAR</mat-option>          <mat-option value="TALLER TECSER MOTOS">TALLER TECSER MOTOS</mat-option>          <mat-option value="AUTOPOLARIZADO EL TRIUNFO">AUTOPOLARIZADO EL TRIUNFO</mat-option>          <mat-option value="AUTOMAQ">AUTOMAQ</mat-option>          <mat-option value="REMOCAR">REMOCAR</mat-option>          <mat-option value="REFACCIONARIA EL TRIUNFO">REFACCIONARIA EL TRIUNFO</mat-option>          <mat-option value="CLUTCHES DEL SUR">CLUTCHES DEL SUR</mat-option>          <mat-option value="Otro">Otro</mat-option>        </mat-select>      </mat-form-field>    </div>    <div class="form-group">      <label for="observaciones">Observaciones</label>      <textarea id="observaciones" formControlName="observaciones"></textarea>    </div>    <div class="form-group">      <label for="fotoFactura">Foto de Factura</label>            <!-- Input file oculto -->      <input         #fileInput        type="file"         accept="image/*"         style="display: none;"        (change)="onFileSelected($event)">            <!-- Botón para seleccionar archivo -->      <button         type="button"         class="file-select-btn"        (click)="fileInput.click()">        <mat-icon>cloud_upload</mat-icon>        Seleccionar Foto      </button>            <!-- Mostrar archivo seleccionado -->      <div class="file-info" *ngIf="nombreArchivoSeleccionado">        <span class="file-name">📁 {{ nombreArchivoSeleccionado }}</span>        <button           type="button"           class="clear-file-btn"          (click)="limpiarArchivo()">          <mat-icon>close</mat-icon>        </button>      </div>            <small class="file-help">Formatos permitidos: JPG, PNG, GIF. Máximo 5MB</small>    </div>    <div class="form-group">      <label for="kilometraje">Kilometraje *</label>      <input id="kilometraje" type="number" formControlName="kilometraje" />      <div class="error" *ngIf="gastoForm.get(\'kilometraje\')?.touched && gastoForm.get(\'kilometraje\')?.invalid">        El kilometraje es requerido y debe ser positivo.      </div>    </div>    <button type="submit" [disabled]="submitting">Guardar</button>  </form>  <div class="message success" *ngIf="successMessage">{{ successMessage }}</div>  <div class="message error" *ngIf="errorMessage">{{ errorMessage }}</div></div><!-- Tabla de gastos adicionales registrados --><h3 style="margin-top:32px;">Gastos Adicionales Registrados</h3><!-- Filtro por mes/año --><div style="margin-bottom:16px;display:flex;gap:8px;align-items:center;">  <label>Mes:</label>  <select [(ngModel)]="mesFiltro" (change)="filtrarPorMes()">    <option [ngValue]="null">Todos</option>    <option *ngFor="let m of [1,2,3,4,5,6,7,8,9,10,11,12]" [ngValue]="m">{{ m }}</option>  </select>  <label>Año:</label>  <select [(ngModel)]="anioFiltro" (change)="filtrarPorMes()">    <option [ngValue]="null">Todos</option>    <option *ngFor="let y of obtenerAnios()" [ngValue]="y">{{ y }}</option>  </select></div><table mat-table [dataSource]="gastosAdicionales" class="mat-elevation-z8" style="width:100%;margin-top:8px;">  <!-- Fecha -->  <ng-container matColumnDef="fecha_gasto">    <th mat-header-cell *matHeaderCellDef>Fecha</th>    <td mat-cell *matCellDef="let gasto">{{ gasto.fecha_gasto | date:\'dd/MM/yyyy\' }}</td>  </ng-container>  <!-- Vehículo -->  <ng-container matColumnDef="vehiculo">    <th mat-header-cell *matHeaderCellDef>Vehículo</th>  <td mat-cell *matCellDef="let gasto">{{ gasto.vehiculo }}</td>  </ng-container>  <!-- Tipo -->  <ng-container matColumnDef="tipo_gasto">    <th mat-header-cell *matHeaderCellDef>Tipo</th>    <td mat-cell *matCellDef="let gasto">{{ gasto.tipo_gasto }}</td>  </ng-container>  <!-- Monto -->  <ng-container matColumnDef="monto">    <th mat-header-cell *matHeaderCellDef>Monto</th>    <td mat-cell *matCellDef="let gasto">{{ gasto.monto | currency:\'GTQ\':\'symbol\':\'1.2-2\' }}</td>  </ng-container>  <!-- Kilometraje -->  <ng-container matColumnDef="kilometraje">    <th mat-header-cell *matHeaderCellDef>Kilometraje</th>    <td mat-cell *matCellDef="let gasto">{{ gasto.kilometraje | number }} km</td>  </ng-container>  <!-- Proveedor -->  <ng-container matColumnDef="proveedor">    <th mat-header-cell *matHeaderCellDef>Proveedor</th>    <td mat-cell *matCellDef="let gasto">{{ gasto.proveedor }}</td>  </ng-container>  <!-- Acciones -->  <ng-container matColumnDef="acciones">    <th mat-header-cell *matHeaderCellDef>Acciones</th>    <td mat-cell *matCellDef="let gasto">      <button mat-icon-button (click)="editarGasto(gasto)"><mat-icon>edit</mat-icon></button>      <button mat-icon-button (click)="eliminarGasto(gasto)"><mat-icon>delete</mat-icon></button>    </td>  </ng-container>  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr></table><!-- Paginador --><mat-paginator [length]="1000" [pageSize]="pageSize" [pageSizeOptions]="[20, 40, 100]" (page)="cambiarPagina($event)"></mat-paginator></div>'
+    var COMPONENTS = [{'name': 'AgregarVehiculoComponent', 'selector': 'app-agregar-vehiculo'},{'name': 'AgregarVehiculoSimpleComponent', 'selector': 'app-agregar-vehiculo-simple'},{'name': 'App', 'selector': 'app-root'},{'name': 'BitacoraComponent', 'selector': 'app-bitacora'},{'name': 'CombustibleComponent', 'selector': 'app-combustible'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardGastos', 'selector': 'app-dashboard-gastos'},{'name': 'DashboardGastosComponent', 'selector': 'app-dashboard-gastos'},{'name': 'DetalleVehiculoComponent', 'selector': 'app-detalle-vehiculo'},{'name': 'DialogoNuevaCargaComponent', 'selector': 'app-dialogo-nueva-carga'},{'name': 'EditarVehiculoComponent', 'selector': 'app-editar-vehiculo'},{'name': 'EstadosVehiculosComponent', 'selector': 'app-estados-vehiculos'},{'name': 'GastosAdicionalComponent', 'selector': 'app-gastos-adicional'},{'name': 'GraficasCombustibleComponent', 'selector': 'app-graficas-combustible'},{'name': 'GraficasGastos', 'selector': 'app-graficas-gastos'},{'name': 'GruposVehiculosComponent', 'selector': 'app-grupos-vehiculos'},{'name': 'InventarioComponent', 'selector': 'app-inventario'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'TiposVehiculosComponent', 'selector': 'app-tipos-vehiculos'},{'name': 'UsuariosListComponent', 'selector': 'app-usuarios-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'GastosAdicionalComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GastosAdicionalComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

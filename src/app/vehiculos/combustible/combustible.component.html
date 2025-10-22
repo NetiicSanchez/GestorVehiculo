@@ -8,6 +8,12 @@
     </mat-card-header>
 
     <mat-card-content>
+      <!-- Mensaje de éxito -->
+      <div *ngIf="successMessage" class="success-message">
+        <mat-icon>check_circle</mat-icon>
+        <span>{{ successMessage }}</span>
+      </div>
+
       <!-- Botón para nueva carga -->
       <div class="header-actions">
         <button mat-raised-button color="primary" (click)="abrirDialogoCarga()">
@@ -21,7 +27,7 @@
         <mat-form-field appearance="outline" class="filtro-vehiculo">
           <mat-label>Filtrar por Vehículo</mat-label>
           <mat-select [(value)]="vehiculoSeleccionado" (selectionChange)="filtrarPorVehiculo()">
-            <mat-option value="">Todos los vehículos</mat-option>
+            <mat-option [value]="null">Todos los vehículos</mat-option>
             <mat-option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.id">
               {{ vehiculo.placa }} - {{ vehiculo.marca }} {{ vehiculo.modelo }}
             </mat-option>
@@ -43,58 +49,23 @@
           <mat-datepicker-toggle matSuffix [for]="fechaHasta"></mat-datepicker-toggle>
           <mat-datepicker #fechaHasta></mat-datepicker>
         </mat-form-field>
+
+        <!-- Filtro por mes/año y botón de exportar -->
+        <label>Mes:</label>
+        <select [(ngModel)]="mesFiltro" (change)="filtrarPorMes()">
+          <option [ngValue]="null">Todos</option>
+          <option *ngFor="let m of [1,2,3,4,5,6,7,8,9,10,11,12]" [ngValue]="m">{{ m }}</option>
+        </select>
+        <label>Año:</label>
+        <select [(ngModel)]="anioFiltro" (change)="filtrarPorMes()">
+          <option [ngValue]="null">Todos</option>
+          <option *ngFor="let y of obtenerAnios()" [ngValue]="y">{{ y }}</option>
+        </select>
+        <button mat-raised-button color="accent" style="margin-left:16px;vertical-align:middle;" (click)="exportarExcel()">
+          <mat-icon>download</mat-icon> Descargar Excel
+        </button>
       </div>
 
-      <!-- Estadísticas -->
-      <div class="estadisticas-grid" *ngIf="estadisticas">
-        <mat-card class="stat-card">
-          <mat-card-content>
-            <div class="stat-icon">
-              <mat-icon>local_gas_station</mat-icon>
-            </div>
-            <div class="stat-info">
-              <h3>{{ estadisticas.totalGalones || 0 | number:'1.2-2' }} Gal</h3>
-              <p>Total Combustible</p>
-            </div>
-          </mat-card-content>
-        </mat-card>
-
-        <mat-card class="stat-card">
-          <mat-card-content>
-            <div class="stat-icon">
-              <mat-icon>attach_money</mat-icon>
-            </div>
-            <div class="stat-info">
-              <h3>{{ estadisticas.totalGasto || 0 | currency:'GTQ':'symbol':'1.2-2' }}</h3>
-              <p>Gasto Total</p>
-            </div>
-          </mat-card-content>
-        </mat-card>
-
-        <mat-card class="stat-card">
-          <mat-card-content>
-            <div class="stat-icon">
-              <mat-icon>trending_up</mat-icon>
-            </div>
-            <div class="stat-info">
-              <h3>{{ estadisticas.promedioGalones || 0 | number:'1.2-2' }} Gal</h3>
-              <p>Promedio por Carga</p>
-            </div>
-          </mat-card-content>
-        </mat-card>
-
-        <mat-card class="stat-card">
-          <mat-card-content>
-            <div class="stat-icon">
-              <mat-icon>speed</mat-icon>
-            </div>
-            <div class="stat-info">
-              <h3>{{ estadisticas.rendimientoPromedio || 0 | number:'1.2-2' }} km/L</h3>
-              <p>Rendimiento Promedio</p>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
 
       <!-- Loading -->
       <div *ngIf="cargando" class="loading-container">
@@ -112,15 +83,29 @@
         </button>
       </div>
 
-      <!-- Tabla de cargas -->
-      <div class="tabla-container" *ngIf="!cargando && !errorCarga">
+  <!-- Tabla de cargas (desktop/tablet) -->
+  <div class="tabla-container" *ngIf="!cargando && !errorCarga && !isMobile">
         <mat-table [dataSource]="cargasFiltradas" class="cargas-table">
-          <!-- Columna Fecha -->
+          <!-- Columna Fecha de Carga -->
           <ng-container matColumnDef="fecha">
-            <mat-header-cell *matHeaderCellDef>Fecha</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>Fecha Carga</mat-header-cell>
             <mat-cell *matCellDef="let carga">
-              {{ carga.fechaCarga | date:'dd/MM/yyyy' }}
+              {{ formatearFecha(carga.fechaCarga) }}
             </mat-cell>
+          </ng-container>
+
+          <!-- Columna Fecha de Registro -->
+          <ng-container matColumnDef="fecha_registro">
+            <mat-header-cell *matHeaderCellDef>Fecha Registro</mat-header-cell>
+            <mat-cell *matCellDef="let carga">
+              {{ carga.fechaRegistro | date:'dd/MM/yyyy' }}
+            </mat-cell>
+          </ng-container>
+
+          <!-- Columna Observaciones -->
+          <ng-container matColumnDef="observaciones">
+            <mat-header-cell *matHeaderCellDef>Observaciones</mat-header-cell>
+            <mat-cell *matCellDef="let carga">{{ carga.observaciones || '-' }}</mat-cell>
           </ng-container>
 
           <!-- Columna Vehículo -->
@@ -183,14 +168,19 @@
           <ng-container matColumnDef="acciones">
             <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
             <mat-cell *matCellDef="let carga">
-              <button mat-icon-button color="primary" (click)="editarCarga(carga)" 
-                      matTooltip="Editar carga">
-                <mat-icon>edit</mat-icon>
+              <button *ngIf="carga.fotoFactura || $any(carga)['foto_factura']" mat-icon-button color="accent" (click)="verFoto(carga.fotoFactura || $any(carga)['foto_factura'])" matTooltip="Ver foto">
+                <mat-icon>photo</mat-icon>
               </button>
-              <button mat-icon-button color="warn" (click)="eliminarCarga(carga)" 
-                      matTooltip="Eliminar carga">
-                <mat-icon>delete</mat-icon>
-              </button>
+              <ng-container *ngIf="!isOperador">
+                <button mat-icon-button color="primary" (click)="editarCarga(carga)" 
+                        matTooltip="Editar carga">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="eliminarCarga(carga)" 
+                        matTooltip="Eliminar carga">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </ng-container>
             </mat-cell>
           </ng-container>
 
@@ -199,6 +189,66 @@
         </mat-table>
 
         <!-- Mensaje cuando no hay datos -->
+        <div *ngIf="cargasFiltradas.length === 0" class="no-data">
+          <mat-icon>local_gas_station</mat-icon>
+          <h3>No hay cargas de combustible registradas</h3>
+          <p>Comienza registrando la primera carga de combustible</p>
+        </div>
+        <!-- Paginador -->
+        <mat-paginator [length]="1000" [pageSize]="pageSize" [pageSizeOptions]="[20, 40, 100]" (page)="cambiarPagina($event)"></mat-paginator>
+      </div>
+
+      <!-- Lista de cargas (móvil) -->
+      <div class="mobile-list" *ngIf="!cargando && !errorCarga && isMobile">
+        <div class="mobile-card" *ngFor="let carga of cargasFiltradas">
+          <div class="mc-header">
+            <div class="mc-date">
+              <span><strong>Fecha Carga:</strong> {{ carga.fechaCarga | date:'dd/MM/yyyy' }}</span><br>
+              <span><strong>Fecha Registro:</strong> {{ carga.fechaRegistro | date:'dd/MM/yyyy' }}</span>
+            </div>
+            <div class="mc-actions">
+              <button *ngIf="carga.fotoFactura || $any(carga)['foto_factura']" mat-icon-button color="accent" (click)="verFoto(carga.fotoFactura || $any(carga)['foto_factura'])" aria-label="Ver foto">
+                <mat-icon>photo</mat-icon>
+              </button>
+              <ng-container *ngIf="!isOperador">
+                <button mat-icon-button color="primary" (click)="editarCarga(carga)" aria-label="Editar">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="eliminarCarga(carga)" aria-label="Eliminar">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </ng-container>
+            </div>
+          </div>
+          <div class="mc-row">
+            <span class="mc-label">Vehículo</span>
+            <span class="mc-value">{{ carga.placa }} — {{ carga.marca }} {{ carga.modelo }}</span>
+          </div>
+          <div class="mc-row">
+            <span class="mc-label">Tipo</span>
+            <span class="mc-value">{{ carga.tipoCombustible }}</span>
+          </div>
+          <div class="mc-row">
+            <span class="mc-label">Galones</span>
+            <span class="mc-value chip blue">{{ carga.galonesCargados | number:'1.2-2' }} Gal</span>
+          </div>
+          <div class="mc-row">
+            <span class="mc-label">Precio/Gal</span>
+            <span class="mc-value">{{ carga.precioGalon | currency:'GTQ':'symbol':'1.2-2' }}</span>
+          </div>
+          <div class="mc-row">
+            <span class="mc-label">Total</span>
+            <span class="mc-value chip green">{{ carga.totalPagado | currency:'GTQ':'symbol':'1.2-2' }}</span>
+          </div>
+          <div class="mc-row">
+            <span class="mc-label">Kilometraje</span>
+            <span class="mc-value">{{ carga.kilometrajeActual | number }} km</span>
+          </div>
+          <div class="mc-row">
+            <span class="mc-label">Proveedor</span>
+            <span class="mc-value">{{ carga.proveedorCombustible || 'N/A' }}</span>
+          </div>
+        </div>
         <div *ngIf="cargasFiltradas.length === 0" class="no-data">
           <mat-icon>local_gas_station</mat-icon>
           <h3>No hay cargas de combustible registradas</h3>

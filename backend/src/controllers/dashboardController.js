@@ -122,8 +122,74 @@ const obtenerResumenDashboard = async (req, res) => {
   }
 };
 
+// Obtener gastos mensuales por vehículo
+const obtenerGastosMensuales = async (req, res) => {
+  try {
+    console.log('📊 Obteniendo gastos mensuales por vehículo');
+    
+    const query = `
+      WITH gastos_mensuales AS (
+          SELECT
+              v.id AS vehiculo_id,
+              v.placa,
+              v.marca,
+              v.modelo,
+              TO_CHAR(c.fecha_carga, 'YYYY-MM') AS mes,
+              SUM(c.total_pagado) AS total_combustible,
+              0 AS total_otros_gastos
+          FROM vehiculo v
+          LEFT JOIN carga_combustible c ON v.id = c.id_vehiculo
+          GROUP BY v.id, v.placa, v.marca, v.modelo, TO_CHAR(c.fecha_carga, 'YYYY-MM')
+
+          UNION ALL
+
+          SELECT
+              v.id AS vehiculo_id,
+              v.placa,
+              v.marca,
+              v.modelo,
+              TO_CHAR(og.fecha_gasto, 'YYYY-MM') AS mes,
+              0 AS total_combustible,
+              SUM(og.monto) AS total_otros_gastos
+          FROM vehiculo v
+          LEFT JOIN gastos_adicional og ON v.id = og.id_vehiculo
+          GROUP BY v.id, v.placa, v.marca, v.modelo, TO_CHAR(og.fecha_gasto, 'YYYY-MM')
+      )
+      SELECT
+          vehiculo_id,
+          placa,
+          marca,
+          modelo,
+          mes,
+          SUM(total_combustible) AS total_combustible,
+          SUM(total_otros_gastos) AS total_otros_gastos
+      FROM gastos_mensuales
+      WHERE mes IS NOT NULL
+      GROUP BY vehiculo_id, placa, marca, modelo, mes
+      ORDER BY vehiculo_id, mes;
+    `;
+    
+    const result = await db.query(query);
+    
+    console.log(`✅ ${result.rows.length} registros de gastos mensuales encontrados`);
+    
+    res.json({
+      success: true,
+      data: result.rows
+    });
+  } catch (error) {
+    console.error('❌ Error obteniendo gastos mensuales:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error obteniendo datos de gastos mensuales',
+      error: error.message
+    });
+  }
+};
+
 module.exports = {
   obtenerGastosVehiculos,
   obtenerDashboardVehiculos,
-  obtenerResumenDashboard
+  obtenerResumenDashboard,
+  obtenerGastosMensuales
 };

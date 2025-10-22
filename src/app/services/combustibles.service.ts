@@ -7,15 +7,24 @@ import { CargaCombustible } from '../models/vehiculo.model';
   providedIn: 'root'
 })
 export class CombustiblesService {
-  private apiUrl = 'http://localhost:3000/api/combustible';
+  private apiUrl = '/api/combustible';
 
   constructor(private http: HttpClient) { }
 
   /**
    * Obtener todas las cargas de combustible
    */
-  obtenerCargas(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/cargas`);
+  obtenerCargas(params?: { limit?: number; offset?: number; mes?: number; anio?: number }): Observable<any> {
+    let query = '';
+    if (params) {
+      const q = [];
+      if (params.limit !== undefined) q.push(`limit=${params.limit}`);
+      if (params.offset !== undefined) q.push(`offset=${params.offset}`);
+      if (params.mes !== undefined) q.push(`mes=${params.mes}`);
+      if (params.anio !== undefined) q.push(`anio=${params.anio}`);
+      if (q.length) query = '?' + q.join('&');
+    }
+    return this.http.get(`${this.apiUrl}/cargas${query}`);
   }
 
   /**
@@ -28,7 +37,7 @@ export class CombustiblesService {
   /**
    * Registrar nueva carga de combustible
    */
-  registrarCarga(carga: CargaCombustible): Observable<any> {
+  registrarCarga(carga: FormData): Observable<any> {
     return this.http.post(`${this.apiUrl}/cargas`, carga);
   }
 
@@ -44,5 +53,12 @@ export class CombustiblesService {
    */
   eliminarCarga(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/cargas/${id}`);
+  }
+
+  /**
+   * Exportar cargas de combustible a Excel
+   */
+  exportarCargas(params: { mes: number; anio: number }): Observable<any> {
+    return this.http.get(`${this.apiUrl}/cargas/exportar?mes=${params.mes}&anio=${params.anio}`);
   }
 }

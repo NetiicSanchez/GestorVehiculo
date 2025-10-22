@@ -6,7 +6,7 @@ import { catchError, timeout, retry, retryWhen, delayWhen, take } from 'rxjs/ope
   providedIn: 'root'
 })
 export class VehiculosService {
-  private apiUrl= 'http://localhost:3000/api/vehiculos';
+  private apiUrl= '/api/vehiculos';
   private readonly TIMEOUT_MS = 15000; // 15 segundos timeout
   private readonly MAX_RETRIES = 2; // máximo 2 reintentos
 
@@ -29,10 +29,21 @@ export class VehiculosService {
     );
   }
 
-  // Verifica si la placa existente
-   verificarPlaca(placa: string): Observable<any> {
-    console.log('🔍 Verificando placa:', placa);
-    return this.http.get(`${this.apiUrl}/verificar-placa/${placa}`)
+  // Verifica si el nombre existe
+   verificarPlaca(nombre: string): Observable<any> {
+    console.log('🔍 Verificando nombre:', nombre);
+    return this.http.get(`${this.apiUrl}/verificar-placa/${nombre}`)
+      .pipe(
+        timeout(this.TIMEOUT_MS),
+        retry(this.MAX_RETRIES),
+        catchError(this.handleError)
+      );
+  }
+
+  // Obtener todos los vehículos
+  getVehiculos(): Observable<any> {
+    console.log('📋 Obteniendo vehículos...');
+    return this.http.get(this.apiUrl)
       .pipe(
         timeout(this.TIMEOUT_MS),
         retry(this.MAX_RETRIES),

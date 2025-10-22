@@ -1,0 +1,72 @@
+.grafica-page-container {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+mat-card {
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+mat-card-title {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.grafica-filtros {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.grafica-content {
+  min-height: 340px;
+}
+
+.grafica-loading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0;
+}
+
+.grafica-error {
+  color: #c62828;
+  margin: 32px 0;
+}
+
+.grafica-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 240px;
+  color: #666;
+  background: #fafafa;
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+}
+
+ngx-charts-bar-vertical .bar,
+ngx-charts-bar-vertical .bar rect {
+  fill: #388e3c !important;
+}
+
+.ngx-charts-bar-vertical .data-label {
+  position: relative;
+}
+
+.ngx-charts-bar-vertical .data-label:after {
+  content: '%';
+  font-size: 14px;
+  margin-left: 2px;
+}
+/* Forzar color verde en todas las barras de la gráfica */
+.ngx-charts-bar-vertical .bar {
+  fill: #388e3c !important;
+}

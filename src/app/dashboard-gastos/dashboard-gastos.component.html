@@ -1,0 +1,78 @@
+
+  <h2 class="mb-4">Dashboard de Gastos por Vehículo</h2>
+
+  <!-- Gráfico agregado de todos los vehículos separado -->
+  <div class="aggregated-wrapper mb-4">
+    <div class="card">
+      <div class="card-header" style="text-align: center;">
+        <h5 class="card-title">Gastos Totales Mensuales de Todos los Vehículos</h5>
+        <button class="linkhistorial" [routerLink]="['/historial-gastos/agregado']">Ver historial completo</button>
+      </div>
+      <div class="card-body">
+        <div class="chart-container">
+          <ngx-charts-bar-vertical-2d
+            [results]="aggregatedChartData"
+            [scheme]="aggregatedColorScheme"
+            [customColors]="aggregatedCustomColors"
+            [gradient]="true"
+            [xAxis]="true"
+            [yAxis]="true"
+            [legend]="true"
+            
+            [tooltipDisabled]="false"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [xAxisLabel]="'Mes'"
+            [xAxisTickFormatting]="monthTickFormatting"
+            [yAxisLabel]="'Gasto Total'"
+            [yAxisTickFormatting]="yAxisTickFormatting"
+            [showGridLines]="false"
+            [roundEdges]="true"
+            [showDataLabel]="true"
+            [dataLabelFormatting]="dataLabelFormatting"
+          ></ngx-charts-bar-vertical-2d>
+        
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid de tarjetas individuales -->
+  <div class="dashboard-grid">
+    <div *ngFor="let veh of gastosPorVehiculo | keyvalue; let i = index" class="card">
+      <div class="card-header" style="text-align: center;">
+        <h5 class="card-title">{{ veh.value.marca }} {{ veh.value.modelo }} ({{ veh.value.placa }})</h5>
+        <div style="display: flex; justify-content: center; margin-top: 10px;">
+          <button class="linkhistorial" [routerLink]="['/historial-gastos', veh.value.vehiculo_id]">
+            Ver historial completo
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-container">
+          <ngx-charts-bar-vertical-2d
+          [results]="individualChartData[i]"
+          [scheme]="individualColorScheme"
+          [customColors]="individualCustomColors"
+          [gradient]="true"
+          [xAxis]="true"
+          [yAxis]="true"
+          [legend]="true"
+          
+          [tooltipDisabled]="false"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+        [xAxisLabel]="'Mes'"
+        [xAxisTickFormatting]="monthTickFormatting"
+          [yAxisLabel]="'Gasto'"
+          [yAxisTickFormatting]="yAxisTickFormatting"
+          [showGridLines]="false"
+          [roundEdges]="true"
+          [dataLabelFormatting]="dataLabelFormatting"
+          ></ngx-charts-bar-vertical-2d>
+        </div>
+      </div>
+    </div>
+  </div>
+

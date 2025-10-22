@@ -1,10 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 //middleware
 app.use(cors({
@@ -24,6 +25,11 @@ const authRoutes = require('./routes/auth');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Servir archivos estáticos de la carpeta loader
+app.use('/loader', express.static(path.join(__dirname, '../../loader')));
+// Servir archivos subidos (fotos de incidentes, etc.)
+app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
+
 // Middleware para debug CORS
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url} - Origin: ${req.headers.origin}`);
@@ -39,13 +45,23 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+
+// Redirigir la raíz al login del frontend
+app.get('/', (req, res) => {
+  res.redirect('/login');
+});
+
 //routes
+app.use('/api/upload', require('./routes/upload'));
 app.use('/api/vehiculos', require('./routes/vehiculos'));
 app.use('/api/catalogos', require('./routes/catalogos'));
 app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/combustible', require('./routes/combustible'));
 app.use('/api/dashboard', require('./routes/dashboard'));
 app.use('/api/auth', authRoutes);
+app.use('/api/gastos-adicional', require('./routes/gastosAdicional'));
+app.use('/api/exportar', require('./routes/exportar'));
+app.use('/api/incidentes', require('./routes/incidentes'));
 
 // Ruta temporal para consultar vistas
 app.post('/api/test-vista', async (req, res) => {
@@ -78,6 +94,6 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`🚀 Servidor corriendo en http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });

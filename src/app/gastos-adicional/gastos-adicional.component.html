@@ -1,0 +1,223 @@
+<div class="gastos-adicional-container">
+  <h2>Registrar Bitácora de Mantenimiento</h2>
+
+  <form [formGroup]="gastoForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-group">
+      <label for="idVehiculo">Vehículo *</label>
+  <select id="idVehiculo" formControlName="id_vehiculo" style="width:100%;max-width:100%;height:40px;padding:0 8px;font-size:1rem;">
+        <option value="" disabled>Seleccione un vehículo</option>
+        <option *ngFor="let v of vehiculos" [value]="v.id">{{ v.marca }} {{ v.modelo }} ({{ v.numero_placa || v.placa }})</option>
+      </select>
+      <div class="error" *ngIf="gastoForm.get('id_vehiculo')?.touched && gastoForm.get('id_vehiculo')?.invalid">
+        Debe seleccionar un vehículo.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="tipoGasto">Tipo de Gasto *</label>
+  <select id="tipoGasto" formControlName="tipo_gasto" required style="width:100%;max-width:100%;height:40px;padding:0 8px;font-size:1rem;">
+        <option value="" disabled selected>Seleccione el tipo de gasto</option>
+        <option value="PREVENTIVO">PREVENTIVO</option>
+        <option value="CORRECTIVO">CORRECTIVO</option>
+      </select>
+      <div class="error" *ngIf="gastoForm.get('tipo_gasto')?.touched && gastoForm.get('tipo_gasto')?.invalid">
+        El tipo de gasto es requerido.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="fechaGasto">Fecha de Gasto *</label>
+      <input id="fechaGasto" type="date" formControlName="fecha_gasto" />
+      <div class="error" *ngIf="gastoForm.get('fecha_gasto')?.touched && gastoForm.get('fecha_gasto')?.invalid">
+        La fecha es requerida.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="descripcion">Descripción detallada</label>
+      <textarea id="descripcion" formControlName="descripcion"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="precio_mano_obra">Precio de mano de obra</label>
+      <input id="precio_mano_obra" type="number" formControlName="precio_mano_obra" step="0.01" />
+    </div>
+
+    <hr>
+    <h4>Repuestos</h4>
+    <div formArrayName="repuestos">
+      <div *ngFor="let repuesto of repuestos.controls; let i=index" [formGroupName]="i" class="repuesto-item">
+        <div class="form-group repuesto-nombre">
+          <label for="nombre_repuesto_{{i}}">Repuesto {{i + 1}}</label>
+          <input id="nombre_repuesto_{{i}}" formControlName="nombre" placeholder="Nombre del repuesto">
+        </div>
+        <div class="form-group repuesto-precio">
+          <label for="precio_repuesto_{{i}}">Precio</label>
+          <input id="precio_repuesto_{{i}}" type="number" formControlName="precio" placeholder="Precio">
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <div class="form-group">
+      <label for="monto">Monto Total *</label>
+      <input id="monto" type="number" formControlName="monto" step="0.01" />
+      <div class="error" *ngIf="gastoForm.get('monto')?.touched && gastoForm.get('monto')?.invalid">
+        El monto es requerido y debe ser un valor positivo.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="proveedor">Proveedor</label>
+  <mat-form-field appearance="outline" class="full-width" style="width:100%;max-width:100%;">
+  <mat-select id="proveedor" formControlName="proveedor" required>
+          <mat-option value="TALLER MECANICO TONO">TALLER MECANICO TONO</mat-option>
+          <mat-option value="LLANSUR">LLANSUR</mat-option>
+          <mat-option value="RESORTES QUICHÉ">RESORTES QUICHÉ</mat-option>
+          <mat-option value="TALLER ELECTROMECÁNICO HOPÓLITO">TALLER ELECTROMECÁNICO HOPÓLITO</mat-option>
+          <mat-option value="MOTOCAR">MOTOCAR</mat-option>
+          <mat-option value="TALLER TECSER MOTOS">TALLER TECSER MOTOS</mat-option>
+          <mat-option value="AUTOPOLARIZADO EL TRIUNFO">AUTOPOLARIZADO EL TRIUNFO</mat-option>
+          <mat-option value="AUTOMAQ">AUTOMAQ</mat-option>
+          <mat-option value="REMOCAR">REMOCAR</mat-option>
+          <mat-option value="REFACCIONARIA EL TRIUNFO">REFACCIONARIA EL TRIUNFO</mat-option>
+          <mat-option value="CLUTCHES DEL SUR">CLUTCHES DEL SUR</mat-option>
+          <mat-option value="SERVICIO MECANICO GRAMAJO">SERVICIO MECANICO GRAMAJO</mat-option>
+          <mat-option value="CANELLA">CANELLA</mat-option>
+          <mat-option value="SERVIMEC">SERVIMEC</mat-option>
+          <mat-option value="Otro">Otro</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label for="observaciones">Observaciones</label>
+      <textarea id="observaciones" formControlName="observaciones"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="fotoFactura">Foto de Factura</label>
+      
+      <!-- Input file oculto -->
+      <input 
+        #fileInput
+        type="file" 
+        accept="image/*" 
+        style="display: none;"
+        (change)="onFileSelected($event)">
+      
+      <!-- Botón para seleccionar archivo -->
+      <button 
+        type="button" 
+        class="file-select-btn"
+        (click)="fileInput.click()">
+        <mat-icon>cloud_upload</mat-icon>
+        Seleccionar Foto
+      </button>
+      
+      <!-- Mostrar archivo seleccionado -->
+      <div class="file-info" *ngIf="nombreArchivoSeleccionado">
+        <span class="file-name">📁 {{ nombreArchivoSeleccionado }}</span>
+        <button 
+          type="button" 
+          class="clear-file-btn"
+          (click)="limpiarArchivo()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      
+      <small class="file-help">Formatos permitidos: JPG, PNG, GIF. Máximo 5MB</small>
+    </div>
+
+    <div class="form-group">
+      <label for="kilometraje">Kilometraje *</label>
+      <input id="kilometraje" type="number" formControlName="kilometraje" />
+      <div class="error" *ngIf="gastoForm.get('kilometraje')?.touched && gastoForm.get('kilometraje')?.invalid">
+        El kilometraje es requerido y debe ser positivo.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="submitting">Guardar</button>
+  </form>
+
+  <div class="message success" *ngIf="successMessage">{{ successMessage }}</div>
+  <div class="message error" *ngIf="errorMessage">{{ errorMessage }}</div>
+</div>
+
+<!-- Tabla de gastos adicionales registrados -->
+<h3 style="margin-top:32px;">Gastos Adicionales Registrados</h3>
+
+<!-- Filtro por mes/año -->
+<div style="margin-bottom:16px;display:flex;gap:8px;align-items:center;">
+  <label>Mes:</label>
+  <select [(ngModel)]="mesFiltro" (change)="filtrarPorMes()">
+    <option [ngValue]="null">Todos</option>
+    <option *ngFor="let m of [1,2,3,4,5,6,7,8,9,10,11,12]" [ngValue]="m">{{ m }}</option>
+  </select>
+  <label>Año:</label>
+  <select [(ngModel)]="anioFiltro" (change)="filtrarPorMes()">
+    <option [ngValue]="null">Todos</option>
+    <option *ngFor="let y of obtenerAnios()" [ngValue]="y">{{ y }}</option>
+  </select>
+</div>
+
+<table mat-table [dataSource]="gastosAdicionales" class="mat-elevation-z8" style="width:100%;margin-top:8px;">
+  <!-- Fecha -->
+  <ng-container matColumnDef="fecha_gasto">
+    <th mat-header-cell *matHeaderCellDef>Fecha</th>
+    <td mat-cell *matCellDef="let gasto">{{ gasto.fecha_gasto | date:'dd/MM/yyyy' }}</td>
+  </ng-container>
+
+  <!-- Vehículo -->
+  <ng-container matColumnDef="vehiculo">
+    <th mat-header-cell *matHeaderCellDef>Vehículo</th>
+  <td mat-cell *matCellDef="let gasto">{{ gasto.vehiculo }}</td>
+  </ng-container>
+
+  <!-- Tipo -->
+  <ng-container matColumnDef="tipo_gasto">
+    <th mat-header-cell *matHeaderCellDef>Tipo</th>
+    <td mat-cell *matCellDef="let gasto">{{ gasto.tipo_gasto }}</td>
+  </ng-container>
+
+  <!-- Monto -->
+  <ng-container matColumnDef="monto">
+    <th mat-header-cell *matHeaderCellDef>Monto</th>
+    <td mat-cell *matCellDef="let gasto">{{ gasto.monto | currency:'GTQ':'symbol':'1.2-2' }}</td>
+  </ng-container>
+
+  <!-- Kilometraje -->
+  <ng-container matColumnDef="kilometraje">
+    <th mat-header-cell *matHeaderCellDef>Kilometraje</th>
+    <td mat-cell *matCellDef="let gasto">{{ gasto.kilometraje | number }} km</td>
+  </ng-container>
+
+
+  <!-- Descripción -->
+  <ng-container matColumnDef="descripcion">
+    <th mat-header-cell *matHeaderCellDef>Descripción</th>
+    <td mat-cell *matCellDef="let gasto">{{ gasto.descripcion }}</td>
+  </ng-container>
+
+  <!-- Proveedor -->
+  <ng-container matColumnDef="proveedor">
+    <th mat-header-cell *matHeaderCellDef>Proveedor</th>
+    <td mat-cell *matCellDef="let gasto">{{ gasto.proveedor }}</td>
+  </ng-container>
+
+  <!-- Acciones -->
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let gasto">
+      <button mat-icon-button (click)="editarGasto(gasto)"><mat-icon>edit</mat-icon></button>
+      <button mat-icon-button (click)="eliminarGasto(gasto)"><mat-icon>delete</mat-icon></button>
+    </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<!-- Paginador -->
+<mat-paginator [length]="1000" [pageSize]="pageSize" [pageSizeOptions]="[20, 40, 100]" (page)="cambiarPagina($event)"></mat-paginator>

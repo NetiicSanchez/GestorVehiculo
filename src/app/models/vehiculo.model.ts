@@ -66,6 +66,7 @@ export interface CargaCombustible {
   fotoFactura?: string;
   activo?: boolean;
   fechaCreacion?: Date;
+  fechaRegistro?: Date;
   
   // Campos para mostrar información relacionada
   placa?: string;

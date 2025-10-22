@@ -1,3 +1,44 @@
+/* Navegación superior */
+.app-header nav {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.main-nav .nav-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 10px 0;
+}
+.app-header nav a, .app-header .nav-link {
+  display: block;
+  margin: 0 0 2px 0;
+  text-align: left;
+  padding-left: 0 !important;
+  padding: 4px 0 4px 0;
+  line-height: 1.2;
+  background: none !important;
+  color: #fff !important;
+  border: none;
+  border-radius: 0;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: none;
+  transition: color 0.2s;
+}
+.app-header nav a:hover, .app-header nav a:focus, .app-header .nav-link:hover, .app-header .nav-link:focus {
+  background: none !important;
+  color: #cddc39 !important;
+  box-shadow: none;
+}
+.app-header nav a.perfil-link {
+  background: #00720E;
+  color: #fff;
+}
+.app-header nav a.perfil-link:hover, .app-header nav a.perfil-link:focus {
+  background: #1976d2;
+  color: #fff;
+}
 .app-container {
   min-height: 100vh;
   display: flex;
@@ -5,12 +46,34 @@
 }
 
 .app-header {
-  background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+  background: linear-gradient(135deg, #00720E 0%, #1a7431 100%);
   color: white;
-  padding: 20px;
+  padding: 20px 16px;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+/* Layout del encabezado */
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.header-top .site-title { margin: 0; }
+.site-subtitle { margin: 6px 0 0; }
+
+/* Botón hamburguesa */
+.menu-toggle {
+  display: none;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.menu-toggle mat-icon { vertical-align: middle; }
 
 .app-header h1 {
   margin: 0;
@@ -28,6 +91,8 @@
   flex: 1;
   padding: 20px;
   background-color: #f5f5f5;
+  position: relative;
+  z-index: 1;
 }
 
 .app-footer {
@@ -56,4 +121,110 @@
   .app-main {
     padding: 10px;
   }
+
+  /* Navegación responsiva: enlaces a 100% */
+  .main-nav .nav-group {
+    justify-content: center;
+    gap: 8px;
+  }
+  .app-header nav a, .app-header .nav-link {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 10px 14px;
+  }
+
+  /* Mostrar botón hamburguesa y colapsar nav por defecto */
+  .menu-toggle { display: inline-flex; align-items: center; }
+  .header-top { justify-content: space-between; }
+  .main-nav { display: none; text-align: left; }
+  .main-nav.open { display: block; }
+}
+
+/* Desktop: alinear a la izquierda */
+@media (min-width: 901px) {
+  /* Layout tipo sidebar a la izquierda */
+  .app-container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    grid-template-areas:
+      'sidebar main'
+      'sidebar footer';
+    min-height: 100vh;
+  }
+  .app-header {
+    grid-area: sidebar;
+    text-align: left;
+    padding: 24px 16px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    border-right: 1px solid rgba(255,255,255,0.25);
+  }
+  .app-header .header-top { justify-content: flex-start; }
+  .app-header .site-title, .app-header .site-subtitle { text-align: left; }
+  .app-header nav { margin: 8px 0 0; }
+  .menu-toggle { display: none; }
+
+  /* Nav vertical */
+  .app-header .main-nav {
+    display: flex !important;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: flex-start;
+  }
+  .app-header .main-nav .nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .app-header .main-nav .nav-group + .nav-group { margin-left: 0; }
+  .app-header .main-nav .nav-group + .nav-group:before { display: none; }
+  .app-header nav a, .app-header .nav-link {
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Main y footer en el área derecha */
+  .app-main { grid-area: main; padding: 24px; }
+  .app-footer { grid-area: footer; }
+
+  /* Colapso de sidebar (desktop) */
+  .app-container.sidebar-collapsed {
+    grid-template-columns: 72px 1fr;
+  }
+  .app-container.sidebar-collapsed .site-subtitle,
+  .app-container.sidebar-collapsed .main-nav,
+  .app-container.sidebar-collapsed .menu-toggle {
+    display: none !important;
+  }
+  .app-container.sidebar-collapsed .site-title {
+    display: none;
+  }
+  .app-container.sidebar-collapsed .site-title {
+    font-size: 1.25rem;
+  }
+  .sidebar-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 6px;
+    padding: 6px;
+    margin-right: 6px;
+    cursor: pointer;
+  }
+  /* Ocultar botón de sidebar en móvil */
+}
+
+@media (max-width: 900px) {
+  .sidebar-toggle { display: none; }
 }

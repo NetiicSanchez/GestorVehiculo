@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -13,10 +13,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { CombustiblesService } from '../../services/combustibles.service';
 import { VehiculosService } from '../../services/vehiculos.service';
 import { CargaCombustible, Vehiculo } from '../../models/vehiculo.model';
 import { DialogoNuevaCargaComponent } from './dialogo-nueva-carga.component';
+import { AuthService } from '../../auth/auth.service';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-combustible',
@@ -35,7 +39,8 @@ import { DialogoNuevaCargaComponent } from './dialogo-nueva-carga.component';
     MatTableModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
   ],
   providers: [
     CombustiblesService,
@@ -44,7 +49,12 @@ import { DialogoNuevaCargaComponent } from './dialogo-nueva-carga.component';
   templateUrl: './combustible.component.html',
   styleUrls: ['./combustible.component.css']
 })
-export class CombustibleComponent implements OnInit {
+export class CombustibleComponent implements OnInit, OnDestroy {
+  verFoto(ruta: string): void {
+    if (ruta) {
+      window.open(ruta, '_blank');
+    }
+  }
   // Datos
   cargas: CargaCombustible[] = [];
   cargasFiltradas: CargaCombustible[] = [];
@@ -54,33 +64,64 @@ export class CombustibleComponent implements OnInit {
   // Estado
   cargando = false;
   errorCarga = '';
+  successMessage = '';
+  // Responsive
+  isMobile = false;
+  // Permisos
+  isOperador = false;
+
+  // Paginación y filtro
+  pageSize = 20;
+  pageIndex = 0;
+  mesFiltro: number | null = null;
+  anioFiltro: number | null = null;
 
   // Filtros
-  vehiculoSeleccionado = '';
+  vehiculoSeleccionado: number | null = null;
   fechaDesdeSeleccionada: Date | null = null;
   fechaHastaSeleccionada: Date | null = null;
 
   // Configuración de la tabla
   columnasDisplayed: string[] = [
-    'fecha', 'vehiculo', 'combustible', 'galones', 
-    'precio', 'total', 'kilometraje', 'proveedor', 'acciones'
+    'fecha', 'fecha_registro', 'vehiculo', 'combustible', 'galones', 
+    'precio', 'total', 'kilometraje', 'proveedor', 'observaciones', 'acciones'
   ];
 
   constructor(
     private combustiblesService: CombustiblesService,
     private vehiculosService: VehiculosService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private auth: AuthService
   ) { }
 
   ngOnInit(): void {
     console.log('⛽ Inicializando gestión de combustible');
+  const usuario = this.auth.getUsuario();
+  // Detectar "Conductor" de forma robusta por si cambia la forma del objeto
+  const rolTexto = (usuario?.rol || usuario?.nombre_rol || '').toString().toLowerCase().trim();
+  const idRol = (usuario?.id_rol ?? '').toString().trim();
+  // Restringir acciones para rol "conductor" (texto o id 3)
+  this.isOperador = rolTexto === 'conductor' || rolTexto.includes('conductor') || idRol === '3';
+  // Si es conductor, ocultar la columna de acciones
+  if (this.isOperador) {
+    this.columnasDisplayed = this.columnasDisplayed.filter(c => c !== 'acciones');
+  }
+    this.updateIsMobile();
+    window.addEventListener('resize', this.updateIsMobile);
     this.cargarDatos();
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('resize', this.updateIsMobile);
+  }
+
+  private updateIsMobile = (): void => {
+    this.isMobile = window.innerWidth <= 600;
   }
 
   cargarDatos(): void {
     this.cargando = true;
     this.errorCarga = '';
-
     // Cargar vehículos y cargas en paralelo
     Promise.all([
       this.cargarVehiculos(),
@@ -93,6 +134,59 @@ export class CombustibleComponent implements OnInit {
       this.cargando = false;
       this.errorCarga = 'Error cargando datos de combustible';
       console.error('❌ Error cargando datos:', error);
+    });
+  }
+
+  exportarExcel(): void {
+    if (this.mesFiltro && this.anioFiltro) {
+      this.combustiblesService.exportarCargas({ mes: this.mesFiltro, anio: this.anioFiltro }).subscribe({
+        next: (response) => {
+          const datos = response.data;
+          console.log('Datos para exportar:', datos); // Log para depuración
+            const exportData = datos.map((carga: any) => ({
+              'Fecha de Carga': carga.fechaCarga ? carga.fechaCarga.slice(0, 10) : '',
+              'Fecha de Registro': carga.fechaRegistro ? carga.fechaRegistro.slice(0, 10) : '',
+              Vehiculo: carga.placa + ' ' + carga.marca + ' ' + carga.modelo,
+              Tipo: carga.tipoCombustible,
+              Galones: carga.galonesCargados,
+              PrecioGalon: carga.precioGalon,
+              Total: carga.totalPagado,
+              Kilometraje: carga.kilometrajeActual,
+              Proveedor: carga.proveedorCombustible,
+              NumeroFactura: carga.numeroFactura,
+              Usuario: (carga.nombreUsuario ? carga.nombreUsuario : '') + (carga.apellidoUsuario ? ' ' + carga.apellidoUsuario : '')
+            }));
+          const worksheet = XLSX.utils.json_to_sheet(exportData);
+          const workbook = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(workbook, worksheet, 'Cargas');
+          const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+          const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+          saveAs(blob, 'cargas_combustible.xlsx');
+        },
+        error: () => {
+          alert('Error al exportar los datos');
+        }
+      });
+    } else {
+      alert('Selecciona mes y año para exportar');
+    }
+  }
+
+  abrirDialogoCarga(): void {
+    const dialogRef = this.dialog.open(DialogoNuevaCargaComponent, {
+      width: '95vw',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
+      data: { vehiculos: this.vehiculos }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('✅ Carga guardada desde diálogo:', result);
+        this.successMessage = '¡Carga de combustible registrada exitosamente!';
+        this.cargarCargas(); // Recargar la lista de cargas
+        setTimeout(() => this.successMessage = '', 5000); // Ocultar mensaje después de 5 segundos
+      }
     });
   }
 
@@ -118,11 +212,48 @@ export class CombustibleComponent implements OnInit {
 
   private async cargarCargas(): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.combustiblesService.obtenerCargas().subscribe({
+      // Si hay vehículo seleccionado, obtener todas sus cargas (sin paginar) para que el filtro no se limite por página
+      if (this.vehiculoSeleccionado !== null && this.vehiculoSeleccionado !== undefined) {
+        this.combustiblesService.obtenerCargasPorVehiculo(this.vehiculoSeleccionado).subscribe({
+          next: (response) => {
+            if (response.success) {
+              // Normalizar claves snake_case -> camelCase para que coincidan con el modelo/plantilla
+              const toCamel = (s: string) => s.replace(/_([a-z])/g, (_, c) => c.toUpperCase());
+              const mapRow = (row: any) => {
+                const mapped: any = {};
+                Object.keys(row).forEach(k => {
+                  mapped[toCamel(k)] = (row as any)[k];
+                });
+                return mapped;
+              };
+              this.cargas = Array.isArray(response.data) ? response.data.map(mapRow) : [];
+              this.aplicarFiltros();
+              console.log('⛽ Cargas por vehículo cargadas:', this.cargas.length);
+              resolve();
+            } else {
+              reject('Error en respuesta de cargas por vehículo');
+            }
+          },
+          error: (error) => {
+            console.error('❌ Error cargando cargas por vehículo:', error);
+            reject(error);
+          }
+        });
+        return;
+      }
+
+      // Sin vehículo seleccionado: usar paginación general (ordenado por fecha desc en backend)
+      const params: any = {
+        limit: this.pageSize,
+        offset: this.pageIndex * this.pageSize
+      };
+      if (this.mesFiltro) params.mes = this.mesFiltro;
+      if (this.anioFiltro) params.anio = this.anioFiltro;
+      this.combustiblesService.obtenerCargas(params).subscribe({
         next: (response) => {
           if (response.success) {
             this.cargas = response.data;
-            this.cargasFiltradas = [...this.cargas];
+            this.aplicarFiltros();
             console.log('⛽ Cargas cargadas:', this.cargas.length);
             resolve();
           } else {
@@ -135,6 +266,26 @@ export class CombustibleComponent implements OnInit {
         }
       });
     });
+  }
+
+  cambiarPagina(event: any): void {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.cargarCargas();
+  }
+
+  filtrarPorMes(): void {
+    this.pageIndex = 0;
+    this.cargarCargas();
+  }
+
+  obtenerAnios(): number[] {
+    const anioActual = new Date().getFullYear();
+    const anios: number[] = [];
+    for (let i = anioActual; i >= anioActual - 10; i--) {
+      anios.push(i);
+    }
+    return anios;
   }
 
   private async cargarEstadisticas(): Promise<void> {
@@ -159,23 +310,33 @@ export class CombustibleComponent implements OnInit {
   }
 
   filtrarPorVehiculo(): void {
-    this.aplicarFiltros();
+    // Reiniciar paginación y volver a cargar para no limitar por página cuando hay selección
+    this.pageIndex = 0;
+    this.cargarCargas();
   }
 
   aplicarFiltros(): void {
+    const desde = this.fechaDesdeSeleccionada ? new Date(this.fechaDesdeSeleccionada) : null;
+    const hasta = this.fechaHastaSeleccionada ? new Date(this.fechaHastaSeleccionada) : null;
+    if (desde) desde.setHours(0,0,0,0);
+    if (hasta) hasta.setHours(23,59,59,999);
+
     this.cargasFiltradas = this.cargas.filter(carga => {
       // Filtro por vehículo
-      if (this.vehiculoSeleccionado && carga.idVehiculo.toString() !== this.vehiculoSeleccionado) {
-        return false;
+      if (this.vehiculoSeleccionado !== null && this.vehiculoSeleccionado !== undefined) {
+        if (Number(carga.idVehiculo) !== Number(this.vehiculoSeleccionado)) {
+          return false;
+        }
       }
 
       // Filtro por fecha desde
-      if (this.fechaDesdeSeleccionada && new Date(carga.fechaCarga) < this.fechaDesdeSeleccionada) {
+      const fechaCarga = new Date(carga.fechaCarga);
+      if (desde && fechaCarga < desde) {
         return false;
       }
 
       // Filtro por fecha hasta
-      if (this.fechaHastaSeleccionada && new Date(carga.fechaCarga) > this.fechaHastaSeleccionada) {
+      if (hasta && fechaCarga > hasta) {
         return false;
       }
 
@@ -185,30 +346,21 @@ export class CombustibleComponent implements OnInit {
     console.log(`🔍 Filtros aplicados. Mostrando ${this.cargasFiltradas.length} de ${this.cargas.length} cargas`);
   }
 
-  abrirDialogoCarga(): void {
-    console.log('➕ Abriendo diálogo para nueva carga');
-    
-    const dialogRef = this.dialog.open(DialogoNuevaCargaComponent, {
-      width: '600px',
-      disableClose: true,
-      data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log('✅ Nueva carga registrada:', result);
-        this.cargarDatos(); // Recargar datos
-      }
-    });
-  }
-
   editarCarga(carga: CargaCombustible): void {
+    if (this.isOperador) {
+      alert('Tu rol no tiene permisos para editar cargas.');
+      return;
+    }
     console.log('✏️ Editando carga:', carga);
     // TODO: Implementar diálogo para editar carga
     alert('Edición de carga en desarrollo');
   }
 
   eliminarCarga(carga: CargaCombustible): void {
+    if (this.isOperador) {
+      alert('Tu rol no tiene permisos para eliminar cargas.');
+      return;
+    }
     console.log('🗑️ Eliminando carga:', carga);
     if (confirm('¿Estás seguro de que deseas eliminar esta carga de combustible?')) {
       this.combustiblesService.eliminarCarga(carga.id!).subscribe({
@@ -227,5 +379,17 @@ export class CombustibleComponent implements OnInit {
         }
       });
     }
+  }
+
+  formatearFecha(fecha: string): string {
+  if (!fecha) return '';
+  // Si la fecha incluye hora, tomar solo la parte de la fecha
+  const soloFecha = fecha.includes('T') ? fecha.split('T')[0] : fecha;
+  const d = new Date(soloFecha + 'T00:00:00');
+  if (isNaN(d.getTime())) return soloFecha;
+  const dia = d.getDate().toString().padStart(2, '0');
+  const mes = (d.getMonth() + 1).toString().padStart(2, '0');
+  const anio = d.getFullYear();
+  return `${dia}/${mes}/${anio}`;
   }
 }

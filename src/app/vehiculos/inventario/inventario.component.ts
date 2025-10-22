@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
@@ -16,6 +18,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
 import { VehiculosService } from '../../services/vehiculos.service';
+import { AuthService } from '../../auth/auth.service';
 import { Vehiculo } from '../../models/vehiculo.model';
 import { Subscription, filter } from 'rxjs';
 
@@ -44,6 +47,49 @@ import { Subscription, filter } from 'rxjs';
   styleUrls: ['./inventario.component.css']
 })
 export class InventarioComponent implements OnInit, OnDestroy {
+  // Todas las propiedades y métodos duplicados han sido eliminados. Solo queda una versión de cada uno.
+
+  // ...resto de métodos (actualizarInventario, aplicarFiltro, limpiarFiltro, agregarVehiculo, irAGestionCombustible, irADashboard, verDetalle, editarVehiculo, eliminarVehiculo, exportarDatos, mostrarMensaje) igual que ya tienes...
+  get rolUsuario(): string {
+    const usuario = this.authService.getUsuario();
+    if (!usuario) return '';
+    const rol = usuario.rol || usuario.id_rol || usuario.nombre_rol || '';
+    return rol.toString();
+  }
+
+  // Verificar si es conductor de manera robusta
+  get esConductor(): boolean {
+    const usuario = this.authService.getUsuario();
+    if (!usuario) return false;
+    
+    // Obtener todas las posibles formas del rol
+    const rolTexto = usuario.rol || '';
+    const idRol = usuario.id_rol || '';
+    const nombreRol = usuario.nombre_rol || '';
+    
+    // Normalizar todos los valores a string y comparar
+    const rolTextoStr = rolTexto.toString().toLowerCase().trim();
+    const idRolStr = idRol.toString().trim();
+    const nombreRolStr = nombreRol.toString().toLowerCase().trim();
+    
+    const esConductor = rolTextoStr === 'conductor' || 
+                       idRolStr === '3' || 
+                       nombreRolStr === 'conductor' ||
+                       rolTextoStr.includes('conductor') ||
+                       nombreRolStr.includes('conductor');
+    
+    return esConductor;
+  }
+
+  get permisosUsuario(): string[] {
+    if (isPlatformBrowser(this.platformId)) {
+      const usuario = localStorage.getItem('usuario');
+      if (!usuario) return [];
+      const obj = JSON.parse(usuario);
+      return obj.permisos || [];
+    }
+    return [];
+  }
   displayedColumns: string[] = ['placa', 'marca', 'modelo', 'anio', 'tipoVehiculo', 'estado', 'acciones'];
   dataSource = new MatTableDataSource<Vehiculo>();
   
@@ -59,9 +105,11 @@ export class InventarioComponent implements OnInit, OnDestroy {
 
   constructor(
     private vehiculosService: VehiculosService,
+    private authService: AuthService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // Escuchar cambios de navegación para recargar datos cuando regrese de agregar vehículo
     this.routerSubscription = this.router.events.pipe(
@@ -201,7 +249,7 @@ export class InventarioComponent implements OnInit, OnDestroy {
   }
 
   eliminarVehiculo(vehiculo: Vehiculo): void {
-    if (confirm(`¿Está seguro de eliminar el vehículo con placa ${vehiculo.placa}?`)) {
+    if (confirm(`¿Está seguro de eliminar el vehículo ${vehiculo.placa}?`)) {
       this.vehiculosService.eliminarVehiculo(vehiculo.id!).subscribe({
         next: () => {
           this.mostrarMensaje('Vehículo eliminado exitosamente');

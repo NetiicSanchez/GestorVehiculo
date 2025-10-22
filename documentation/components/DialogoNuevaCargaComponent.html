@@ -1,0 +1,1924 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>gestor-vehiculos documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">gestor-vehiculos documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  DialogoNuevaCargaComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                                <code><a href="../injectables/CombustiblesService.html" target="_self" >CombustiblesService</a></code>
+                                <code><a href="../injectables/VehiculosService.html" target="_self" >VehiculosService</a></code>
+                                <code><a href="../injectables/CatalogosService.html" target="_self" >CatalogosService</a></code>
+                                <code><a href="../injectables/UsuariosService.html" target="_self" >UsuariosService</a></code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-dialogo-nueva-carga</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>MatDialogModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatInputModule</code>
+                            <code>MatSelectModule</code>
+                            <code>MatButtonModule</code>
+                            <code>MatDatepickerModule</code>
+                            <code>MatNativeDateModule</code>
+                            <code>MatProgressSpinnerModule</code>
+                            <code>MatIconModule</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>
+    .dialog-content {
+      min-width: 400px;
+      max-width: 500px;
+    }
+    
+    .full-width {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+    
+    .total-section {
+      padding: 16px;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      margin-top: 16px;
+      text-align: center;
+      font-size: 18px;
+      color: #2e7d32;
+    }
+    
+    mat-dialog-actions {
+      padding: 16px 0;
+      margin: 0;
+    }
+  </code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;h2 mat-dialog-title&gt;Nueva Carga de Combustible&lt;/h2&gt;
+
+&lt;form [formGroup]&#x3D;&quot;formulario&quot; (ngSubmit)&#x3D;&quot;guardar()&quot;&gt;
+  &lt;mat-dialog-content class&#x3D;&quot;dialog-content&quot;&gt;
+
+    &lt;!-- Vehículo --&gt;
+    &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+      &lt;mat-label&gt;Vehículo&lt;/mat-label&gt;
+      &lt;mat-select formControlName&#x3D;&quot;idVehiculo&quot; required&gt;
+        &lt;mat-option *ngFor&#x3D;&quot;let vehiculo of vehiculos&quot; [value]&#x3D;&quot;vehiculo.id&quot;&gt;
+          {{vehiculo.placa}} - {{vehiculo.marca}} {{vehiculo.modelo}}
+        &lt;/mat-option&gt;
+      &lt;/mat-select&gt;
+      &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;idVehiculo&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+        Seleccione un vehículo
+      &lt;/mat-error&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;!-- Tipo de Combustible --&gt;
+    &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+      &lt;mat-label&gt;Tipo de Combustible&lt;/mat-label&gt;
+      &lt;mat-select formControlName&#x3D;&quot;idTipoCombustible&quot; required&gt;
+        &lt;mat-option *ngFor&#x3D;&quot;let tipo of tiposCombustible&quot; [value]&#x3D;&quot;tipo.id&quot;&gt;
+          {{tipo.nombre}}
+        &lt;/mat-option&gt;
+      &lt;/mat-select&gt;
+      &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;idTipoCombustible&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+        Seleccione el tipo de combustible
+      &lt;/mat-error&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;!-- Fecha de Carga --&gt;
+    &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+      &lt;mat-label&gt;Fecha de Carga&lt;/mat-label&gt;
+      &lt;input matInput [matDatepicker]&#x3D;&quot;picker&quot; formControlName&#x3D;&quot;fechaCarga&quot; required&gt;
+      &lt;mat-datepicker-toggle matIconSuffix [for]&#x3D;&quot;picker&quot;&gt;&lt;/mat-datepicker-toggle&gt;
+      &lt;mat-datepicker #picker&gt;&lt;/mat-datepicker&gt;
+      &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;fechaCarga&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+        Seleccione la fecha
+      &lt;/mat-error&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;!-- Galones --&gt;
+    &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+      &lt;mat-label&gt;Galones&lt;/mat-label&gt;
+      &lt;input matInput type&#x3D;&quot;number&quot; step&#x3D;&quot;0.01&quot; formControlName&#x3D;&quot;galones&quot; required&gt;
+      &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;galones&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+        Ingrese los galones
+      &lt;/mat-error&gt;
+      &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;galones&#x27;)?.hasError(&#x27;min&#x27;)&quot;&gt;
+        Los galones deben ser mayor a 0
+      &lt;/mat-error&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;!-- Precio por Galón --&gt;
+    &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+      &lt;mat-label&gt;Precio por Galón&lt;/mat-label&gt;
+      &lt;input matInput type&#x3D;&quot;number&quot; step&#x3D;&quot;0.01&quot; formControlName&#x3D;&quot;precioGalon&quot; required&gt;
+      &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;precioGalon&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+        Ingrese el precio por galón
+      &lt;/mat-error&gt;
+      &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;precioGalon&#x27;)?.hasError(&#x27;min&#x27;)&quot;&gt;
+        El precio debe ser mayor a 0
+      &lt;/mat-error&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;!-- Kilometraje --&gt;
+    &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+      &lt;mat-label&gt;Kilometraje&lt;/mat-label&gt;
+      &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;kilometraje&quot; required&gt;
+      &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;kilometraje&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+        Ingrese el kilometraje
+      &lt;/mat-error&gt;
+      &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;kilometraje&#x27;)?.hasError(&#x27;min&#x27;)&quot;&gt;
+        El kilometraje debe ser mayor a 0
+      &lt;/mat-error&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;!-- Usuario Responsable --&gt;
+    &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+      &lt;mat-label&gt;Usuario Responsable&lt;/mat-label&gt;
+      &lt;mat-select formControlName&#x3D;&quot;idUsuario&quot;&gt;
+        &lt;mat-option *ngFor&#x3D;&quot;let usuario of usuarios&quot; [value]&#x3D;&quot;usuario.id&quot;&gt;
+          {{usuario.nombre}} {{usuario.apellido}}
+        &lt;/mat-option&gt;
+      &lt;/mat-select&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;!-- Número de Factura --&gt;
+    &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+      &lt;mat-label&gt;Número de Vale/Factura&lt;/mat-label&gt;
+      &lt;input matInput formControlName&#x3D;&quot;numeroFactura&quot;&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;!-- Proveedor --&gt;
+    &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+      &lt;mat-label&gt;Proveedor/Estación&lt;/mat-label&gt;
+      &lt;mat-select formControlName&#x3D;&quot;proveedor&quot; required&gt;
+          &lt;mat-option value&#x3D;&quot;DON ARTURO&quot;&gt;DON ARTURO&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;FORMULA 1&quot;&gt;FORMULA 1&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;SHELL&quot;&gt;SHELL&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;TEXACO&quot;&gt;TEXACO&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;PUMA&quot;&gt;PUMA&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;OTRO&quot;&gt;OTRO&lt;/mat-option&gt;
+      &lt;/mat-select&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;!-- Foto de Factura --&gt;
+    &lt;div class&#x3D;&quot;upload-section full-width&quot;&gt;
+      &lt;label class&#x3D;&quot;upload-label&quot;&gt;Foto de Factura&lt;/label&gt;
+      &lt;input type&#x3D;&quot;file&quot; #fileInput accept&#x3D;&quot;image/*&quot; class&#x3D;&quot;file-input&quot; disabled&gt;
+      &lt;button type&#x3D;&quot;button&quot; mat-stroked-button class&#x3D;&quot;upload-button&quot; disabled&gt;
+        &lt;mat-icon&gt;cloud_upload&lt;/mat-icon&gt;
+        {{ archivoSeleccionado ? archivoSeleccionado.name : &#x27;Seleccionar Foto&#x27; }}
+      &lt;/button&gt;
+      &lt;div *ngIf&#x3D;&quot;archivoSeleccionado&quot; class&#x3D;&quot;file-info&quot;&gt;
+        &lt;small&gt;{{ archivoSeleccionado.name }} ({{ (archivoSeleccionado.size / 1024 / 1024) | number:&#x27;1.1-1&#x27; }} MB)&lt;/small&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Observaciones --&gt;
+    &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+      &lt;mat-label&gt;Observaciones&lt;/mat-label&gt;
+      &lt;textarea matInput formControlName&#x3D;&quot;observaciones&quot; rows&#x3D;&quot;3&quot;&gt;&lt;/textarea&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;!-- Total Calculado --&gt;
+    &lt;div class&#x3D;&quot;total-section&quot; *ngIf&#x3D;&quot;totalCalculado &gt; 0&quot;&gt;
+      &lt;strong&gt;Total: ${{totalCalculado | number:&#x27;1.2-2&#x27;}}&lt;/strong&gt;
+    &lt;/div&gt;
+
+  &lt;/mat-dialog-content&gt;
+
+  &lt;mat-dialog-actions align&#x3D;&quot;end&quot;&gt;
+    &lt;button mat-button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;cancelar()&quot;&gt;Cancelar&lt;/button&gt;
+    &lt;button mat-raised-button color&#x3D;&quot;primary&quot; type&#x3D;&quot;submit&quot;
+            [disabled]&#x3D;&quot;formulario.invalid || guardando&quot;&gt;
+      &lt;span *ngIf&#x3D;&quot;!guardando&quot;&gt;Guardar&lt;/span&gt;
+      &lt;span *ngIf&#x3D;&quot;guardando&quot;&gt;Guardando...&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/mat-dialog-actions&gt;
+&lt;/form&gt;
+</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#archivoSeleccionado" >archivoSeleccionado</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                <a href="#data" >data</a>
+                            </li>
+                            <li>
+                                <a href="#formulario" >formulario</a>
+                            </li>
+                            <li>
+                                <a href="#guardando" >guardando</a>
+                            </li>
+                            <li>
+                                <a href="#previewUrl" >previewUrl</a>
+                            </li>
+                            <li>
+                                <a href="#tiposCombustible" >tiposCombustible</a>
+                            </li>
+                            <li>
+                                <a href="#totalCalculado" >totalCalculado</a>
+                            </li>
+                            <li>
+                                <a href="#usuarios" >usuarios</a>
+                            </li>
+                            <li>
+                                <a href="#vehiculos" >vehiculos</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#calcularTotal" >calcularTotal</a>
+                            </li>
+                            <li>
+                                <a href="#cancelar" >cancelar</a>
+                            </li>
+                            <li>
+                                <a href="#cargarDatos" >cargarDatos</a>
+                            </li>
+                            <li>
+                                <a href="#configurarCalculoTotal" >configurarCalculoTotal</a>
+                            </li>
+                            <li>
+                                <a href="#crearFormulario" >crearFormulario</a>
+                            </li>
+                            <li>
+                                <a href="#guardar" >guardar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#guardarCarga" >guardarCarga</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onFileSelected" >onFileSelected</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#subirArchivo" >subirArchivo</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: FormBuilder, dialogRef: <a href="../components/DialogoNuevaCargaComponent.html" target="_self">MatDialogRef&lt;DialogoNuevaCargaComponent&gt;</a>, combustiblesService: <a href="../injectables/CombustiblesService.html" target="_self">CombustiblesService</a>, vehiculosService: <a href="../injectables/VehiculosService.html" target="_self">VehiculosService</a>, catalogosService: <a href="../injectables/CatalogosService.html" target="_self">CatalogosService</a>, usuariosService: <a href="../injectables/UsuariosService.html" target="_self">UsuariosService</a>, data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:222</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialogRef</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../components/DialogoNuevaCargaComponent.html" target="_self" >MatDialogRef&lt;DialogoNuevaCargaComponent&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>combustiblesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CombustiblesService.html" target="_self" >CombustiblesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>vehiculosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/VehiculosService.html" target="_self" >VehiculosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>catalogosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CatalogosService.html" target="_self" >CatalogosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>usuariosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UsuariosService.html" target="_self" >UsuariosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>data</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="calcularTotal"></a>
+                    <span class="name">
+                        <span ><b>calcularTotal</b></span>
+                        <a href="#calcularTotal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>calcularTotal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="262"
+                                    class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:262</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelar"></a>
+                    <span class="name">
+                        <span ><b>cancelar</b></span>
+                        <a href="#cancelar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="427"
+                                    class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:427</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarDatos"></a>
+                    <span class="name">
+                        <span ><b>cargarDatos</b></span>
+                        <a href="#cargarDatos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cargarDatos()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="289"
+                                    class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:289</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="configurarCalculoTotal"></a>
+                    <span class="name">
+                        <span ><b>configurarCalculoTotal</b></span>
+                        <a href="#configurarCalculoTotal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>configurarCalculoTotal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="256"
+                                    class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:256</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="crearFormulario"></a>
+                    <span class="name">
+                        <span ><b>crearFormulario</b></span>
+                        <a href="#crearFormulario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>crearFormulario()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="240"
+                                    class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:240</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guardar"></a>
+                    <span class="name">
+                        <span ><b>guardar</b></span>
+                        <a href="#guardar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>guardar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="338"
+                                    class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:338</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guardarCarga"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>guardarCarga</b></span>
+                        <a href="#guardarCarga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>guardarCarga(fotoUrl: string | null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="389"
+                                    class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:389</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fotoUrl</td>
+                                            <td>
+                                                        <code>string | null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="234"
+                                    class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:234</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFileSelected"></a>
+                    <span class="name">
+                        <span ><b>onFileSelected</b></span>
+                        <a href="#onFileSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFileSelected(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="268"
+                                    class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:268</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subirArchivo"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>subirArchivo</b></span>
+                        <a href="#subirArchivo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>subirArchivo()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="364"
+                                    class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:364</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="archivoSeleccionado"></a>
+                    <span class="name">
+                        <span ><b>archivoSeleccionado</b></span>
+                        <a href="#archivoSeleccionado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>File | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:221</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="data"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                        <span ><b>data</b></span>
+                        <a href="#data"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Inject(MAT_DIALOG_DATA)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:231</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formulario"></a>
+                    <span class="name">
+                        <span ><b>formulario</b></span>
+                        <a href="#formulario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:214</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guardando"></a>
+                    <span class="name">
+                        <span ><b>guardando</b></span>
+                        <a href="#guardando"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:218</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="previewUrl"></a>
+                    <span class="name">
+                        <span ><b>previewUrl</b></span>
+                        <a href="#previewUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:222</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tiposCombustible"></a>
+                    <span class="name">
+                        <span ><b>tiposCombustible</b></span>
+                        <a href="#tiposCombustible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:216</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="totalCalculado"></a>
+                    <span class="name">
+                        <span ><b>totalCalculado</b></span>
+                        <a href="#totalCalculado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:219</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="usuarios"></a>
+                    <span class="name">
+                        <span ><b>usuarios</b></span>
+                        <a href="#usuarios"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:217</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="vehiculos"></a>
+                    <span class="name">
+                        <span ><b>vehiculos</b></span>
+                        <a href="#vehiculos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Vehiculo.html" target="_self" >Vehiculo[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/app/vehiculos/combustible/dialogo-nueva-carga.component.ts:215</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Inject } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from &#x27;@angular/material/dialog&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatInputModule } from &#x27;@angular/material/input&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import { MatDatepickerModule } from &#x27;@angular/material/datepicker&#x27;;
+import { MatNativeDateModule } from &#x27;@angular/material/core&#x27;;
+import { MatProgressSpinnerModule } from &#x27;@angular/material/progress-spinner&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+
+import { CombustiblesService } from &#x27;../../services/combustibles.service&#x27;;
+import { VehiculosService } from &#x27;../../services/vehiculos.service&#x27;;
+import { CatalogosService } from &#x27;../../services/catalogos.service&#x27;;
+import { UsuariosService } from &#x27;../../services/usuarios.service&#x27;;
+import { Vehiculo } from &#x27;../../models/vehiculo.model&#x27;;
+
+@Component({
+  selector: &#x27;app-dialogo-nueva-carga&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
+    MatIconModule
+  ],
+  providers: [
+    CombustiblesService,
+    VehiculosService,
+    CatalogosService,
+    UsuariosService
+  ],
+  template: &#x60;
+    &lt;h2 mat-dialog-title&gt;Nueva Carga de Combustible&lt;/h2&gt;
+    
+    &lt;form [formGroup]&#x3D;&quot;formulario&quot; (ngSubmit)&#x3D;&quot;guardar()&quot;&gt;
+      &lt;mat-dialog-content class&#x3D;&quot;dialog-content&quot;&gt;
+        
+        &lt;!-- Vehículo --&gt;
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+          &lt;mat-label&gt;Vehículo&lt;/mat-label&gt;
+          &lt;mat-select formControlName&#x3D;&quot;idVehiculo&quot; required&gt;
+            &lt;mat-option *ngFor&#x3D;&quot;let vehiculo of vehiculos&quot; [value]&#x3D;&quot;vehiculo.id&quot;&gt;
+              {{vehiculo.placa}} - {{vehiculo.marca}} {{vehiculo.modelo}}
+            &lt;/mat-option&gt;
+          &lt;/mat-select&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;idVehiculo&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+            Seleccione un vehículo
+          &lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Tipo de Combustible --&gt;
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+          &lt;mat-label&gt;Tipo de Combustible&lt;/mat-label&gt;
+          &lt;mat-select formControlName&#x3D;&quot;idTipoCombustible&quot; required&gt;
+            &lt;mat-option *ngFor&#x3D;&quot;let tipo of tiposCombustible&quot; [value]&#x3D;&quot;tipo.id&quot;&gt;
+              {{tipo.nombre}}
+            &lt;/mat-option&gt;
+          &lt;/mat-select&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;idTipoCombustible&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+            Seleccione el tipo de combustible
+          &lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Fecha de Carga --&gt;
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+          &lt;mat-label&gt;Fecha de Carga&lt;/mat-label&gt;
+          &lt;input matInput [matDatepicker]&#x3D;&quot;picker&quot; formControlName&#x3D;&quot;fechaCarga&quot; required&gt;
+          &lt;mat-datepicker-toggle matIconSuffix [for]&#x3D;&quot;picker&quot;&gt;&lt;/mat-datepicker-toggle&gt;
+          &lt;mat-datepicker #picker&gt;&lt;/mat-datepicker&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;fechaCarga&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+            Seleccione la fecha
+          &lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Galones --&gt;
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+          &lt;mat-label&gt;Galones&lt;/mat-label&gt;
+          &lt;input matInput type&#x3D;&quot;number&quot; step&#x3D;&quot;0.01&quot; formControlName&#x3D;&quot;galones&quot; required&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;galones&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+            Ingrese los galones
+          &lt;/mat-error&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;galones&#x27;)?.hasError(&#x27;min&#x27;)&quot;&gt;
+            Los galones deben ser mayor a 0
+          &lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Precio por Galón --&gt;
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+          &lt;mat-label&gt;Precio por Galón&lt;/mat-label&gt;
+          &lt;input matInput type&#x3D;&quot;number&quot; step&#x3D;&quot;0.01&quot; formControlName&#x3D;&quot;precioGalon&quot; required&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;precioGalon&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+            Ingrese el precio por galón
+          &lt;/mat-error&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;precioGalon&#x27;)?.hasError(&#x27;min&#x27;)&quot;&gt;
+            El precio debe ser mayor a 0
+          &lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Kilometraje --&gt;
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+          &lt;mat-label&gt;Kilometraje&lt;/mat-label&gt;
+          &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;kilometraje&quot; required&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;kilometraje&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+            Ingrese el kilometraje
+          &lt;/mat-error&gt;
+          &lt;mat-error *ngIf&#x3D;&quot;formulario.get(&#x27;kilometraje&#x27;)?.hasError(&#x27;min&#x27;)&quot;&gt;
+            El kilometraje debe ser mayor a 0
+          &lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Usuario Responsable --&gt;
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+          &lt;mat-label&gt;Usuario Responsable&lt;/mat-label&gt;
+          &lt;mat-select formControlName&#x3D;&quot;idUsuario&quot;&gt;
+            &lt;mat-option *ngFor&#x3D;&quot;let usuario of usuarios&quot; [value]&#x3D;&quot;usuario.id&quot;&gt;
+              {{usuario.nombre}} {{usuario.apellido}}
+            &lt;/mat-option&gt;
+          &lt;/mat-select&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Número de Factura --&gt;
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+          &lt;mat-label&gt;Número de Vale/Factura&lt;/mat-label&gt;
+          &lt;input matInput formControlName&#x3D;&quot;numeroFactura&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Proveedor --&gt;
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+          &lt;mat-label&gt;Proveedor/Estación&lt;/mat-label&gt;
+          &lt;mat-select formControlName&#x3D;&quot;proveedor&quot; required&gt;
+              &lt;mat-option value&#x3D;&quot;DON ARTURO&quot;&gt;DON ARTURO&lt;/mat-option&gt;
+              &lt;mat-option value&#x3D;&quot;FORMULA 1&quot;&gt;FORMULA 1&lt;/mat-option&gt;
+              &lt;mat-option value&#x3D;&quot;SHELL&quot;&gt;SHELL&lt;/mat-option&gt;
+              &lt;mat-option value&#x3D;&quot;TEXACO&quot;&gt;TEXACO&lt;/mat-option&gt;
+              &lt;mat-option value&#x3D;&quot;PUMA&quot;&gt;PUMA&lt;/mat-option&gt;
+              &lt;mat-option value&#x3D;&quot;OTRO&quot;&gt;OTRO&lt;/mat-option&gt;
+          &lt;/mat-select&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Foto de Factura --&gt;
+        &lt;div class&#x3D;&quot;upload-section full-width&quot;&gt;
+          &lt;label class&#x3D;&quot;upload-label&quot;&gt;Foto de Factura&lt;/label&gt;
+          &lt;input type&#x3D;&quot;file&quot; #fileInput accept&#x3D;&quot;image/*&quot; class&#x3D;&quot;file-input&quot; disabled&gt;
+          &lt;button type&#x3D;&quot;button&quot; mat-stroked-button class&#x3D;&quot;upload-button&quot; disabled&gt;
+            &lt;mat-icon&gt;cloud_upload&lt;/mat-icon&gt;
+            {{ archivoSeleccionado ? archivoSeleccionado.name : &#x27;Seleccionar Foto&#x27; }}
+          &lt;/button&gt;
+          &lt;div *ngIf&#x3D;&quot;archivoSeleccionado&quot; class&#x3D;&quot;file-info&quot;&gt;
+            &lt;small&gt;{{ archivoSeleccionado.name }} ({{ (archivoSeleccionado.size / 1024 / 1024) | number:&#x27;1.1-1&#x27; }} MB)&lt;/small&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Observaciones --&gt;
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+          &lt;mat-label&gt;Observaciones&lt;/mat-label&gt;
+          &lt;textarea matInput formControlName&#x3D;&quot;observaciones&quot; rows&#x3D;&quot;3&quot;&gt;&lt;/textarea&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Total Calculado --&gt;
+        &lt;div class&#x3D;&quot;total-section&quot; *ngIf&#x3D;&quot;totalCalculado &gt; 0&quot;&gt;
+          &lt;strong&gt;Total: \${{totalCalculado | number:&#x27;1.2-2&#x27;}}&lt;/strong&gt;
+        &lt;/div&gt;
+
+      &lt;/mat-dialog-content&gt;
+
+      &lt;mat-dialog-actions align&#x3D;&quot;end&quot;&gt;
+        &lt;button mat-button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;cancelar()&quot;&gt;Cancelar&lt;/button&gt;
+        &lt;button mat-raised-button color&#x3D;&quot;primary&quot; type&#x3D;&quot;submit&quot; 
+                [disabled]&#x3D;&quot;formulario.invalid || guardando&quot;&gt;
+          &lt;span *ngIf&#x3D;&quot;!guardando&quot;&gt;Guardar&lt;/span&gt;
+          &lt;span *ngIf&#x3D;&quot;guardando&quot;&gt;Guardando...&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/mat-dialog-actions&gt;
+    &lt;/form&gt;
+  &#x60;,
+  styles: [&#x60;
+    .dialog-content {
+      min-width: 400px;
+      max-width: 500px;
+    }
+    
+    .full-width {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+    
+    .total-section {
+      padding: 16px;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      margin-top: 16px;
+      text-align: center;
+      font-size: 18px;
+      color: #2e7d32;
+    }
+    
+    mat-dialog-actions {
+      padding: 16px 0;
+      margin: 0;
+    }
+  &#x60;]
+})
+export class DialogoNuevaCargaComponent implements OnInit {
+  formulario!: FormGroup;
+  vehiculos: Vehiculo[] &#x3D; [];
+  tiposCombustible: any[] &#x3D; [];
+  usuarios: any[] &#x3D; [];
+  guardando &#x3D; false;
+  totalCalculado &#x3D; 0;
+  // Propiedades para manejo de archivos
+  archivoSeleccionado: File | null &#x3D; null;
+  previewUrl: string | null &#x3D; null;
+
+  constructor(
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef&lt;DialogoNuevaCargaComponent&gt;,
+    private combustiblesService: CombustiblesService,
+    private vehiculosService: VehiculosService,
+    private catalogosService: CatalogosService,
+    private usuariosService: UsuariosService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
+
+  ngOnInit(): void {
+    this.crearFormulario();
+    this.cargarDatos();
+    this.configurarCalculoTotal();
+  }
+
+  crearFormulario(): void {
+    this.formulario &#x3D; this.fb.group({
+      idVehiculo: [&#x27;&#x27;, Validators.required],
+      idTipoCombustible: [&#x27;&#x27;, Validators.required],
+      idUsuario: [&#x27;&#x27;],
+      fechaCarga: [new Date(), Validators.required],
+      galones: [&#x27;&#x27;, [Validators.required, Validators.min(0.01)]],
+      precioGalon: [&#x27;&#x27;, [Validators.required, Validators.min(0.01)]],
+      kilometraje: [&#x27;&#x27;, [Validators.required, Validators.min(0)]],
+      numeroFactura: [&#x27;&#x27;],
+      proveedor: [&#x27;&#x27;],
+      fotoFactura: [&#x27;&#x27;],
+      observaciones: [&#x27;&#x27;]
+    });
+  }
+
+  configurarCalculoTotal(): void {
+    // Calcular total automáticamente cuando cambien galones o precio
+    this.formulario.get(&#x27;galones&#x27;)?.valueChanges.subscribe(() &#x3D;&gt; this.calcularTotal());
+    this.formulario.get(&#x27;precioGalon&#x27;)?.valueChanges.subscribe(() &#x3D;&gt; this.calcularTotal());
+  }
+
+  calcularTotal(): void {
+    const galones &#x3D; this.formulario.get(&#x27;galones&#x27;)?.value || 0;
+    const precio &#x3D; this.formulario.get(&#x27;precioGalon&#x27;)?.value || 0;
+    this.totalCalculado &#x3D; galones * precio;
+  }
+
+  onFileSelected(event: Event): void {
+    const input &#x3D; event.target as HTMLInputElement;
+    if (input.files &amp;&amp; input.files.length &gt; 0) {
+      const file &#x3D; input.files[0];
+      
+      // Validar que sea una imagen
+      if (!file.type.startsWith(&#x27;image/&#x27;)) {
+        alert(&#x27;Por favor seleccione un archivo de imagen válido.&#x27;);
+        return;
+      }
+
+      // Validar tamaño (máximo 5MB)
+      if (file.size &gt; 5 * 1024 * 1024) {
+        alert(&#x27;El archivo es demasiado grande. Máximo 5MB permitido.&#x27;);
+        return;
+      }
+
+      this.archivoSeleccionado &#x3D; file;
+    }
+  }
+
+  cargarDatos(): void {
+    // Cargar vehículos
+    this.vehiculosService.obtenerVehiculos().subscribe({
+      next: (response: any) &#x3D;&gt; {
+        if (response.success) {
+          this.vehiculos &#x3D; response.data;
+        } else {
+          console.error(&#x27;Error en respuesta de vehículos:&#x27;, response);
+        }
+      },
+      error: (error: any) &#x3D;&gt; {
+        console.error(&#x27;Error al cargar vehículos:&#x27;, error);
+      }
+    });
+
+    // Cargar tipos de combustible
+    console.log(&#x27;🔥 Cargando tipos de combustible...&#x27;);
+    this.catalogosService.obtenerTiposCombustible().subscribe({
+      next: (response: any) &#x3D;&gt; {
+        // Permitir tanto array directo como objeto con data
+        if (Array.isArray(response)) {
+          this.tiposCombustible &#x3D; response;
+        } else if (response &amp;&amp; Array.isArray(response.data)) {
+          this.tiposCombustible &#x3D; response.data;
+        } else {
+          this.tiposCombustible &#x3D; [];
+        }
+        console.log(&#x27;🔥 Tipos de combustible cargados:&#x27;, this.tiposCombustible);
+      },
+      error: (error: any) &#x3D;&gt; {
+        console.error(&#x27;Error al cargar tipos de combustible:&#x27;, error);
+      }
+    });
+
+    // Cargar usuarios
+    this.usuariosService.obtenerUsuarios().subscribe({
+      next: (response: any) &#x3D;&gt; {
+        if (response.success) {
+          this.usuarios &#x3D; response.data;
+        } else {
+          console.error(&#x27;Error en respuesta de usuarios:&#x27;, response);
+        }
+      },
+      error: (error: any) &#x3D;&gt; {
+        console.error(&#x27;Error al cargar usuarios:&#x27;, error);
+      }
+    });
+  }
+
+  guardar(): void {
+    if (this.formulario.valid) {
+      this.guardando &#x3D; true;
+      
+      // Si hay archivo seleccionado, primero lo subimos
+      if (this.archivoSeleccionado) {
+        this.subirArchivo().then((urlArchivo) &#x3D;&gt; {
+          this.guardarCarga(urlArchivo);
+        }).catch((error) &#x3D;&gt; {
+          console.error(&#x27;❌ Error al subir archivo:&#x27;, error);
+          alert(&#x27;Error al subir el archivo&#x27;);
+          this.guardando &#x3D; false;
+        });
+      } else {
+        // Guardar sin foto
+        this.guardarCarga(null);
+      }
+    } else {
+      console.warn(&#x27;⚠️ Formulario inválido:&#x27;, this.formulario.errors);
+      // Marcar todos los campos como tocados para mostrar errores
+      Object.keys(this.formulario.controls).forEach(key &#x3D;&gt; {
+        this.formulario.get(key)?.markAsTouched();
+      });
+    }
+  }
+
+  private async subirArchivo(): Promise&lt;string&gt; {
+    if (!this.archivoSeleccionado) {
+      throw new Error(&#x27;No hay archivo seleccionado&#x27;);
+    }
+
+    const formData &#x3D; new FormData();
+    formData.append(&#x27;foto&#x27;, this.archivoSeleccionado);
+
+    try {
+      const response &#x3D; await fetch(&#x27;/api/upload/factura&#x27;, {
+        method: &#x27;POST&#x27;,
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error(&#x27;Error al subir archivo&#x27;);
+      }
+
+      const result &#x3D; await response.json();
+      return result.url; // URL del archivo subido
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  private guardarCarga(fotoUrl: string | null): void {
+    const carga &#x3D; {
+      id_vehiculo: this.formulario.value.idVehiculo,
+      id_tipo_combustible: this.formulario.value.idTipoCombustible,
+      id_usuario: this.formulario.value.idUsuario || null,
+      fecha_carga: this.formulario.value.fechaCarga,
+      galones_cargados: this.formulario.value.galones,
+      precio_galon: this.formulario.value.precioGalon,
+      total_pagado: this.totalCalculado,
+      kilometraje_actual: this.formulario.value.kilometraje,
+      numero_factura: this.formulario.value.numeroFactura || null,
+      proveedor_combustible: this.formulario.value.proveedor || null,
+      foto_factura: fotoUrl,
+      observaciones: this.formulario.value.observaciones || null,
+      activo: true
+    };
+
+    console.log(&#x27;💾 Guardando carga de combustible:&#x27;, carga);
+
+    this.combustiblesService.registrarCarga(carga as any).subscribe({
+      next: (response: any) &#x3D;&gt; {
+        console.log(&#x27;✅ Carga guardada exitosamente:&#x27;, response);
+        if (response.success) {
+          this.dialogRef.close(response);
+        } else {
+          console.error(&#x27;❌ Error en respuesta:&#x27;, response);
+          alert(&#x27;Error al guardar la carga de combustible&#x27;);
+          this.guardando &#x3D; false;
+        }
+      },
+      error: (error: any) &#x3D;&gt; {
+        console.error(&#x27;❌ Error al guardar carga:&#x27;, error);
+        alert(&#x27;Error al guardar la carga de combustible&#x27;);
+        this.guardando &#x3D; false;
+      }
+    });
+  }
+
+  cancelar(): void {
+    this.dialogRef.close();
+  }
+}
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="styleData">
+            <pre class="line-numbers"><code class="language-scss">
+    .dialog-content {
+      min-width: 400px;
+      max-width: 500px;
+    }
+    
+    .full-width {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+    
+    .total-section {
+      padding: 16px;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      margin-top: 16px;
+      text-align: center;
+      font-size: 18px;
+      color: #2e7d32;
+    }
+    
+    mat-dialog-actions {
+      padding: 16px 0;
+      margin: 0;
+    }
+  
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><h2 mat-dialog-title>Nueva Carga de Combustible</h2><form [formGroup]="formulario" (ngSubmit)="guardar()">  <mat-dialog-content class="dialog-content">    <!-- Vehículo -->    <mat-form-field appearance="outline" class="full-width">      <mat-label>Vehículo</mat-label>      <mat-select formControlName="idVehiculo" required>        <mat-option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.id">          {{vehiculo.placa}} - {{vehiculo.marca}} {{vehiculo.modelo}}        </mat-option>      </mat-select>      <mat-error *ngIf="formulario.get(\'idVehiculo\')?.hasError(\'required\')">        Seleccione un vehículo      </mat-error>    </mat-form-field>    <!-- Tipo de Combustible -->    <mat-form-field appearance="outline" class="full-width">      <mat-label>Tipo de Combustible</mat-label>      <mat-select formControlName="idTipoCombustible" required>        <mat-option *ngFor="let tipo of tiposCombustible" [value]="tipo.id">          {{tipo.nombre}}        </mat-option>      </mat-select>      <mat-error *ngIf="formulario.get(\'idTipoCombustible\')?.hasError(\'required\')">        Seleccione el tipo de combustible      </mat-error>    </mat-form-field>    <!-- Fecha de Carga -->    <mat-form-field appearance="outline" class="full-width">      <mat-label>Fecha de Carga</mat-label>      <input matInput [matDatepicker]="picker" formControlName="fechaCarga" required>      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>      <mat-datepicker #picker></mat-datepicker>      <mat-error *ngIf="formulario.get(\'fechaCarga\')?.hasError(\'required\')">        Seleccione la fecha      </mat-error>    </mat-form-field>    <!-- Galones -->    <mat-form-field appearance="outline" class="full-width">      <mat-label>Galones</mat-label>      <input matInput type="number" step="0.01" formControlName="galones" required>      <mat-error *ngIf="formulario.get(\'galones\')?.hasError(\'required\')">        Ingrese los galones      </mat-error>      <mat-error *ngIf="formulario.get(\'galones\')?.hasError(\'min\')">        Los galones deben ser mayor a 0      </mat-error>    </mat-form-field>    <!-- Precio por Galón -->    <mat-form-field appearance="outline" class="full-width">      <mat-label>Precio por Galón</mat-label>      <input matInput type="number" step="0.01" formControlName="precioGalon" required>      <mat-error *ngIf="formulario.get(\'precioGalon\')?.hasError(\'required\')">        Ingrese el precio por galón      </mat-error>      <mat-error *ngIf="formulario.get(\'precioGalon\')?.hasError(\'min\')">        El precio debe ser mayor a 0      </mat-error>    </mat-form-field>    <!-- Kilometraje -->    <mat-form-field appearance="outline" class="full-width">      <mat-label>Kilometraje</mat-label>      <input matInput type="number" formControlName="kilometraje" required>      <mat-error *ngIf="formulario.get(\'kilometraje\')?.hasError(\'required\')">        Ingrese el kilometraje      </mat-error>      <mat-error *ngIf="formulario.get(\'kilometraje\')?.hasError(\'min\')">        El kilometraje debe ser mayor a 0      </mat-error>    </mat-form-field>    <!-- Usuario Responsable -->    <mat-form-field appearance="outline" class="full-width">      <mat-label>Usuario Responsable</mat-label>      <mat-select formControlName="idUsuario">        <mat-option *ngFor="let usuario of usuarios" [value]="usuario.id">          {{usuario.nombre}} {{usuario.apellido}}        </mat-option>      </mat-select>    </mat-form-field>    <!-- Número de Factura -->    <mat-form-field appearance="outline" class="full-width">      <mat-label>Número de Vale/Factura</mat-label>      <input matInput formControlName="numeroFactura">    </mat-form-field>    <!-- Proveedor -->    <mat-form-field appearance="outline" class="full-width">      <mat-label>Proveedor/Estación</mat-label>      <mat-select formControlName="proveedor" required>          <mat-option value="DON ARTURO">DON ARTURO</mat-option>          <mat-option value="FORMULA 1">FORMULA 1</mat-option>          <mat-option value="SHELL">SHELL</mat-option>          <mat-option value="TEXACO">TEXACO</mat-option>          <mat-option value="PUMA">PUMA</mat-option>          <mat-option value="OTRO">OTRO</mat-option>      </mat-select>    </mat-form-field>    <!-- Foto de Factura -->    <div class="upload-section full-width">      <label class="upload-label">Foto de Factura</label>      <input type="file" #fileInput accept="image/*" class="file-input" disabled>      <button type="button" mat-stroked-button class="upload-button" disabled>        <mat-icon>cloud_upload</mat-icon>        {{ archivoSeleccionado ? archivoSeleccionado.name : \'Seleccionar Foto\' }}      </button>      <div *ngIf="archivoSeleccionado" class="file-info">        <small>{{ archivoSeleccionado.name }} ({{ (archivoSeleccionado.size / 1024 / 1024) | number:\'1.1-1\' }} MB)</small>      </div>    </div>    <!-- Observaciones -->    <mat-form-field appearance="outline" class="full-width">      <mat-label>Observaciones</mat-label>      <textarea matInput formControlName="observaciones" rows="3"></textarea>    </mat-form-field>    <!-- Total Calculado -->    <div class="total-section" *ngIf="totalCalculado > 0">      <strong>Total: ${{totalCalculado | number:\'1.2-2\'}}</strong>    </div>  </mat-dialog-content>  <mat-dialog-actions align="end">    <button mat-button type="button" (click)="cancelar()">Cancelar</button>    <button mat-raised-button color="primary" type="submit"            [disabled]="formulario.invalid || guardando">      <span *ngIf="!guardando">Guardar</span>      <span *ngIf="guardando">Guardando...</span>    </button>  </mat-dialog-actions></form></div>'
+    var COMPONENTS = [{'name': 'AgregarVehiculoComponent', 'selector': 'app-agregar-vehiculo'},{'name': 'AgregarVehiculoSimpleComponent', 'selector': 'app-agregar-vehiculo-simple'},{'name': 'App', 'selector': 'app-root'},{'name': 'BitacoraComponent', 'selector': 'app-bitacora'},{'name': 'CombustibleComponent', 'selector': 'app-combustible'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardGastos', 'selector': 'app-dashboard-gastos'},{'name': 'DashboardGastosComponent', 'selector': 'app-dashboard-gastos'},{'name': 'DetalleVehiculoComponent', 'selector': 'app-detalle-vehiculo'},{'name': 'DialogoNuevaCargaComponent', 'selector': 'app-dialogo-nueva-carga'},{'name': 'EditarVehiculoComponent', 'selector': 'app-editar-vehiculo'},{'name': 'EstadosVehiculosComponent', 'selector': 'app-estados-vehiculos'},{'name': 'GastosAdicionalComponent', 'selector': 'app-gastos-adicional'},{'name': 'GraficasCombustibleComponent', 'selector': 'app-graficas-combustible'},{'name': 'GraficasGastos', 'selector': 'app-graficas-gastos'},{'name': 'GruposVehiculosComponent', 'selector': 'app-grupos-vehiculos'},{'name': 'InventarioComponent', 'selector': 'app-inventario'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'TiposVehiculosComponent', 'selector': 'app-tipos-vehiculos'},{'name': 'UsuariosListComponent', 'selector': 'app-usuarios-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DialogoNuevaCargaComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DialogoNuevaCargaComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

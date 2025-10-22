@@ -1,0 +1,752 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>gestor-vehiculos documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">gestor-vehiculos documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  App</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/app.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-root</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>RouterOutlet</code>
+                            <code>RouterModule</code>
+                            <code>CommonModule</code>
+                            <code>MatIconModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./app.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./app.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#title" >title</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#usuarioAutenticado" >usuarioAutenticado</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#rolUsuario" >rolUsuario</a>
+                                </li>
+                                <li>
+                                    <a href="#permisosUsuario" >permisosUsuario</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(auth: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: Router)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/app.ts:27</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>auth</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="usuarioAutenticado"></a>
+                    <span class="name">
+                        <span ><b>usuarioAutenticado</b></span>
+                        <a href="#usuarioAutenticado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>usuarioAutenticado()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/app/app.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="title"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>title</b></span>
+                        <a href="#title"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(&#x27;Gestor de Vehículos&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/app.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rolUsuario"></a>
+                        <span class="name"><b>rolUsuario</b><a href="#rolUsuario"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>rolUsuario()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/app.ts:17</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="permisosUsuario"></a>
+                        <span class="name"><b>permisosUsuario</b><a href="#permisosUsuario"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>permisosUsuario()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/app.ts:23</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, signal } from &#x27;@angular/core&#x27;;
+import { RouterOutlet, Router, RouterModule } from &#x27;@angular/router&#x27;;
+import { AuthService } from &#x27;./auth/auth.service&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+
+@Component({
+  selector: &#x27;app-root&#x27;,
+  standalone: true,
+  imports: [RouterOutlet, RouterModule, CommonModule, MatIconModule],
+  templateUrl: &#x27;./app.html&#x27;,
+  styleUrls: [&#x27;./app.css&#x27;]
+})
+export class App {
+  // Getter para el rol del usuario
+  get rolUsuario(): string {
+    if (typeof window &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; || !window.localStorage) return &#x27;&#x27;;
+    return this.auth.getUsuario()?.rol || this.auth.getUsuario()?.id_rol || &#x27;&#x27;;
+  }
+
+  // Getter para los permisos del usuario
+  get permisosUsuario(): string[] {
+    if (typeof window &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; || !window.localStorage) return [];
+    return this.auth.getUsuario()?.permisos || [];
+  }
+  protected readonly title &#x3D; signal(&#x27;Gestor de Vehículos&#x27;);
+
+  constructor(private auth: AuthService, private router: Router) {
+    this.auth.checkSession();
+    this.router.events.subscribe(() &#x3D;&gt; {
+      this.auth.checkSession();
+    });
+  }
+
+  usuarioAutenticado(): boolean {
+    if (typeof window &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; || !window.localStorage) return false;
+    return !!localStorage.getItem(&#x27;usuario&#x27;);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;app-container&quot;&gt;
+  &lt;header class&#x3D;&quot;app-header&quot;&gt;
+    &lt;h1&gt;{{ title() }}&lt;/h1&gt;
+    &lt;p&gt;Sistema de gestión de vehículos&lt;/p&gt;
+    &lt;nav *ngIf&#x3D;&quot;usuarioAutenticado()&quot;&gt;
+      &lt;a [routerLink]&#x3D;&quot;&#x27;/perfil&#x27;&quot; class&#x3D;&quot;perfil-link&quot;&gt;Mi perfil&lt;/a&gt;
+      &lt;button *ngIf&#x3D;&quot;rolUsuario &#x3D;&#x3D;&#x3D; &#x27;Administrador&#x27;&quot; [routerLink]&#x3D;&quot;&#x27;/usuarios&#x27;&quot; class&#x3D;&quot;usuarios-btn&quot;&gt;
+        &lt;mat-icon&gt;group&lt;/mat-icon&gt; Ver Usuarios
+      &lt;/button&gt;
+      &lt;a *ngIf&#x3D;&quot;rolUsuario &#x3D;&#x3D;&#x3D; &#x27;Administrador&#x27; || permisosUsuario.includes(&#x27;vehiculos.crear&#x27;)&quot; [routerLink]&#x3D;&quot;&#x27;/vehiculos/agregar&#x27;&quot;&gt;Agregar Vehículo&lt;/a&gt;
+      &lt;a *ngIf&#x3D;&quot;permisosUsuario.includes(&#x27;combustible.crear&#x27;)&quot; [routerLink]&#x3D;&quot;&#x27;/combustible&#x27;&quot;&gt;Cargar Combustible&lt;/a&gt;
+      &lt;a *ngIf&#x3D;&quot;rolUsuario &#x3D;&#x3D;&#x3D; &#x27;Administrador&#x27; || permisosUsuario.includes(&#x27;dashboard.ver&#x27;)&quot; [routerLink]&#x3D;&quot;&#x27;/dashboard&#x27;&quot;&gt;Dashboard&lt;/a&gt;
+  &lt;a *ngIf&#x3D;&quot;rolUsuario &#x3D;&#x3D;&#x3D; &#x27;Administrador&#x27; || permisosUsuario.includes(&#x27;dashboard.ver&#x27;)&quot; [routerLink]&#x3D;&quot;&#x27;/dashboard-gastos&#x27;&quot;&gt;Dashboard de Gastos&lt;/a&gt;
+  &lt;a *ngIf&#x3D;&quot;rolUsuario &#x3D;&#x3D;&#x3D; &#x27;Administrador&#x27; || permisosUsuario.includes(&#x27;dashboard.ver&#x27;)&quot; [routerLink]&#x3D;&quot;&#x27;/graficas-gastos&#x27;&quot;&gt;Gráfica de Gastos&lt;/a&gt;
+      &lt;!-- NOTA: El texto &quot;Bitácora de Mantenimiento&quot; apunta a la ruta &#x27;/gastos-adicional&#x27; (Componente: GastosAdicionalComponent) --&gt;
+      &lt;a *ngIf&#x3D;&quot;rolUsuario &#x3D;&#x3D;&#x3D; &#x27;Administrador&#x27; || permisosUsuario.includes(&#x27;gastos.ver&#x27;)&quot; [routerLink]&#x3D;&quot;&#x27;/gastos-adicional&#x27;&quot;&gt;Bitácora de Mantenimiento&lt;/a&gt;
+      &lt;!-- NOTA: El texto &quot;Supervisión de Vehículos&quot; apunta a la ruta &#x27;/bitacora&#x27; (Componente: BitacoraComponent) --&gt;
+      &lt;a *ngIf&#x3D;&quot;rolUsuario &#x3D;&#x3D;&#x3D; &#x27;Administrador&#x27; || permisosUsuario.includes(&#x27;bitacora.ver&#x27;)&quot; [routerLink]&#x3D;&quot;&#x27;/bitacora&#x27;&quot;&gt;Supervisión de Vehículos&lt;/a&gt;
+      &lt;a [routerLink]&#x3D;&quot;&#x27;/vehiculos/inventario&#x27;&quot;&gt;Home&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+  
+  &lt;main class&#x3D;&quot;app-main&quot;&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  &lt;/main&gt;
+  
+  &lt;footer class&#x3D;&quot;app-footer&quot;&gt;
+    &lt;p&gt;&amp;copy; 2025 Gestor de Vehículos. Todos los derechos reservados.&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./app.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* Botones de navegación */
+.app-header nav a {
+  display: inline-block;
+  margin: 0 8px;
+  padding: 8px 18px;
+  background: #fff;
+  color: #1976d2;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.08);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.app-header nav a:hover, .app-header nav a:focus {
+  background: #1976d2;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.18);
+}
+.app-header nav a.perfil-link {
+  background: #42a5f5;
+  color: #fff;
+}
+.app-header nav a.perfil-link:hover, .app-header nav a.perfil-link:focus {
+  background: #1976d2;
+  color: #fff;
+}
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+.app-header p {
+  margin: 8px 0 0 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.app-main {
+  flex: 1;
+  padding: 20px;
+  background-color: #f5f5f5;
+  position: relative;
+  z-index: 1;
+}
+
+.app-footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  margin-top: auto;
+}
+
+.app-footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  
+  .app-header p {
+    font-size: 1rem;
+  }
+  
+  .app-main {
+    padding: 10px;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="app-container">  <header class="app-header">    <h1>{{ title() }}</h1>    <p>Sistema de gestión de vehículos</p>    <nav *ngIf="usuarioAutenticado()">      <a [routerLink]="\'/perfil\'" class="perfil-link">Mi perfil</a>      <button *ngIf="rolUsuario === \'Administrador\'" [routerLink]="\'/usuarios\'" class="usuarios-btn">        <mat-icon>group</mat-icon> Ver Usuarios      </button>      <a *ngIf="rolUsuario === \'Administrador\' || permisosUsuario.includes(\'vehiculos.crear\')" [routerLink]="\'/vehiculos/agregar\'">Agregar Vehículo</a>      <a *ngIf="permisosUsuario.includes(\'combustible.crear\')" [routerLink]="\'/combustible\'">Cargar Combustible</a>      <a *ngIf="rolUsuario === \'Administrador\' || permisosUsuario.includes(\'dashboard.ver\')" [routerLink]="\'/dashboard\'">Dashboard</a>  <a *ngIf="rolUsuario === \'Administrador\' || permisosUsuario.includes(\'dashboard.ver\')" [routerLink]="\'/dashboard-gastos\'">Dashboard de Gastos</a>  <a *ngIf="rolUsuario === \'Administrador\' || permisosUsuario.includes(\'dashboard.ver\')" [routerLink]="\'/graficas-gastos\'">Gráfica de Gastos</a>      <!-- NOTA: El texto "Bitácora de Mantenimiento" apunta a la ruta \'/gastos-adicional\' (Componente: GastosAdicionalComponent) -->      <a *ngIf="rolUsuario === \'Administrador\' || permisosUsuario.includes(\'gastos.ver\')" [routerLink]="\'/gastos-adicional\'">Bitácora de Mantenimiento</a>      <!-- NOTA: El texto "Supervisión de Vehículos" apunta a la ruta \'/bitacora\' (Componente: BitacoraComponent) -->      <a *ngIf="rolUsuario === \'Administrador\' || permisosUsuario.includes(\'bitacora.ver\')" [routerLink]="\'/bitacora\'">Supervisión de Vehículos</a>      <a [routerLink]="\'/vehiculos/inventario\'">Home</a>    </nav>  </header>    <main class="app-main">    <router-outlet></router-outlet>  </main>    <footer class="app-footer">    <p>&copy; 2025 Gestor de Vehículos. Todos los derechos reservados.</p>  </footer></div></div>'
+    var COMPONENTS = [{'name': 'AgregarVehiculoComponent', 'selector': 'app-agregar-vehiculo'},{'name': 'AgregarVehiculoSimpleComponent', 'selector': 'app-agregar-vehiculo-simple'},{'name': 'App', 'selector': 'app-root'},{'name': 'BitacoraComponent', 'selector': 'app-bitacora'},{'name': 'CombustibleComponent', 'selector': 'app-combustible'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardGastos', 'selector': 'app-dashboard-gastos'},{'name': 'DashboardGastosComponent', 'selector': 'app-dashboard-gastos'},{'name': 'DetalleVehiculoComponent', 'selector': 'app-detalle-vehiculo'},{'name': 'DialogoNuevaCargaComponent', 'selector': 'app-dialogo-nueva-carga'},{'name': 'EditarVehiculoComponent', 'selector': 'app-editar-vehiculo'},{'name': 'EstadosVehiculosComponent', 'selector': 'app-estados-vehiculos'},{'name': 'GastosAdicionalComponent', 'selector': 'app-gastos-adicional'},{'name': 'GraficasCombustibleComponent', 'selector': 'app-graficas-combustible'},{'name': 'GraficasGastos', 'selector': 'app-graficas-gastos'},{'name': 'GruposVehiculosComponent', 'selector': 'app-grupos-vehiculos'},{'name': 'InventarioComponent', 'selector': 'app-inventario'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'TiposVehiculosComponent', 'selector': 'app-tipos-vehiculos'},{'name': 'UsuariosListComponent', 'selector': 'app-usuarios-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'App'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'App.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

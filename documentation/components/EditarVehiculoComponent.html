@@ -1,0 +1,2424 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>gestor-vehiculos documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">gestor-vehiculos documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  EditarVehiculoComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-editar-vehiculo</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>RouterModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>MatCardModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatInputModule</code>
+                            <code>MatSelectModule</code>
+                            <code>MatButtonModule</code>
+                            <code>MatIconModule</code>
+                            <code>MatSnackBarModule</code>
+                            <code>MatProgressSpinnerModule</code>
+                            <code>MatDatepickerModule</code>
+                            <code>MatNativeDateModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./editar-vehiculo.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./editar-vehiculo.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cargando" >cargando</a>
+                            </li>
+                            <li>
+                                <a href="#cargandoCatalogos" >cargandoCatalogos</a>
+                            </li>
+                            <li>
+                                <a href="#cargandoUsuarios" >cargandoUsuarios</a>
+                            </li>
+                            <li>
+                                <a href="#errorCarga" >errorCarga</a>
+                            </li>
+                            <li>
+                                <a href="#estadosVehiculos" >estadosVehiculos</a>
+                            </li>
+                            <li>
+                                <a href="#fechaMaxima" >fechaMaxima</a>
+                            </li>
+                            <li>
+                                <a href="#fechaMinima" >fechaMinima</a>
+                            </li>
+                            <li>
+                                <a href="#gruposVehiculos" >gruposVehiculos</a>
+                            </li>
+                            <li>
+                                <a href="#maxReintentos" >maxReintentos</a>
+                            </li>
+                            <li>
+                                <a href="#reintentoActual" >reintentoActual</a>
+                            </li>
+                            <li>
+                                <a href="#tiposCombustible" >tiposCombustible</a>
+                            </li>
+                            <li>
+                                <a href="#tiposVehiculos" >tiposVehiculos</a>
+                            </li>
+                            <li>
+                                <a href="#usuarios" >usuarios</a>
+                            </li>
+                            <li>
+                                <a href="#vehiculoForm" >vehiculoForm</a>
+                            </li>
+                            <li>
+                                <a href="#vehiculoId" >vehiculoId</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#cargarCatalogos" >cargarCatalogos</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#cargarDatosIniciales" >cargarDatosIniciales</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#cargarUsuarios" >cargarUsuarios</a>
+                            </li>
+                            <li>
+                                <a href="#cargarVehiculo" >cargarVehiculo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#formatearFechaParaInput" >formatearFechaParaInput</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#inicializarComponente" >inicializarComponente</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#manejarErrorCarga" >manejarErrorCarga</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onCancel" >onCancel</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#reintentarCarga" >reintentarCarga</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: FormBuilder, vehiculosService: <a href="../injectables/VehiculosService.html" target="_self">VehiculosService</a>, catalogosService: <a href="../injectables/CatalogosService.html" target="_self">CatalogosService</a>, usuariosService: <a href="../injectables/UsuariosService.html" target="_self">UsuariosService</a>, route: ActivatedRoute, router: Router, snackBar: MatSnackBar)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:61</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>vehiculosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/VehiculosService.html" target="_self" >VehiculosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>catalogosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CatalogosService.html" target="_self" >CatalogosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>usuariosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UsuariosService.html" target="_self" >UsuariosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarCatalogos"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>cargarCatalogos</b></span>
+                        <a href="#cargarCatalogos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cargarCatalogos()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:128</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarDatosIniciales"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>cargarDatosIniciales</b></span>
+                        <a href="#cargarDatosIniciales"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cargarDatosIniciales()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="111"
+                                    class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:111</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarUsuarios"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>cargarUsuarios</b></span>
+                        <a href="#cargarUsuarios"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cargarUsuarios()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="199"
+                                    class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:199</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarVehiculo"></a>
+                    <span class="name">
+                        <span ><b>cargarVehiculo</b></span>
+                        <a href="#cargarVehiculo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cargarVehiculo()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="230"
+                                    class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:230</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatearFechaParaInput"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>formatearFechaParaInput</b></span>
+                        <a href="#formatearFechaParaInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatearFechaParaInput(fecha: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="428"
+                                    class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:428</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fecha</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="inicializarComponente"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>inicializarComponente</b></span>
+                        <a href="#inicializarComponente"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>inicializarComponente()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:105</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="manejarErrorCarga"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>manejarErrorCarga</b></span>
+                        <a href="#manejarErrorCarga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>manejarErrorCarga(error: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="281"
+                                    class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:281</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>error</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCancel"></a>
+                    <span class="name">
+                        <span ><b>onCancel</b></span>
+                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCancel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="423"
+                                    class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:423</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="320"
+                                    class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:320</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reintentarCarga"></a>
+                    <span class="name">
+                        <span ><b>reintentarCarga</b></span>
+                        <a href="#reintentarCarga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>reintentarCarga()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="315"
+                                    class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:315</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargando"></a>
+                    <span class="name">
+                        <span ><b>cargando</b></span>
+                        <a href="#cargando"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargandoCatalogos"></a>
+                    <span class="name">
+                        <span ><b>cargandoCatalogos</b></span>
+                        <a href="#cargandoCatalogos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargandoUsuarios"></a>
+                    <span class="name">
+                        <span ><b>cargandoUsuarios</b></span>
+                        <a href="#cargandoUsuarios"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorCarga"></a>
+                    <span class="name">
+                        <span ><b>errorCarga</b></span>
+                        <a href="#errorCarga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="estadosVehiculos"></a>
+                    <span class="name">
+                        <span ><b>estadosVehiculos</b></span>
+                        <a href="#estadosVehiculos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fechaMaxima"></a>
+                    <span class="name">
+                        <span ><b>fechaMaxima</b></span>
+                        <a href="#fechaMaxima"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fechaMinima"></a>
+                    <span class="name">
+                        <span ><b>fechaMinima</b></span>
+                        <a href="#fechaMinima"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gruposVehiculos"></a>
+                    <span class="name">
+                        <span ><b>gruposVehiculos</b></span>
+                        <a href="#gruposVehiculos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="maxReintentos"></a>
+                    <span class="name">
+                        <span ><b>maxReintentos</b></span>
+                        <a href="#maxReintentos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>3</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reintentoActual"></a>
+                    <span class="name">
+                        <span ><b>reintentoActual</b></span>
+                        <a href="#reintentoActual"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tiposCombustible"></a>
+                    <span class="name">
+                        <span ><b>tiposCombustible</b></span>
+                        <a href="#tiposCombustible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tiposVehiculos"></a>
+                    <span class="name">
+                        <span ><b>tiposVehiculos</b></span>
+                        <a href="#tiposVehiculos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="usuarios"></a>
+                    <span class="name">
+                        <span ><b>usuarios</b></span>
+                        <a href="#usuarios"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="vehiculoForm"></a>
+                    <span class="name">
+                        <span ><b>vehiculoForm</b></span>
+                        <a href="#vehiculoForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="vehiculoId"></a>
+                    <span class="name">
+                        <span ><b>vehiculoId</b></span>
+                        <a href="#vehiculoId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/vehiculos/editar-vehiculo/editar-vehiculo.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { RouterModule } from &#x27;@angular/router&#x27;;
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { MatSnackBarModule, MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { MatCardModule } from &#x27;@angular/material/card&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatInputModule } from &#x27;@angular/material/input&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatProgressSpinnerModule } from &#x27;@angular/material/progress-spinner&#x27;;
+import { MatDatepickerModule } from &#x27;@angular/material/datepicker&#x27;;
+import { MatNativeDateModule } from &#x27;@angular/material/core&#x27;;
+import { VehiculosService } from &#x27;../../services/vehiculos.service&#x27;;
+import { CatalogosService } from &#x27;../../services/catalogos.service&#x27;;
+import { UsuariosService } from &#x27;../../services/usuarios.service&#x27;;
+import { Vehiculo } from &#x27;../../models/vehiculo.model&#x27;;
+
+@Component({
+  selector: &#x27;app-editar-vehiculo&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
+  templateUrl: &#x27;./editar-vehiculo.component.html&#x27;,
+  styleUrls: [&#x27;./editar-vehiculo.component.css&#x27;]
+})
+export class EditarVehiculoComponent implements OnInit {
+  vehiculoForm: FormGroup;
+  vehiculoId: number;
+  cargando: boolean &#x3D; false;
+  cargandoCatalogos: boolean &#x3D; false;
+  cargandoUsuarios: boolean &#x3D; false;
+  tiposVehiculos: any[] &#x3D; [];
+  gruposVehiculos: any[] &#x3D; [];
+  estadosVehiculos: any[] &#x3D; [];
+  tiposCombustible: any[] &#x3D; [];
+  usuarios: any[] &#x3D; [];
+  
+  // Estados para manejar errores
+  errorCarga: string &#x3D; &#x27;&#x27;;
+  maxReintentos: number &#x3D; 3;
+  reintentoActual: number &#x3D; 0;
+  
+  // Fechas límite para el selector
+  fechaMaxima: string;
+  fechaMinima: string;
+
+  constructor(
+    private fb: FormBuilder,
+    private vehiculosService: VehiculosService,
+    private catalogosService: CatalogosService,
+    private usuariosService: UsuariosService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {
+    this.vehiculoForm &#x3D; this.fb.group({
+      numero_placa: [&#x27;&#x27;, [Validators.required, Validators.maxLength(30)]],
+      marca: [&#x27;&#x27;, [Validators.required, Validators.maxLength(50)]],
+      modelo: [&#x27;&#x27;, [Validators.required, Validators.maxLength(50)]],
+      anio: [&#x27;&#x27;, [Validators.required, Validators.min(1900), Validators.max(2030)]],
+      color: [&#x27;&#x27;, [Validators.required, Validators.maxLength(30)]],
+      numero_motor: [&#x27;&#x27;, [Validators.required, Validators.maxLength(50)]],
+      kilometraje: [&#x27;&#x27;, [Validators.required, Validators.min(0)]],
+      tipo_id: [&#x27;&#x27;, Validators.required],
+      grupo_id: [&#x27;&#x27;, Validators.required],
+      estado_id: [&#x27;&#x27;, Validators.required],
+      combustible_id: [&#x27;&#x27;, Validators.required],
+      observaciones: [&#x27;&#x27;],
+      foto_vehiculo: [&#x27;&#x27;],
+      fecha_asignacion: [&#x27;&#x27;],
+      id_usuario_asignado: [&#x27;&#x27;]
+    });
+    this.vehiculoId &#x3D; +this.route.snapshot.paramMap.get(&#x27;id&#x27;)!;
+    
+    // Configurar fechas límite para el selector
+    const hoy &#x3D; new Date();
+    const hace20Anos &#x3D; new Date();
+    hace20Anos.setFullYear(hoy.getFullYear() - 20);
+    
+    this.fechaMaxima &#x3D; hoy.toISOString().split(&#x27;T&#x27;)[0]; // Formato YYYY-MM-DD
+    this.fechaMinima &#x3D; hace20Anos.toISOString().split(&#x27;T&#x27;)[0]; // Formato YYYY-MM-DD
+  }
+
+  ngOnInit(): void {
+    console.log(&#x27;🔄 Inicializando editar vehículo, ID:&#x27;, this.vehiculoId);
+    this.inicializarComponente();
+  }
+
+  private inicializarComponente(): void {
+    this.errorCarga &#x3D; &#x27;&#x27;;
+    this.reintentoActual &#x3D; 0;
+    this.cargarDatosIniciales();
+  }
+
+  private cargarDatosIniciales(): void {
+    this.cargandoCatalogos &#x3D; true;
+    this.cargandoUsuarios &#x3D; true;
+    
+    // Cargar en paralelo para mayor eficiencia
+    Promise.all([
+      this.cargarCatalogos(),
+      this.cargarUsuarios()
+    ]).then(() &#x3D;&gt; {
+      console.log(&#x27;✅ Todos los catálogos y usuarios cargados&#x27;);
+      this.cargarVehiculo();
+    }).catch(error &#x3D;&gt; {
+      console.error(&#x27;❌ Error al cargar datos iniciales:&#x27;, error);
+      this.manejarErrorCarga(error);
+    });
+  }
+
+  private cargarCatalogos(): Promise&lt;any&gt; {
+    return new Promise((resolve, reject) &#x3D;&gt; {
+      let catalogosPendientes &#x3D; 4;
+      let errores: any[] &#x3D; [];
+
+      const completarCarga &#x3D; () &#x3D;&gt; {
+        catalogosPendientes--;
+        if (catalogosPendientes &#x3D;&#x3D;&#x3D; 0) {
+          this.cargandoCatalogos &#x3D; false;
+          if (errores.length &gt; 0) {
+            reject(errores);
+          } else {
+            resolve(true);
+          }
+        }
+      };
+
+      // Cargar tipos de vehículos
+      this.catalogosService.obtenerTiposVehiculo().subscribe({
+        next: (data: any) &#x3D;&gt; {
+          this.tiposVehiculos &#x3D; data;
+          completarCarga();
+        },
+        error: (error: any) &#x3D;&gt; {
+          console.error(&#x27;Error al cargar tipos de vehículos:&#x27;, error);
+          errores.push(error);
+          completarCarga();
+        }
+      });
+
+      // Cargar grupos de vehículos
+      this.catalogosService.obtenerGruposVehiculo().subscribe({
+        next: (data: any) &#x3D;&gt; {
+          this.gruposVehiculos &#x3D; data;
+          completarCarga();
+        },
+        error: (error: any) &#x3D;&gt; {
+          console.error(&#x27;Error al cargar grupos de vehículos:&#x27;, error);
+          errores.push(error);
+          completarCarga();
+        }
+      });
+
+      // Cargar estados de vehículos
+      this.catalogosService.obtenerEstadosVehiculo().subscribe({
+        next: (data: any) &#x3D;&gt; {
+          this.estadosVehiculos &#x3D; data;
+          completarCarga();
+        },
+        error: (error: any) &#x3D;&gt; {
+          console.error(&#x27;Error al cargar estados de vehículos:&#x27;, error);
+          errores.push(error);
+          completarCarga();
+        }
+      });
+
+      // Cargar tipos de combustible
+      this.catalogosService.obtenerTiposCombustible().subscribe({
+        next: (data: any) &#x3D;&gt; {
+          this.tiposCombustible &#x3D; data;
+          completarCarga();
+        },
+        error: (error: any) &#x3D;&gt; {
+          console.error(&#x27;Error al cargar tipos de combustible:&#x27;, error);
+          errores.push(error);
+          completarCarga();
+        }
+      });
+    });
+  }
+
+  private cargarUsuarios(): Promise&lt;any&gt; {
+    return new Promise((resolve, reject) &#x3D;&gt; {
+      console.log(&#x27;👥 Cargando usuarios...&#x27;);
+      this.usuariosService.obtenerUsuarios().subscribe({
+        next: (response: any) &#x3D;&gt; {
+          console.log(&#x27;✅ Respuesta completa del servicio de usuarios:&#x27;, response);
+          if (response.success &amp;&amp; response.data) {
+            this.usuarios &#x3D; response.data;
+            console.log(&#x27;📝 usuarios asignados desde response.data:&#x27;, this.usuarios);
+          } else if (Array.isArray(response)) {
+            this.usuarios &#x3D; response;
+            console.log(&#x27;📝 usuarios asignados desde array directo:&#x27;, this.usuarios);
+          } else {
+            console.log(&#x27;❌ Formato de respuesta inesperado:&#x27;, response);
+            this.usuarios &#x3D; [];
+          }
+          console.log(&#x27;📝 Estado final del array usuarios:&#x27;, this.usuarios);
+          console.log(&#x27;🔍 Cantidad de usuarios:&#x27;, this.usuarios.length);
+          this.cargandoUsuarios &#x3D; false;
+          resolve(true);
+        },
+        error: (error: any) &#x3D;&gt; {
+          console.error(&#x27;❌ Error al cargar usuarios:&#x27;, error);
+          this.usuarios &#x3D; [];
+          this.cargandoUsuarios &#x3D; false;
+          reject(error);
+        }
+      });
+    });
+  }
+
+  cargarVehiculo(): void {
+    console.log(&#x27;🚗 Cargando vehículo con ID:&#x27;, this.vehiculoId);
+    this.cargando &#x3D; true;
+    this.errorCarga &#x3D; &#x27;&#x27;;
+    
+    this.vehiculosService.obtenerVehiculoPorId(this.vehiculoId).subscribe({
+      next: (response: any) &#x3D;&gt; {
+        console.log(&#x27;✅ Vehículo cargado:&#x27;, response);
+        
+        // Manejar diferentes formatos de respuesta
+        let vehiculo &#x3D; response;
+        if (response.success &amp;&amp; response.data) {
+          vehiculo &#x3D; response.data;
+        }
+        
+        console.log(&#x27;📅 DEBUG FECHA AL CARGAR:&#x27;, {
+          fechaAsignacionOriginal: vehiculo.fecha_asignacion,
+          fechaAsignacionLocal: vehiculo.fecha_asignacion_local,
+          tipoFecha: typeof vehiculo.fecha_asignacion,
+          fechaFormateada: this.formatearFechaParaInput(vehiculo.fecha_asignacion)
+        });
+        
+        // Mapear los campos correctamente - ASEGURAR que todos tengan valores válidos
+        this.vehiculoForm.patchValue({
+          numero_placa: vehiculo.placa || &#x27;&#x27;,
+          marca: vehiculo.marca || &#x27;&#x27;,
+          modelo: vehiculo.modelo || &#x27;&#x27;,
+          anio: vehiculo.anio || new Date().getFullYear(),
+          color: vehiculo.color || &#x27;&#x27;,
+          numero_motor: vehiculo.numero_serie || &#x27;&#x27;,
+          kilometraje: vehiculo.kilometraje_actual || vehiculo.kilometraje_inicial || 0,
+          tipo_id: vehiculo.id_tipo_vehiculo || &#x27;&#x27;,
+          grupo_id: vehiculo.id_grupo_vehiculo || &#x27;&#x27;,
+          estado_id: vehiculo.id_estado_vehiculo || &#x27;&#x27;,
+          combustible_id: vehiculo.id_tipo_combustible || &#x27;&#x27;,
+          observaciones: vehiculo.observaciones || &#x27;&#x27;,
+          foto_vehiculo: vehiculo.foto_vehiculo || &#x27;&#x27;,
+          fecha_asignacion: this.formatearFechaParaInput(vehiculo.fecha_asignacion),
+          id_usuario_asignado: vehiculo.id_usuario_asignado || &#x27;&#x27;
+        });
+        
+        this.cargando &#x3D; false;
+        this.reintentoActual &#x3D; 0;
+      },
+      error: (error: any) &#x3D;&gt; {
+        console.error(&#x27;❌ Error al cargar vehículo:&#x27;, error);
+        this.manejarErrorCarga(error);
+      }
+    });
+  }
+
+  private manejarErrorCarga(error: any): void {
+    this.cargando &#x3D; false;
+    this.reintentoActual++;
+    
+    const mensaje &#x3D; error.message || &#x27;Error al cargar datos&#x27;;
+    this.errorCarga &#x3D; mensaje;
+    
+    if (this.reintentoActual &lt; this.maxReintentos) {
+      console.log(&#x60;🔄 Reintentando carga (${this.reintentoActual}/${this.maxReintentos})...&#x60;);
+      this.snackBar.open(
+        &#x60;${mensaje}. Reintentando... (${this.reintentoActual}/${this.maxReintentos})&#x60;, 
+        &#x27;Cerrar&#x27;, 
+        { duration: 3000 }
+      );
+      
+      // Esperar un poco antes de reintentar
+      setTimeout(() &#x3D;&gt; {
+        this.cargarDatosIniciales();
+      }, 2000);
+    } else {
+      const snackBarRef &#x3D; this.snackBar.open(
+        &#x60;${mensaje}. Por favor recargue la página.&#x60;, 
+        &#x27;Recargar&#x27;, 
+        { 
+          duration: 0 // No cerrar automáticamente
+        }
+      );
+      
+      snackBarRef.onAction().subscribe(() &#x3D;&gt; {
+        window.location.reload();
+      });
+    }
+  }
+
+  reintentarCarga(): void {
+    this.reintentoActual &#x3D; 0;
+    this.inicializarComponente();
+  }
+
+  onSubmit(): void {
+    if (this.vehiculoForm.valid) {
+      this.cargando &#x3D; true;
+      this.errorCarga &#x3D; &#x27;&#x27;;
+      console.log(&#x27;📝 Actualizando vehículo:&#x27;, this.vehiculoForm.value);
+      
+      // Mapear los datos del formulario al formato del backend - ASEGURAR valores válidos
+      const fechaFormulario &#x3D; this.vehiculoForm.value.fecha_asignacion;
+      let fechaParaEnviar &#x3D; null;
+      
+      // Procesar fecha de asignación
+      if (fechaFormulario &amp;&amp; fechaFormulario !&#x3D;&#x3D; &#x27;&#x27;) {
+        try {
+          // El input type&#x3D;&quot;date&quot; devuelve una cadena en formato YYYY-MM-DD
+          const fechaParaProcesar &#x3D; new Date(fechaFormulario);
+          
+          // Establecer hora a mediodía para evitar problemas de zona horaria
+          fechaParaProcesar.setHours(12, 0, 0, 0);
+          fechaParaEnviar &#x3D; fechaParaProcesar.toISOString();
+          
+          console.log(&#x27;📅 Fecha procesada para envío:&#x27;, {
+            original: fechaFormulario,
+            procesada: fechaParaProcesar,
+            convertida: fechaParaEnviar,
+            tipo: typeof fechaParaEnviar
+          });
+        } catch (error) {
+          console.error(&#x27;❌ Error al procesar fecha:&#x27;, error);
+          fechaParaEnviar &#x3D; null;
+        }
+      } else {
+        console.log(&#x27;⚠️ Fecha vacía o no válida:&#x27;, fechaFormulario);
+      }
+      
+      const vehiculoData &#x3D; {
+        placa: this.vehiculoForm.value.numero_placa || &#x27;&#x27;,
+        marca: this.vehiculoForm.value.marca || &#x27;&#x27;,
+        modelo: this.vehiculoForm.value.modelo || &#x27;&#x27;,
+        anio: parseInt(this.vehiculoForm.value.anio) || new Date().getFullYear(),
+        color: this.vehiculoForm.value.color || &#x27;&#x27;,
+        numeroSerie: this.vehiculoForm.value.numero_motor || &#x27;&#x27;,
+        kilometrajeActual: parseInt(this.vehiculoForm.value.kilometraje) || 0,
+        idTipoVehiculo: parseInt(this.vehiculoForm.value.tipo_id) || 1,
+        idGrupoVehiculo: parseInt(this.vehiculoForm.value.grupo_id) || 1,
+        idEstadoVehiculo: parseInt(this.vehiculoForm.value.estado_id) || 1,
+        idTipoCombustible: parseInt(this.vehiculoForm.value.combustible_id) || 1,
+        observaciones: this.vehiculoForm.value.observaciones || &#x27;&#x27;,
+        foto_vehiculo: this.vehiculoForm.value.foto_vehiculo || &#x27;&#x27;,
+        fechaAsignacion: fechaParaEnviar,
+        idUsuarioAsignado: this.vehiculoForm.value.id_usuario_asignado ? parseInt(this.vehiculoForm.value.id_usuario_asignado) : null
+      };
+      
+      // DEBUG ESPECÍFICO PARA FECHA
+      console.log(&#x27;📅 DEBUG FECHA DETALLADO:&#x27;, {
+        valorFormulario: this.vehiculoForm.value.fecha_asignacion,
+        tipoValor: typeof this.vehiculoForm.value.fecha_asignacion,
+        esVacio: this.vehiculoForm.value.fecha_asignacion &#x3D;&#x3D;&#x3D; &#x27;&#x27;,
+        esNull: this.vehiculoForm.value.fecha_asignacion &#x3D;&#x3D;&#x3D; null,
+        fechaEnData: vehiculoData.fechaAsignacion,
+        fechaOriginal: this.vehiculoForm.get(&#x27;fecha_asignacion&#x27;)?.value
+      });
+      
+      console.log(&#x27;📝 DEBUG FRONTEND - Valores del formulario:&#x27;, this.vehiculoForm.value);
+      console.log(&#x27;🔍 DEBUG FRONTEND - Datos mapeados:&#x27;, vehiculoData);
+      console.log(&#x27;🔍 DEBUG FRONTEND - Tipos de datos:&#x27;, {
+        tipo_id: typeof this.vehiculoForm.value.tipo_id,
+        grupo_id: typeof this.vehiculoForm.value.grupo_id,
+        estado_id: typeof this.vehiculoForm.value.estado_id,
+        combustible_id: typeof this.vehiculoForm.value.combustible_id,
+        fecha_asignacion: typeof this.vehiculoForm.value.fecha_asignacion,
+        id_usuario_asignado: typeof this.vehiculoForm.value.id_usuario_asignado
+      });
+      
+      console.log(&#x27;📤 Enviando datos al backend:&#x27;, vehiculoData);
+      
+      // Agregar timeout manual adicional
+      const timeoutId &#x3D; setTimeout(() &#x3D;&gt; {
+        this.cargando &#x3D; false;
+        this.snackBar.open(&#x27;La operación está tardando demasiado. Intente nuevamente.&#x27;, &#x27;Cerrar&#x27;, { duration: 5000 });
+      }, 20000); // 20 segundos
+      
+      this.vehiculosService.actualizarVehiculo(this.vehiculoId, vehiculoData).subscribe({
+        next: (response) &#x3D;&gt; {
+          clearTimeout(timeoutId);
+          console.log(&#x27;✅ Vehículo actualizado:&#x27;, response);
+          this.snackBar.open(&#x27;Vehículo actualizado exitosamente&#x27;, &#x27;Cerrar&#x27;, { duration: 3000 });
+          this.router.navigate([&#x27;/vehiculos/inventario&#x27;]);
+        },
+        error: (error: any) &#x3D;&gt; {
+          clearTimeout(timeoutId);
+          console.error(&#x27;❌ Error al actualizar vehículo:&#x27;, error);
+          
+          const mensajeError &#x3D; error.message || &#x27;Error al actualizar el vehículo&#x27;;
+          this.snackBar.open(mensajeError, &#x27;Cerrar&#x27;, { duration: 5000 });
+          this.cargando &#x3D; false;
+        }
+      });
+    } else {
+      console.log(&#x27;❌ Formulario inválido:&#x27;, this.vehiculoForm.errors);
+      this.snackBar.open(&#x27;Por favor complete todos los campos requeridos&#x27;, &#x27;Cerrar&#x27;, { duration: 3000 });
+    }
+  }
+
+  onCancel(): void {
+    this.router.navigate([&#x27;/vehiculos/inventario&#x27;]);
+  }
+
+  // Método para formatear fecha para input de tipo date
+  private formatearFechaParaInput(fecha: string): string {
+    console.log(&#x27;🔧 formatearFechaParaInput recibió:&#x27;, fecha, typeof fecha);
+    
+    if (!fecha || fecha &#x3D;&#x3D;&#x3D; null || fecha &#x3D;&#x3D;&#x3D; &#x27;null&#x27;) {
+      console.log(&#x27;⚠️ Fecha vacía o null, retornando cadena vacía&#x27;);
+      return &#x27;&#x27;;
+    }
+    
+    try {
+      const fechaObj &#x3D; new Date(fecha);
+      if (isNaN(fechaObj.getTime())) {
+        console.log(&#x27;❌ Fecha inválida después de new Date()&#x27;);
+        return &#x27;&#x27;;
+      }
+      
+      // Formatear a YYYY-MM-DD para input type&#x3D;&quot;date&quot;
+      const fechaFormateada &#x3D; fechaObj.toISOString().split(&#x27;T&#x27;)[0];
+      console.log(&#x27;✅ Fecha formateada exitosamente:&#x27;, fechaFormateada);
+      return fechaFormateada;
+    } catch (error) {
+      console.error(&#x27;❌ Error al formatear fecha:&#x27;, error);
+      return &#x27;&#x27;;
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;editar-vehiculo-container&quot;&gt;
+  &lt;mat-card&gt;
+    &lt;mat-card-header&gt;
+      &lt;mat-card-title&gt;
+        &lt;mat-icon&gt;edit&lt;/mat-icon&gt;
+        Editar Vehículo
+      &lt;/mat-card-title&gt;
+    &lt;/mat-card-header&gt;
+
+    &lt;mat-card-content&gt;
+      &lt;div *ngIf&#x3D;&quot;cargando || cargandoCatalogos || cargandoUsuarios&quot; class&#x3D;&quot;loading&quot;&gt;
+        &lt;mat-spinner&gt;&lt;/mat-spinner&gt;
+        &lt;p&gt;Cargando vehículo...&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div *ngIf&#x3D;&quot;errorCarga &amp;&amp; !cargando&quot; class&#x3D;&quot;error-container&quot;&gt;
+        &lt;mat-icon color&#x3D;&quot;warn&quot;&gt;error&lt;/mat-icon&gt;
+        &lt;p&gt;{{ errorCarga }}&lt;/p&gt;
+        &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;reintentarCarga()&quot;&gt;
+          &lt;mat-icon&gt;refresh&lt;/mat-icon&gt;
+          Reintentar
+        &lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;form [formGroup]&#x3D;&quot;vehiculoForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot; *ngIf&#x3D;&quot;!cargando &amp;&amp; !cargandoCatalogos &amp;&amp; !cargandoUsuarios &amp;&amp; !errorCarga&quot;&gt;
+        &lt;!-- Información Básica --&gt;
+        &lt;div class&#x3D;&quot;form-section&quot;&gt;
+          &lt;h3&gt;Información Básica&lt;/h3&gt;
+          
+          &lt;div class&#x3D;&quot;form-row&quot;&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;form-field&quot;&gt;
+              &lt;mat-label&gt;Nombre *&lt;/mat-label&gt;
+              &lt;input matInput formControlName&#x3D;&quot;numero_placa&quot; maxlength&#x3D;&quot;30&quot;&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;form-field&quot;&gt;
+              &lt;mat-label&gt;Marca *&lt;/mat-label&gt;
+              &lt;input matInput formControlName&#x3D;&quot;marca&quot; maxlength&#x3D;&quot;50&quot;&gt;
+            &lt;/mat-form-field&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;form-row&quot;&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;form-field&quot;&gt;
+              &lt;mat-label&gt;Modelo *&lt;/mat-label&gt;
+              &lt;input matInput formControlName&#x3D;&quot;modelo&quot; maxlength&#x3D;&quot;50&quot;&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;form-field&quot;&gt;
+              &lt;mat-label&gt;Año *&lt;/mat-label&gt;
+              &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;anio&quot; min&#x3D;&quot;1900&quot; max&#x3D;&quot;2030&quot;&gt;
+            &lt;/mat-form-field&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;form-row&quot;&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;form-field&quot;&gt;
+              &lt;mat-label&gt;Color *&lt;/mat-label&gt;
+              &lt;input matInput formControlName&#x3D;&quot;color&quot; maxlength&#x3D;&quot;30&quot;&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;form-field&quot;&gt;
+              &lt;mat-label&gt;Kilometraje *&lt;/mat-label&gt;
+              &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;kilometraje&quot; min&#x3D;&quot;0&quot;&gt;
+            &lt;/mat-form-field&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Información Técnica --&gt;
+        &lt;div class&#x3D;&quot;form-section&quot;&gt;
+          &lt;h3&gt;Información Técnica&lt;/h3&gt;
+          
+          &lt;div class&#x3D;&quot;form-row&quot;&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;form-field&quot;&gt;
+              &lt;mat-label&gt;Placa *&lt;/mat-label&gt;
+              &lt;input matInput formControlName&#x3D;&quot;numero_motor&quot; maxlength&#x3D;&quot;50&quot;&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;form-field&quot;&gt;
+              &lt;mat-label&gt;Tipo de Combustible *&lt;/mat-label&gt;
+              &lt;mat-select formControlName&#x3D;&quot;combustible_id&quot;&gt;
+                &lt;mat-option *ngFor&#x3D;&quot;let combustible of tiposCombustible&quot; [value]&#x3D;&quot;combustible.id&quot;&gt;
+                  {{ combustible.nombre }}
+                &lt;/mat-option&gt;
+              &lt;/mat-select&gt;
+            &lt;/mat-form-field&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Clasificación --&gt;
+        &lt;div class&#x3D;&quot;form-section&quot;&gt;
+          &lt;h3&gt;Clasificación&lt;/h3&gt;
+          
+          &lt;div class&#x3D;&quot;form-row&quot;&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;form-field&quot;&gt;
+              &lt;mat-label&gt;Tipo de Vehículo *&lt;/mat-label&gt;
+              &lt;mat-select formControlName&#x3D;&quot;tipo_id&quot;&gt;
+                &lt;mat-option *ngFor&#x3D;&quot;let tipo of tiposVehiculos&quot; [value]&#x3D;&quot;tipo.id&quot;&gt;
+                  {{ tipo.nombre }}
+                &lt;/mat-option&gt;
+              &lt;/mat-select&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;form-field&quot;&gt;
+              &lt;mat-label&gt;Grupo de Vehículo *&lt;/mat-label&gt;
+              &lt;mat-select formControlName&#x3D;&quot;grupo_id&quot;&gt;
+                &lt;mat-option *ngFor&#x3D;&quot;let grupo of gruposVehiculos&quot; [value]&#x3D;&quot;grupo.id&quot;&gt;
+                  {{ grupo.nombre }}
+                &lt;/mat-option&gt;
+              &lt;/mat-select&gt;
+            &lt;/mat-form-field&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;form-row&quot;&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;form-field&quot;&gt;
+              &lt;mat-label&gt;Estado del Vehículo *&lt;/mat-label&gt;
+              &lt;mat-select formControlName&#x3D;&quot;estado_id&quot;&gt;
+                &lt;mat-option *ngFor&#x3D;&quot;let estado of estadosVehiculos&quot; [value]&#x3D;&quot;estado.id&quot;&gt;
+                  {{ estado.nombre }}
+                &lt;/mat-option&gt;
+              &lt;/mat-select&gt;
+            &lt;/mat-form-field&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Información Adicional --&gt;
+        &lt;div class&#x3D;&quot;form-section&quot;&gt;
+          &lt;h3&gt;Información Adicional&lt;/h3&gt;
+          
+          &lt;div class&#x3D;&quot;form-row&quot;&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+              &lt;mat-label&gt;Observaciones&lt;/mat-label&gt;
+              &lt;textarea matInput formControlName&#x3D;&quot;observaciones&quot; rows&#x3D;&quot;3&quot;&gt;&lt;/textarea&gt;
+            &lt;/mat-form-field&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;form-row&quot;&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;form-field&quot;&gt;
+              &lt;mat-label&gt;Foto del Vehículo (URL)&lt;/mat-label&gt;
+              &lt;input matInput formControlName&#x3D;&quot;foto_vehiculo&quot; type&#x3D;&quot;url&quot;&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;form-field&quot;&gt;
+              &lt;mat-label&gt;Usuario Asignado&lt;/mat-label&gt;
+              &lt;mat-select formControlName&#x3D;&quot;id_usuario_asignado&quot;&gt;
+                &lt;mat-option value&#x3D;&quot;&quot;&gt;Sin asignar&lt;/mat-option&gt;
+                &lt;mat-option *ngFor&#x3D;&quot;let usuario of usuarios&quot; [value]&#x3D;&quot;usuario.id&quot;&gt;
+                  {{ usuario.nombre }} {{ usuario.apellido }}
+                &lt;/mat-option&gt;
+              &lt;/mat-select&gt;
+            &lt;/mat-form-field&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;form-row&quot;&gt;
+            &lt;!-- Angular Material Datepicker (más robusto y visual) --&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;form-field datepicker-field&quot;&gt;
+              &lt;mat-label&gt;📅 Fecha de Asignación&lt;/mat-label&gt;
+              &lt;input matInput 
+                     [matDatepicker]&#x3D;&quot;picker&quot; 
+                     formControlName&#x3D;&quot;fecha_asignacion&quot;
+                     placeholder&#x3D;&quot;Selecciona una fecha&quot;
+                     readonly&gt;
+              &lt;mat-datepicker-toggle matSuffix [for]&#x3D;&quot;picker&quot;&gt;
+                &lt;mat-icon matDatepickerToggleIcon&gt;event&lt;/mat-icon&gt;
+              &lt;/mat-datepicker-toggle&gt;
+              &lt;mat-datepicker #picker 
+                             startView&#x3D;&quot;month&quot; 
+                             [touchUi]&#x3D;&quot;false&quot;&gt;
+              &lt;/mat-datepicker&gt;
+              &lt;mat-hint&gt;✨ Clickea el calendario para seleccionar visualmente&lt;/mat-hint&gt;
+            &lt;/mat-form-field&gt;
+            
+            &lt;!-- Alternativa input nativo (menos robusto pero funcional en la mayoría de navegadores)
+            &lt;div class&#x3D;&quot;form-field&quot;&gt;
+              &lt;label for&#x3D;&quot;fecha_asignacion&quot; class&#x3D;&quot;date-label&quot;&gt;Fecha de Asignación&lt;/label&gt;
+              &lt;input 
+                type&#x3D;&quot;date&quot; 
+                id&#x3D;&quot;fecha_asignacion&quot;
+                formControlName&#x3D;&quot;fecha_asignacion&quot;
+                class&#x3D;&quot;date-input&quot;
+                [attr.max]&#x3D;&quot;fechaMaxima&quot;
+                [attr.min]&#x3D;&quot;fechaMinima&quot;&gt;
+              &lt;small class&#x3D;&quot;date-hint&quot;&gt;Seleccione la fecha de asignación del vehículo&lt;/small&gt;
+            &lt;/div&gt;
+            --&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;form-actions&quot;&gt;
+          &lt;button mat-button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;onCancel()&quot;&gt;
+            &lt;mat-icon&gt;cancel&lt;/mat-icon&gt;
+            Cancelar
+          &lt;/button&gt;
+          &lt;button mat-raised-button color&#x3D;&quot;primary&quot; type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;cargando || vehiculoForm.invalid&quot;&gt;
+            &lt;mat-icon&gt;save&lt;/mat-icon&gt;
+            {{ cargando ? &#x27;Actualizando...&#x27; : &#x27;Actualizar Vehículo&#x27; }}
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+    &lt;/mat-card-content&gt;
+  &lt;/mat-card&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./editar-vehiculo.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.editar-vehiculo-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-section {
+  margin-bottom: 24px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-field {
+  flex: 1;
+}
+
+/* Estilos para el input de fecha nativo */
+.date-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #424242;
+  margin-bottom: 8px;
+}
+
+.date-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #fff;
+  transition: border-color 0.2s ease;
+  outline: none;
+  cursor: pointer;
+}
+
+.date-input:hover {
+  border-color: #9c27b0;
+}
+
+.date-input:focus {
+  border-color: #9c27b0;
+  box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.2);
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.5);
+  transition: filter 0.2s ease;
+}
+
+.date-input:hover::-webkit-calendar-picker-indicator {
+  filter: invert(0.3);
+}
+
+.date-hint {
+  display: block;
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-top: 32px;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  background-color: #ffeaea;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.error-container mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+
+.error-container p {
+  margin: 0 0 16px 0;
+  color: #721c24;
+  font-weight: 500;
+}
+
+/* Estilos para el input de fecha */
+input[type&#x3D;&quot;date&quot;] {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Mejorar la apariencia del selector de fecha en navegadores webkit */
+input[type&#x3D;&quot;date&quot;]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+/* &#x3D;&#x3D;&#x3D; Estilos para Angular Material Datepicker &#x3D;&#x3D;&#x3D; */
+
+/* Estilo del campo de fecha */
+.mat-form-field.datepicker-field {
+  width: 100%;
+}
+
+.mat-form-field.datepicker-field .mat-form-field-outline {
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border-color: #e0e0e0;
+}
+
+.mat-form-field.datepicker-field:hover .mat-form-field-outline {
+  box-shadow: 0 2px 8px rgba(156, 39, 176, 0.15);
+  border-color: #9c27b0;
+}
+
+.mat-form-field.datepicker-field.mat-focused .mat-form-field-outline {
+  border-width: 2px;
+  box-shadow: 0 4px 12px rgba(156, 39, 176, 0.25);
+  border-color: #9c27b0 !important;
+}
+
+/* Label con emoji */
+.mat-form-field.datepicker-field .mat-form-field-label {
+  color: #666;
+  font-weight: 500;
+}
+
+.mat-form-field.datepicker-field.mat-focused .mat-form-field-label {
+  color: #9c27b0 !important;
+}
+
+/* Icono del datepicker más atractivo */
+.mat-datepicker-toggle {
+  color: #9c27b0 !important;
+  transition: all 0.3s ease;
+}
+
+.mat-datepicker-toggle:hover {
+  color: #7b1fa2 !important;
+  transform: scale(1.1);
+}
+
+.mat-datepicker-toggle-default-icon {
+  font-size: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* Input de fecha con mejor UX */
+.mat-input-element[readonly] {
+  cursor: pointer !important;
+  caret-color: transparent;
+  color: #333 !important;
+  font-weight: 500;
+}
+
+.mat-input-element[readonly]:focus {
+  cursor: pointer !important;
+}
+
+/* Hint con emoji */
+.mat-form-field.datepicker-field .mat-hint {
+  color: #666;
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Efecto de hover en todo el campo */
+.mat-form-field.datepicker-field:hover {
+  transform: translateY(-1px);
+}
+
+/* Animación suave */
+.mat-form-field.datepicker-field {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Forzar el calendario nativo en dispositivos móviles */
+@media (max-width: 768px) {
+  input[type&#x3D;&quot;date&quot;] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+  }
+  
+  input[type&#x3D;&quot;date&quot;]::-webkit-calendar-picker-indicator {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="editar-vehiculo-container">  <mat-card>    <mat-card-header>      <mat-card-title>        <mat-icon>edit</mat-icon>        Editar Vehículo      </mat-card-title>    </mat-card-header>    <mat-card-content>      <div *ngIf="cargando || cargandoCatalogos || cargandoUsuarios" class="loading">        <mat-spinner></mat-spinner>        <p>Cargando vehículo...</p>      </div>      <div *ngIf="errorCarga && !cargando" class="error-container">        <mat-icon color="warn">error</mat-icon>        <p>{{ errorCarga }}</p>        <button mat-raised-button color="primary" (click)="reintentarCarga()">          <mat-icon>refresh</mat-icon>          Reintentar        </button>      </div>      <form [formGroup]="vehiculoForm" (ngSubmit)="onSubmit()" *ngIf="!cargando && !cargandoCatalogos && !cargandoUsuarios && !errorCarga">        <!-- Información Básica -->        <div class="form-section">          <h3>Información Básica</h3>                    <div class="form-row">            <mat-form-field appearance="outline" class="form-field">              <mat-label>Nombre *</mat-label>              <input matInput formControlName="numero_placa" maxlength="30">            </mat-form-field>            <mat-form-field appearance="outline" class="form-field">              <mat-label>Marca *</mat-label>              <input matInput formControlName="marca" maxlength="50">            </mat-form-field>          </div>          <div class="form-row">            <mat-form-field appearance="outline" class="form-field">              <mat-label>Modelo *</mat-label>              <input matInput formControlName="modelo" maxlength="50">            </mat-form-field>            <mat-form-field appearance="outline" class="form-field">              <mat-label>Año *</mat-label>              <input matInput type="number" formControlName="anio" min="1900" max="2030">            </mat-form-field>          </div>          <div class="form-row">            <mat-form-field appearance="outline" class="form-field">              <mat-label>Color *</mat-label>              <input matInput formControlName="color" maxlength="30">            </mat-form-field>            <mat-form-field appearance="outline" class="form-field">              <mat-label>Kilometraje *</mat-label>              <input matInput type="number" formControlName="kilometraje" min="0">            </mat-form-field>          </div>        </div>        <!-- Información Técnica -->        <div class="form-section">          <h3>Información Técnica</h3>                    <div class="form-row">            <mat-form-field appearance="outline" class="form-field">              <mat-label>Placa *</mat-label>              <input matInput formControlName="numero_motor" maxlength="50">            </mat-form-field>            <mat-form-field appearance="outline" class="form-field">              <mat-label>Tipo de Combustible *</mat-label>              <mat-select formControlName="combustible_id">                <mat-option *ngFor="let combustible of tiposCombustible" [value]="combustible.id">                  {{ combustible.nombre }}                </mat-option>              </mat-select>            </mat-form-field>          </div>        </div>        <!-- Clasificación -->        <div class="form-section">          <h3>Clasificación</h3>                    <div class="form-row">            <mat-form-field appearance="outline" class="form-field">              <mat-label>Tipo de Vehículo *</mat-label>              <mat-select formControlName="tipo_id">                <mat-option *ngFor="let tipo of tiposVehiculos" [value]="tipo.id">                  {{ tipo.nombre }}                </mat-option>              </mat-select>            </mat-form-field>            <mat-form-field appearance="outline" class="form-field">              <mat-label>Grupo de Vehículo *</mat-label>              <mat-select formControlName="grupo_id">                <mat-option *ngFor="let grupo of gruposVehiculos" [value]="grupo.id">                  {{ grupo.nombre }}                </mat-option>              </mat-select>            </mat-form-field>          </div>          <div class="form-row">            <mat-form-field appearance="outline" class="form-field">              <mat-label>Estado del Vehículo *</mat-label>              <mat-select formControlName="estado_id">                <mat-option *ngFor="let estado of estadosVehiculos" [value]="estado.id">                  {{ estado.nombre }}                </mat-option>              </mat-select>            </mat-form-field>          </div>        </div>        <!-- Información Adicional -->        <div class="form-section">          <h3>Información Adicional</h3>                    <div class="form-row">            <mat-form-field appearance="outline" class="full-width">              <mat-label>Observaciones</mat-label>              <textarea matInput formControlName="observaciones" rows="3"></textarea>            </mat-form-field>          </div>          <div class="form-row">            <mat-form-field appearance="outline" class="form-field">              <mat-label>Foto del Vehículo (URL)</mat-label>              <input matInput formControlName="foto_vehiculo" type="url">            </mat-form-field>            <mat-form-field appearance="outline" class="form-field">              <mat-label>Usuario Asignado</mat-label>              <mat-select formControlName="id_usuario_asignado">                <mat-option value="">Sin asignar</mat-option>                <mat-option *ngFor="let usuario of usuarios" [value]="usuario.id">                  {{ usuario.nombre }} {{ usuario.apellido }}                </mat-option>              </mat-select>            </mat-form-field>          </div>          <div class="form-row">            <!-- Angular Material Datepicker (más robusto y visual) -->            <mat-form-field appearance="outline" class="form-field datepicker-field">              <mat-label>📅 Fecha de Asignación</mat-label>              <input matInput                      [matDatepicker]="picker"                      formControlName="fecha_asignacion"                     placeholder="Selecciona una fecha"                     readonly>              <mat-datepicker-toggle matSuffix [for]="picker">                <mat-icon matDatepickerToggleIcon>event</mat-icon>              </mat-datepicker-toggle>              <mat-datepicker #picker                              startView="month"                              [touchUi]="false">              </mat-datepicker>              <mat-hint>✨ Clickea el calendario para seleccionar visualmente</mat-hint>            </mat-form-field>                        <!-- Alternativa input nativo (menos robusto pero funcional en la mayoría de navegadores)            <div class="form-field">              <label for="fecha_asignacion" class="date-label">Fecha de Asignación</label>              <input                 type="date"                 id="fecha_asignacion"                formControlName="fecha_asignacion"                class="date-input"                [attr.max]="fechaMaxima"                [attr.min]="fechaMinima">              <small class="date-hint">Seleccione la fecha de asignación del vehículo</small>            </div>            -->          </div>        </div>        <div class="form-actions">          <button mat-button type="button" (click)="onCancel()">            <mat-icon>cancel</mat-icon>            Cancelar          </button>          <button mat-raised-button color="primary" type="submit" [disabled]="cargando || vehiculoForm.invalid">            <mat-icon>save</mat-icon>            {{ cargando ? \'Actualizando...\' : \'Actualizar Vehículo\' }}          </button>        </div>      </form>    </mat-card-content>  </mat-card></div></div>'
+    var COMPONENTS = [{'name': 'AgregarVehiculoComponent', 'selector': 'app-agregar-vehiculo'},{'name': 'AgregarVehiculoSimpleComponent', 'selector': 'app-agregar-vehiculo-simple'},{'name': 'App', 'selector': 'app-root'},{'name': 'BitacoraComponent', 'selector': 'app-bitacora'},{'name': 'CombustibleComponent', 'selector': 'app-combustible'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardGastos', 'selector': 'app-dashboard-gastos'},{'name': 'DashboardGastosComponent', 'selector': 'app-dashboard-gastos'},{'name': 'DetalleVehiculoComponent', 'selector': 'app-detalle-vehiculo'},{'name': 'DialogoNuevaCargaComponent', 'selector': 'app-dialogo-nueva-carga'},{'name': 'EditarVehiculoComponent', 'selector': 'app-editar-vehiculo'},{'name': 'EstadosVehiculosComponent', 'selector': 'app-estados-vehiculos'},{'name': 'GastosAdicionalComponent', 'selector': 'app-gastos-adicional'},{'name': 'GraficasCombustibleComponent', 'selector': 'app-graficas-combustible'},{'name': 'GraficasGastos', 'selector': 'app-graficas-gastos'},{'name': 'GruposVehiculosComponent', 'selector': 'app-grupos-vehiculos'},{'name': 'InventarioComponent', 'selector': 'app-inventario'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'TiposVehiculosComponent', 'selector': 'app-tipos-vehiculos'},{'name': 'UsuariosListComponent', 'selector': 'app-usuarios-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'EditarVehiculoComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'EditarVehiculoComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

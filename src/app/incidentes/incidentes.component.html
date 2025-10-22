@@ -1,0 +1,193 @@
+<div class="incidentes-container">
+  <h2 class="title">Registrar Incidente</h2>
+  <form #incidenteForm="ngForm" (ngSubmit)="onSubmit(incidenteForm)">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Vehículo</mat-label>
+    <mat-select [(ngModel)]="incidente.id_vehiculo" name="id_vehiculo" [ngModelOptions]="{standalone: true}">
+      <mat-option *ngFor="let v of vehiculos" [value]="v.id">{{ v.marca }} {{ v.modelo }} - {{ v.placa }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Piloto</mat-label>
+    <mat-select [(ngModel)]="incidente.id_piloto" name="id_piloto" [ngModelOptions]="{standalone: true}" (selectionChange)="onPilotoChange($event.value)">
+      <mat-option *ngFor="let u of usuarios" [value]="u.id">{{ u.nombre }} {{ u.apellido }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo de Incidente</mat-label>
+    <mat-select [(ngModel)]="incidente.tipo_incidente" name="tipo_incidente" [ngModelOptions]="{standalone: true}" (selectionChange)="onTipoIncidenteChange()">
+      <mat-option value="accidente">Accidente</mat-option>
+      <mat-option value="mantenimiento preventivo">Mantenimiento Preventivo</mat-option>
+      <mat-option value="mantenimiento correctivo">Mantenimiento Correctivo</mat-option>
+      <mat-option value="reemplazo de accesorios">Reemplazo de Accesorios</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- ACCIDENTE -->
+  <ng-container *ngIf="incidente.tipo_incidente === 'accidente'">
+    <mat-form-field appearance="fill">
+      <mat-label>Kilometraje</mat-label>
+      <input matInput type="number" [(ngModel)]="incidente.kilometraje" name="kilometraje" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Detalle</mat-label>
+      <textarea matInput [(ngModel)]="incidente.detalle" name="detalle" [ngModelOptions]="{standalone: true}"></textarea>
+    </mat-form-field>
+    <div class="form-group">
+      <label for="fotoIncidenteAcc">Foto del incidente (opcional)</label>
+      <input id="fotoIncidenteAcc" type="file" (change)="onFileSelected($event)" accept="image/*">
+    </div>
+  </ng-container>
+
+  <!-- MANTENIMIENTO PREVENTIVO -->
+  <ng-container *ngIf="incidente.tipo_incidente === 'mantenimiento preventivo'">
+    <mat-form-field appearance="fill">
+      <mat-label>Kilometraje</mat-label>
+      <input matInput type="number" [(ngModel)]="incidente.kilometraje" name="kilometraje" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo de Aceite</mat-label>
+      <input matInput [(ngModel)]="incidente.tipo_aceite" name="tipo_aceite" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <div class="form-group">
+      <label for="fotoIncidentePrev">Foto (opcional)</label>
+      <input id="fotoIncidentePrev" type="file" (change)="onFileSelected($event)" accept="image/*">
+    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo de Mantenimiento</mat-label>
+      <mat-select [(ngModel)]="incidente.tipo_mantenimiento" name="tipo_mantenimiento" [ngModelOptions]="{standalone: true}">
+        <mat-option value="basico">Básico</mat-option>
+        <mat-option value="menor">Menor</mat-option>
+        <mat-option value="mayor">Mayor</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+     <mat-form-field appearance="fill">
+      <mat-label>Detalle</mat-label>
+      <textarea matInput [(ngModel)]="incidente.detalle" name="detalle" [ngModelOptions]="{standalone: true}"></textarea>
+    </mat-form-field>
+  </ng-container>
+
+  <!-- MANTENIMIENTO CORRECTIVO -->
+  <ng-container *ngIf="incidente.tipo_incidente === 'mantenimiento correctivo'">
+    <mat-form-field appearance="fill">
+      <mat-label>Kilometraje</mat-label>
+      <input matInput type="number" [(ngModel)]="incidente.kilometraje" name="kilometraje" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Detalle</mat-label>
+      <textarea matInput [(ngModel)]="incidente.detalle" name="detalle" [ngModelOptions]="{standalone: true}"></textarea>
+    </mat-form-field>
+    <div class="form-group">
+      <label for="fotoIncidenteCor">Foto (opcional)</label>
+      <input id="fotoIncidenteCor" type="file" (change)="onFileSelected($event)" accept="image/*">
+    </div>
+  </ng-container>
+
+  <!-- REEMPLAZO DE ACCESORIOS -->
+  <ng-container *ngIf="incidente.tipo_incidente === 'reemplazo de accesorios'">
+    <mat-form-field appearance="fill">
+      <mat-label>Kilometraje</mat-label>
+      <input matInput type="number" [(ngModel)]="incidente.kilometraje" name="kilometraje" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Detalle</mat-label>
+      <textarea matInput [(ngModel)]="incidente.detalle" name="detalle" [ngModelOptions]="{standalone: true}"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo de Accesorio</mat-label>
+      <mat-select [(ngModel)]="incidente.tipo_accesorio" name="tipo_accesorio" [ngModelOptions]="{standalone: true}">
+        <mat-option *ngFor="let a of accesorios" [value]="a">{{ a }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="form-group">
+      <label for="fotoIncidenteAcc2">Foto (opcional)</label>
+      <input id="fotoIncidenteAcc2" type="file" (change)="onFileSelected($event)" accept="image/*">
+    </div>
+
+  </ng-container>
+
+   <mat-form-field appearance="fill">
+    <mat-label>Urgencia</mat-label>
+    <mat-select [(ngModel)]="incidente.urgencia" name="urgencia" [ngModelOptions]="{standalone: true}"> <mat-option value="baja">Baja 🟢</mat-option> <mat-option value="media">Media 🟠</mat-option> <mat-option value="alta">Alta 🔴</mat-option> </mat-select> 
+  </mat-form-field>
+
+
+  <div style="margin: 8px 0; font-size: 13px; color: #777;">
+    * Vehículo, Piloto y Tipo de Incidente son obligatorios
+  </div>
+
+  <!-- Vista previa global de la imagen seleccionada -->
+  <div *ngIf="imagePreview" class="mt-2" style="margin-bottom: 8px;">
+    <p>Vista previa:</p>
+    <img [src]="imagePreview" style="max-height: 200px; border: 1px solid #ddd; border-radius: 6px;">
+  </div>
+
+  <button mat-raised-button color="primary" type="submit" class="submit-btn" [disabled]="guardando || !camposObligatoriosCompletos">{{ guardando ? 'Guardando...' : 'Guardar' }}</button>
+
+  <div *ngIf="mensaje" style="margin-top:12px; font-weight:500;">{{ mensaje }}</div>
+  </form>
+
+  <hr class="mt-3 mb-3" />
+<div style="margin-bottom: 16px;" *ngIf="rolUsuario === 'Administrador'">
+  <button mat-raised-button color="accent" (click)="verHistorial()">
+    <mat-icon>history</mat-icon> Historial de Incidentes
+  </button>
+</div>
+<ng-container *ngIf="rolUsuario !== 'Conductor'">
+  <h3 class="mb-2">Incidentes recientes</h3>
+  <div style="margin-bottom: 12px;">
+    <mat-form-field appearance="outline" style="width: 220px;">
+      <mat-label>Filtrar por estado</mat-label>
+      <mat-select [(ngModel)]="filtroEstado" (selectionChange)="cambiarFiltroEstado($event.value)" [ngModelOptions]="{standalone: true}">
+        <mat-option value="todos">Todos</mat-option>
+        <mat-option value="pendientes">Pendientes</mat-option>
+        <mat-option value="solventados">Solventados</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div *ngIf="cargandoLista" class="muted">Cargando...</div>
+  <div *ngIf="!cargandoLista && incidentesFiltrados.length === 0" class="muted">No hay incidentes registrados.</div>
+
+  <div class="incidentes-list" *ngIf="!cargandoLista && incidentesFiltrados.length">
+    <div class="inc-card" *ngFor="let inc of incidentesPaginados">
+      <div class="inc-head">
+        <strong>#{{ inc.id }}</strong>
+        <span class="chip" [class.solved]="inc.solventado">{{ inc.solventado ? 'Solventado' : 'Pendiente' }}</span>
+      </div>
+      <div class="inc-body">
+        <div><b>Vehículo:</b> {{ inc.vehiculo?.placa || inc.placa }} · {{ inc.vehiculo?.marca || inc.marca }} {{ inc.vehiculo?.modelo || inc.modelo }}</div>
+        <div><b>Piloto:</b> {{ inc.reportado_por || inc.piloto }}</div>
+        <div><b>Tipo:</b> {{ inc.tipo_incidente }}</div>
+        <div *ngIf="inc.kilometraje != null"><b>Kilometraje:</b> {{ inc.kilometraje | number }}</div>
+        <div *ngIf="inc.detalle"><b>Detalle:</b> {{ inc.detalle }}</div>
+        <div *ngIf="inc.created_at"><b>Creado:</b> {{ inc.created_at | date:'short' }}</div>
+        <div *ngIf="inc.resolved_at"><b>Resuelto:</b> {{ inc.resolved_at | date:'short' }}</div>
+      </div>
+      <div class="inc-actions">
+        <div *ngIf="!inc.solventado">
+          <mat-form-field appearance="outline" class="mensaje-solucion-field">
+            <mat-label>Mensaje para Telegram (opcional)</mat-label>
+            <textarea matInput rows="2" [(ngModel)]="inc.mensajeSolucion" [ngModelOptions]="{standalone: true}"></textarea>
+          </mat-form-field>
+          <ng-container *ngIf="rolUsuario === 'Administrador'">
+            <button mat-stroked-button color="primary" (click)="marcarSolventado(inc)" [disabled]="marcando">
+              Marcar como solventado
+            </button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    </div>
+  </ng-container>
+
+<!-- Paginación manual -->
+<div *ngIf="!cargandoLista && incidentesFiltrados.length > itemsPorPagina" style="text-align:center; margin-top:18px;">
+  <button mat-stroked-button color="primary" (click)="cambiarPagina(paginaActual-1)" [disabled]="paginaActual === 1">Anterior</button>
+  <span style="margin:0 12px; font-weight:500;">Página {{paginaActual}} de {{totalPaginas}}</span>
+  <button mat-stroked-button color="primary" (click)="cambiarPagina(paginaActual+1)" [disabled]="paginaActual === totalPaginas">Siguiente</button>
+</div>

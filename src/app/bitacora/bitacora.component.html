@@ -1,0 +1,196 @@
+<mat-card>
+<div class="dashboard-container" style="display: flex; flex-direction: column; gap: 32px;">
+  <div class="card">
+    <h2 id="titulo">Supervisión De Mantenimiento</h2>
+
+    <!--agrupa los formularios y esto enlaza con el contructor de bitacoraForm y una vez sincronizado se puede usar sus propiedades -->
+    <form [formGroup]="bitacoraForm" (ngSubmit)="onSubmit()" class="bitacora-form">
+
+      <!-- Sección de Información General -->
+      <div class="form-section card" style="margin-bottom: 24px;">
+        <h3>Información General</h3>
+        <div class="form-grid">
+          <!-- Crea un campo de formulario con el estilo de Angular Material. -->
+          <mat-form-field appearance="outline"> 
+            <mat-label>Vehículo</mat-label>
+          <!-- Este codigo hace el llamada al constructor de vehiculos donde esta como bitacoraForm -->
+            <mat-select formControlName="id_vehiculo"> 
+              <mat-option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.id">
+                 <!-- Cuando hay llaves se ele conoce como interpolación, es el llamado a la propiedad del objeto del archivo .ts de componente -->
+                {{ vehiculo.marca }} {{ vehiculo.modelo }} - {{ vehiculo.placa }} 
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Placa</mat-label>
+            <input matInput formControlName="placa">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Piloto</mat-label>
+            <mat-select formControlName="id_piloto">
+              <mat-option *ngFor="let usuario of usuarios" [value]="usuario.id">
+                {{ usuario.nombre }} {{ usuario.apellido }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Copiloto (Opcional)</mat-label>
+            <mat-select formControlName="id_copiloto">
+               <mat-option *ngFor="let usuario of usuarios" [value]="usuario.id">
+                {{ usuario.nombre }} {{ usuario.apellido }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fecha">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Hora</mat-label>
+            <input matInput type="time" formControlName="hora">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Kilometraje Actual</mat-label>
+            <input matInput type="number" formControlName="kilometraje">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Secciones de Preguntas -->
+      <div class="preguntas-grid">
+        
+        <div class="pregunta-columna">
+          <h4>Documentación y Herramientas</h4>
+          <ng-container *ngFor="let pregunta of preguntas.documentacion">
+            <div class="pregunta-item">
+              <label>{{ pregunta.label }}</label>
+              <mat-radio-group *ngIf="pregunta.tipo === 'radio'" [formControlName]="pregunta.formControlName" class="radio-group">
+                <mat-radio-button [value]="1">Sí</mat-radio-button>
+                <mat-radio-button [value]="0">No</mat-radio-button>
+              </mat-radio-group>
+              <mat-form-field *ngIf="pregunta.tipo === 'text'" appearance="outline" class="text-input">
+                 <input matInput [formControlName]="pregunta.formControlName">
+              </mat-form-field>
+            </div>
+          </ng-container>
+          <ng-container *ngFor="let pregunta of preguntas.herramientas">
+            <div class="pregunta-item">
+              <label>{{ pregunta.label }}</label>
+              <mat-radio-group [formControlName]="pregunta.formControlName" class="radio-group">
+                <mat-radio-button [value]="1">Sí</mat-radio-button>
+                <mat-radio-button [value]="0">No</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="pregunta-columna">
+          <h4>Fluidos y Limpieza</h4>
+
+          <ng-container *ngFor="let pregunta of preguntas.fluidos">
+            <div class="pregunta-item">
+              <label>{{ pregunta.label }}</label>
+              <!-- Si la pregunta tiene opciones, mostrar los valores personalizados -->
+              <mat-radio-group *ngIf="pregunta.tipo === 'radio' && pregunta.opciones"
+                                [formControlName]="pregunta.formControlName"
+                                class="radio-group"
+                                (change)="onFluidoChange(pregunta.formControlName, $event.value)">
+                <mat-radio-button *ngFor="let opcion of pregunta.opciones" [value]="opcion.value">{{ opcion.label }}</mat-radio-button>
+              </mat-radio-group>
+              <!-- Si no tiene opciones, mostrar Sí/No -->
+              <mat-radio-group *ngIf="pregunta.tipo === 'radio' && !pregunta.opciones" [formControlName]="pregunta.formControlName" class="radio-group">
+                <mat-radio-button [value]="0">MIN</mat-radio-button>
+                <mat-radio-button [value]="1">MAX</mat-radio-button>
+              </mat-radio-group>
+              <mat-form-field *ngIf="pregunta.tipo === 'text'" appearance="outline" class="text-input">
+                 <input matInput [formControlName]="pregunta.formControlName">
+              </mat-form-field>
+            </div>
+          </ng-container>
+           <div class="pregunta-item">
+              <label>Limpieza del Vehículo</label>
+              <mat-radio-group formControlName="limpieza" class="radio-group">
+                <mat-radio-button [value]="1">Sí</mat-radio-button>
+                <mat-radio-button [value]="0">No</mat-radio-button>
+              </mat-radio-group>
+            </div>
+        </div>
+
+        <div class="pregunta-columna">
+          <h4>Luces</h4>
+          <ng-container *ngFor="let pregunta of preguntas.luces">
+            <div class="pregunta-item">
+              <label>{{ pregunta.label }}</label>
+              <mat-radio-group [formControlName]="pregunta.formControlName" class="radio-group">
+                <mat-radio-button [value]="1">Sí</mat-radio-button>
+                <mat-radio-button [value]="0">No</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="pregunta-columna">
+          <h4>Específico para Motocicletas</h4>
+          <ng-container *ngFor="let pregunta of preguntas.moto">
+            <div class="pregunta-item">
+              <label>{{ pregunta.label }}</label>
+              <mat-radio-group [formControlName]="pregunta.formControlName" class="radio-group">
+                <mat-radio-button [value]="1">Sí</mat-radio-button>
+                <mat-radio-button [value]="0">No</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </ng-container>
+        </div>
+
+      </div>
+
+       <!-- Sección de Observaciones -->
+      <div class="form-section">
+        <h3>Información Adicional</h3>
+        <div class="form-grid-single">
+            <mat-form-field appearance="fill">
+                <mat-label>Próximo Servicio</mat-label>
+                <input matInput formControlName="proximo_servicio" placeholder="Ej: 150,000 km o 6 meses">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Rendimiento por Galón (km/gal)</mat-label>
+                <input matInput formControlName="ren_por_galon">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Observaciones</mat-label>
+                <textarea matInput formControlName="observacion" rows="3"></textarea>
+            </mat-form-field>
+        </div>
+      </div>
+
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="bitacoraForm.invalid">Guardar Bitácora</button>
+        <span class="spacer"></span>
+        <button mat-stroked-button color="accent" type="button" [routerLink]="'/bitacora/grafica'">
+          <mat-icon>bar_chart</mat-icon>
+          Ver gráfica
+        </button>
+        <button mat-stroked-button color="accent" type="button" [routerLink]="'/bitacora/tabla'" style="margin-left:8px;">
+          <mat-icon>table_chart</mat-icon>
+          Ver tabla de bitácora
+        </button>
+      </mat-card-actions>
+    </form>
+  </div>
+</div>
+</mat-card>
+
+<!-- Botón flotante para ver la gráfica -->
+<button mat-fab color="primary" class="floating-graph-btn" [routerLink]="'/bitacora/grafica'" style="position:fixed; right:24px; bottom:24px; z-index:3000;">
+  <mat-icon>bar_chart</mat-icon>
+  <span class="visually-hidden">Ver gráfica de cumplimiento</span>
+</button>

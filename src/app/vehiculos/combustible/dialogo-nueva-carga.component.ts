@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
 
 import { CombustiblesService } from '../../services/combustibles.service';
 import { VehiculosService } from '../../services/vehiculos.service';
@@ -29,7 +30,8 @@ import { Vehiculo } from '../../models/vehiculo.model';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule
   ],
   providers: [
     CombustiblesService,
@@ -128,21 +130,46 @@ import { Vehiculo } from '../../models/vehiculo.model';
 
         <!-- Número de Factura -->
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Número de Factura</mat-label>
+          <mat-label>Número de Vale/Factura</mat-label>
           <input matInput formControlName="numeroFactura">
         </mat-form-field>
 
         <!-- Proveedor -->
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Proveedor/Estación</mat-label>
-          <input matInput formControlName="proveedor">
+          <mat-select formControlName="proveedor" required>
+              <mat-option value="DON ARTURO">DON ARTURO</mat-option>
+              <mat-option value="FORMULA 1">FORMULA 1</mat-option>
+              <mat-option value="SHELL">SHELL</mat-option>
+              <mat-option value="TEXACO">TEXACO</mat-option>
+              <mat-option value="PUMA">PUMA</mat-option>
+              <mat-option value="OTRO">OTRO</mat-option>
+          </mat-select>
         </mat-form-field>
 
         <!-- Foto de Factura -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>URL Foto de Factura</mat-label>
-          <input matInput formControlName="fotoFactura">
-        </mat-form-field>
+        <div class="upload-section full-width">
+          <label class="upload-label">Foto de Factura</label>
+          <input #fileInput type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" style="display:none">
+          <button type="button" mat-raised-button color="primary" class="upload-button" (click)="fileInput.click()">
+            <mat-icon>cloud_upload</mat-icon>
+            {{ archivoSeleccionado ? archivoSeleccionado.name : 'Seleccionar Foto' }}
+          </button>
+          <div *ngIf="archivoSeleccionado" class="file-info">
+            <small>{{ archivoSeleccionado.name }} ({{ (archivoSeleccionado.size / 1024 / 1024) | number:'1.1-1' }} MB)</small>
+          </div>
+          <div class="file-error" *ngIf="formulario.get('fotoFactura')?.invalid && (formulario.get('fotoFactura')?.touched || formulario.touched)">
+            <mat-icon color="warn">error</mat-icon>
+            <span>Selecciona una imagen (máx 5MB).</span>
+          </div>
+          <!-- Preview -->
+          <div *ngIf="previewUrl" class="preview-container">
+            <img [src]="previewUrl" alt="Preview factura" class="preview-image" />
+            <button type="button" mat-mini-fab color="warn" class="preview-remove" (click)="removerArchivo()" matTooltip="Quitar imagen">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
 
         <!-- Observaciones -->
         <mat-form-field appearance="outline" class="full-width">
@@ -168,10 +195,7 @@ import { Vehiculo } from '../../models/vehiculo.model';
     </form>
   `,
   styles: [`
-    .dialog-content {
-      min-width: 400px;
-      max-width: 500px;
-    }
+    .dialog-content { width: 100%; max-width: 520px; }
     
     .full-width {
       width: 100%;
@@ -188,19 +212,41 @@ import { Vehiculo } from '../../models/vehiculo.model';
       color: #2e7d32;
     }
     
-    mat-dialog-actions {
-      padding: 16px 0;
-      margin: 0;
+    mat-dialog-actions { padding: 16px 0; margin: 0; }
+
+    /* Upload styles */
+    .upload-section { display: flex; flex-direction: column; gap: 8px; overflow-x: hidden; }
+    .file-input { display: none; }
+    .upload-button { display: inline-flex; align-items: center; gap: 8px; }
+    .file-info small { color: #666; }
+    .file-error { display:flex; align-items:center; gap:6px; color: #d32f2f; }
+    .preview-container { position: relative; display: block; margin-top: 8px; }
+    .preview-image { max-width: 100%; width: 100%; height: auto; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .preview-remove { position: absolute; top: 6px; right: 6px; }
+
+    /* Mobile tweaks */
+    @media (max-width: 480px) {
+      .dialog-content { max-width: 100vw; }
+      .upload-button { width: 100%; justify-content: center; }
+      .preview-image { max-height: 45vh; object-fit: contain; }
     }
   `]
 })
 export class DialogoNuevaCargaComponent implements OnInit {
+  verFoto(ruta: string): void {
+    if (ruta) {
+      window.open(ruta, '_blank');
+    }
+  }
   formulario!: FormGroup;
   vehiculos: Vehiculo[] = [];
   tiposCombustible: any[] = [];
   usuarios: any[] = [];
   guardando = false;
   totalCalculado = 0;
+  // Propiedades para manejo de archivos
+  archivoSeleccionado: File | null = null;
+  previewUrl: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -227,9 +273,9 @@ export class DialogoNuevaCargaComponent implements OnInit {
       galones: ['', [Validators.required, Validators.min(0.01)]],
       precioGalon: ['', [Validators.required, Validators.min(0.01)]],
       kilometraje: ['', [Validators.required, Validators.min(0)]],
-      numeroFactura: [''],
+      numeroFactura: ['', Validators.required],
       proveedor: [''],
-      fotoFactura: [''],
+      fotoFactura: ['', Validators.required],
       observaciones: ['']
     });
   }
@@ -244,6 +290,48 @@ export class DialogoNuevaCargaComponent implements OnInit {
     const galones = this.formulario.get('galones')?.value || 0;
     const precio = this.formulario.get('precioGalon')?.value || 0;
     this.totalCalculado = galones * precio;
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      
+      // Validar que sea una imagen
+      if (!file.type.startsWith('image/')) {
+        alert('Por favor seleccione un archivo de imagen válido.');
+        return;
+      }
+
+      // Validar tamaño (máximo 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('El archivo es demasiado grande. Máximo 5MB permitido.');
+        return;
+      }
+
+      this.archivoSeleccionado = file;
+      // Generar preview
+      try {
+        if (this.previewUrl) {
+          URL.revokeObjectURL(this.previewUrl);
+        }
+        this.previewUrl = URL.createObjectURL(file);
+      } catch {}
+      // Actualizar validación del formulario
+      this.formulario.get('fotoFactura')?.setValue(file.name);
+      this.formulario.get('fotoFactura')?.markAsTouched();
+    }
+  }
+
+  removerArchivo(): void {
+    if (this.previewUrl) {
+      try { URL.revokeObjectURL(this.previewUrl); } catch {}
+    }
+    this.previewUrl = null;
+    this.archivoSeleccionado = null;
+    this.formulario.get('fotoFactura')?.setValue('');
+    this.formulario.get('fotoFactura')?.markAsTouched();
+    this.formulario.get('fotoFactura')?.updateValueAndValidity();
   }
 
   cargarDatos(): void {
@@ -298,26 +386,26 @@ export class DialogoNuevaCargaComponent implements OnInit {
   guardar(): void {
     if (this.formulario.valid) {
       this.guardando = true;
-      
-      const carga = {
-        id_vehiculo: this.formulario.value.idVehiculo,
-        id_tipo_combustible: this.formulario.value.idTipoCombustible,
-        id_usuario: this.formulario.value.idUsuario || null,
-        fecha_carga: this.formulario.value.fechaCarga,
-        galones_cargados: this.formulario.value.galones,
-        precio_galon: this.formulario.value.precioGalon,
-        total_pagado: this.totalCalculado,
-        kilometraje_actual: this.formulario.value.kilometraje,
-        numero_factura: this.formulario.value.numeroFactura || null,
-        proveedor_combustible: this.formulario.value.proveedor || null,
-        foto_factura: this.formulario.value.fotoFactura || null,
-        observaciones: this.formulario.value.observaciones || null,
-        activo: true
-      };
+      const formData = new FormData();
+      formData.append('id_vehiculo', this.formulario.value.idVehiculo);
+      formData.append('id_tipo_combustible', this.formulario.value.idTipoCombustible);
+      formData.append('id_usuario', this.formulario.value.idUsuario || '');
+      formData.append('fecha_carga', new Date(this.formulario.value.fechaCarga).toISOString());
+      formData.append('galones_cargados', this.formulario.value.galones);
+      formData.append('precio_galon', this.formulario.value.precioGalon);
+      formData.append('total_pagado', this.totalCalculado.toString());
+      formData.append('kilometraje_actual', this.formulario.value.kilometraje);
+      formData.append('numero_factura', this.formulario.value.numeroFactura || '');
+      formData.append('proveedor_combustible', this.formulario.value.proveedor || '');
+      formData.append('observaciones', this.formulario.value.observaciones || '');
+      formData.append('activo', 'true');
+      if (this.archivoSeleccionado) {
+        formData.append('foto_factura', this.archivoSeleccionado);
+      }
 
-      console.log('💾 Guardando carga de combustible:', carga);
+      console.log('💾 Guardando carga de combustible (FormData):', formData);
 
-      this.combustiblesService.registrarCarga(carga as any).subscribe({
+      this.combustiblesService.registrarCarga(formData).subscribe({
         next: (response: any) => {
           console.log('✅ Carga guardada exitosamente:', response);
           if (response.success) {
@@ -336,7 +424,6 @@ export class DialogoNuevaCargaComponent implements OnInit {
       });
     } else {
       console.warn('⚠️ Formulario inválido:', this.formulario.errors);
-      // Marcar todos los campos como tocados para mostrar errores
       Object.keys(this.formulario.controls).forEach(key => {
         this.formulario.get(key)?.markAsTouched();
       });

@@ -25,7 +25,12 @@
 .register-container .error {
   color: #c00;
   margin-bottom: 12px;
-  text-align: center;
+  text-align: left;
+  font-size: 12px;
+}
+.register-container .error small {
+  display: block;
+  margin-bottom: 4px;
 }
 .register-container .success {
   color: #2e7d32;

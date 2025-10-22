@@ -1,0 +1,2484 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>gestor-vehiculos documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">gestor-vehiculos documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  InventarioComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/vehiculos/inventario/inventario.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-inventario</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>RouterModule</code>
+                            <code>FormsModule</code>
+                            <code>MatTableModule</code>
+                            <code>MatPaginatorModule</code>
+                            <code>MatSortModule</code>
+                            <code>MatDialogModule</code>
+                            <code>MatSnackBarModule</code>
+                            <code>MatButtonModule</code>
+                            <code>MatIconModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatInputModule</code>
+                            <code>MatCardModule</code>
+                            <code>MatProgressSpinnerModule</code>
+                            <code>MatProgressBarModule</code>
+                            <code>MatChipsModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./inventario.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./inventario.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cargando" >cargando</a>
+                            </li>
+                            <li>
+                                <a href="#dataSource" >dataSource</a>
+                            </li>
+                            <li>
+                                <a href="#displayedColumns" >displayedColumns</a>
+                            </li>
+                            <li>
+                                <a href="#errorCarga" >errorCarga</a>
+                            </li>
+                            <li>
+                                <a href="#filtroTexto" >filtroTexto</a>
+                            </li>
+                            <li>
+                                <a href="#maxReintentos" >maxReintentos</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#paginator" >paginator</a>
+                            </li>
+                            <li>
+                                <a href="#reintentoActual" >reintentoActual</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#routerSubscription" >routerSubscription</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#sort" >sort</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#actualizarInventario" >actualizarInventario</a>
+                            </li>
+                            <li>
+                                <a href="#agregarVehiculo" >agregarVehiculo</a>
+                            </li>
+                            <li>
+                                <a href="#aplicarFiltro" >aplicarFiltro</a>
+                            </li>
+                            <li>
+                                <a href="#cargarVehiculos" >cargarVehiculos</a>
+                            </li>
+                            <li>
+                                <a href="#editarVehiculo" >editarVehiculo</a>
+                            </li>
+                            <li>
+                                <a href="#eliminarVehiculo" >eliminarVehiculo</a>
+                            </li>
+                            <li>
+                                <a href="#exportarDatos" >exportarDatos</a>
+                            </li>
+                            <li>
+                                <a href="#irADashboard" >irADashboard</a>
+                            </li>
+                            <li>
+                                <a href="#irAGestionCombustible" >irAGestionCombustible</a>
+                            </li>
+                            <li>
+                                <a href="#limpiarFiltro" >limpiarFiltro</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#manejarErrorCarga" >manejarErrorCarga</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#mostrarMensaje" >mostrarMensaje</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#reintentarCarga" >reintentarCarga</a>
+                            </li>
+                            <li>
+                                <a href="#verDetalle" >verDetalle</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#rolUsuario" >rolUsuario</a>
+                                </li>
+                                <li>
+                                    <a href="#esConductor" >esConductor</a>
+                                </li>
+                                <li>
+                                    <a href="#permisosUsuario" >permisosUsuario</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(vehiculosService: <a href="../injectables/VehiculosService.html" target="_self">VehiculosService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, dialog: MatDialog, snackBar: MatSnackBar, router: Router, platformId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank">Object</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:104</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>vehiculosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/VehiculosService.html" target="_self" >VehiculosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>platformId</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank" >Object</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="actualizarInventario"></a>
+                    <span class="name">
+                        <span ><b>actualizarInventario</b></span>
+                        <a href="#actualizarInventario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>actualizarInventario()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="209"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:209</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="agregarVehiculo"></a>
+                    <span class="name">
+                        <span ><b>agregarVehiculo</b></span>
+                        <a href="#agregarVehiculo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>agregarVehiculo()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="223"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:223</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="aplicarFiltro"></a>
+                    <span class="name">
+                        <span ><b>aplicarFiltro</b></span>
+                        <a href="#aplicarFiltro"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>aplicarFiltro()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="214"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:214</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarVehiculos"></a>
+                    <span class="name">
+                        <span ><b>cargarVehiculos</b></span>
+                        <a href="#cargarVehiculos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cargarVehiculos()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:142</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editarVehiculo"></a>
+                    <span class="name">
+                        <span ><b>editarVehiculo</b></span>
+                        <a href="#editarVehiculo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editarVehiculo(vehiculo: <a href="../interfaces/Vehiculo.html" target="_self">Vehiculo</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="244"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:244</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>vehiculo</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Vehiculo.html" target="_self" >Vehiculo</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eliminarVehiculo"></a>
+                    <span class="name">
+                        <span ><b>eliminarVehiculo</b></span>
+                        <a href="#eliminarVehiculo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>eliminarVehiculo(vehiculo: <a href="../interfaces/Vehiculo.html" target="_self">Vehiculo</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="251"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:251</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>vehiculo</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Vehiculo.html" target="_self" >Vehiculo</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportarDatos"></a>
+                    <span class="name">
+                        <span ><b>exportarDatos</b></span>
+                        <a href="#exportarDatos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exportarDatos()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="266"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:266</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="irADashboard"></a>
+                    <span class="name">
+                        <span ><b>irADashboard</b></span>
+                        <a href="#irADashboard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>irADashboard()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="232"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:232</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="irAGestionCombustible"></a>
+                    <span class="name">
+                        <span ><b>irAGestionCombustible</b></span>
+                        <a href="#irAGestionCombustible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>irAGestionCombustible()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="227"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:227</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="limpiarFiltro"></a>
+                    <span class="name">
+                        <span ><b>limpiarFiltro</b></span>
+                        <a href="#limpiarFiltro"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>limpiarFiltro()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="218"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:218</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="manejarErrorCarga"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>manejarErrorCarga</b></span>
+                        <a href="#manejarErrorCarga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>manejarErrorCarga(error: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="182"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:182</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>error</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mostrarMensaje"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>mostrarMensaje</b></span>
+                        <a href="#mostrarMensaje"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>mostrarMensaje(mensaje: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="271"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:271</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>mensaje</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="137"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:137</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:133</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:129</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reintentarCarga"></a>
+                    <span class="name">
+                        <span ><b>reintentarCarga</b></span>
+                        <a href="#reintentarCarga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>reintentarCarga()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="203"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:203</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="verDetalle"></a>
+                    <span class="name">
+                        <span ><b>verDetalle</b></span>
+                        <a href="#verDetalle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>verDetalle(vehiculo: <a href="../interfaces/Vehiculo.html" target="_self">Vehiculo</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="237"
+                                    class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:237</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>vehiculo</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Vehiculo.html" target="_self" >Vehiculo</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargando"></a>
+                    <span class="name">
+                        <span ><b>cargando</b></span>
+                        <a href="#cargando"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataSource"></a>
+                    <span class="name">
+                        <span ><b>dataSource</b></span>
+                        <a href="#dataSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatTableDataSource&lt;Vehiculo&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayedColumns"></a>
+                    <span class="name">
+                        <span ><b>displayedColumns</b></span>
+                        <a href="#displayedColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;placa&#x27;, &#x27;marca&#x27;, &#x27;modelo&#x27;, &#x27;anio&#x27;, &#x27;tipoVehiculo&#x27;, &#x27;estado&#x27;, &#x27;acciones&#x27;]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorCarga"></a>
+                    <span class="name">
+                        <span ><b>errorCarga</b></span>
+                        <a href="#errorCarga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filtroTexto"></a>
+                    <span class="name">
+                        <span ><b>filtroTexto</b></span>
+                        <a href="#filtroTexto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="maxReintentos"></a>
+                    <span class="name">
+                        <span ><b>maxReintentos</b></span>
+                        <a href="#maxReintentos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>3</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:102</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="paginator"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>paginator</b></span>
+                        <a href="#paginator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatPaginator</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(MatPaginator)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reintentoActual"></a>
+                    <span class="name">
+                        <span ><b>reintentoActual</b></span>
+                        <a href="#reintentoActual"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routerSubscription"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>routerSubscription</b></span>
+                        <a href="#routerSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subscription()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sort"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>sort</b></span>
+                        <a href="#sort"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatSort</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(MatSort)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rolUsuario"></a>
+                        <span class="name"><b>rolUsuario</b><a href="#rolUsuario"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>rolUsuario()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:53</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="esConductor"></a>
+                        <span class="name"><b>esConductor</b><a href="#esConductor"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>esConductor()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:61</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="permisosUsuario"></a>
+                        <span class="name"><b>permisosUsuario</b><a href="#permisosUsuario"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>permisosUsuario()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/vehiculos/inventario/inventario.component.ts:84</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ViewChild, OnDestroy, Inject } from &#x27;@angular/core&#x27;;
+import { isPlatformBrowser } from &#x27;@angular/common&#x27;;
+import { PLATFORM_ID } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { RouterModule, Router, NavigationEnd } from &#x27;@angular/router&#x27;;
+import { MatTableModule, MatTableDataSource } from &#x27;@angular/material/table&#x27;;
+import { MatPaginatorModule, MatPaginator } from &#x27;@angular/material/paginator&#x27;;
+import { MatSortModule, MatSort } from &#x27;@angular/material/sort&#x27;;
+import { MatDialogModule, MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { MatSnackBarModule, MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatInputModule } from &#x27;@angular/material/input&#x27;;
+import { MatCardModule } from &#x27;@angular/material/card&#x27;;
+import { MatProgressSpinnerModule } from &#x27;@angular/material/progress-spinner&#x27;;
+import { MatProgressBarModule } from &#x27;@angular/material/progress-bar&#x27;;
+import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { VehiculosService } from &#x27;../../services/vehiculos.service&#x27;;
+import { AuthService } from &#x27;../../auth/auth.service&#x27;;
+import { Vehiculo } from &#x27;../../models/vehiculo.model&#x27;;
+import { Subscription, filter } from &#x27;rxjs&#x27;;
+
+@Component({
+  selector: &#x27;app-inventario&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatChipsModule
+  ],
+  templateUrl: &#x27;./inventario.component.html&#x27;,
+  styleUrls: [&#x27;./inventario.component.css&#x27;]
+})
+export class InventarioComponent implements OnInit, OnDestroy {
+  // Todas las propiedades y métodos duplicados han sido eliminados. Solo queda una versión de cada uno.
+
+  // ...resto de métodos (actualizarInventario, aplicarFiltro, limpiarFiltro, agregarVehiculo, irAGestionCombustible, irADashboard, verDetalle, editarVehiculo, eliminarVehiculo, exportarDatos, mostrarMensaje) igual que ya tienes...
+  get rolUsuario(): string {
+    const usuario &#x3D; this.authService.getUsuario();
+    if (!usuario) return &#x27;&#x27;;
+    const rol &#x3D; usuario.rol || usuario.id_rol || usuario.nombre_rol || &#x27;&#x27;;
+    return rol.toString();
+  }
+
+  // Verificar si es conductor de manera robusta
+  get esConductor(): boolean {
+    const usuario &#x3D; this.authService.getUsuario();
+    if (!usuario) return false;
+    
+    // Obtener todas las posibles formas del rol
+    const rolTexto &#x3D; usuario.rol || &#x27;&#x27;;
+    const idRol &#x3D; usuario.id_rol || &#x27;&#x27;;
+    const nombreRol &#x3D; usuario.nombre_rol || &#x27;&#x27;;
+    
+    // Normalizar todos los valores a string y comparar
+    const rolTextoStr &#x3D; rolTexto.toString().toLowerCase().trim();
+    const idRolStr &#x3D; idRol.toString().trim();
+    const nombreRolStr &#x3D; nombreRol.toString().toLowerCase().trim();
+    
+    const esConductor &#x3D; rolTextoStr &#x3D;&#x3D;&#x3D; &#x27;conductor&#x27; || 
+                       idRolStr &#x3D;&#x3D;&#x3D; &#x27;3&#x27; || 
+                       nombreRolStr &#x3D;&#x3D;&#x3D; &#x27;conductor&#x27; ||
+                       rolTextoStr.includes(&#x27;conductor&#x27;) ||
+                       nombreRolStr.includes(&#x27;conductor&#x27;);
+    
+    return esConductor;
+  }
+
+  get permisosUsuario(): string[] {
+    if (isPlatformBrowser(this.platformId)) {
+      const usuario &#x3D; localStorage.getItem(&#x27;usuario&#x27;);
+      if (!usuario) return [];
+      const obj &#x3D; JSON.parse(usuario);
+      return obj.permisos || [];
+    }
+    return [];
+  }
+  displayedColumns: string[] &#x3D; [&#x27;placa&#x27;, &#x27;marca&#x27;, &#x27;modelo&#x27;, &#x27;anio&#x27;, &#x27;tipoVehiculo&#x27;, &#x27;estado&#x27;, &#x27;acciones&#x27;];
+  dataSource &#x3D; new MatTableDataSource&lt;Vehiculo&gt;();
+  
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  filtroTexto: string &#x3D; &#x27;&#x27;;
+  cargando: boolean &#x3D; false;
+  errorCarga: string &#x3D; &#x27;&#x27;;
+  maxReintentos: number &#x3D; 3;
+  reintentoActual: number &#x3D; 0;
+  private routerSubscription: Subscription &#x3D; new Subscription();
+
+  constructor(
+    private vehiculosService: VehiculosService,
+    private authService: AuthService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    // Escuchar cambios de navegación para recargar datos cuando regrese de agregar vehículo
+    this.routerSubscription &#x3D; this.router.events.pipe(
+      filter(event &#x3D;&gt; event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) &#x3D;&gt; {
+      console.log(&#x27;🔄 Navegación detectada a:&#x27;, event.url);
+      if (event.url &#x3D;&#x3D;&#x3D; &#x27;/vehiculos/inventario&#x27;) {
+        console.log(&#x27;📋 Recargando inventario por navegación...&#x27;);
+        // Pequeño delay para asegurar que el componente esté listo
+        setTimeout(() &#x3D;&gt; {
+          this.cargarVehiculos();
+        }, 100);
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    this.cargarVehiculos();
+  }
+
+  ngOnDestroy(): void {
+    this.routerSubscription.unsubscribe();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator &#x3D; this.paginator;
+    this.dataSource.sort &#x3D; this.sort;
+  }
+
+  cargarVehiculos(): void {
+    this.cargando &#x3D; true;
+    this.errorCarga &#x3D; &#x27;&#x27;;
+    console.log(&#x27;🔄 Cargando vehículos...&#x27;);
+    
+    // Timeout manual adicional
+    const timeoutId &#x3D; setTimeout(() &#x3D;&gt; {
+      this.cargando &#x3D; false;
+      this.errorCarga &#x3D; &#x27;La carga está tardando demasiado. Verifique su conexión.&#x27;;
+    }, 15000); // 15 segundos
+    
+    this.vehiculosService.obtenerVehiculos().subscribe({
+      next: (response: any) &#x3D;&gt; {
+        clearTimeout(timeoutId);
+        console.log(&#x27;📋 Respuesta del servidor:&#x27;, response);
+        
+        // Manejar diferentes formatos de respuesta
+        let vehiculos &#x3D; [];
+        if (response.success &amp;&amp; response.data) {
+          vehiculos &#x3D; response.data;
+        } else if (Array.isArray(response)) {
+          vehiculos &#x3D; response;
+        } else {
+          console.warn(&#x27;⚠️ Formato de respuesta inesperado:&#x27;, response);
+          vehiculos &#x3D; [];
+        }
+        
+        this.dataSource.data &#x3D; vehiculos;
+        console.log(&#x60;✅ ${vehiculos.length} vehículos cargados&#x60;);
+        this.cargando &#x3D; false;
+        this.reintentoActual &#x3D; 0;
+      },
+      error: (error: any) &#x3D;&gt; {
+        clearTimeout(timeoutId);
+        console.error(&#x27;❌ Error al cargar vehículos:&#x27;, error);
+        this.manejarErrorCarga(error);
+      }
+    });
+  }
+
+  private manejarErrorCarga(error: any): void {
+    this.cargando &#x3D; false;
+    this.reintentoActual++;
+    
+    const mensaje &#x3D; error.message || &#x27;Error al cargar los vehículos&#x27;;
+    this.errorCarga &#x3D; mensaje;
+    
+    if (this.reintentoActual &lt; this.maxReintentos) {
+      console.log(&#x60;🔄 Reintentando carga (${this.reintentoActual}/${this.maxReintentos})...&#x60;);
+      this.mostrarMensaje(&#x60;${mensaje}. Reintentando... (${this.reintentoActual}/${this.maxReintentos})&#x60;);
+      
+      // Esperar un poco antes de reintentar
+      setTimeout(() &#x3D;&gt; {
+        this.cargarVehiculos();
+      }, 2000);
+    } else {
+      this.dataSource.data &#x3D; [];
+      this.mostrarMensaje(&#x60;${mensaje}. Use el botón Reintentar para volver a cargar.&#x60;);
+    }
+  }
+
+  reintentarCarga(): void {
+    this.reintentoActual &#x3D; 0;
+    this.cargarVehiculos();
+  }
+
+  // Método para forzar recarga manual
+  actualizarInventario(): void {
+    console.log(&#x27;🔄 Actualización manual del inventario solicitada&#x27;);
+    this.cargarVehiculos();
+  }
+
+  aplicarFiltro(): void {
+    this.dataSource.filter &#x3D; this.filtroTexto.trim().toLowerCase();
+  }
+
+  limpiarFiltro(): void {
+    this.filtroTexto &#x3D; &#x27;&#x27;;
+    this.dataSource.filter &#x3D; &#x27;&#x27;;
+  }
+
+  agregarVehiculo(): void {
+    this.router.navigate([&#x27;/vehiculos/agregar&#x27;]);
+  }
+
+  irAGestionCombustible(): void {
+    console.log(&#x27;⛽ Navegando a gestión de combustible&#x27;);
+    this.router.navigate([&#x27;/vehiculos/combustible&#x27;]);
+  }
+
+  irADashboard(): void {
+    console.log(&#x27;📊 Navegando al dashboard&#x27;);
+    this.router.navigate([&#x27;/dashboard&#x27;]);
+  }
+
+  verDetalle(vehiculo: Vehiculo): void {
+    console.log(&#x27;🔍 Ver detalle del vehículo:&#x27;, vehiculo);
+    console.log(&#x27;🔍 ID del vehículo:&#x27;, vehiculo.id);
+    console.log(&#x27;🔍 Navegando a:&#x27;, &#x60;/vehiculos/detalle/${vehiculo.id}&#x60;);
+    this.router.navigate([&#x27;/vehiculos/detalle&#x27;, vehiculo.id]);
+  }
+
+  editarVehiculo(vehiculo: Vehiculo): void {
+    console.log(&#x27;✏️ Editar vehículo:&#x27;, vehiculo);
+    console.log(&#x27;✏️ ID del vehículo:&#x27;, vehiculo.id);
+    console.log(&#x27;✏️ Navegando a:&#x27;, &#x60;/vehiculos/editar/${vehiculo.id}&#x60;);
+    this.router.navigate([&#x27;/vehiculos/editar&#x27;, vehiculo.id]);
+  }
+
+  eliminarVehiculo(vehiculo: Vehiculo): void {
+    if (confirm(&#x60;¿Está seguro de eliminar el vehículo ${vehiculo.placa}?&#x60;)) {
+      this.vehiculosService.eliminarVehiculo(vehiculo.id!).subscribe({
+        next: () &#x3D;&gt; {
+          this.mostrarMensaje(&#x27;Vehículo eliminado exitosamente&#x27;);
+          this.cargarVehiculos();
+        },
+        error: (error: any) &#x3D;&gt; {
+          console.error(&#x27;Error al eliminar vehículo:&#x27;, error);
+          this.mostrarMensaje(&#x27;Error al eliminar el vehículo&#x27;);
+        }
+      });
+    }
+  }
+
+  exportarDatos(): void {
+    // Implementar exportación a Excel/PDF
+    this.mostrarMensaje(&#x27;Funcionalidad en desarrollo&#x27;);
+  }
+
+  private mostrarMensaje(mensaje: string): void {
+    this.snackBar.open(mensaje, &#x27;Cerrar&#x27;, {
+      duration: 3000,
+      horizontalPosition: &#x27;right&#x27;,
+      verticalPosition: &#x27;top&#x27;
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;inventario-container&quot;&gt;
+  &lt;mat-card&gt;
+    &lt;mat-card-header&gt;
+      &lt;mat-card-title&gt;
+        &lt;mat-icon&gt;directions_car&lt;/mat-icon&gt;
+        Inventario de Vehículos
+      &lt;/mat-card-title&gt;
+    &lt;/mat-card-header&gt;
+    
+    &lt;mat-card-content&gt;
+      &lt;!-- Barra de herramientas --&gt;
+      &lt;div class&#x3D;&quot;toolbar&quot;&gt;
+        &lt;div class&#x3D;&quot;search-container&quot;&gt;
+          &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;search-field&quot;&gt;
+            &lt;mat-label&gt;Buscar vehículos&lt;/mat-label&gt;
+            &lt;input matInput 
+                   [(ngModel)]&#x3D;&quot;filtroTexto&quot; 
+                   (input)&#x3D;&quot;aplicarFiltro()&quot;
+                   placeholder&#x3D;&quot;Nombre, marca, modelo...&quot;&gt;
+            &lt;mat-icon matSuffix&gt;search&lt;/mat-icon&gt;
+          &lt;/mat-form-field&gt;
+          
+          &lt;button mat-icon-button 
+                  (click)&#x3D;&quot;limpiarFiltro()&quot; 
+                  matTooltip&#x3D;&quot;Limpiar búsqueda&quot;&gt;
+            &lt;mat-icon&gt;clear&lt;/mat-icon&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        
+        &lt;div class&#x3D;&quot;actions-container&quot;&gt;
+          &lt;!-- Solo mostrar botones si NO es conductor --&gt;
+          &lt;button *ngIf&#x3D;&quot;!esConductor &amp;&amp; permisosUsuario.includes(&#x27;vehiculos.crear&#x27;)&quot; mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;agregarVehiculo()&quot; class&#x3D;&quot;add-button&quot;&gt;
+            &lt;mat-icon&gt;add&lt;/mat-icon&gt;
+            Agregar Vehículo
+          &lt;/button&gt;
+
+          &lt;button mat-raised-button color&#x3D;&quot;accent&quot; (click)&#x3D;&quot;irAGestionCombustible()&quot; class&#x3D;&quot;fuel-button&quot;&gt;
+            &lt;mat-icon&gt;local_gas_station&lt;/mat-icon&gt;
+            Gestión de Combustible
+          &lt;/button&gt;
+
+          &lt;button *ngIf&#x3D;&quot;!esConductor &amp;&amp; permisosUsuario.includes(&#x27;dashboard.ver&#x27;)&quot; mat-raised-button color&#x3D;&quot;warn&quot; (click)&#x3D;&quot;irADashboard()&quot; class&#x3D;&quot;dashboard-button&quot;&gt;
+            &lt;mat-icon&gt;dashboard&lt;/mat-icon&gt;
+            Dashboard
+          &lt;/button&gt;
+
+          &lt;button *ngIf&#x3D;&quot;!esConductor&quot; mat-stroked-button (click)&#x3D;&quot;actualizarInventario()&quot; matTooltip&#x3D;&quot;Refrescar datos&quot; [disabled]&#x3D;&quot;cargando&quot;&gt;
+            &lt;mat-icon&gt;refresh&lt;/mat-icon&gt;
+            Refrescar
+          &lt;/button&gt;
+
+          &lt;button *ngIf&#x3D;&quot;rolUsuario !&#x3D;&#x3D; &#x27;Conductor&#x27;&quot; mat-stroked-button (click)&#x3D;&quot;exportarDatos()&quot; matTooltip&#x3D;&quot;Exportar datos&quot;&gt;
+            &lt;mat-icon&gt;file_download&lt;/mat-icon&gt;
+            Exportar
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Barra de progreso --&gt;
+      &lt;mat-progress-bar mode&#x3D;&quot;indeterminate&quot; *ngIf&#x3D;&quot;cargando&quot;&gt;&lt;/mat-progress-bar&gt;
+
+      &lt;!-- Error de carga --&gt;
+      &lt;div *ngIf&#x3D;&quot;errorCarga &amp;&amp; !cargando&quot; class&#x3D;&quot;error-container&quot;&gt;
+        &lt;mat-icon color&#x3D;&quot;warn&quot;&gt;error&lt;/mat-icon&gt;
+        &lt;p&gt;{{ errorCarga }}&lt;/p&gt;
+        &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;reintentarCarga()&quot;&gt;
+          &lt;mat-icon&gt;refresh&lt;/mat-icon&gt;
+          Reintentar Carga
+        &lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Tabla de vehículos --&gt;
+      &lt;div class&#x3D;&quot;table-container&quot; *ngIf&#x3D;&quot;!errorCarga&quot;&gt;
+        &lt;table mat-table [dataSource]&#x3D;&quot;dataSource&quot; matSort class&#x3D;&quot;vehiculos-table&quot;&gt;
+          &lt;!-- Columna Nombre --&gt;
+          &lt;ng-container matColumnDef&#x3D;&quot;placa&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Nombre&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot;&gt;
+              &lt;strong&gt;{{ vehiculo.placa }}&lt;/strong&gt;
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+
+          &lt;!-- Columna Marca --&gt;
+          &lt;ng-container matColumnDef&#x3D;&quot;marca&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Marca&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot;&gt;{{ vehiculo.marca }}&lt;/td&gt;
+          &lt;/ng-container&gt;
+
+          &lt;!-- Columna Modelo --&gt;
+          &lt;ng-container matColumnDef&#x3D;&quot;modelo&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Modelo&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot;&gt;{{ vehiculo.modelo }}&lt;/td&gt;
+          &lt;/ng-container&gt;
+
+          &lt;!-- Columna Año --&gt;
+          &lt;ng-container matColumnDef&#x3D;&quot;anio&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Año&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot;&gt;{{ vehiculo.anio }}&lt;/td&gt;
+          &lt;/ng-container&gt;
+
+          &lt;!-- Columna Tipo --&gt;
+          &lt;ng-container matColumnDef&#x3D;&quot;tipoVehiculo&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Tipo&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot;&gt;
+              &lt;mat-chip&gt;{{ vehiculo.tipo_vehiculo || &#x27;Sin tipo&#x27; }}&lt;/mat-chip&gt;
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+
+          &lt;!-- Columna Estado --&gt;
+          &lt;ng-container matColumnDef&#x3D;&quot;estado&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Estado&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot;&gt;
+              &lt;mat-chip [ngClass]&#x3D;&quot;&#x27;estado-&#x27; + (vehiculo.estado_vehiculo || &#x27;sin-estado&#x27;).toLowerCase()&quot;&gt;
+                {{ vehiculo.estado_vehiculo || &#x27;Sin estado&#x27; }}
+              &lt;/mat-chip&gt;
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+
+          &lt;!-- Columna Acciones --&gt;
+          &lt;ng-container matColumnDef&#x3D;&quot;acciones&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef&gt;Acciones&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot; class&#x3D;&quot;acciones-cell&quot;&gt;              
+              &lt;div class&#x3D;&quot;acciones-container&quot;&gt;
+                &lt;button mat-mini-fab 
+                        (click)&#x3D;&quot;verDetalle(vehiculo)&quot; 
+                        matTooltip&#x3D;&quot;Ver&quot;
+                        color&#x3D;&quot;primary&quot;
+                        class&#x3D;&quot;accion-btn&quot;&gt;
+                  &lt;mat-icon&gt;visibility&lt;/mat-icon&gt;
+                &lt;/button&gt;
+                &lt;!-- Solo mostrar editar/eliminar si NO es conductor --&gt;
+                &lt;ng-container *ngIf&#x3D;&quot;!esConductor&quot;&gt;
+                  &lt;button mat-mini-fab 
+                          (click)&#x3D;&quot;editarVehiculo(vehiculo)&quot; 
+                          matTooltip&#x3D;&quot;Editar&quot;
+                          color&#x3D;&quot;accent&quot;
+                          class&#x3D;&quot;accion-btn&quot;&gt;
+                    &lt;mat-icon&gt;edit&lt;/mat-icon&gt;
+                  &lt;/button&gt;
+                  &lt;button mat-mini-fab 
+                          (click)&#x3D;&quot;eliminarVehiculo(vehiculo)&quot; 
+                          matTooltip&#x3D;&quot;Eliminar&quot;
+                          color&#x3D;&quot;warn&quot;
+                          class&#x3D;&quot;accion-btn&quot;&gt;
+                    &lt;mat-icon&gt;delete&lt;/mat-icon&gt;
+                  &lt;/button&gt;
+                &lt;/ng-container&gt;
+              &lt;/div&gt;
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+
+          &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumns&quot;&gt;&lt;/tr&gt;
+          &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumns;&quot;&gt;&lt;/tr&gt;
+        &lt;/table&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Paginador --&gt;
+      &lt;mat-paginator [pageSizeOptions]&#x3D;&quot;[5, 10, 20, 50]&quot; 
+                     [pageSize]&#x3D;&quot;10&quot;
+                     showFirstLastButtons&gt;
+      &lt;/mat-paginator&gt;
+
+      &lt;!-- Mensaje cuando no hay datos --&gt;
+      &lt;div class&#x3D;&quot;no-data&quot; *ngIf&#x3D;&quot;dataSource.data.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; !cargando&quot;&gt;
+        &lt;mat-icon&gt;directions_car&lt;/mat-icon&gt;
+        &lt;p&gt;No hay vehículos registrados&lt;/p&gt;
+        &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;agregarVehiculo()&quot;&gt;
+          Agregar primer vehículo
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/mat-card-content&gt;
+  &lt;/mat-card&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./inventario.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.inventario-container {
+  padding: 20px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 400px;
+}
+
+.search-field {
+  flex: 1;
+  margin-right: 8px;
+}
+
+.actions-container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.add-button {
+  min-width: 160px;
+}
+
+.fuel-button {
+  min-width: 180px;
+  background-color: #FF6B35 !important;
+}
+
+.fuel-button:hover {
+  background-color: #E55A2B !important;
+}
+
+.dashboard-button {
+  min-width: 120px;
+  background-color: #9C27B0 !important;
+}
+
+.dashboard-button:hover {
+  background-color: #7B1FA2 !important;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  background-color: #ffeaea;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.error-container mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+
+.error-container p {
+  margin: 0 0 16px 0;
+  color: #721c24;
+  font-weight: 500;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.vehiculos-table {
+  width: 100%;
+  min-width: 800px;
+}
+
+.vehiculos-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.vehiculos-table td {
+  padding: 12px 8px;
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.no-data mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+  color: #ccc;
+}
+
+.no-data p {
+  margin: 16px 0;
+  font-size: 16px;
+}
+
+/* Estados */
+.estado-activo {
+  background-color: #4caf50;
+  color: white;
+}
+
+.estado-inactivo {
+  background-color: #f44336;
+  color: white;
+}
+
+.estado-mantenimiento {
+  background-color: #ff9800;
+  color: white;
+}
+
+.estado-reparacion {
+  background-color: #9c27b0;
+  color: white;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .inventario-container {
+    padding: 10px;
+  }
+  
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-container {
+    max-width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  .actions-container {
+    justify-content: center;
+  }
+  
+  .add-button {
+    min-width: 100%;
+  }
+  
+  .vehiculos-table {
+    font-size: 14px;
+  }
+  
+  .vehiculos-table td,
+  .vehiculos-table th {
+    padding: 8px 4px;
+  }
+}
+
+/* Estilos para los botones de acciones */
+.acciones-cell {
+  width: 180px;
+  text-align: center;
+}
+
+.acciones-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.accion-btn {
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 32px;
+  min-width: 32px;
+}
+
+.accion-btn mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+}
+
+/* Colores específicos para cada acción */
+.accion-btn[color&#x3D;&quot;primary&quot;] {
+  background-color: #2196F3;
+}
+
+.accion-btn[color&#x3D;&quot;accent&quot;] {
+  background-color: #FF9800;
+}
+
+.accion-btn[color&#x3D;&quot;warn&quot;] {
+  background-color: #F44336;
+}
+
+@media (max-width: 480px) {
+  .actions-container {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .actions-container button {
+    width: 100%;
+  }
+  
+  .acciones-container {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .acciones-cell {
+    width: auto;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="inventario-container">  <mat-card>    <mat-card-header>      <mat-card-title>        <mat-icon>directions_car</mat-icon>        Inventario de Vehículos      </mat-card-title>    </mat-card-header>        <mat-card-content>      <!-- Barra de herramientas -->      <div class="toolbar">        <div class="search-container">          <mat-form-field appearance="outline" class="search-field">            <mat-label>Buscar vehículos</mat-label>            <input matInput                    [(ngModel)]="filtroTexto"                    (input)="aplicarFiltro()"                   placeholder="Nombre, marca, modelo...">            <mat-icon matSuffix>search</mat-icon>          </mat-form-field>                    <button mat-icon-button                   (click)="limpiarFiltro()"                   matTooltip="Limpiar búsqueda">            <mat-icon>clear</mat-icon>          </button>        </div>                <div class="actions-container">          <!-- Solo mostrar botones si NO es conductor -->          <button *ngIf="!esConductor && permisosUsuario.includes(\'vehiculos.crear\')" mat-raised-button color="primary" (click)="agregarVehiculo()" class="add-button">            <mat-icon>add</mat-icon>            Agregar Vehículo          </button>          <button mat-raised-button color="accent" (click)="irAGestionCombustible()" class="fuel-button">            <mat-icon>local_gas_station</mat-icon>            Gestión de Combustible          </button>          <button *ngIf="!esConductor && permisosUsuario.includes(\'dashboard.ver\')" mat-raised-button color="warn" (click)="irADashboard()" class="dashboard-button">            <mat-icon>dashboard</mat-icon>            Dashboard          </button>          <button *ngIf="!esConductor" mat-stroked-button (click)="actualizarInventario()" matTooltip="Refrescar datos" [disabled]="cargando">            <mat-icon>refresh</mat-icon>            Refrescar          </button>          <button *ngIf="rolUsuario !== \'Conductor\'" mat-stroked-button (click)="exportarDatos()" matTooltip="Exportar datos">            <mat-icon>file_download</mat-icon>            Exportar          </button>        </div>      </div>      <!-- Barra de progreso -->      <mat-progress-bar mode="indeterminate" *ngIf="cargando"></mat-progress-bar>      <!-- Error de carga -->      <div *ngIf="errorCarga && !cargando" class="error-container">        <mat-icon color="warn">error</mat-icon>        <p>{{ errorCarga }}</p>        <button mat-raised-button color="primary" (click)="reintentarCarga()">          <mat-icon>refresh</mat-icon>          Reintentar Carga        </button>      </div>      <!-- Tabla de vehículos -->      <div class="table-container" *ngIf="!errorCarga">        <table mat-table [dataSource]="dataSource" matSort class="vehiculos-table">          <!-- Columna Nombre -->          <ng-container matColumnDef="placa">            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>            <td mat-cell *matCellDef="let vehiculo">              <strong>{{ vehiculo.placa }}</strong>            </td>          </ng-container>          <!-- Columna Marca -->          <ng-container matColumnDef="marca">            <th mat-header-cell *matHeaderCellDef mat-sort-header>Marca</th>            <td mat-cell *matCellDef="let vehiculo">{{ vehiculo.marca }}</td>          </ng-container>          <!-- Columna Modelo -->          <ng-container matColumnDef="modelo">            <th mat-header-cell *matHeaderCellDef mat-sort-header>Modelo</th>            <td mat-cell *matCellDef="let vehiculo">{{ vehiculo.modelo }}</td>          </ng-container>          <!-- Columna Año -->          <ng-container matColumnDef="anio">            <th mat-header-cell *matHeaderCellDef mat-sort-header>Año</th>            <td mat-cell *matCellDef="let vehiculo">{{ vehiculo.anio }}</td>          </ng-container>          <!-- Columna Tipo -->          <ng-container matColumnDef="tipoVehiculo">            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</th>            <td mat-cell *matCellDef="let vehiculo">              <mat-chip>{{ vehiculo.tipo_vehiculo || \'Sin tipo\' }}</mat-chip>            </td>          </ng-container>          <!-- Columna Estado -->          <ng-container matColumnDef="estado">            <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>            <td mat-cell *matCellDef="let vehiculo">              <mat-chip [ngClass]="\'estado-\' + (vehiculo.estado_vehiculo || \'sin-estado\').toLowerCase()">                {{ vehiculo.estado_vehiculo || \'Sin estado\' }}              </mat-chip>            </td>          </ng-container>          <!-- Columna Acciones -->          <ng-container matColumnDef="acciones">            <th mat-header-cell *matHeaderCellDef>Acciones</th>            <td mat-cell *matCellDef="let vehiculo" class="acciones-cell">                            <div class="acciones-container">                <button mat-mini-fab                         (click)="verDetalle(vehiculo)"                         matTooltip="Ver"                        color="primary"                        class="accion-btn">                  <mat-icon>visibility</mat-icon>                </button>                <!-- Solo mostrar editar/eliminar si NO es conductor -->                <ng-container *ngIf="!esConductor">                  <button mat-mini-fab                           (click)="editarVehiculo(vehiculo)"                           matTooltip="Editar"                          color="accent"                          class="accion-btn">                    <mat-icon>edit</mat-icon>                  </button>                  <button mat-mini-fab                           (click)="eliminarVehiculo(vehiculo)"                           matTooltip="Eliminar"                          color="warn"                          class="accion-btn">                    <mat-icon>delete</mat-icon>                  </button>                </ng-container>              </div>            </td>          </ng-container>          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>        </table>      </div>      <!-- Paginador -->      <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]"                      [pageSize]="10"                     showFirstLastButtons>      </mat-paginator>      <!-- Mensaje cuando no hay datos -->      <div class="no-data" *ngIf="dataSource.data.length === 0 && !cargando">        <mat-icon>directions_car</mat-icon>        <p>No hay vehículos registrados</p>        <button mat-raised-button color="primary" (click)="agregarVehiculo()">          Agregar primer vehículo        </button>      </div>    </mat-card-content>  </mat-card></div></div>'
+    var COMPONENTS = [{'name': 'AgregarVehiculoComponent', 'selector': 'app-agregar-vehiculo'},{'name': 'AgregarVehiculoSimpleComponent', 'selector': 'app-agregar-vehiculo-simple'},{'name': 'App', 'selector': 'app-root'},{'name': 'BitacoraComponent', 'selector': 'app-bitacora'},{'name': 'CombustibleComponent', 'selector': 'app-combustible'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardGastos', 'selector': 'app-dashboard-gastos'},{'name': 'DashboardGastosComponent', 'selector': 'app-dashboard-gastos'},{'name': 'DetalleVehiculoComponent', 'selector': 'app-detalle-vehiculo'},{'name': 'DialogoNuevaCargaComponent', 'selector': 'app-dialogo-nueva-carga'},{'name': 'EditarVehiculoComponent', 'selector': 'app-editar-vehiculo'},{'name': 'EstadosVehiculosComponent', 'selector': 'app-estados-vehiculos'},{'name': 'GastosAdicionalComponent', 'selector': 'app-gastos-adicional'},{'name': 'GraficasCombustibleComponent', 'selector': 'app-graficas-combustible'},{'name': 'GraficasGastos', 'selector': 'app-graficas-gastos'},{'name': 'GruposVehiculosComponent', 'selector': 'app-grupos-vehiculos'},{'name': 'InventarioComponent', 'selector': 'app-inventario'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'TiposVehiculosComponent', 'selector': 'app-tipos-vehiculos'},{'name': 'UsuariosListComponent', 'selector': 'app-usuarios-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'InventarioComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'InventarioComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

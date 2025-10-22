@@ -1,0 +1,42 @@
+# Comandos útiles para mantenimiento y limpieza de espacio en Ubuntu
+
+# Ver espacio disponible y usado
+sudo df -h
+
+# Limpiar caché de paquetes apt
+sudo apt-get clean
+
+# Limpiar versiones antiguas de Snap
+set -eu
+snap list --all | awk '/disabled/{print $1, $3}' |
+    while read snapname revision; do
+        snap remove "$snapname" --revision="$revision"
+    done
+
+# Limpiar logs del sistema (más de 7 días)
+sudo journalctl --vacuum-time=7d
+
+# Buscar archivos de log grandes
+sudo find /var/log -name "*.log" -size +50M -ls
+
+# Buscar archivos grandes en todo el sistema
+sudo find / -type f -size +100M -exec ls -lh {} \; 2>/dev/null | sort -k 5 -rh | head -n 20
+
+# Desinstalar servicios que no usas (ejemplo: grafana, zabbix, telegraf)
+sudo apt-get remove --purge grafana
+sudo apt-get remove --purge zabbix-server-mysql
+sudo apt-get remove --purge telegraf
+sudo apt-get autoremove
+
+# Expandir volumen lógico LVM (si tienes espacio libre)
+sudo lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv
+sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
+
+# Ver información de discos y particiones
+lsblk
+sudo vgdisplay
+
+# Reiniciar Nginx (si usas servidor web)
+sudo systemctl restart nginx
+
+# Recuerda: ejecuta 'df -h' después de cada limpieza para verificar el espacio liberado.

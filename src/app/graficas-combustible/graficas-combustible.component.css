@@ -1,0 +1,129 @@
+/* Fondo y tarjetas */
+.container {
+  max-width: 900px;
+}
+
+.card {
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  background: #181818;
+  margin-bottom: 32px;
+}
+
+.card-header {
+  background: linear-gradient(90deg, #00bfff 0%, #6e4cff 100%);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 16px 16px 0 0;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+/* Gráfica ngx-charts */
+::ng-deep .ngx-charts {
+  background: #fafdff !important;
+  border-radius: 16px !important;
+  padding: 16px 0;
+}
+
+::ng-deep .ngx-charts .line-series .line {
+  stroke: url(#line-gradient) !important;
+  stroke-width: 5px !important;
+  filter: drop-shadow(0 0 6px #00bfff88);
+}
+
+::ng-deep .ngx-charts .line-series .circle {
+  stroke: #00bfff !important;
+  fill: #fff !important;
+  stroke-width: 4px !important;
+  r: 8 !important;
+  filter: drop-shadow(0 2px 6px #00bfff44);
+}
+
+::ng-deep .ngx-charts .axis-label, 
+::ng-deep .ngx-charts .tick text {
+  font-size: 1.1rem !important;
+  font-family: 'Segoe UI', Arial, sans-serif !important;
+  fill: #222 !important;
+}
+
+::ng-deep .ngx-charts .legend-label-text {
+  font-size: 1.1rem !important;
+  font-family: 'Segoe UI', Arial, sans-serif !important;
+  fill: #222 !important;
+}
+
+/* Eliminar área gris de fondo */
+::ng-deep .area,
+::ng-deep .area-series,
+::ng-deep .area-series-path,
+::ng-deep .line-chart .area,
+::ng-deep .line-chart .area-series,
+::ng-deep .line-chart .area-series-path,
+::ng-deep .line-series .area,
+::ng-deep .line-series .area-series,
+::ng-deep .line-series .area-series-path {
+  display: none !important;
+  fill: transparent !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+::ng-deep .ngx-charts .area,
+::ng-deep .ngx-charts .area-series,
+::ng-deep .ngx-charts .area-series-path,
+::ng-deep .ngx-charts .line-chart .area,
+::ng-deep .ngx-charts .line-chart .area-series,
+::ng-deep .ngx-charts .line-chart .area-series-path,
+::ng-deep .ngx-charts .line-series .area,
+::ng-deep .ngx-charts .line-series .area-series,
+::ng-deep .ngx-charts .line-series .area-series-path {
+  display: none !important;
+  fill: transparent !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+::ng-deep .ngx-charts .area,
+::ng-deep .ngx-charts .area-series,
+::ng-deep .ngx-charts .area-series-path,
+::ng-deep .ngx-charts .line-chart .area,
+::ng-deep .ngx-charts .line-chart .area-series,
+::ng-deep .ngx-charts .line-chart .area-series-path {
+  display: none !important;
+  fill: none !important;
+  opacity: 0 !important;
+}
+::ng-deep .ngx-charts .area,
+::ng-deep .ngx-charts .area-series-path {
+  display: none !important;
+}
+
+::ng-deep .ngx-charts .line-series .line {
+  stroke: #00bfff !important;
+  stroke-width: 5px !important;
+  fill: none !important;
+}
+
+::ng-deep .ngx-charts .line-series .circle {
+  stroke: #00bfff !important;
+  fill: #fff !important;
+  stroke-width: 4px !important;
+  r: 7 !important;
+}
+
+::ng-deep .ngx-charts .area-series-path {
+  display: none !important;
+}
+
+.container {
+  max-width: 900px;
+}
+
+.card {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}

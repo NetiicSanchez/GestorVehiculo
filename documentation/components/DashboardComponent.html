@@ -1,0 +1,2035 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>gestor-vehiculos documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">gestor-vehiculos documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  DashboardComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/dashboard/dashboard.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-dashboard</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>MatCardModule</code>
+                            <code>MatTableModule</code>
+                            <code>MatIconModule</code>
+                            <code>MatButtonModule</code>
+                            <code>MatProgressSpinnerModule</code>
+                            <code>MatChipsModule</code>
+                            <code>MatDividerModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatSelectModule</code>
+                            <code>MatOptionModule</code>
+                            <code>FormsModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./dashboard.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./dashboard.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#anioFiltro" >anioFiltro</a>
+                            </li>
+                            <li>
+                                <a href="#anios" >anios</a>
+                            </li>
+                            <li>
+                                <a href="#displayedColumnsGastos" >displayedColumnsGastos</a>
+                            </li>
+                            <li>
+                                <a href="#displayedColumnsVehiculos" >displayedColumnsVehiculos</a>
+                            </li>
+                            <li>
+                                <a href="#error" >error</a>
+                            </li>
+                            <li>
+                                <a href="#gastosVehiculos" >gastosVehiculos</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                <a href="#meses" >meses</a>
+                            </li>
+                            <li>
+                                <a href="#mesFiltro" >mesFiltro</a>
+                            </li>
+                            <li>
+                                <a href="#resumenDashboard" >resumenDashboard</a>
+                            </li>
+                            <li>
+                                <a href="#vehiculosDashboard" >vehiculosDashboard</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#calcularTotalMes" >calcularTotalMes</a>
+                            </li>
+                            <li>
+                                <a href="#cargarDatosDashboard" >cargarDatosDashboard</a>
+                            </li>
+                            <li>
+                                <a href="#exportarCargas" >exportarCargas</a>
+                            </li>
+                            <li>
+                                <a href="#formatearMoneda" >formatearMoneda</a>
+                            </li>
+                            <li>
+                                <a href="#formatearNumero" >formatearNumero</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#obtenerColorEstado" >obtenerColorEstado</a>
+                            </li>
+                            <li>
+                                <a href="#reintentar" >reintentar</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(dashboardService: <a href="../injectables/DashboardService.html" target="_self">DashboardService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/dashboard/dashboard.component.ts:118</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>dashboardService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DashboardService.html" target="_self" >DashboardService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="calcularTotalMes"></a>
+                    <span class="name">
+                        <span ><b>calcularTotalMes</b></span>
+                        <a href="#calcularTotalMes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>calcularTotalMes(combustible: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, otros: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="191"
+                                    class="link-to-prism">src/app/dashboard/dashboard.component.ts:191</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>combustible</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>otros</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarDatosDashboard"></a>
+                    <span class="name">
+                        <span ><b>cargarDatosDashboard</b></span>
+                        <a href="#cargarDatosDashboard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cargarDatosDashboard()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/app/dashboard/dashboard.component.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportarCargas"></a>
+                    <span class="name">
+                        <span ><b>exportarCargas</b></span>
+                        <a href="#exportarCargas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exportarCargas()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/dashboard/dashboard.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatearMoneda"></a>
+                    <span class="name">
+                        <span ><b>formatearMoneda</b></span>
+                        <a href="#formatearMoneda"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formatearMoneda(valor: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">src/app/dashboard/dashboard.component.ts:150</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>valor</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatearNumero"></a>
+                    <span class="name">
+                        <span ><b>formatearNumero</b></span>
+                        <a href="#formatearNumero"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formatearNumero(valor: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="168"
+                                    class="link-to-prism">src/app/dashboard/dashboard.component.ts:168</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>valor</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/app/dashboard/dashboard.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="obtenerColorEstado"></a>
+                    <span class="name">
+                        <span ><b>obtenerColorEstado</b></span>
+                        <a href="#obtenerColorEstado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>obtenerColorEstado(estado: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="181"
+                                    class="link-to-prism">src/app/dashboard/dashboard.component.ts:181</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>estado</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reintentar"></a>
+                    <span class="name">
+                        <span ><b>reintentar</b></span>
+                        <a href="#reintentar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>reintentar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="197"
+                                    class="link-to-prism">src/app/dashboard/dashboard.component.ts:197</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="anioFiltro"></a>
+                    <span class="name">
+                        <span ><b>anioFiltro</b></span>
+                        <a href="#anioFiltro"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/dashboard/dashboard.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="anios"></a>
+                    <span class="name">
+                        <span ><b>anios</b></span>
+                        <a href="#anios"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/dashboard/dashboard.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayedColumnsGastos"></a>
+                    <span class="name">
+                        <span ><b>displayedColumnsGastos</b></span>
+                        <a href="#displayedColumnsGastos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    &#x27;placa&#x27;,
+    &#x27;marca&#x27;,
+    &#x27;modelo&#x27;,
+    &#x27;combustible_mes_actual&#x27;,
+    &#x27;otros_gastos_mes_actual&#x27;,
+    &#x27;gasto_total_mes_actual&#x27;,
+    &#x27;combustible_anio_actual&#x27;,
+    &#x27;otros_gastos_anio_actual&#x27;
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/dashboard/dashboard.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayedColumnsVehiculos"></a>
+                    <span class="name">
+                        <span ><b>displayedColumnsVehiculos</b></span>
+                        <a href="#displayedColumnsVehiculos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    &#x27;placa&#x27;,
+    &#x27;marca&#x27;,
+    &#x27;modelo&#x27;,
+    &#x27;estado_vehiculo&#x27;,
+    &#x27;tipo_vehiculo&#x27;,
+    &#x27;kilometraje_actual&#x27;
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/dashboard/dashboard.component.ts:111</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="error"></a>
+                    <span class="name">
+                        <span ><b>error</b></span>
+                        <a href="#error"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/dashboard/dashboard.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gastosVehiculos"></a>
+                    <span class="name">
+                        <span ><b>gastosVehiculos</b></span>
+                        <a href="#gastosVehiculos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>GastoVehiculo[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/dashboard/dashboard.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/dashboard/dashboard.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="meses"></a>
+                    <span class="name">
+                        <span ><b>meses</b></span>
+                        <a href="#meses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    { valor: 1, nombre: &#x27;Enero&#x27; },
+    { valor: 2, nombre: &#x27;Febrero&#x27; },
+    { valor: 3, nombre: &#x27;Marzo&#x27; },
+    { valor: 4, nombre: &#x27;Abril&#x27; },
+    { valor: 5, nombre: &#x27;Mayo&#x27; },
+    { valor: 6, nombre: &#x27;Junio&#x27; },
+    { valor: 7, nombre: &#x27;Julio&#x27; },
+    { valor: 8, nombre: &#x27;Agosto&#x27; },
+    { valor: 9, nombre: &#x27;Septiembre&#x27; },
+    { valor: 10, nombre: &#x27;Octubre&#x27; },
+    { valor: 11, nombre: &#x27;Noviembre&#x27; },
+    { valor: 12, nombre: &#x27;Diciembre&#x27; }
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/dashboard/dashboard.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mesFiltro"></a>
+                    <span class="name">
+                        <span ><b>mesFiltro</b></span>
+                        <a href="#mesFiltro"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/dashboard/dashboard.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resumenDashboard"></a>
+                    <span class="name">
+                        <span ><b>resumenDashboard</b></span>
+                        <a href="#resumenDashboard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ResumenDashboard.html" target="_self" >ResumenDashboard | null</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/dashboard/dashboard.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="vehiculosDashboard"></a>
+                    <span class="name">
+                        <span ><b>vehiculosDashboard</b></span>
+                        <a href="#vehiculosDashboard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>VehiculoDashboard[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/dashboard/dashboard.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { MatCardModule } from &#x27;@angular/material/card&#x27;;
+import { MatTableModule } from &#x27;@angular/material/table&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import { MatProgressSpinnerModule } from &#x27;@angular/material/progress-spinner&#x27;;
+import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
+import { MatDividerModule } from &#x27;@angular/material/divider&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { MatOptionModule } from &#x27;@angular/material/core&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { DashboardService, GastoVehiculo, VehiculoDashboard, ResumenDashboard } from &#x27;../services/dashboard.service&#x27;;
+
+@Component({
+  selector: &#x27;app-dashboard&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatChipsModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
+    FormsModule
+  ],
+  templateUrl: &#x27;./dashboard.component.html&#x27;,
+  styleUrls: [&#x27;./dashboard.component.css&#x27;]
+})
+export class DashboardComponent implements OnInit {
+  mesFiltro: number | null &#x3D; null;
+  anioFiltro: number | null &#x3D; null;
+  meses &#x3D; [
+    { valor: 1, nombre: &#x27;Enero&#x27; },
+    { valor: 2, nombre: &#x27;Febrero&#x27; },
+    { valor: 3, nombre: &#x27;Marzo&#x27; },
+    { valor: 4, nombre: &#x27;Abril&#x27; },
+    { valor: 5, nombre: &#x27;Mayo&#x27; },
+    { valor: 6, nombre: &#x27;Junio&#x27; },
+    { valor: 7, nombre: &#x27;Julio&#x27; },
+    { valor: 8, nombre: &#x27;Agosto&#x27; },
+    { valor: 9, nombre: &#x27;Septiembre&#x27; },
+    { valor: 10, nombre: &#x27;Octubre&#x27; },
+    { valor: 11, nombre: &#x27;Noviembre&#x27; },
+    { valor: 12, nombre: &#x27;Diciembre&#x27; }
+  ];
+  anios: number[] &#x3D; [];
+
+  ngOnInit(): void {
+    // Inicializar años para el filtro
+    const anioActual &#x3D; new Date().getFullYear();
+    for (let a &#x3D; anioActual; a &gt;&#x3D; anioActual - 10; a--) {
+      this.anios.push(a);
+    }
+    // Cargar datos del dashboard
+    this.cargarDatosDashboard();
+  }
+  exportarCargas() {
+    let url &#x3D; &#x27;/api/exportar/exportar-cargas&#x27;;
+    const params: string[] &#x3D; [];
+    if (this.mesFiltro) params.push(&#x60;mes&#x3D;${this.mesFiltro}&#x60;);
+    if (this.anioFiltro) params.push(&#x60;anio&#x3D;${this.anioFiltro}&#x60;);
+    if (params.length) url +&#x3D; &#x27;?&#x27; + params.join(&#x27;&amp;&#x27;);
+    fetch(url, {
+      method: &#x27;GET&#x27;,
+      headers: {
+        &#x27;Accept&#x27;: &#x27;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#x27;
+      }
+    })
+      .then(response &#x3D;&gt; {
+        if (!response.ok) throw new Error(&#x27;Error al descargar el archivo&#x27;);
+        return response.blob();
+      })
+      .then(blob &#x3D;&gt; {
+        const link &#x3D; document.createElement(&#x27;a&#x27;);
+        link.href &#x3D; window.URL.createObjectURL(blob);
+        link.download &#x3D; &#x27;cargas_combustible.xlsx&#x27;;
+        link.click();
+        window.URL.revokeObjectURL(link.href);
+      })
+      .catch(err &#x3D;&gt; {
+        alert(&#x27;No se pudo descargar el archivo: &#x27; + err.message);
+      });
+  }
+  loading &#x3D; true;
+  error: string | null &#x3D; null;
+  
+  resumenDashboard: ResumenDashboard | null &#x3D; null;
+  gastosVehiculos: GastoVehiculo[] &#x3D; [];
+  vehiculosDashboard: VehiculoDashboard[] &#x3D; [];
+
+  // Configuración de la tabla de gastos
+  displayedColumnsGastos: string[] &#x3D; [
+    &#x27;placa&#x27;,
+    &#x27;marca&#x27;,
+    &#x27;modelo&#x27;,
+    &#x27;combustible_mes_actual&#x27;,
+    &#x27;otros_gastos_mes_actual&#x27;,
+    &#x27;gasto_total_mes_actual&#x27;,
+    &#x27;combustible_anio_actual&#x27;,
+    &#x27;otros_gastos_anio_actual&#x27;
+  ];
+
+  // Configuración de la tabla de vehículos
+  displayedColumnsVehiculos: string[] &#x3D; [
+    &#x27;placa&#x27;,
+    &#x27;marca&#x27;,
+    &#x27;modelo&#x27;,
+    &#x27;estado_vehiculo&#x27;,
+    &#x27;tipo_vehiculo&#x27;,
+    &#x27;kilometraje_actual&#x27;
+  ];
+
+  constructor(private dashboardService: DashboardService) {}
+
+  // Eliminado método duplicado ngOnInit
+
+  cargarDatosDashboard(): void {
+    this.loading &#x3D; true;
+    this.error &#x3D; null;
+
+    this.dashboardService.obtenerResumenDashboard().subscribe({
+      next: (response: any) &#x3D;&gt; {
+        console.log(&#x27;📊 Respuesta del dashboard:&#x27;, response);
+        if (response.success &amp;&amp; response.data) {
+          this.resumenDashboard &#x3D; response.data;
+          this.gastosVehiculos &#x3D; response.data.gastosDetalle || [];
+          this.vehiculosDashboard &#x3D; response.data.vehiculosDetalle || [];
+          console.log(&#x27;📊 Dashboard data cargada:&#x27;, this.resumenDashboard);
+        } else {
+          console.error(&#x27;❌ Respuesta inesperada del servidor:&#x27;, response);
+          this.error &#x3D; &#x27;Formato de respuesta inesperado del servidor&#x27;;
+        }
+        this.loading &#x3D; false;
+      },
+      error: (error: any) &#x3D;&gt; {
+        console.error(&#x27;Error al cargar datos del dashboard:&#x27;, error);
+        this.error &#x3D; &#x27;Error al cargar los datos del dashboard&#x27;;
+        this.loading &#x3D; false;
+      }
+    });
+  }
+
+  formatearMoneda(valor: any): string {
+    if (!valor || valor &#x3D;&#x3D;&#x3D; &#x27;null&#x27; || valor &#x3D;&#x3D;&#x3D; &#x27;0.00&#x27; || valor &#x3D;&#x3D;&#x3D; &#x27;0&#x27;) {
+      return &#x27;$0.00&#x27;;
+    }
+    
+    // Convertir a número y formatear
+    const numero &#x3D; parseFloat(valor.toString());
+    if (isNaN(numero)) {
+      return &#x27;$0.00&#x27;;
+    }
+    
+    return new Intl.NumberFormat(&#x27;es-GT&#x27;, {
+      style: &#x27;currency&#x27;,
+      currency: &#x27;GTQ&#x27;,
+      minimumFractionDigits: 2
+    }).format(numero);
+  }
+
+  formatearNumero(valor: any): string {
+    if (!valor || valor &#x3D;&#x3D;&#x3D; &#x27;null&#x27;) {
+      return &#x27;0&#x27;;
+    }
+    
+    const numero &#x3D; parseInt(valor.toString());
+    if (isNaN(numero)) {
+      return &#x27;0&#x27;;
+    }
+    
+    return numero.toLocaleString(&#x27;es-GT&#x27;);
+  }
+
+  obtenerColorEstado(estado: string): string {
+    const estados: { [key: string]: string } &#x3D; {
+      &#x27;Activo&#x27;: &#x27;primary&#x27;,
+      &#x27;Inactivo&#x27;: &#x27;warn&#x27;,
+      &#x27;Mantenimiento&#x27;: &#x27;accent&#x27;,
+      &#x27;Disponible&#x27;: &#x27;primary&#x27;
+    };
+    return estados[estado] || &#x27;default&#x27;;
+  }
+
+  calcularTotalMes(combustible: string, otros: string): number {
+    const combNum &#x3D; parseFloat(combustible || &#x27;0&#x27;);
+    const otrosNum &#x3D; parseFloat(otros || &#x27;0&#x27;);
+    return combNum + otrosNum;
+  }
+
+  reintentar(): void {
+    this.cargarDatosDashboard();
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;dashboard-container&quot;&gt;
+  &lt;h1 class&#x3D;&quot;dashboard-title&quot;&gt;📊 Dashboard de Gestión de Vehículos&lt;/h1&gt;
+  
+  &lt;!-- Spinner de carga --&gt;
+  &lt;div *ngIf&#x3D;&quot;loading&quot; class&#x3D;&quot;loading-container&quot;&gt;
+    &lt;mat-spinner diameter&#x3D;&quot;50&quot;&gt;&lt;/mat-spinner&gt;
+    &lt;p&gt;Cargando datos del dashboard...&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Manejo de errores --&gt;
+  &lt;div *ngIf&#x3D;&quot;error &amp;&amp; !loading&quot; class&#x3D;&quot;error-container&quot;&gt;
+    &lt;mat-card class&#x3D;&quot;error-card&quot;&gt;
+      &lt;mat-card-content&gt;
+        &lt;div class&#x3D;&quot;error-content&quot;&gt;
+          &lt;mat-icon color&#x3D;&quot;warn&quot;&gt;error&lt;/mat-icon&gt;
+          &lt;p&gt;{{ error }}&lt;/p&gt;
+          &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;reintentar()&quot;&gt;
+            &lt;mat-icon&gt;refresh&lt;/mat-icon&gt;
+            Reintentar
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/mat-card-content&gt;
+    &lt;/mat-card&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Dashboard principal --&gt;
+  &lt;div style&#x3D;&quot;margin-bottom: 20px; display: flex; gap: 16px; align-items: center;&quot;&gt;
+    &lt;mat-form-field appearance&#x3D;&quot;outline&quot; style&#x3D;&quot;width: 120px;&quot;&gt;
+      &lt;mat-label&gt;Mes&lt;/mat-label&gt;
+      &lt;mat-select [(ngModel)]&#x3D;&quot;mesFiltro&quot;&gt;
+        &lt;mat-option *ngFor&#x3D;&quot;let m of meses&quot; [value]&#x3D;&quot;m.valor&quot;&gt;{{ m.nombre }}&lt;/mat-option&gt;
+      &lt;/mat-select&gt;
+    &lt;/mat-form-field&gt;
+    &lt;mat-form-field appearance&#x3D;&quot;outline&quot; style&#x3D;&quot;width: 100px;&quot;&gt;
+      &lt;mat-label&gt;Año&lt;/mat-label&gt;
+      &lt;mat-select [(ngModel)]&#x3D;&quot;anioFiltro&quot;&gt;
+        &lt;mat-option *ngFor&#x3D;&quot;let a of anios&quot; [value]&#x3D;&quot;a&quot;&gt;{{ a }}&lt;/mat-option&gt;
+      &lt;/mat-select&gt;
+    &lt;/mat-form-field&gt;
+    &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;exportarCargas()&quot;&gt;
+      &lt;mat-icon&gt;download&lt;/mat-icon&gt;
+      Exportar cargas de combustible a Excel
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div *ngIf&#x3D;&quot;resumenDashboard &amp;&amp; !loading &amp;&amp; !error&quot; class&#x3D;&quot;dashboard-content&quot;&gt;
+    
+    &lt;!-- Tarjetas de resumen --&gt;
+    &lt;div class&#x3D;&quot;summary-cards&quot;&gt;
+      &lt;mat-card class&#x3D;&quot;summary-card total-vehicles&quot;&gt;
+        &lt;mat-card-content&gt;
+          &lt;div class&#x3D;&quot;card-header&quot;&gt;
+            &lt;mat-icon&gt;directions_car&lt;/mat-icon&gt;
+            &lt;h3&gt;Total de Vehículos&lt;/h3&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;card-value&quot;&gt;{{ formatearNumero(resumenDashboard.totales.vehiculos) }}&lt;/div&gt;
+        &lt;/mat-card-content&gt;
+      &lt;/mat-card&gt;
+
+      &lt;mat-card class&#x3D;&quot;summary-card fuel-month&quot;&gt;
+        &lt;mat-card-content&gt;
+          &lt;div class&#x3D;&quot;card-header&quot;&gt;
+            &lt;mat-icon&gt;local_gas_station&lt;/mat-icon&gt;
+            &lt;h3&gt;Combustible (Mes)&lt;/h3&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;card-value&quot;&gt;{{ formatearMoneda(resumenDashboard.totales.combustibleMesActual) }}&lt;/div&gt;
+        &lt;/mat-card-content&gt;
+      &lt;/mat-card&gt;
+
+      &lt;mat-card class&#x3D;&quot;summary-card other-expenses-month&quot;&gt;
+        &lt;mat-card-content&gt;
+          &lt;div class&#x3D;&quot;card-header&quot;&gt;
+            &lt;mat-icon&gt;build&lt;/mat-icon&gt;
+            &lt;h3&gt;Otros Gastos (Mes)&lt;/h3&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;card-value&quot;&gt;{{ formatearMoneda(resumenDashboard.totales.otrosGastosMesActual) }}&lt;/div&gt;
+        &lt;/mat-card-content&gt;
+      &lt;/mat-card&gt;
+
+      &lt;mat-card class&#x3D;&quot;summary-card total-month&quot;&gt;
+        &lt;mat-card-content&gt;
+          &lt;div class&#x3D;&quot;card-header&quot;&gt;
+            &lt;mat-icon&gt;account_balance_wallet&lt;/mat-icon&gt;
+            &lt;h3&gt;Total (Mes)&lt;/h3&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;card-value&quot;&gt;{{ formatearMoneda(resumenDashboard.totales.gastoTotalMesActual) }}&lt;/div&gt;
+        &lt;/mat-card-content&gt;
+      &lt;/mat-card&gt;
+
+      &lt;mat-card class&#x3D;&quot;summary-card fuel-year&quot;&gt;
+        &lt;mat-card-content&gt;
+          &lt;div class&#x3D;&quot;card-header&quot;&gt;
+            &lt;mat-icon&gt;local_gas_station&lt;/mat-icon&gt;
+            &lt;h3&gt;Combustible (Año)&lt;/h3&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;card-value&quot;&gt;{{ formatearMoneda(resumenDashboard.totales.combustibleAnioActual) }}&lt;/div&gt;
+        &lt;/mat-card-content&gt;
+      &lt;/mat-card&gt;
+
+      &lt;mat-card class&#x3D;&quot;summary-card total-year&quot;&gt;
+        &lt;mat-card-content&gt;
+          &lt;div class&#x3D;&quot;card-header&quot;&gt;
+            &lt;mat-icon&gt;trending_up&lt;/mat-icon&gt;
+            &lt;h3&gt;Total (Año)&lt;/h3&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;card-value&quot;&gt;{{ formatearMoneda(resumenDashboard.totales.gastoTotalAnioActual) }}&lt;/div&gt;
+        &lt;/mat-card-content&gt;
+      &lt;/mat-card&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Vehículos por estado --&gt;
+    &lt;mat-card class&#x3D;&quot;status-card&quot;&gt;
+      &lt;mat-card-header&gt;
+        &lt;mat-card-title&gt;
+          &lt;mat-icon&gt;assessment&lt;/mat-icon&gt;
+          Vehículos por Estado
+        &lt;/mat-card-title&gt;
+      &lt;/mat-card-header&gt;
+      &lt;mat-card-content&gt;
+        &lt;div class&#x3D;&quot;status-chips&quot;&gt;
+          &lt;mat-chip-listbox&gt;
+            &lt;mat-chip-option 
+              *ngFor&#x3D;&quot;let item of resumenDashboard.vehiculosPorEstado | keyvalue&quot;
+              [color]&#x3D;&quot;obtenerColorEstado(item.key)&quot;
+              selected&gt;
+              {{ item.key }}: {{ formatearNumero(item.value) }}
+            &lt;/mat-chip-option&gt;
+          &lt;/mat-chip-listbox&gt;
+        &lt;/div&gt;
+      &lt;/mat-card-content&gt;
+    &lt;/mat-card&gt;
+
+    &lt;mat-divider&gt;&lt;/mat-divider&gt;
+
+    &lt;!-- Tabla de gastos de vehículos --&gt;
+    &lt;mat-card class&#x3D;&quot;table-card&quot;&gt;
+      &lt;mat-card-header&gt;
+        &lt;mat-card-title&gt;
+          &lt;mat-icon&gt;local_gas_station&lt;/mat-icon&gt;
+          Gastos por Vehículo
+        &lt;/mat-card-title&gt;
+      &lt;/mat-card-header&gt;
+      &lt;mat-card-content&gt;
+        &lt;div class&#x3D;&quot;table-container&quot;&gt;
+          &lt;table mat-table [dataSource]&#x3D;&quot;gastosVehiculos&quot; class&#x3D;&quot;gastos-table&quot;&gt;
+            
+            &lt;ng-container matColumnDef&#x3D;&quot;placa&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Nombre&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot;&gt;{{ gasto.placa }}&lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;marca&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Marca&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot;&gt;{{ gasto.marca }}&lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;modelo&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Modelo&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot;&gt;{{ gasto.modelo }}&lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;combustible_mes_actual&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Combustible (Mes)&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot; class&#x3D;&quot;currency-cell&quot;&gt;
+                {{ formatearMoneda(gasto.combustible_mes_actual) }}
+              &lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;otros_gastos_mes_actual&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Otros Gastos (Mes)&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot; class&#x3D;&quot;currency-cell&quot;&gt;
+                {{ formatearMoneda(gasto.otros_gastos_mes_actual) }}
+              &lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;gasto_total_mes_actual&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Total (Mes)&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot; class&#x3D;&quot;currency-cell total-cell&quot;&gt;
+                {{ formatearMoneda(calcularTotalMes(gasto.combustible_mes_actual, gasto.otros_gastos_mes_actual).toString()) }}
+              &lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;combustible_anio_actual&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Combustible (Año)&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot; class&#x3D;&quot;currency-cell&quot;&gt;
+                {{ formatearMoneda(gasto.combustible_anio_actual) }}
+              &lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;otros_gastos_anio_actual&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Otros Gastos (Año)&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let gasto&quot; class&#x3D;&quot;currency-cell&quot;&gt;
+                {{ formatearMoneda(gasto.otros_gastos_anio_actual) }}
+              &lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumnsGastos&quot;&gt;&lt;/tr&gt;
+            &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumnsGastos;&quot;&gt;&lt;/tr&gt;
+          &lt;/table&gt;
+        &lt;/div&gt;
+      &lt;/mat-card-content&gt;
+    &lt;/mat-card&gt;
+
+    &lt;mat-divider&gt;&lt;/mat-divider&gt;
+
+    &lt;!-- Tabla de vehículos --&gt;
+    &lt;mat-card class&#x3D;&quot;table-card&quot;&gt;
+      &lt;mat-card-header&gt;
+        &lt;mat-card-title&gt;
+          &lt;mat-icon&gt;directions_car&lt;/mat-icon&gt;
+          Estado de Vehículos
+        &lt;/mat-card-title&gt;
+      &lt;/mat-card-header&gt;
+      &lt;mat-card-content&gt;
+        &lt;div class&#x3D;&quot;table-container&quot;&gt;
+          &lt;table mat-table [dataSource]&#x3D;&quot;vehiculosDashboard&quot; class&#x3D;&quot;vehiculos-table&quot;&gt;
+            
+            &lt;ng-container matColumnDef&#x3D;&quot;placa&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Placa&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot;&gt;{{ vehiculo.placa }}&lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;marca&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Marca&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot;&gt;{{ vehiculo.marca }}&lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;modelo&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Modelo&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot;&gt;{{ vehiculo.modelo }}&lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;estado_vehiculo&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Estado&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot;&gt;
+                &lt;mat-chip [color]&#x3D;&quot;obtenerColorEstado(vehiculo.estado_vehiculo)&quot; selected&gt;
+                  {{ vehiculo.estado_vehiculo }}
+                &lt;/mat-chip&gt;
+              &lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;tipo_vehiculo&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Tipo&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot;&gt;{{ vehiculo.tipo_vehiculo }}&lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;operador_asignado&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Operador Asignado&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot;&gt;
+                {{ vehiculo.operador_asignado || &#x27;Sin asignar&#x27; }}
+              &lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;kilometraje_actual&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Kilometraje&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot; class&#x3D;&quot;number-cell&quot;&gt;
+                {{ formatearNumero(vehiculo.kilometraje_actual) }} km
+              &lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;gasto_combustible_mes&quot;&gt;
+              &lt;th mat-header-cell *matHeaderCellDef&gt;Gasto Combustible (Mes)&lt;/th&gt;
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let vehiculo&quot; class&#x3D;&quot;currency-cell&quot;&gt;
+                {{ formatearMoneda(vehiculo.gasto_combustible_mes) }}
+              &lt;/td&gt;
+            &lt;/ng-container&gt;
+
+            &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumnsVehiculos&quot;&gt;&lt;/tr&gt;
+            &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumnsVehiculos;&quot;&gt;&lt;/tr&gt;
+          &lt;/table&gt;
+        &lt;/div&gt;
+      &lt;/mat-card-content&gt;
+    &lt;/mat-card&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./dashboard.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.dashboard-container {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.dashboard-title {
+  text-align: center;
+  color: #1976d2;
+  margin-bottom: 30px;
+  font-size: 2.2rem;
+  font-weight: 500;
+}
+
+/* Loading and Error States */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.loading-container p {
+  margin-top: 20px;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.error-container {
+  margin: 40px 0;
+}
+
+.error-card {
+  background-color: #ffebee;
+  border-left: 4px solid #f44336;
+}
+
+.error-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.error-content mat-icon {
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+}
+
+/* Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.summary-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.card-header mat-icon {
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666;
+}
+
+.card-value {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1976d2;
+  text-align: center;
+}
+
+/* Colores específicos para las tarjetas */
+.total-vehicles {
+  border-left: 4px solid #2196f3;
+}
+
+.total-vehicles .card-value {
+  color: #2196f3;
+}
+
+.fuel-month, .fuel-year {
+  border-left: 4px solid #ff9800;
+}
+
+.fuel-month .card-value, .fuel-year .card-value {
+  color: #ff9800;
+}
+
+.other-expenses-month {
+  border-left: 4px solid #9c27b0;
+}
+
+.other-expenses-month .card-value {
+  color: #9c27b0;
+}
+
+.total-month, .total-year {
+  border-left: 4px solid #4caf50;
+}
+
+.total-month .card-value, .total-year .card-value {
+  color: #4caf50;
+}
+
+/* Status Card */
+.status-card {
+  margin-bottom: 30px;
+  border-left: 4px solid #607d8b;
+}
+
+.status-card mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-chips {
+  margin-top: 15px;
+}
+
+.status-chips mat-chip-listbox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Table Cards */
+.table-card {
+  margin-bottom: 30px;
+  border-left: 4px solid #1976d2;
+}
+
+.table-card mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+/* Tables */
+.gastos-table, .vehiculos-table {
+  width: 100%;
+  min-width: 800px;
+}
+
+.gastos-table th, .vehiculos-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.currency-cell {
+  text-align: right;
+  font-family: &#x27;Courier New&#x27;, monospace;
+  font-weight: 500;
+}
+
+.total-cell {
+  background-color: #e8f5e8;
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.number-cell {
+  text-align: right;
+  font-family: &#x27;Courier New&#x27;, monospace;
+}
+
+/* Dividers */
+mat-divider {
+  margin: 40px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 15px;
+  }
+  
+  .dashboard-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .summary-cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .card-value {
+    font-size: 1.6rem;
+  }
+  
+  .table-container {
+    font-size: 14px;
+  }
+  
+  .status-chips mat-chip-listbox {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-title {
+    font-size: 1.5rem;
+  }
+  
+  .card-header h3 {
+    font-size: 0.9rem;
+  }
+  
+  .card-value {
+    font-size: 1.4rem;
+  }
+  
+  .table-container {
+    font-size: 12px;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="dashboard-container">  <h1 class="dashboard-title">📊 Dashboard de Gestión de Vehículos</h1>    <!-- Spinner de carga -->  <div *ngIf="loading" class="loading-container">    <mat-spinner diameter="50"></mat-spinner>    <p>Cargando datos del dashboard...</p>  </div>  <!-- Manejo de errores -->  <div *ngIf="error && !loading" class="error-container">    <mat-card class="error-card">      <mat-card-content>        <div class="error-content">          <mat-icon color="warn">error</mat-icon>          <p>{{ error }}</p>          <button mat-raised-button color="primary" (click)="reintentar()">            <mat-icon>refresh</mat-icon>            Reintentar          </button>        </div>      </mat-card-content>    </mat-card>  </div>  <!-- Dashboard principal -->  <div style="margin-bottom: 20px; display: flex; gap: 16px; align-items: center;">    <mat-form-field appearance="outline" style="width: 120px;">      <mat-label>Mes</mat-label>      <mat-select [(ngModel)]="mesFiltro">        <mat-option *ngFor="let m of meses" [value]="m.valor">{{ m.nombre }}</mat-option>      </mat-select>    </mat-form-field>    <mat-form-field appearance="outline" style="width: 100px;">      <mat-label>Año</mat-label>      <mat-select [(ngModel)]="anioFiltro">        <mat-option *ngFor="let a of anios" [value]="a">{{ a }}</mat-option>      </mat-select>    </mat-form-field>    <button mat-raised-button color="primary" (click)="exportarCargas()">      <mat-icon>download</mat-icon>      Exportar cargas de combustible a Excel    </button>  </div>  <div *ngIf="resumenDashboard && !loading && !error" class="dashboard-content">        <!-- Tarjetas de resumen -->    <div class="summary-cards">      <mat-card class="summary-card total-vehicles">        <mat-card-content>          <div class="card-header">            <mat-icon>directions_car</mat-icon>            <h3>Total de Vehículos</h3>          </div>          <div class="card-value">{{ formatearNumero(resumenDashboard.totales.vehiculos) }}</div>        </mat-card-content>      </mat-card>      <mat-card class="summary-card fuel-month">        <mat-card-content>          <div class="card-header">            <mat-icon>local_gas_station</mat-icon>            <h3>Combustible (Mes)</h3>          </div>          <div class="card-value">{{ formatearMoneda(resumenDashboard.totales.combustibleMesActual) }}</div>        </mat-card-content>      </mat-card>      <mat-card class="summary-card other-expenses-month">        <mat-card-content>          <div class="card-header">            <mat-icon>build</mat-icon>            <h3>Otros Gastos (Mes)</h3>          </div>          <div class="card-value">{{ formatearMoneda(resumenDashboard.totales.otrosGastosMesActual) }}</div>        </mat-card-content>      </mat-card>      <mat-card class="summary-card total-month">        <mat-card-content>          <div class="card-header">            <mat-icon>account_balance_wallet</mat-icon>            <h3>Total (Mes)</h3>          </div>          <div class="card-value">{{ formatearMoneda(resumenDashboard.totales.gastoTotalMesActual) }}</div>        </mat-card-content>      </mat-card>      <mat-card class="summary-card fuel-year">        <mat-card-content>          <div class="card-header">            <mat-icon>local_gas_station</mat-icon>            <h3>Combustible (Año)</h3>          </div>          <div class="card-value">{{ formatearMoneda(resumenDashboard.totales.combustibleAnioActual) }}</div>        </mat-card-content>      </mat-card>      <mat-card class="summary-card total-year">        <mat-card-content>          <div class="card-header">            <mat-icon>trending_up</mat-icon>            <h3>Total (Año)</h3>          </div>          <div class="card-value">{{ formatearMoneda(resumenDashboard.totales.gastoTotalAnioActual) }}</div>        </mat-card-content>      </mat-card>    </div>    <!-- Vehículos por estado -->    <mat-card class="status-card">      <mat-card-header>        <mat-card-title>          <mat-icon>assessment</mat-icon>          Vehículos por Estado        </mat-card-title>      </mat-card-header>      <mat-card-content>        <div class="status-chips">          <mat-chip-listbox>            <mat-chip-option               *ngFor="let item of resumenDashboard.vehiculosPorEstado | keyvalue"              [color]="obtenerColorEstado(item.key)"              selected>              {{ item.key }}: {{ formatearNumero(item.value) }}            </mat-chip-option>          </mat-chip-listbox>        </div>      </mat-card-content>    </mat-card>    <mat-divider></mat-divider>    <!-- Tabla de gastos de vehículos -->    <mat-card class="table-card">      <mat-card-header>        <mat-card-title>          <mat-icon>local_gas_station</mat-icon>          Gastos por Vehículo        </mat-card-title>      </mat-card-header>      <mat-card-content>        <div class="table-container">          <table mat-table [dataSource]="gastosVehiculos" class="gastos-table">                        <ng-container matColumnDef="placa">              <th mat-header-cell *matHeaderCellDef>Nombre</th>              <td mat-cell *matCellDef="let gasto">{{ gasto.placa }}</td>            </ng-container>            <ng-container matColumnDef="marca">              <th mat-header-cell *matHeaderCellDef>Marca</th>              <td mat-cell *matCellDef="let gasto">{{ gasto.marca }}</td>            </ng-container>            <ng-container matColumnDef="modelo">              <th mat-header-cell *matHeaderCellDef>Modelo</th>              <td mat-cell *matCellDef="let gasto">{{ gasto.modelo }}</td>            </ng-container>            <ng-container matColumnDef="combustible_mes_actual">              <th mat-header-cell *matHeaderCellDef>Combustible (Mes)</th>              <td mat-cell *matCellDef="let gasto" class="currency-cell">                {{ formatearMoneda(gasto.combustible_mes_actual) }}              </td>            </ng-container>            <ng-container matColumnDef="otros_gastos_mes_actual">              <th mat-header-cell *matHeaderCellDef>Otros Gastos (Mes)</th>              <td mat-cell *matCellDef="let gasto" class="currency-cell">                {{ formatearMoneda(gasto.otros_gastos_mes_actual) }}              </td>            </ng-container>            <ng-container matColumnDef="gasto_total_mes_actual">              <th mat-header-cell *matHeaderCellDef>Total (Mes)</th>              <td mat-cell *matCellDef="let gasto" class="currency-cell total-cell">                {{ formatearMoneda(calcularTotalMes(gasto.combustible_mes_actual, gasto.otros_gastos_mes_actual).toString()) }}              </td>            </ng-container>            <ng-container matColumnDef="combustible_anio_actual">              <th mat-header-cell *matHeaderCellDef>Combustible (Año)</th>              <td mat-cell *matCellDef="let gasto" class="currency-cell">                {{ formatearMoneda(gasto.combustible_anio_actual) }}              </td>            </ng-container>            <ng-container matColumnDef="otros_gastos_anio_actual">              <th mat-header-cell *matHeaderCellDef>Otros Gastos (Año)</th>              <td mat-cell *matCellDef="let gasto" class="currency-cell">                {{ formatearMoneda(gasto.otros_gastos_anio_actual) }}              </td>            </ng-container>            <tr mat-header-row *matHeaderRowDef="displayedColumnsGastos"></tr>            <tr mat-row *matRowDef="let row; columns: displayedColumnsGastos;"></tr>          </table>        </div>      </mat-card-content>    </mat-card>    <mat-divider></mat-divider>    <!-- Tabla de vehículos -->    <mat-card class="table-card">      <mat-card-header>        <mat-card-title>          <mat-icon>directions_car</mat-icon>          Estado de Vehículos        </mat-card-title>      </mat-card-header>      <mat-card-content>        <div class="table-container">          <table mat-table [dataSource]="vehiculosDashboard" class="vehiculos-table">                        <ng-container matColumnDef="placa">              <th mat-header-cell *matHeaderCellDef>Placa</th>              <td mat-cell *matCellDef="let vehiculo">{{ vehiculo.placa }}</td>            </ng-container>            <ng-container matColumnDef="marca">              <th mat-header-cell *matHeaderCellDef>Marca</th>              <td mat-cell *matCellDef="let vehiculo">{{ vehiculo.marca }}</td>            </ng-container>            <ng-container matColumnDef="modelo">              <th mat-header-cell *matHeaderCellDef>Modelo</th>              <td mat-cell *matCellDef="let vehiculo">{{ vehiculo.modelo }}</td>            </ng-container>            <ng-container matColumnDef="estado_vehiculo">              <th mat-header-cell *matHeaderCellDef>Estado</th>              <td mat-cell *matCellDef="let vehiculo">                <mat-chip [color]="obtenerColorEstado(vehiculo.estado_vehiculo)" selected>                  {{ vehiculo.estado_vehiculo }}                </mat-chip>              </td>            </ng-container>            <ng-container matColumnDef="tipo_vehiculo">              <th mat-header-cell *matHeaderCellDef>Tipo</th>              <td mat-cell *matCellDef="let vehiculo">{{ vehiculo.tipo_vehiculo }}</td>            </ng-container>            <ng-container matColumnDef="operador_asignado">              <th mat-header-cell *matHeaderCellDef>Operador Asignado</th>              <td mat-cell *matCellDef="let vehiculo">                {{ vehiculo.operador_asignado || \'Sin asignar\' }}              </td>            </ng-container>            <ng-container matColumnDef="kilometraje_actual">              <th mat-header-cell *matHeaderCellDef>Kilometraje</th>              <td mat-cell *matCellDef="let vehiculo" class="number-cell">                {{ formatearNumero(vehiculo.kilometraje_actual) }} km              </td>            </ng-container>            <ng-container matColumnDef="gasto_combustible_mes">              <th mat-header-cell *matHeaderCellDef>Gasto Combustible (Mes)</th>              <td mat-cell *matCellDef="let vehiculo" class="currency-cell">                {{ formatearMoneda(vehiculo.gasto_combustible_mes) }}              </td>            </ng-container>            <tr mat-header-row *matHeaderRowDef="displayedColumnsVehiculos"></tr>            <tr mat-row *matRowDef="let row; columns: displayedColumnsVehiculos;"></tr>          </table>        </div>      </mat-card-content>    </mat-card>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AgregarVehiculoComponent', 'selector': 'app-agregar-vehiculo'},{'name': 'AgregarVehiculoSimpleComponent', 'selector': 'app-agregar-vehiculo-simple'},{'name': 'App', 'selector': 'app-root'},{'name': 'BitacoraComponent', 'selector': 'app-bitacora'},{'name': 'CombustibleComponent', 'selector': 'app-combustible'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardGastos', 'selector': 'app-dashboard-gastos'},{'name': 'DashboardGastosComponent', 'selector': 'app-dashboard-gastos'},{'name': 'DetalleVehiculoComponent', 'selector': 'app-detalle-vehiculo'},{'name': 'DialogoNuevaCargaComponent', 'selector': 'app-dialogo-nueva-carga'},{'name': 'EditarVehiculoComponent', 'selector': 'app-editar-vehiculo'},{'name': 'EstadosVehiculosComponent', 'selector': 'app-estados-vehiculos'},{'name': 'GastosAdicionalComponent', 'selector': 'app-gastos-adicional'},{'name': 'GraficasCombustibleComponent', 'selector': 'app-graficas-combustible'},{'name': 'GraficasGastos', 'selector': 'app-graficas-gastos'},{'name': 'GruposVehiculosComponent', 'selector': 'app-grupos-vehiculos'},{'name': 'InventarioComponent', 'selector': 'app-inventario'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'TiposVehiculosComponent', 'selector': 'app-tipos-vehiculos'},{'name': 'UsuariosListComponent', 'selector': 'app-usuarios-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DashboardComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DashboardComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

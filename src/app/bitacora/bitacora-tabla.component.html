@@ -1,0 +1,146 @@
+<mat-card>
+  <mat-card-title>Tabla de Bitácoras</mat-card-title>
+  <div class="table-container">
+    <table mat-table [dataSource]="registros" class="mat-elevation-z2" matSort>
+      <!-- Fecha -->
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+        <td mat-cell *matCellDef="let row">{{ row.fecha }}</td>
+      </ng-container>
+      <!-- Hora -->
+      <ng-container matColumnDef="hora">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Hora</th>
+        <td mat-cell *matCellDef="let row">{{ row.hora }}</td>
+      </ng-container>
+      <!-- Vehículo -->
+      <ng-container matColumnDef="vehiculo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Vehículo</th>
+        <td mat-cell *matCellDef="let row">
+          <span matTooltip="{{ row.vehiculo }}">{{ row.vehiculo }}</span>
+        </td>
+      </ng-container>
+      <!-- Piloto -->
+      <ng-container matColumnDef="piloto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Piloto</th>
+        <td mat-cell *matCellDef="let row">{{ row.piloto }}</td>
+      </ng-container>
+      <!-- Copiloto -->
+      <ng-container matColumnDef="copiloto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Copiloto</th>
+        <td mat-cell *matCellDef="let row">{{ row.copiloto }}</td>
+      </ng-container>
+      <!-- Combustible -->
+      <ng-container matColumnDef="combustible">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Combustible</th>
+        <td mat-cell *matCellDef="let row">
+          <span [ngClass]="{
+            'comb-low': row.combustible === 0,
+            'comb-mid': row.combustible === 1 || row.combustible === 2,
+            'comb-full': row.combustible === 3
+          }">
+            {{ row.combustible }}
+          </span>
+        </td>
+      </ng-container>
+      <!-- Kilometraje -->
+      <ng-container matColumnDef="kilometraje">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Kilometraje</th>
+        <td mat-cell *matCellDef="let row">{{ row.kilometraje }}</td>
+      </ng-container>
+      <!-- Observación -->
+      <ng-container matColumnDef="observacion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Observación</th>
+        <td mat-cell *matCellDef="let row">
+          <span matTooltip="{{ row.observacion }}">{{ row.observacion }}</span>
+        </td>
+      </ng-container>
+      <!-- Llanta de repuesto -->
+      <ng-container matColumnDef="llanta_repuesto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Llanta Repuesto</th>
+        <td mat-cell *matCellDef="let row">{{ row.llanta_repuesto }}</td>
+      </ng-container>
+      <!-- Llave cruz -->
+      <ng-container matColumnDef="llave_cruz">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Llave Cruz</th>
+        <td mat-cell *matCellDef="let row">{{ row.llave_cruz }}</td>
+      </ng-container>
+      <!-- Tricket -->
+      <ng-container matColumnDef="tricket">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tricket</th>
+        <td mat-cell *matCellDef="let row">{{ row.tricket }}</td>
+      </ng-container>
+      <!-- Limpieza -->
+      <ng-container matColumnDef="limpieza">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Limpieza</th>
+        <td mat-cell *matCellDef="let row">{{ row.limpieza }}</td>
+      </ng-container>
+      <!-- Próximo servicio -->
+      <ng-container matColumnDef="proximo_servicio">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Próximo Servicio</th>
+        <td mat-cell *matCellDef="let row">{{ row.proximo_servicio }}</td>
+      </ng-container>
+      <!-- Etiqueta M -->
+      <ng-container matColumnDef="etiqueta_m">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Etiqueta M</th>
+        <td mat-cell *matCellDef="let row">{{ row.etiqueta_m }}</td>
+      </ng-container>
+      <!-- Lubricante cadena -->
+      <ng-container matColumnDef="lubricante_cadena">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Lubricante Cadena</th>
+        <td mat-cell *matCellDef="let row">{{ row.lubricante_cadena }}</td>
+      </ng-container>
+      <!-- Nivel aceite -->
+      <ng-container matColumnDef="nivel_aceite">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nivel Aceite</th>
+        <td mat-cell *matCellDef="let row">{{ row.nivel_aceite }}</td>
+      </ng-container>
+      <!-- Agua -->
+      <ng-container matColumnDef="agua">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Agua</th>
+        <td mat-cell *matCellDef="let row">{{ row.agua }}</td>
+      </ng-container>
+      <!-- Vencimiento licencia -->
+      <ng-container matColumnDef="vencimiento_licencia">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Vencimiento Licencia</th>
+        <td mat-cell *matCellDef="let row">{{ row.vencimiento_licencia }}</td>
+      </ng-container>
+      <!-- Luces intermitentes -->
+      <ng-container matColumnDef="luces_intermitentes">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Luces Intermitentes</th>
+        <td mat-cell *matCellDef="let row">{{ row.luces_intermitentes }}</td>
+      </ng-container>
+      <!-- Luz stop -->
+      <ng-container matColumnDef="luz_stop">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Luz Stop</th>
+        <td mat-cell *matCellDef="let row">{{ row.luz_stop }}</td>
+      </ng-container>
+      <!-- Faros -->
+      <ng-container matColumnDef="faros">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Faros</th>
+        <td mat-cell *matCellDef="let row">{{ row.faros }}</td>
+      </ng-container>
+      <!-- Líquido freno -->
+      <ng-container matColumnDef="liquido_freno">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Líquido Freno</th>
+        <td mat-cell *matCellDef="let row">{{ row.liquido_freno }}</td>
+      </ng-container>
+      <!-- Tiempo casco -->
+      <ng-container matColumnDef="tiempo_casco">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiempo Casco</th>
+        <td mat-cell *matCellDef="let row">{{ row.tiempo_casco }}</td>
+      </ng-container>
+      <!-- Traje imp -->
+      <ng-container matColumnDef="traje_imp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Traje Imp</th>
+        <td mat-cell *matCellDef="let row">{{ row.traje_imp }}</td>
+      </ng-container>
+      <!-- Ren por galón -->
+      <ng-container matColumnDef="ren_por_galon">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Ren por Galón</th>
+        <td mat-cell *matCellDef="let row">{{ row.ren_por_galon }}</td>
+      </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</mat-card>

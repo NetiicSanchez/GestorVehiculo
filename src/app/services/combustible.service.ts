@@ -7,7 +7,7 @@ import { CargaCombustible } from '../models/vehiculo.model';
   providedIn: 'root'
 })
 export class CombustibleService {
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = '/api';
   private readonly TIMEOUT_MS = 10000;
   private readonly MAX_RETRIES = 3;
 
@@ -41,7 +41,15 @@ export class CombustibleService {
       );
   }
 
-  // Registrar nueva carga de combustible
+  getGastosCombustiblePorVehiculo(idVehiculo: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/combustible/gastos/vehiculo/${idVehiculo}`);
+  }
+
+  getRendimientoVehiculo(idVehiculo: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/combustible/rendimiento/vehiculo/${idVehiculo}`);
+  }
+
+  // Registrar una nueva carga de combustible
   registrarCarga(carga: CargaCombustible): Observable<any> {
     console.log('⛽ CombustibleService: Registrando nueva carga:', carga);
     return this.http.post(`${this.apiUrl}/combustible/cargas`, carga)

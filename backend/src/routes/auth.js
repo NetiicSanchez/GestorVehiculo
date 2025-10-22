@@ -13,7 +13,13 @@ router.post('/login', async (req, res) => {
     return res.status(400).json({ success: false, message: 'Email y contraseña requeridos' });
   }
   try {
-    const result = await pool.query('SELECT * FROM usuario WHERE email = $1 AND activo = true', [email]);
+    // Traer usuario, nombre de rol y permisos
+    const result = await pool.query(`
+      SELECT u.*, r.nombre AS rol
+      FROM usuario u
+      JOIN rol r ON u.id_rol = r.id
+      WHERE u.email = $1 AND u.activo = true
+    `, [email]);
     if (result.rows.length === 0) {
       return res.status(401).json({ success: false, message: 'Usuario o contraseña incorrectos' });
     }
@@ -22,8 +28,18 @@ router.post('/login', async (req, res) => {
     if (!passwordValida) {
       return res.status(401).json({ success: false, message: 'Usuario o contraseña incorrectos' });
     }
+    // Traer permisos del rol
+    const permisosResult = await pool.query(`
+      SELECT p.modulo
+      FROM rol_permisos rp
+      JOIN permisos p ON rp.permiso_id = p.id
+      WHERE rp.rol_id = $1 AND p.activo = true
+    `, [usuario.id_rol]);
+    const permisos = permisosResult.rows.map(row => row.modulo);
+   
     // No incluir password en el token
     const { password: _, ...usuarioSinPassword } = usuario;
+    usuarioSinPassword.permisos = permisos;
     const token = jwt.sign(usuarioSinPassword, JWT_SECRET, { expiresIn: '8h' });
     res.json({ success: true, token, usuario: usuarioSinPassword });
   } catch (error) {

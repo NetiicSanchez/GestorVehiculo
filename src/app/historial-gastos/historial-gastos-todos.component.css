@@ -1,0 +1,30 @@
+h2 {
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+h3 {
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+table {
+  font-size: 1rem;
+}
+th, td {
+  text-align: center;
+  vertical-align: middle;
+}
+/* Apilar los elementos verticalmente y evitar scroll horizontal */
+.container {
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.vehiculo-historial {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}

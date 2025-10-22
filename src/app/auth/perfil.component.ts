@@ -12,6 +12,22 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
+  rolDesactualizado = false;
+  logout() {
+    this.authService.logout();
+    setTimeout(() => { window.location.href = '/login'; }, 100);
+  }
+  // Getter para el rol del usuario
+  get rolUsuario(): string {
+    if (typeof window === 'undefined' || !window.localStorage) return '';
+    return this.authService.getUsuario()?.rol || this.authService.getUsuario()?.id_rol || '';
+  }
+
+  // Getter para los permisos del usuario (si los guardas en el objeto usuario)
+  get permisosUsuario(): string[] {
+    if (typeof window === 'undefined' || !window.localStorage) return [];
+    return this.authService.getUsuario()?.permisos || [];
+  }
   perfilForm: FormGroup;
   loading = false;
   success = '';
@@ -23,21 +39,46 @@ export class PerfilComponent implements OnInit {
     private usuariosService: UsuariosService
   ) {
     this.perfilForm = this.fb.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
+      nombre: [{ value: '', disabled: false }, Validators.required],
+      apellido: [{ value: '', disabled: false }, Validators.required],
       email: [{ value: '', disabled: true }],
-      telefono: [''],
-      dpi: [''],
-      licencia_conducir: [''],
-      fecha_vencimiento_licencia: [''],
-      // Puedes agregar más campos aquí
+      telefono: [{ value: '', disabled: false }],
+      dpi: [{ value: '', disabled: false }],
+      licencia_conducir: [{ value: '', disabled: false }],
+      fecha_vencimiento_licencia: [{ value: '', disabled: false }],
     });
   }
 
   ngOnInit() {
-    const usuario = this.authService.getUsuario();
-    if (usuario) {
-      this.perfilForm.patchValue(usuario);
+    const usuarioLocal = this.authService.getUsuario();
+    if (usuarioLocal) {
+      this.usuariosService.obtenerUsuarioPorId(usuarioLocal.id).subscribe({
+        next: (usuario) => {
+          this.perfilForm.patchValue(usuario);
+          // Lógica de permisos por rol
+          if (this.rolUsuario === 'Supervisor') {
+            this.perfilForm.get('nombre')?.disable();
+            this.perfilForm.get('apellido')?.disable();
+            this.perfilForm.get('email')?.disable();
+            // Permitir editar teléfono y dpi
+            this.perfilForm.get('telefono')?.enable();
+            this.perfilForm.get('dpi')?.enable();
+          }
+          if (this.rolUsuario === 'Conductor') {
+            this.perfilForm.get('nombre')?.disable();
+            this.perfilForm.get('apellido')?.disable();
+            this.perfilForm.get('email')?.disable();
+            this.perfilForm.get('telefono')?.disable();
+            this.perfilForm.get('dpi')?.disable();
+            this.perfilForm.get('licencia_conducir')?.disable();
+            this.perfilForm.get('fecha_vencimiento_licencia')?.disable();
+          }
+          // Verificar si el rol en la base de datos es diferente al del localStorage
+          if (usuario.rol && usuario.rol !== usuarioLocal.rol) {
+            this.rolDesactualizado = true;
+          }
+        }
+      });
     }
   }
 
@@ -45,6 +86,8 @@ export class PerfilComponent implements OnInit {
     this.error = '';
     this.success = '';
     if (this.perfilForm.invalid) return;
+    // Solo permitir guardar si no es conductor
+    if (this.rolUsuario === 'Conductor') return;
     this.loading = true;
     let datos = { ...this.perfilForm.getRawValue(), id: this.authService.getUsuario()?.id };
     // Adaptar fecha a formato YYYY-MM-DD si existe

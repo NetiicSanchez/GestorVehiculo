@@ -1,9 +1,38 @@
-<div class="app-container">
+<ng-container *ngIf="usuarioAutenticado(); else loginShell">
+<div class="app-container" [class.sidebar-collapsed]="sidebarCollapsed">
   <header class="app-header">
-    <h1>{{ title() }}</h1>
-    <p>Sistema de gestión de vehículos</p>
-    <nav *ngIf="usuarioAutenticado()">
-      <a href="/perfil" class="perfil-link">Mi perfil</a>
+    <div class="header-top">
+      <button class="sidebar-toggle" type="button" aria-label="Alternar barra lateral" [attr.aria-expanded]="!sidebarCollapsed" (click)="sidebarCollapsed = !sidebarCollapsed">
+        <mat-icon>{{ sidebarCollapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+      </button>
+  
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
+    <img src="/logo-nettic.svg" alt="Logo" style="max-width:180px;width:100%;height:auto;object-fit:contain;" />
+  </div>
+      <button class="menu-toggle" type="button" aria-label="Abrir menú" [attr.aria-expanded]="menuOpen" (click)="menuOpen = !menuOpen">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <!-- <p class="site-subtitle">Sistema de gestión de vehículos</p> -->
+     
+    <nav *ngIf="usuarioAutenticado()" class="main-nav" [class.open]="menuOpen">
+      <div class="nav-group nav-primary">
+        <a [routerLink]="'/perfil'" routerLinkActive="active" class="nav-link"><mat-icon>person</mat-icon> Mi perfil</a>
+        <a *ngIf="rolUsuario === 'Administrador'" routerLinkActive="active" class="nav-link" [routerLink]="'/usuarios'" style="margin-bottom:8px;"><mat-icon>group</mat-icon> Ver Usuarios</a>
+        <a *ngIf="rolUsuario === 'Administrador' || permisosUsuario.includes('vehiculos.crear')" routerLinkActive="active" class="nav-link" [routerLink]="'/vehiculos/agregar'"><mat-icon>add_circle</mat-icon> Agregar Vehículo</a>
+        <a *ngIf="permisosUsuario.includes('combustible.crear')" routerLinkActive="active" class="nav-link" [routerLink]="'/combustible'"><mat-icon>local_gas_station</mat-icon> Cargar Combustible</a>
+        <a class="nav-link" routerLinkActive="active" [routerLink]="'/vehiculos/inventario'"><mat-icon>home</mat-icon> Inicio</a>
+      </div>
+      <div class="nav-group nav-analytics" *ngIf="rolUsuario === 'Administrador' || permisosUsuario.includes('dashboard.ver')">
+  <a routerLinkActive="active" class="nav-link" [routerLink]="'/dashboard'"><mat-icon>dashboard</mat-icon> Dashboard General</a>
+  <a routerLinkActive="active" class="nav-link" [routerLink]="'/dashboard-gastos'"><mat-icon>local_gas_station</mat-icon> Dashboard de combustible</a>
+  <a routerLinkActive="active" class="nav-link" [routerLink]="'/graficas-gastos'"><mat-icon>bar_chart</mat-icon> Gráfica de Rendimiento</a>
+      </div>
+      <div class="nav-group nav-operations">
+  <a *ngIf="rolUsuario === 'Administrador' || permisosUsuario.includes('gastos.ver')" routerLinkActive="active" class="nav-link" [routerLink]="'/gastos-adicional'"><mat-icon>build</mat-icon> Bitácora de Mantenimiento</a>
+  <a *ngIf="rolUsuario === 'Administrador' || permisosUsuario.includes('bitacora.ver')" routerLinkActive="active" class="nav-link" [routerLink]="'/bitacora'"><mat-icon>visibility</mat-icon> Supervisión de Vehículos</a>
+  <button mat-raised-button color="primary" class="nav-link" routerLinkActive="active" [routerLink]="'/incidentes'"><mat-icon>report</mat-icon> Registrar Incidente</button>
+      </div>
     </nav>
   </header>
   
@@ -14,4 +43,14 @@
   <footer class="app-footer">
     <p>&copy; 2025 Gestor de Vehículos. Todos los derechos reservados.</p>
   </footer>
-</div>
+  </div>
+</ng-container>
+
+<ng-template #loginShell>
+  <!-- Layout simple para páginas públicas (login/register) -->
+  <main style="min-height:100vh;display:block;padding:0;">
+    <router-outlet></router-outlet>
+    <!-- Fallback: si no hay ruta activa, renderizar login directamente -->
+    <app-login *ngIf="router.url?.startsWith('/login')"></app-login>
+  </main>
+</ng-template>

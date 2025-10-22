@@ -8,8 +8,14 @@ console.log('⛽ Configurando rutas de combustible...');
 // GET /api/combustible/cargas - Obtener todas las cargas
 router.get('/cargas', combustibleController.obtenerCargas);
 
-// GET /api/combustible/cargas/vehiculo/:idVehiculo - Obtener cargas por vehículo
-router.get('/cargas/vehiculo/:idVehiculo', combustibleController.obtenerCargasPorVehiculo);
+// GET /api/combustible/gastos/vehiculo/:id - Obtener gastos de combustible por vehículo
+router.get('/gastos/vehiculo/:id', combustibleController.getGastosCombustiblePorVehiculo);
+
+// GET /api/combustible/rendimiento/vehiculo/:id - Obtener rendimiento por vehículo
+router.get('/rendimiento/vehiculo/:id', combustibleController.getRendimientoVehiculo);
+
+// GET /api/combustible/cargas/vehiculo/:id - Obtener cargas por vehículo
+router.get('/cargas/vehiculo/:id', combustibleController.obtenerCargasPorVehiculo);
 
 // POST /api/combustible/cargas - Registrar nueva carga
 router.post('/cargas', combustibleController.registrarCarga);

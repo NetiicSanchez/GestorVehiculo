@@ -26,6 +26,10 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
+    // Si ya hay sesión activa, redirige automáticamente
+    if (this.authService.isLoggedIn() && !this.authService.isSessionExpired()) {
+      this.router.navigate(['/vehiculos/inventario']);
+    }
   }
 
   login() {

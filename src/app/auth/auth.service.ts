@@ -6,6 +6,11 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  isLoggedIn(): boolean {
+    if (typeof window === 'undefined' || !window.localStorage) return false;
+    const token = localStorage.getItem('token');
+    return !!token && !this.isSessionExpired();
+  }
   private apiUrl = '/api/auth';
 
   constructor(private http: HttpClient, private router: Router) {}

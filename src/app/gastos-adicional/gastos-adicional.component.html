@@ -145,6 +145,13 @@
 </div>
 
 <!-- Tabla de gastos adicionales registrados -->
+<div style="margin-bottom: 16px;">
+  <label for="buscadorVehiculo"><strong>Buscar por vehículo:</strong></label>
+  <select id="buscadorVehiculo" [(ngModel)]="vehiculoBuscado" (change)="filtrarPorVehiculo()" style="width:220px;max-width:100%;height:32px;padding:0 8px;font-size:1rem;">
+    <option value="">Todos</option>
+    <option *ngFor="let v of vehiculos" [value]="v.id">{{ v.marca }} {{ v.modelo }} ({{ v.numero_placa || v.placa }})</option>
+  </select>
+</div>
 <h3 style="margin-top:32px;">Gastos Adicionales Registrados</h3>
 
 <!-- Filtro por mes/año -->
@@ -161,7 +168,7 @@
   </select>
 </div>
 
-<table mat-table [dataSource]="gastosAdicionales" class="mat-elevation-z8" style="width:100%;margin-top:8px;">
+<table mat-table [dataSource]="gastosFiltrados" class="mat-elevation-z8" style="width:100%;margin-top:8px;">
   <!-- Fecha -->
   <ng-container matColumnDef="fecha_gasto">
     <th mat-header-cell *matHeaderCellDef>Fecha</th>

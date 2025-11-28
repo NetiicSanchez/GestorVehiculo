@@ -237,7 +237,7 @@ const registrarCarga = async (req, res) => {
 const actualizarCarga = async (req, res) => {
   try {
     const { id } = req.params;
-    const {
+    let {
       id_vehiculo,
       id_tipo_combustible,
       fecha_carga,
@@ -250,6 +250,19 @@ const actualizarCarga = async (req, res) => {
       observaciones,
       foto_factura
     } = req.body;
+
+    // Convertir undefined a null para evitar errores
+    id_vehiculo = (id_vehiculo === undefined) ? null : id_vehiculo;
+    id_tipo_combustible = (id_tipo_combustible === undefined) ? null : id_tipo_combustible;
+    fecha_carga = (fecha_carga === undefined) ? null : fecha_carga;
+    galones_cargados = (galones_cargados === undefined) ? null : galones_cargados;
+    precio_galon = (precio_galon === undefined) ? null : precio_galon;
+    total_pagado = (total_pagado === undefined) ? null : total_pagado;
+    kilometraje_actual = (kilometraje_actual === undefined) ? null : kilometraje_actual;
+    proveedor_combustible = (proveedor_combustible === undefined) ? null : proveedor_combustible;
+    numero_factura = (numero_factura === undefined) ? null : numero_factura;
+    observaciones = (observaciones === undefined) ? null : observaciones;
+    foto_factura = (foto_factura === undefined) ? null : foto_factura;
 
     console.log(`🔧 Actualizando carga ${id}:`, req.body);
 

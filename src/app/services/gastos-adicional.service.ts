@@ -37,4 +37,8 @@ export class GastosAdicionalService {
     }
     return this.http.get(this.apiUrl + query);
   }
+  actualizarGasto(id: number, gasto: GastoAdicional) {
+  return this.http.put(`/api/gastos-adicional/${id}`, gasto);
+  }
+  
 }

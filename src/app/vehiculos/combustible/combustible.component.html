@@ -86,6 +86,13 @@
   <!-- Tabla de cargas (desktop/tablet) -->
   <div class="tabla-container" *ngIf="!cargando && !errorCarga && !isMobile">
         <mat-table [dataSource]="cargasFiltradas" class="cargas-table">
+          <!-- Columna Usuario -->
+          <ng-container matColumnDef="usuario">
+            <mat-header-cell *matHeaderCellDef>Usuario</mat-header-cell>
+            <mat-cell *matCellDef="let carga">
+              {{ (carga.nombreUsuario || carga.nombre_usuario || '') + (carga.apellidoUsuario ? ' ' + carga.apellidoUsuario : (carga.apellido_usuario ? ' ' + carga.apellido_usuario : '')) || 'N/A' }}
+            </mat-cell>
+          </ng-container>
           <!-- Columna Fecha de Carga -->
           <ng-container matColumnDef="fecha">
             <mat-header-cell *matHeaderCellDef>Fecha Carga</mat-header-cell>
@@ -203,8 +210,9 @@
         <div class="mobile-card" *ngFor="let carga of cargasFiltradas">
           <div class="mc-header">
             <div class="mc-date">
-              <span><strong>Fecha Carga:</strong> {{ carga.fechaCarga | date:'dd/MM/yyyy' }}</span><br>
-              <span><strong>Fecha Registro:</strong> {{ carga.fechaRegistro | date:'dd/MM/yyyy' }}</span>
+              <span><strong>Fecha Carga:</strong> {{ formatearFecha(carga.fechaCarga) }}</span><br>
+              <span><strong>Fecha Registro:</strong> {{ carga.fechaRegistro | date:'dd/MM/yyyy' }}</span><br>
+              <span><strong>Usuario:</strong> {{ (carga.nombreUsuario || carga.nombre_usuario || '') + (carga.apellidoUsuario ? ' ' + carga.apellidoUsuario : (carga.apellido_usuario ? ' ' + carga.apellido_usuario : '')) || 'N/A' }}</span>
             </div>
             <div class="mc-actions">
               <button *ngIf="carga.fotoFactura || $any(carga)['foto_factura']" mat-icon-button color="accent" (click)="verFoto(carga.fotoFactura || $any(carga)['foto_factura'])" aria-label="Ver foto">

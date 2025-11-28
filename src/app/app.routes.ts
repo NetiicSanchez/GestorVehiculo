@@ -10,6 +10,7 @@ import { BitacoraTablaComponent } from './bitacora/bitacora-tabla.component';
 import { DebugComponent } from './debug.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'debug', component: DebugComponent },
   {
     path: 'bitacora/tabla',
@@ -54,6 +55,11 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'vehiculos/estados',
+    loadComponent: () => import('./vehiculos/estados/estados-vehiculos.component').then(m => m.EstadosVehiculosComponent),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'vehiculos/tipos',
     loadComponent: () => import('./vehiculos/tipos/tipos-vehiculos.component').then(m => m.TiposVehiculosComponent),
     canActivate: [AuthGuard]
@@ -64,18 +70,13 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'graficas-combustible',
-    loadComponent: () => import('./graficas-combustible/graficas-combustible.component').then(m => m.GraficasCombustibleComponent),
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'vehiculos/estados',
-    loadComponent: () => import('./vehiculos/estados/estados-vehiculos.component').then(m => m.EstadosVehiculosComponent),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'vehiculos/combustible',
     loadComponent: () => import('./vehiculos/combustible/combustible.component').then(m => m.CombustibleComponent),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'graficas-combustible',
+    loadComponent: () => import('./graficas-combustible/graficas-combustible.component').then(m => m.GraficasCombustibleComponent),
     canActivate: [AuthGuard]
   },
   {
@@ -103,11 +104,11 @@ export const routes: Routes = [
     loadComponent: () => import('./bitacora/bitacora.component').then(m => m.BitacoraComponent),
     canActivate: [AuthGuard]
   },
-    {
-      path: 'incidentes',
-      loadComponent: () => import('./incidentes/incidentes.component').then(m => m.IncidentesComponent),
-      canActivate: [AuthGuard]
-    },
+  {
+    path: 'incidentes',
+    loadComponent: () => import('./incidentes/incidentes.component').then(m => m.IncidentesComponent),
+    canActivate: [AuthGuard]
+  },
   {
     path: 'graficas-gastos',
     loadComponent: () => import('./graficas-gastos/graficas-gastos').then(m => m.GraficasGastos)

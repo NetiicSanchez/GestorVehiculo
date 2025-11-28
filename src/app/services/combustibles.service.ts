@@ -7,6 +7,9 @@ import { CargaCombustible } from '../models/vehiculo.model';
   providedIn: 'root'
 })
 export class CombustiblesService {
+    actualizarCarga(id: number, carga: any): Observable<any> {
+      return this.http.put(`${this.apiUrl}/cargas/${id}`, carga);
+    }
   private apiUrl = '/api/combustible';
 
   constructor(private http: HttpClient) { }

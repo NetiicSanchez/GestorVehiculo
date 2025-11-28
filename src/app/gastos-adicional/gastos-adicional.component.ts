@@ -31,6 +31,8 @@ import { VehiculosService } from '../services/vehiculos.service';
   styleUrls: ['./gastos-adicional.component.css']
 })
 export class GastosAdicionalComponent implements OnInit {
+    vehiculoBuscado: string = '';
+    gastosFiltrados: any[] = [];
   displayedColumns: string[] = [
     'fecha_gasto', 'vehiculo', 'tipo_gasto', 'monto', 'kilometraje', 'descripcion', 'proveedor', 'acciones'
   ];
@@ -43,6 +45,7 @@ export class GastosAdicionalComponent implements OnInit {
   archivoSeleccionado: File | null = null;
   nombreArchivoSeleccionado = '';
   mostrarVistaPrevia = false;
+  gastoEditando: any = null;
 
   // Paginación y filtro
   pageSize = 20;
@@ -189,10 +192,28 @@ export class GastosAdicionalComponent implements OnInit {
   }
 
   private guardarGasto(fotoUrl: string | null): void {
-    const gasto: GastoAdicional = {
-      ...this.gastoForm.value,
-      foto_factura: fotoUrl
-    };
+  const gasto: GastoAdicional = {
+    ...this.gastoForm.value,
+    foto_factura: fotoUrl
+  };
+  if (this.gastoEditando) {
+    // Llama al método de actualización en el servicio
+    this.gastosService.actualizarGasto(this.gastoEditando.id, gasto).subscribe(
+      res => {
+        this.successMessage = 'Gasto adicional actualizado correctamente.';
+        this.gastoForm.reset();
+        this.gastoEditando = null;
+        this.limpiarArchivo();
+        this.submitting = false;
+        this.cargarGastosAdicionales();
+        setTimeout(() => this.successMessage = '', 3000);
+      },
+      err => {
+        this.errorMessage = 'Error al actualizar el gasto adicional.';
+        this.submitting = false;
+      }
+    );
+  } else {
     this.gastosService.crearGasto(gasto).subscribe(
       res => {
         this.successMessage = 'Gasto adicional guardado correctamente.';
@@ -209,7 +230,7 @@ export class GastosAdicionalComponent implements OnInit {
       }
     );
   }
-
+}
   cargarGastosAdicionales(): void {
     const params: any = {
       limit: this.pageSize,
@@ -218,7 +239,13 @@ export class GastosAdicionalComponent implements OnInit {
     if (this.mesFiltro) params.mes = this.mesFiltro;
     if (this.anioFiltro) params.anio = this.anioFiltro;
     this.gastosService.obtenerGastos(params).subscribe(
-      (res: any) => this.gastosAdicionales = res.data || res,
+      (res: any) => {
+        this.gastosAdicionales = res.data || res;
+        this.gastosFiltrados = [...this.gastosAdicionales];
+        if (this.vehiculoBuscado) {
+          this.filtrarPorVehiculo();
+        }
+      },
       (err: any) => console.error('Error al cargar gastos adicionales:', err)
     );
   }
@@ -234,6 +261,14 @@ export class GastosAdicionalComponent implements OnInit {
     this.cargarGastosAdicionales();
   }
 
+  filtrarPorVehiculo(): void {
+    if (!this.vehiculoBuscado) {
+      this.gastosFiltrados = [...this.gastosAdicionales];
+    } else {
+      this.gastosFiltrados = this.gastosAdicionales.filter(g => String(g.id_vehiculo) === String(this.vehiculoBuscado));
+    }
+  }
+
   obtenerAnios(): number[] {
     const anioActual = new Date().getFullYear();
     const anios: number[] = [];
@@ -244,8 +279,18 @@ export class GastosAdicionalComponent implements OnInit {
   }
 
   editarGasto(gasto: any): void {
-    // Implementar lógica de edición si lo necesitas
-    alert('Funcionalidad de edición pendiente');
+    this.gastoEditando = gasto;
+    // Formatear la fecha para el input type='date'
+    let fechaFormateada = '';
+    if (gasto.fecha_gasto) {
+      const d = new Date(gasto.fecha_gasto);
+      // yyyy-MM-dd
+      fechaFormateada = d.toISOString().slice(0, 10);
+    }
+    this.gastoForm.patchValue({
+      ...gasto,
+      fecha_gasto: fechaFormateada
+    });
   }
 
   eliminarGasto(gasto: any): void {

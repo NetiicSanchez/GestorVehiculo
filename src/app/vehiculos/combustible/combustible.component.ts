@@ -18,6 +18,7 @@ import { CombustiblesService } from '../../services/combustibles.service';
 import { VehiculosService } from '../../services/vehiculos.service';
 import { CargaCombustible, Vehiculo } from '../../models/vehiculo.model';
 import { DialogoNuevaCargaComponent } from './dialogo-nueva-carga.component';
+import { DialogoEditarCargaComponent } from './dialogo-editar-carga.component';
 import { AuthService } from '../../auth/auth.service';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
@@ -83,8 +84,8 @@ export class CombustibleComponent implements OnInit, OnDestroy {
 
   // Configuración de la tabla
   columnasDisplayed: string[] = [
-    'fecha', 'fecha_registro', 'vehiculo', 'combustible', 'galones', 
-    'precio', 'total', 'kilometraje', 'proveedor', 'observaciones', 'acciones'
+  'fecha', 'fecha_registro', 'usuario', 'vehiculo', 'combustible', 'galones', 
+  'precio', 'total', 'kilometraje', 'proveedor', 'observaciones', 'acciones'
   ];
 
   constructor(
@@ -351,9 +352,20 @@ export class CombustibleComponent implements OnInit, OnDestroy {
       alert('Tu rol no tiene permisos para editar cargas.');
       return;
     }
-    console.log('✏️ Editando carga:', carga);
-    // TODO: Implementar diálogo para editar carga
-    alert('Edición de carga en desarrollo');
+    const dialogRef = this.dialog.open(DialogoEditarCargaComponent, {
+      width: '95vw',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
+      data: { carga }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.success) {
+        this.successMessage = '¡Carga de combustible actualizada exitosamente!';
+        this.cargarCargas(); // Recargar la lista de cargas
+        setTimeout(() => this.successMessage = '', 5000);
+      }
+    });
   }
 
   eliminarCarga(carga: CargaCombustible): void {
@@ -381,15 +393,19 @@ export class CombustibleComponent implements OnInit, OnDestroy {
     }
   }
 
-  formatearFecha(fecha: string): string {
-  if (!fecha) return '';
-  // Si la fecha incluye hora, tomar solo la parte de la fecha
-  const soloFecha = fecha.includes('T') ? fecha.split('T')[0] : fecha;
-  const d = new Date(soloFecha + 'T00:00:00');
-  if (isNaN(d.getTime())) return soloFecha;
-  const dia = d.getDate().toString().padStart(2, '0');
-  const mes = (d.getMonth() + 1).toString().padStart(2, '0');
-  const anio = d.getFullYear();
-  return `${dia}/${mes}/${anio}`;
+  formatearFecha(fecha: string | Date): string {
+    if (!fecha) return '';
+    let soloFecha = '';
+    if (fecha instanceof Date) {
+      soloFecha = fecha.toISOString().substring(0, 10);
+    } else {
+      soloFecha = fecha.substring(0, 10);
+    }
+    const partes = soloFecha.split('-');
+    if (partes.length === 3) {
+      // Mostrar la fecha tal como viene del backend, sin sumar días
+      return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
+    return soloFecha;
   }
 }

@@ -73,4 +73,9 @@ export interface CargaCombustible {
   marca?: string;
   modelo?: string;
   tipoCombustible?: string;
+  // Campos de usuario para mostrar en la tabla y vista móvil
+  nombreUsuario?: string;
+  apellidoUsuario?: string;
+  nombre_usuario?: string;
+  apellido_usuario?: string;
 }
